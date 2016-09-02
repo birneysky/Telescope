@@ -1,0 +1,177 @@
+syntax = "proto3";
+
+option objc_class_prefix = "V2P";
+
+message Packet{                         //协议主体类
+    type packetType =1;    //（必填）包类型：枚举
+    string from = 2;       //（选填）发送者
+    string to =3;          //（选填）接收者
+    string id = 4;         //（选填）包ID
+    string method =5;      //（选填）方法名
+    string operateType =6; //（选填）操作类型
+    Result result =7;      //（选填）操作结果，是否成功，失败原因
+    Data data =8;          //（选填）包含的数据
+    string version=9;      //（选填）版本号iq类型包必填
+    enum type{        //枚举。包类型
+        iq = 0;      //信令类型
+        msg = 1;     //消息类型
+        buffer = 2;  //流媒体文件类型
+        beat = 3;    //心跳包
+    }
+}
+
+message Result{                    //操作结果类
+    bool result = 1;  //是否成功
+    string error = 2; //错误信息
+}
+
+message Data{                           //数据类
+    string normal = 1;     //（选填）通用数据
+    bytes byteDate = 2;    //（选填）二进制数据
+    int64 fromTime = 3;    //（选填）筛选数据的起始时间
+    int64 toTime = 4;      //（选填）筛选数据的截止时间
+    int32 sum = 5;         //（选填）数据的总量
+    int32 from = 6;        //（选填）当前传送数据的起始位置
+    int32 to = 7;          //（选填）当前传送数据的结束位置
+    repeated Position position= 8;  //（可重复）位置类
+    repeated User user = 9;         //（可重复）用户类
+    repeated Video video = 10;       //（可重复）直播视频类
+    repeated Gratuity gratuity = 11; //（可重复）打赏类
+    repeated Reward reward = 12;     //（可重复）悬赏类
+    repeated UserState userState = 13;//（可重复）用户状态
+    repeated AssetLog assetLog = 14; //（可重复）资金变动的日志类
+}
+
+message User{                           //用户类
+    int32 id = 1;          //（选填）用户ID
+    string phone = 2;      //（选填）电话号码
+    string name = 3;       //（选填）用户名/昵称
+    string pwd = 4;        //（选填）用户密码
+    string pwd2orCode = 5; //（选填）新密码或者验证码
+    string realName = 6;   //（选填）用户真实姓名
+    string headurl = 7;    //（选填）用户头像地址
+    string signText = 8;   //（选填）个性化签名
+    int32 sex= 9;          //（选填）性别
+    string address= 10;    //（选填）注册地址
+    int32 experience= 11;  //（选填）用户经验值
+    int32 fansCount= 12;   //（选填）粉丝数量
+    int32 followCount= 13; //（选填）关注的用户数量
+    Position position= 14; //（选填）用户所在的位置
+    string deviceID = 15;  //（选填）登陆所用的设备ID
+    int32 FollowType = 16; //（选填）关注（其他用户）的类型
+    string descName = 17;  //（选填）备注名称
+    string v2ID = 18;      //（选填）会议系统用户ID
+    string v2UserName = 19;//（选填）会议系统用户名
+    string v2Pwd = 20;     //（选填）会议系统用户密码
+    int32 videoCount = 21; //（选填）用户发布的直播总量
+    string v2DeviceID1 = 22;//（选填）前置摄像头ID
+    string v2DeviceID2 = 23;//（选填）后置摄像头ID
+}
+
+message Position{                      //位置类
+      double longitude = 1; //（选填）地图经度
+      double latitude = 2;  //（选填）地图维度
+      int32 radius = 3;     //（选填）查询半径,以米为单位
+}
+
+message Video{                         //直播视频类
+      int32 id = 1;         //（选填）直播的ID
+      string videoNum = 2;  //（选填）直播的会议号
+      int32 userId = 3;     //（选填）发起直播的用户ID
+      Position position= 4; //（选填）该直播所在的位置
+      int32 sum = 5;        //（选填）当前观看该直播的总人数
+      int32 userCount = 6;  //（选填）累计观看人次
+      int32 likeCount = 7;  //（选填）当前的点赞数
+      float gratuityCount = 8;  //（选填）当前直播的打赏总额
+      int32 degree = 9;     //与该用户的相关度，排序依据
+      int32 resultType = 10;//结果类型：0搜索内容；1推荐内容
+      bool HLSMode = 11;    //是否为HLS格式
+      string videoPwd = 12; //直播的密码，默认为null
+}
+
+message Gratuity{                      //打赏类
+      int32 giftType = 1;   //（选填）打赏物的类型
+      int32 toUserID = 2;   //（选填）打赏的对象
+      int32 fromUserID = 3; //（选填）发起打赏的用户
+      float amount = 4;     //（选填）打赏金额
+      float sumOrRemain = 5;//累计打赏总额或者打赏后的剩余金额
+      Answer answer = 6;    //（选填）枚举类。响应结果
+      int32 videoId = 7;    //（选填）打赏行为发生的那个直播
+
+    enum Answer{      //枚举。响应结果
+        receive = 0; //收到信息
+        accept = 1;  //接受
+        refuse = 2;  //拒绝
+        cancel = 3;  //取消
+    }
+}
+
+message Reward{                          //悬赏类
+    int32 id = 1;           //（选填）此次悬赏的数据库ID
+    int32 powerTime = 2;    //（选填）悬赏的有效时间
+    int64 releaseTime = 3;  //（选填）悬赏的开始时间
+    repeated Gift gift = 4;          //（选填）悬赏的物品及数量，可以是多种
+    int32 fromUserID = 5;   //（选填）发起悬赏用户的ID
+    int32 answerUserID = 6; //（选填）接受悬赏用户的ID
+    Operate operate = 7;    //（选填）枚举类。操作类型
+    string desc = 8;        //（选填）文字描述
+    Position position = 9;  //（选填）位置信息
+    int32 pushSum= 10;      //（选填）推送的用户数量
+    string appealDesc = 11; //（选填）申诉的内容
+    int64 appealTime = 12;  //（选填）申诉的时间
+
+    enum Operate{    //枚举。操作类型
+        release  = 0; //发布悬赏
+        cancle = 1; //取消悬赏
+        pay = 2;    //支付
+        answer = 3; //接受
+        appeal = 4; //申诉
+    }
+}
+
+message Gift{                           //礼物类
+      int32 giftType = 1;    //（选填）类别
+      float amount = 2;      //（选填）数量
+      float sumOrRemain = 3; //（选填）悬赏/打赏量，或者剩余量
+}
+
+message UserState{                      //用户状态通报类
+      int32 userId = 1;      //（选填）用户ID
+      int32 operateId = 2;   //（选填）操作ID（悬赏或者其他ID）
+      State state = 3;       //（枚举）当前状态
+      string desc = 4;       //（选填）说明（报告原由）
+
+    enum State{                         //枚举。用户状态
+        online = 0;                     //在线
+        offline = 1;                    //离线
+        p2pVideo = 2;                   //视频通话中
+        MultiVideo = 3;                 //多人视频中
+        other = 4;                      //其他状态
+    }
+}
+
+message AssetLog{                               //资金变动的日志类
+    int32 fromUserID = 1;          //（选填）资金流出的用户ID
+    int32 toUserID = 2;            //（选填）资金流入的用户ID
+    repeated Gift gift = 3;                 //（可重复）涉及的资产类
+    string desc = 4;               //（选填）文本说明
+    OperateType operateType = 5;   //（选填）枚举，查询类型
+    int64 operateTime = 6;         //（选填）操作发生的时间
+    int32 soType = 7;              //（选填）后台处理类型（支付、冻结、解冻）
+    int32 payType = 8;             //（选填）支付类型（通道）
+    int64 payTime = 9;             //（选填）支付时间
+    int32 videoId = 10;            //（选填）所在的直播ID
+    int32 rewardId = 11;           //（选填）所在的悬赏的ID
+    string appealDesc = 12;        //（选填）申诉的内容
+    int64 appealTime = 13;         //（选填）申诉发生的时间
+
+    enum OperateType{    //枚举。查询类型
+        recharge = 0;     //充值
+        cash = 1;         //提现
+        gratuity = 2;     //打赏
+        reward = 3;       //悬赏
+        all = 4;          //所有
+        income = 5;       //入账
+        payout = 6;       //出账
+    }
+}

@@ -1,0 +1,467 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB5DAEF21D79847B00FB81A7 /* Message.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DAEEE1D79847B00FB81A7 /* Message.pbobjc.h */; };
+		DB5DAEF31D79847B00FB81A7 /* Message.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DAEEF1D79847B00FB81A7 /* Message.pbobjc.m */; };
+		DBBB665A1D7955560044E626 /* GPBArray_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB662D1D7955560044E626 /* GPBArray_PackagePrivate.h */; };
+		DBBB665B1D7955560044E626 /* GPBArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB662E1D7955560044E626 /* GPBArray.h */; };
+		DBBB665C1D7955560044E626 /* GPBArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB662F1D7955560044E626 /* GPBArray.m */; };
+		DBBB665D1D7955560044E626 /* GPBBootstrap.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66301D7955560044E626 /* GPBBootstrap.h */; };
+		DBBB665E1D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66311D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h */; };
+		DBBB665F1D7955560044E626 /* GPBCodedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66321D7955560044E626 /* GPBCodedInputStream.h */; };
+		DBBB66601D7955560044E626 /* GPBCodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66331D7955560044E626 /* GPBCodedInputStream.m */; };
+		DBBB66611D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66341D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h */; };
+		DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66351D7955560044E626 /* GPBCodedOutputStream.h */; };
+		DBBB66631D7955560044E626 /* GPBCodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66361D7955560044E626 /* GPBCodedOutputStream.m */; };
+		DBBB66641D7955560044E626 /* GPBDescriptor_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66371D7955560044E626 /* GPBDescriptor_PackagePrivate.h */; };
+		DBBB66651D7955560044E626 /* GPBDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66381D7955560044E626 /* GPBDescriptor.h */; };
+		DBBB66661D7955560044E626 /* GPBDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66391D7955560044E626 /* GPBDescriptor.m */; };
+		DBBB66671D7955560044E626 /* GPBDictionary_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663A1D7955560044E626 /* GPBDictionary_PackagePrivate.h */; };
+		DBBB66681D7955560044E626 /* GPBDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663B1D7955560044E626 /* GPBDictionary.h */; };
+		DBBB66691D7955560044E626 /* GPBDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB663C1D7955560044E626 /* GPBDictionary.m */; };
+		DBBB666A1D7955560044E626 /* GPBExtensionInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663D1D7955560044E626 /* GPBExtensionInternals.h */; };
+		DBBB666B1D7955560044E626 /* GPBExtensionInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB663E1D7955560044E626 /* GPBExtensionInternals.m */; };
+		DBBB666C1D7955560044E626 /* GPBExtensionRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663F1D7955560044E626 /* GPBExtensionRegistry.h */; };
+		DBBB666D1D7955560044E626 /* GPBExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66401D7955560044E626 /* GPBExtensionRegistry.m */; };
+		DBBB666E1D7955560044E626 /* GPBMessage_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66411D7955560044E626 /* GPBMessage_PackagePrivate.h */; };
+		DBBB666F1D7955560044E626 /* GPBMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66421D7955560044E626 /* GPBMessage.h */; };
+		DBBB66701D7955560044E626 /* GPBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66431D7955560044E626 /* GPBMessage.m */; };
+		DBBB66711D7955560044E626 /* GPBProtocolBuffers_RuntimeSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66441D7955560044E626 /* GPBProtocolBuffers_RuntimeSupport.h */; };
+		DBBB66741D7955560044E626 /* GPBRootObject_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66471D7955560044E626 /* GPBRootObject_PackagePrivate.h */; };
+		DBBB66751D7955560044E626 /* GPBRootObject.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66481D7955560044E626 /* GPBRootObject.h */; };
+		DBBB66761D7955560044E626 /* GPBRootObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66491D7955560044E626 /* GPBRootObject.m */; };
+		DBBB66771D7955560044E626 /* GPBRuntimeTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664A1D7955560044E626 /* GPBRuntimeTypes.h */; };
+		DBBB66781D7955560044E626 /* GPBUnknownField_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664B1D7955560044E626 /* GPBUnknownField_PackagePrivate.h */; };
+		DBBB66791D7955560044E626 /* GPBUnknownField.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664C1D7955560044E626 /* GPBUnknownField.h */; };
+		DBBB667A1D7955560044E626 /* GPBUnknownField.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB664D1D7955560044E626 /* GPBUnknownField.m */; };
+		DBBB667B1D7955560044E626 /* GPBUnknownFieldSet_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664E1D7955560044E626 /* GPBUnknownFieldSet_PackagePrivate.h */; };
+		DBBB667C1D7955560044E626 /* GPBUnknownFieldSet.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664F1D7955560044E626 /* GPBUnknownFieldSet.h */; };
+		DBBB667D1D7955560044E626 /* GPBUnknownFieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66501D7955560044E626 /* GPBUnknownFieldSet.m */; };
+		DBBB667E1D7955560044E626 /* GPBUtilities_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66511D7955560044E626 /* GPBUtilities_PackagePrivate.h */; };
+		DBBB667F1D7955560044E626 /* GPBUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66521D7955560044E626 /* GPBUtilities.h */; };
+		DBBB66801D7955560044E626 /* GPBUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66531D7955560044E626 /* GPBUtilities.m */; };
+		DBBB66831D7955560044E626 /* GPBWireFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66561D7955560044E626 /* GPBWireFormat.h */; };
+		DBBB66841D7955560044E626 /* GPBWireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66571D7955560044E626 /* GPBWireFormat.m */; };
+		DBBB66851D7955560044E626 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBBB66581D7955560044E626 /* Info.plist */; };
+		DBBB66861D7955560044E626 /* GPBProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66591D7955560044E626 /* GPBProtocolBuffers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DB5DAEEE1D79847B00FB81A7 /* Message.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.pbobjc.h; sourceTree = "<group>"; };
+		DB5DAEEF1D79847B00FB81A7 /* Message.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.pbobjc.m; sourceTree = "<group>"; };
+		DBBB66221D7954F70044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtocolBuffers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBBB662D1D7955560044E626 /* GPBArray_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBArray_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB662E1D7955560044E626 /* GPBArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBArray.h; sourceTree = "<group>"; };
+		DBBB662F1D7955560044E626 /* GPBArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBArray.m; sourceTree = "<group>"; };
+		DBBB66301D7955560044E626 /* GPBBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBBootstrap.h; sourceTree = "<group>"; };
+		DBBB66311D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBCodedInputStream_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB66321D7955560044E626 /* GPBCodedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBCodedInputStream.h; sourceTree = "<group>"; };
+		DBBB66331D7955560044E626 /* GPBCodedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBCodedInputStream.m; sourceTree = "<group>"; };
+		DBBB66341D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBCodedOutputStream_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB66351D7955560044E626 /* GPBCodedOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBCodedOutputStream.h; sourceTree = "<group>"; };
+		DBBB66361D7955560044E626 /* GPBCodedOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBCodedOutputStream.m; sourceTree = "<group>"; };
+		DBBB66371D7955560044E626 /* GPBDescriptor_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBDescriptor_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB66381D7955560044E626 /* GPBDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBDescriptor.h; sourceTree = "<group>"; };
+		DBBB66391D7955560044E626 /* GPBDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBDescriptor.m; sourceTree = "<group>"; };
+		DBBB663A1D7955560044E626 /* GPBDictionary_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBDictionary_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB663B1D7955560044E626 /* GPBDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBDictionary.h; sourceTree = "<group>"; };
+		DBBB663C1D7955560044E626 /* GPBDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBDictionary.m; sourceTree = "<group>"; };
+		DBBB663D1D7955560044E626 /* GPBExtensionInternals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBExtensionInternals.h; sourceTree = "<group>"; };
+		DBBB663E1D7955560044E626 /* GPBExtensionInternals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBExtensionInternals.m; sourceTree = "<group>"; };
+		DBBB663F1D7955560044E626 /* GPBExtensionRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBExtensionRegistry.h; sourceTree = "<group>"; };
+		DBBB66401D7955560044E626 /* GPBExtensionRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBExtensionRegistry.m; sourceTree = "<group>"; };
+		DBBB66411D7955560044E626 /* GPBMessage_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBMessage_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB66421D7955560044E626 /* GPBMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBMessage.h; sourceTree = "<group>"; };
+		DBBB66431D7955560044E626 /* GPBMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBMessage.m; sourceTree = "<group>"; };
+		DBBB66441D7955560044E626 /* GPBProtocolBuffers_RuntimeSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBProtocolBuffers_RuntimeSupport.h; sourceTree = "<group>"; };
+		DBBB66471D7955560044E626 /* GPBRootObject_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBRootObject_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB66481D7955560044E626 /* GPBRootObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBRootObject.h; sourceTree = "<group>"; };
+		DBBB66491D7955560044E626 /* GPBRootObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBRootObject.m; sourceTree = "<group>"; };
+		DBBB664A1D7955560044E626 /* GPBRuntimeTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBRuntimeTypes.h; sourceTree = "<group>"; };
+		DBBB664B1D7955560044E626 /* GPBUnknownField_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBUnknownField_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB664C1D7955560044E626 /* GPBUnknownField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBUnknownField.h; sourceTree = "<group>"; };
+		DBBB664D1D7955560044E626 /* GPBUnknownField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBUnknownField.m; sourceTree = "<group>"; };
+		DBBB664E1D7955560044E626 /* GPBUnknownFieldSet_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBUnknownFieldSet_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB664F1D7955560044E626 /* GPBUnknownFieldSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBUnknownFieldSet.h; sourceTree = "<group>"; };
+		DBBB66501D7955560044E626 /* GPBUnknownFieldSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBUnknownFieldSet.m; sourceTree = "<group>"; };
+		DBBB66511D7955560044E626 /* GPBUtilities_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBUtilities_PackagePrivate.h; sourceTree = "<group>"; };
+		DBBB66521D7955560044E626 /* GPBUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBUtilities.h; sourceTree = "<group>"; };
+		DBBB66531D7955560044E626 /* GPBUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBUtilities.m; sourceTree = "<group>"; };
+		DBBB66561D7955560044E626 /* GPBWireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBWireFormat.h; sourceTree = "<group>"; };
+		DBBB66571D7955560044E626 /* GPBWireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBWireFormat.m; sourceTree = "<group>"; };
+		DBBB66581D7955560044E626 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBBB66591D7955560044E626 /* GPBProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBProtocolBuffers.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DBBB661E1D7954F70044E626 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB5DAEE51D796EBE00FB81A7 /* Generate */ = {
+			isa = PBXGroup;
+			children = (
+				DB5DAEEE1D79847B00FB81A7 /* Message.pbobjc.h */,
+				DB5DAEEF1D79847B00FB81A7 /* Message.pbobjc.m */,
+			);
+			path = Generate;
+			sourceTree = "<group>";
+		};
+		DBBB66181D7954F70044E626 = {
+			isa = PBXGroup;
+			children = (
+				DB5DAEE51D796EBE00FB81A7 /* Generate */,
+				DBBB66241D7954F70044E626 /* ProtocolBuffers */,
+				DBBB66231D7954F70044E626 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DBBB66231D7954F70044E626 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DBBB66221D7954F70044E626 /* ProtocolBuffers.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DBBB66241D7954F70044E626 /* ProtocolBuffers */ = {
+			isa = PBXGroup;
+			children = (
+				DBBB662D1D7955560044E626 /* GPBArray_PackagePrivate.h */,
+				DBBB662E1D7955560044E626 /* GPBArray.h */,
+				DBBB662F1D7955560044E626 /* GPBArray.m */,
+				DBBB66301D7955560044E626 /* GPBBootstrap.h */,
+				DBBB66311D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h */,
+				DBBB66321D7955560044E626 /* GPBCodedInputStream.h */,
+				DBBB66331D7955560044E626 /* GPBCodedInputStream.m */,
+				DBBB66341D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h */,
+				DBBB66351D7955560044E626 /* GPBCodedOutputStream.h */,
+				DBBB66361D7955560044E626 /* GPBCodedOutputStream.m */,
+				DBBB66371D7955560044E626 /* GPBDescriptor_PackagePrivate.h */,
+				DBBB66381D7955560044E626 /* GPBDescriptor.h */,
+				DBBB66391D7955560044E626 /* GPBDescriptor.m */,
+				DBBB663A1D7955560044E626 /* GPBDictionary_PackagePrivate.h */,
+				DBBB663B1D7955560044E626 /* GPBDictionary.h */,
+				DBBB663C1D7955560044E626 /* GPBDictionary.m */,
+				DBBB663D1D7955560044E626 /* GPBExtensionInternals.h */,
+				DBBB663E1D7955560044E626 /* GPBExtensionInternals.m */,
+				DBBB663F1D7955560044E626 /* GPBExtensionRegistry.h */,
+				DBBB66401D7955560044E626 /* GPBExtensionRegistry.m */,
+				DBBB66411D7955560044E626 /* GPBMessage_PackagePrivate.h */,
+				DBBB66421D7955560044E626 /* GPBMessage.h */,
+				DBBB66431D7955560044E626 /* GPBMessage.m */,
+				DBBB66441D7955560044E626 /* GPBProtocolBuffers_RuntimeSupport.h */,
+				DBBB66471D7955560044E626 /* GPBRootObject_PackagePrivate.h */,
+				DBBB66481D7955560044E626 /* GPBRootObject.h */,
+				DBBB66491D7955560044E626 /* GPBRootObject.m */,
+				DBBB664A1D7955560044E626 /* GPBRuntimeTypes.h */,
+				DBBB664B1D7955560044E626 /* GPBUnknownField_PackagePrivate.h */,
+				DBBB664C1D7955560044E626 /* GPBUnknownField.h */,
+				DBBB664D1D7955560044E626 /* GPBUnknownField.m */,
+				DBBB664E1D7955560044E626 /* GPBUnknownFieldSet_PackagePrivate.h */,
+				DBBB664F1D7955560044E626 /* GPBUnknownFieldSet.h */,
+				DBBB66501D7955560044E626 /* GPBUnknownFieldSet.m */,
+				DBBB66511D7955560044E626 /* GPBUtilities_PackagePrivate.h */,
+				DBBB66521D7955560044E626 /* GPBUtilities.h */,
+				DBBB66531D7955560044E626 /* GPBUtilities.m */,
+				DBBB66561D7955560044E626 /* GPBWireFormat.h */,
+				DBBB66571D7955560044E626 /* GPBWireFormat.m */,
+				DBBB66581D7955560044E626 /* Info.plist */,
+				DBBB66591D7955560044E626 /* GPBProtocolBuffers.h */,
+			);
+			path = ProtocolBuffers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DBBB661F1D7954F70044E626 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBBB66861D7955560044E626 /* GPBProtocolBuffers.h in Headers */,
+				DBBB666F1D7955560044E626 /* GPBMessage.h in Headers */,
+				DBBB666C1D7955560044E626 /* GPBExtensionRegistry.h in Headers */,
+				DBBB66791D7955560044E626 /* GPBUnknownField.h in Headers */,
+				DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */,
+				DBBB666A1D7955560044E626 /* GPBExtensionInternals.h in Headers */,
+				DBBB66751D7955560044E626 /* GPBRootObject.h in Headers */,
+				DBBB66781D7955560044E626 /* GPBUnknownField_PackagePrivate.h in Headers */,
+				DBBB667F1D7955560044E626 /* GPBUtilities.h in Headers */,
+				DB5DAEF21D79847B00FB81A7 /* Message.pbobjc.h in Headers */,
+				DBBB667E1D7955560044E626 /* GPBUtilities_PackagePrivate.h in Headers */,
+				DBBB665E1D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h in Headers */,
+				DBBB665A1D7955560044E626 /* GPBArray_PackagePrivate.h in Headers */,
+				DBBB66681D7955560044E626 /* GPBDictionary.h in Headers */,
+				DBBB665B1D7955560044E626 /* GPBArray.h in Headers */,
+				DBBB666E1D7955560044E626 /* GPBMessage_PackagePrivate.h in Headers */,
+				DBBB665D1D7955560044E626 /* GPBBootstrap.h in Headers */,
+				DBBB667C1D7955560044E626 /* GPBUnknownFieldSet.h in Headers */,
+				DBBB66611D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h in Headers */,
+				DBBB66711D7955560044E626 /* GPBProtocolBuffers_RuntimeSupport.h in Headers */,
+				DBBB66831D7955560044E626 /* GPBWireFormat.h in Headers */,
+				DBBB667B1D7955560044E626 /* GPBUnknownFieldSet_PackagePrivate.h in Headers */,
+				DBBB66651D7955560044E626 /* GPBDescriptor.h in Headers */,
+				DBBB66741D7955560044E626 /* GPBRootObject_PackagePrivate.h in Headers */,
+				DBBB66771D7955560044E626 /* GPBRuntimeTypes.h in Headers */,
+				DBBB66641D7955560044E626 /* GPBDescriptor_PackagePrivate.h in Headers */,
+				DBBB665F1D7955560044E626 /* GPBCodedInputStream.h in Headers */,
+				DBBB66671D7955560044E626 /* GPBDictionary_PackagePrivate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DBBB66211D7954F70044E626 /* ProtocolBuffers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBBB662A1D7954F70044E626 /* Build configuration list for PBXNativeTarget "ProtocolBuffers" */;
+			buildPhases = (
+				DBBB661D1D7954F70044E626 /* Sources */,
+				DBBB661E1D7954F70044E626 /* Frameworks */,
+				DBBB661F1D7954F70044E626 /* Headers */,
+				DBBB66201D7954F70044E626 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ProtocolBuffers;
+			productName = ProtocolBuffers;
+			productReference = DBBB66221D7954F70044E626 /* ProtocolBuffers.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DBBB66191D7954F70044E626 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = com.Telescope.Buffers;
+				TargetAttributes = {
+					DBBB66211D7954F70044E626 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = DBBB661C1D7954F70044E626 /* Build configuration list for PBXProject "ProtocolBuffers" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DBBB66181D7954F70044E626;
+			productRefGroup = DBBB66231D7954F70044E626 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DBBB66211D7954F70044E626 /* ProtocolBuffers */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DBBB66201D7954F70044E626 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBBB66851D7955560044E626 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DBBB661D1D7954F70044E626 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBBB66761D7955560044E626 /* GPBRootObject.m in Sources */,
+				DBBB66691D7955560044E626 /* GPBDictionary.m in Sources */,
+				DBBB66631D7955560044E626 /* GPBCodedOutputStream.m in Sources */,
+				DBBB666D1D7955560044E626 /* GPBExtensionRegistry.m in Sources */,
+				DBBB667D1D7955560044E626 /* GPBUnknownFieldSet.m in Sources */,
+				DBBB66801D7955560044E626 /* GPBUtilities.m in Sources */,
+				DBBB666B1D7955560044E626 /* GPBExtensionInternals.m in Sources */,
+				DBBB66601D7955560044E626 /* GPBCodedInputStream.m in Sources */,
+				DBBB66701D7955560044E626 /* GPBMessage.m in Sources */,
+				DBBB66661D7955560044E626 /* GPBDescriptor.m in Sources */,
+				DB5DAEF31D79847B00FB81A7 /* Message.pbobjc.m in Sources */,
+				DBBB66841D7955560044E626 /* GPBWireFormat.m in Sources */,
+				DBBB665C1D7955560044E626 /* GPBArray.m in Sources */,
+				DBBB667A1D7955560044E626 /* GPBUnknownField.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DBBB66281D7954F70044E626 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DBBB66291D7954F70044E626 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DBBB662B1D7954F70044E626 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../library";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ProtocolBuffers/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = Telescope.ProtocolBuffers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DBBB662C1D7954F70044E626 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../library";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ProtocolBuffers/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = Telescope.ProtocolBuffers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DBBB661C1D7954F70044E626 /* Build configuration list for PBXProject "ProtocolBuffers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBBB66281D7954F70044E626 /* Debug */,
+				DBBB66291D7954F70044E626 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBBB662A1D7954F70044E626 /* Build configuration list for PBXNativeTarget "ProtocolBuffers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBBB662B1D7954F70044E626 /* Debug */,
+				DBBB662C1D7954F70044E626 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DBBB66191D7954F70044E626 /* Project object */;
+}

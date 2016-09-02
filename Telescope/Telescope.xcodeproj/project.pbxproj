@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB6DA7111D792D1900430922 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7101D792D1900430922 /* main.m */; };
+		DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7131D792D1900430922 /* AppDelegate.m */; };
+		DB6DA7171D792D1900430922 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7161D792D1900430922 /* ViewController.m */; };
+		DB6DA71A1D792D1900430922 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7181D792D1900430922 /* Main.storyboard */; };
+		DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA71B1D792D1900430922 /* Telescope.xcdatamodeld */; };
+		DB6DA71F1D792D1900430922 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA71E1D792D1900430922 /* Assets.xcassets */; };
+		DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */; };
+		DB6DA72D1D792D1900430922 /* TelescopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA72C1D792D1900430922 /* TelescopeTests.m */; };
+		DB6DA7381D792D1900430922 /* TelescopeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7371D792D1900430922 /* TelescopeUITests.m */; };
+		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
+		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB6DA7291D792D1900430922 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB6DA7041D792D1800430922 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB6DA70B1D792D1800430922;
+			remoteInfo = Telescope;
+		};
+		DB6DA7341D792D1900430922 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB6DA7041D792D1800430922 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB6DA70B1D792D1800430922;
+			remoteInfo = Telescope;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DB6DA70C1D792D1800430922 /* Telescope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telescope.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB6DA7101D792D1900430922 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DB6DA7121D792D1900430922 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DB6DA7131D792D1900430922 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DB6DA7151D792D1900430922 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DB6DA7161D792D1900430922 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DB6DA7191D792D1900430922 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DB6DA71C1D792D1900430922 /* Telescope.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Telescope.xcdatamodel; sourceTree = "<group>"; };
+		DB6DA71E1D792D1900430922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB6DA7211D792D1900430922 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DB6DA7231D792D1900430922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB6DA7281D792D1900430922 /* TelescopeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelescopeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB6DA72C1D792D1900430922 /* TelescopeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TelescopeTests.m; sourceTree = "<group>"; };
+		DB6DA72E1D792D1900430922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB6DA7331D792D1900430922 /* TelescopeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelescopeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB6DA7371D792D1900430922 /* TelescopeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TelescopeUITests.m; sourceTree = "<group>"; };
+		DB6DA7391D792D1900430922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
+		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB6DA7091D792D1800430922 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */,
+				DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6DA7251D792D1900430922 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6DA7301D792D1900430922 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB6DA7031D792D1800430922 = {
+			isa = PBXGroup;
+			children = (
+				DBBB65FA1D79506A0044E626 /* FrameWorks */,
+				DB6DA70E1D792D1900430922 /* Telescope */,
+				DB6DA72B1D792D1900430922 /* TelescopeTests */,
+				DB6DA7361D792D1900430922 /* TelescopeUITests */,
+				DB6DA70D1D792D1800430922 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB6DA70D1D792D1800430922 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB6DA70C1D792D1800430922 /* Telescope.app */,
+				DB6DA7281D792D1900430922 /* TelescopeTests.xctest */,
+				DB6DA7331D792D1900430922 /* TelescopeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB6DA70E1D792D1900430922 /* Telescope */ = {
+			isa = PBXGroup;
+			children = (
+				DB6DA7121D792D1900430922 /* AppDelegate.h */,
+				DB6DA7131D792D1900430922 /* AppDelegate.m */,
+				DB6DA7151D792D1900430922 /* ViewController.h */,
+				DB6DA7161D792D1900430922 /* ViewController.m */,
+				DB6DA7181D792D1900430922 /* Main.storyboard */,
+				DB6DA71E1D792D1900430922 /* Assets.xcassets */,
+				DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */,
+				DB6DA7231D792D1900430922 /* Info.plist */,
+				DB6DA71B1D792D1900430922 /* Telescope.xcdatamodeld */,
+				DB6DA70F1D792D1900430922 /* Supporting Files */,
+			);
+			path = Telescope;
+			sourceTree = "<group>";
+		};
+		DB6DA70F1D792D1900430922 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DB6DA7101D792D1900430922 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB6DA72B1D792D1900430922 /* TelescopeTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB6DA72C1D792D1900430922 /* TelescopeTests.m */,
+				DB6DA72E1D792D1900430922 /* Info.plist */,
+			);
+			path = TelescopeTests;
+			sourceTree = "<group>";
+		};
+		DB6DA7361D792D1900430922 /* TelescopeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DB6DA7371D792D1900430922 /* TelescopeUITests.m */,
+				DB6DA7391D792D1900430922 /* Info.plist */,
+			);
+			path = TelescopeUITests;
+			sourceTree = "<group>";
+		};
+		DBBB65FA1D79506A0044E626 /* FrameWorks */ = {
+			isa = PBXGroup;
+			children = (
+				DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */,
+				DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */,
+			);
+			name = FrameWorks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB6DA70B1D792D1800430922 /* Telescope */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB6DA73C1D792D1900430922 /* Build configuration list for PBXNativeTarget "Telescope" */;
+			buildPhases = (
+				DB6DA7081D792D1800430922 /* Sources */,
+				DB6DA7091D792D1800430922 /* Frameworks */,
+				DB6DA70A1D792D1800430922 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Telescope;
+			productName = Telescope;
+			productReference = DB6DA70C1D792D1800430922 /* Telescope.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DB6DA7271D792D1900430922 /* TelescopeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB6DA73F1D792D1900430922 /* Build configuration list for PBXNativeTarget "TelescopeTests" */;
+			buildPhases = (
+				DB6DA7241D792D1900430922 /* Sources */,
+				DB6DA7251D792D1900430922 /* Frameworks */,
+				DB6DA7261D792D1900430922 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB6DA72A1D792D1900430922 /* PBXTargetDependency */,
+			);
+			name = TelescopeTests;
+			productName = TelescopeTests;
+			productReference = DB6DA7281D792D1900430922 /* TelescopeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DB6DA7321D792D1900430922 /* TelescopeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB6DA7421D792D1900430922 /* Build configuration list for PBXNativeTarget "TelescopeUITests" */;
+			buildPhases = (
+				DB6DA72F1D792D1900430922 /* Sources */,
+				DB6DA7301D792D1900430922 /* Frameworks */,
+				DB6DA7311D792D1900430922 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB6DA7351D792D1900430922 /* PBXTargetDependency */,
+			);
+			name = TelescopeUITests;
+			productName = TelescopeUITests;
+			productReference = DB6DA7331D792D1900430922 /* TelescopeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB6DA7041D792D1800430922 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = com.v2tech.Telescope;
+				TargetAttributes = {
+					DB6DA70B1D792D1800430922 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					DB6DA7271D792D1900430922 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = DB6DA70B1D792D1800430922;
+					};
+					DB6DA7321D792D1900430922 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = DB6DA70B1D792D1800430922;
+					};
+				};
+			};
+			buildConfigurationList = DB6DA7071D792D1800430922 /* Build configuration list for PBXProject "Telescope" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB6DA7031D792D1800430922;
+			productRefGroup = DB6DA70D1D792D1800430922 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB6DA70B1D792D1800430922 /* Telescope */,
+				DB6DA7271D792D1900430922 /* TelescopeTests */,
+				DB6DA7321D792D1900430922 /* TelescopeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB6DA70A1D792D1800430922 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */,
+				DB6DA71F1D792D1900430922 /* Assets.xcassets in Resources */,
+				DB6DA71A1D792D1900430922 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6DA7261D792D1900430922 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6DA7311D792D1900430922 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB6DA7081D792D1800430922 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB6DA7171D792D1900430922 /* ViewController.m in Sources */,
+				DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */,
+				DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */,
+				DB6DA7111D792D1900430922 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6DA7241D792D1900430922 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB6DA72D1D792D1900430922 /* TelescopeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6DA72F1D792D1900430922 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB6DA7381D792D1900430922 /* TelescopeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB6DA72A1D792D1900430922 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB6DA70B1D792D1800430922 /* Telescope */;
+			targetProxy = DB6DA7291D792D1900430922 /* PBXContainerItemProxy */;
+		};
+		DB6DA7351D792D1900430922 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB6DA70B1D792D1800430922 /* Telescope */;
+			targetProxy = DB6DA7341D792D1900430922 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DB6DA7181D792D1900430922 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB6DA7191D792D1900430922 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB6DA7211D792D1900430922 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB6DA73A1D792D1900430922 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB6DA73B1D792D1900430922 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB6DA73D1D792D1900430922 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../library";
+				INFOPLIST_FILE = Telescope/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DB6DA73E1D792D1900430922 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../library";
+				INFOPLIST_FILE = Telescope/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DB6DA7401D792D1900430922 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TelescopeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Telescope.TelescopeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Telescope.app/Telescope";
+			};
+			name = Debug;
+		};
+		DB6DA7411D792D1900430922 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TelescopeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Telescope.TelescopeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Telescope.app/Telescope";
+			};
+			name = Release;
+		};
+		DB6DA7431D792D1900430922 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TelescopeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Telescope.TelescopeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Telescope;
+			};
+			name = Debug;
+		};
+		DB6DA7441D792D1900430922 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TelescopeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Telescope.TelescopeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Telescope;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB6DA7071D792D1800430922 /* Build configuration list for PBXProject "Telescope" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB6DA73A1D792D1900430922 /* Debug */,
+				DB6DA73B1D792D1900430922 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB6DA73C1D792D1900430922 /* Build configuration list for PBXNativeTarget "Telescope" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB6DA73D1D792D1900430922 /* Debug */,
+				DB6DA73E1D792D1900430922 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB6DA73F1D792D1900430922 /* Build configuration list for PBXNativeTarget "TelescopeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB6DA7401D792D1900430922 /* Debug */,
+				DB6DA7411D792D1900430922 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB6DA7421D792D1900430922 /* Build configuration list for PBXNativeTarget "TelescopeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB6DA7431D792D1900430922 /* Debug */,
+				DB6DA7441D792D1900430922 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DB6DA71B1D792D1900430922 /* Telescope.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DB6DA71C1D792D1900430922 /* Telescope.xcdatamodel */,
+			);
+			currentVersion = DB6DA71C1D792D1900430922 /* Telescope.xcdatamodel */;
+			path = Telescope.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DB6DA7041D792D1800430922 /* Project object */;
+}
