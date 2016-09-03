@@ -34,7 +34,7 @@ static GPBFileDescriptor *V2PMessageRoot_FileDescriptor(void) {
   if (!descriptor) {
     GPBDebugCheckRuntimeVersion();
     descriptor = [[GPBFileDescriptor alloc] initWithPackage:@""
-                                                     syntax:GPBFileSyntaxProto3];
+                                                     syntax:GPBFileSyntaxProto2];
   }
   return descriptor;
 }
@@ -43,15 +43,15 @@ static GPBFileDescriptor *V2PMessageRoot_FileDescriptor(void) {
 
 @implementation V2PPacket
 
-@dynamic packetType;
-@dynamic from;
-@dynamic to;
-@dynamic id_p;
-@dynamic method;
-@dynamic operateType;
+@dynamic hasPacketType, packetType;
+@dynamic hasFrom, from;
+@dynamic hasTo, to;
+@dynamic hasId_p, id_p;
+@dynamic hasMethod, method;
+@dynamic hasOperateType, operateType;
 @dynamic hasResult, result;
 @dynamic hasData_p, data_p;
-@dynamic version;
+@dynamic hasVersion, version;
 
 typedef struct V2PPacket__storage_ {
   uint32_t _has_storage_[1];
@@ -78,7 +78,7 @@ typedef struct V2PPacket__storage_ {
         .number = V2PPacket_FieldNumber_PacketType,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(V2PPacket__storage_, packetType),
-        .flags = GPBFieldOptional | GPBFieldTextFormatNameCustom | GPBFieldHasEnumDescriptor,
+        .flags = GPBFieldRequired | GPBFieldTextFormatNameCustom | GPBFieldHasEnumDescriptor,
         .dataType = GPBDataTypeEnum,
       },
       {
@@ -175,18 +175,6 @@ typedef struct V2PPacket__storage_ {
 
 @end
 
-int32_t V2PPacket_PacketType_RawValue(V2PPacket *message) {
-  GPBDescriptor *descriptor = [V2PPacket descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PPacket_FieldNumber_PacketType];
-  return GPBGetMessageInt32Field(message, field);
-}
-
-void SetV2PPacket_PacketType_RawValue(V2PPacket *message, int32_t value) {
-  GPBDescriptor *descriptor = [V2PPacket descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PPacket_FieldNumber_PacketType];
-  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
-}
-
 #pragma mark - Enum V2PPacket_type
 
 GPBEnumDescriptor *V2PPacket_type_EnumDescriptor(void) {
@@ -231,8 +219,8 @@ BOOL V2PPacket_type_IsValidValue(int32_t value__) {
 
 @implementation V2PResult
 
-@dynamic result;
-@dynamic error;
+@dynamic hasResult, result;
+@dynamic hasError, error;
 
 typedef struct V2PResult__storage_ {
   uint32_t _has_storage_[1];
@@ -284,13 +272,13 @@ typedef struct V2PResult__storage_ {
 
 @implementation V2PData
 
-@dynamic normal;
-@dynamic byteDate;
-@dynamic fromTime;
-@dynamic toTime;
-@dynamic sum;
-@dynamic from;
-@dynamic to;
+@dynamic hasNormal, normal;
+@dynamic hasByteDate, byteDate;
+@dynamic hasFromTime, fromTime;
+@dynamic hasToTime, toTime;
+@dynamic hasSum, sum;
+@dynamic hasFrom, from;
+@dynamic hasTo, to;
 @dynamic positionArray, positionArray_Count;
 @dynamic userArray, userArray_Count;
 @dynamic videoArray, videoArray_Count;
@@ -475,29 +463,29 @@ typedef struct V2PData__storage_ {
 
 @implementation V2PUser
 
-@dynamic id_p;
-@dynamic phone;
-@dynamic name;
-@dynamic pwd;
-@dynamic pwd2OrCode;
-@dynamic realName;
-@dynamic headurl;
-@dynamic signText;
-@dynamic sex;
-@dynamic address;
-@dynamic experience;
-@dynamic fansCount;
-@dynamic followCount;
+@dynamic hasId_p, id_p;
+@dynamic hasPhone, phone;
+@dynamic hasName, name;
+@dynamic hasPwd, pwd;
+@dynamic hasPwd2OrCode, pwd2OrCode;
+@dynamic hasRealName, realName;
+@dynamic hasHeadurl, headurl;
+@dynamic hasSignText, signText;
+@dynamic hasSex, sex;
+@dynamic hasAddress, address;
+@dynamic hasExperience, experience;
+@dynamic hasFansCount, fansCount;
+@dynamic hasFollowCount, followCount;
 @dynamic hasPosition, position;
-@dynamic deviceId;
-@dynamic followType;
-@dynamic descName;
-@dynamic v2Id;
-@dynamic v2UserName;
-@dynamic v2Pwd;
-@dynamic videoCount;
-@dynamic v2DeviceId1;
-@dynamic v2DeviceId2;
+@dynamic hasDeviceId, deviceId;
+@dynamic hasFollowType, followType;
+@dynamic hasDescName, descName;
+@dynamic hasV2Id, v2Id;
+@dynamic hasV2UserName, v2UserName;
+@dynamic hasV2Pwd, v2Pwd;
+@dynamic hasVideoCount, videoCount;
+@dynamic hasV2DeviceId1, v2DeviceId1;
+@dynamic hasV2DeviceId2, v2DeviceId2;
 
 typedef struct V2PUser__storage_ {
   uint32_t _has_storage_[1];
@@ -766,9 +754,9 @@ typedef struct V2PUser__storage_ {
 
 @implementation V2PPosition
 
-@dynamic longitude;
-@dynamic latitude;
-@dynamic radius;
+@dynamic hasLongitude, longitude;
+@dynamic hasLatitude, latitude;
+@dynamic hasRadius, radius;
 
 typedef struct V2PPosition__storage_ {
   uint32_t _has_storage_[1];
@@ -831,18 +819,18 @@ typedef struct V2PPosition__storage_ {
 
 @implementation V2PVideo
 
-@dynamic id_p;
-@dynamic videoNum;
-@dynamic userId;
+@dynamic hasId_p, id_p;
+@dynamic hasVideoNum, videoNum;
+@dynamic hasUserId, userId;
 @dynamic hasPosition, position;
-@dynamic sum;
-@dynamic userCount;
-@dynamic likeCount;
-@dynamic gratuityCount;
-@dynamic degree;
-@dynamic resultType;
-@dynamic hlsmode;
-@dynamic videoPwd;
+@dynamic hasSum, sum;
+@dynamic hasUserCount, userCount;
+@dynamic hasLikeCount, likeCount;
+@dynamic hasGratuityCount, gratuityCount;
+@dynamic hasDegree, degree;
+@dynamic hasResultType, resultType;
+@dynamic hasHlsmode, hlsmode;
+@dynamic hasVideoPwd, videoPwd;
 
 typedef struct V2PVideo__storage_ {
   uint32_t _has_storage_[1];
@@ -999,13 +987,13 @@ typedef struct V2PVideo__storage_ {
 
 @implementation V2PGratuity
 
-@dynamic giftType;
-@dynamic toUserId;
-@dynamic fromUserId;
-@dynamic amount;
-@dynamic sumOrRemain;
-@dynamic answer;
-@dynamic videoId;
+@dynamic hasGiftType, giftType;
+@dynamic hasToUserId, toUserId;
+@dynamic hasFromUserId, fromUserId;
+@dynamic hasAmount, amount;
+@dynamic hasSumOrRemain, sumOrRemain;
+@dynamic hasAnswer, answer;
+@dynamic hasVideoId, videoId;
 
 typedef struct V2PGratuity__storage_ {
   uint32_t _has_storage_[1];
@@ -1109,18 +1097,6 @@ typedef struct V2PGratuity__storage_ {
 
 @end
 
-int32_t V2PGratuity_Answer_RawValue(V2PGratuity *message) {
-  GPBDescriptor *descriptor = [V2PGratuity descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PGratuity_FieldNumber_Answer];
-  return GPBGetMessageInt32Field(message, field);
-}
-
-void SetV2PGratuity_Answer_RawValue(V2PGratuity *message, int32_t value) {
-  GPBDescriptor *descriptor = [V2PGratuity descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PGratuity_FieldNumber_Answer];
-  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
-}
-
 #pragma mark - Enum V2PGratuity_Answer
 
 GPBEnumDescriptor *V2PGratuity_Answer_EnumDescriptor(void) {
@@ -1165,18 +1141,18 @@ BOOL V2PGratuity_Answer_IsValidValue(int32_t value__) {
 
 @implementation V2PReward
 
-@dynamic id_p;
-@dynamic powerTime;
-@dynamic releaseTime;
+@dynamic hasId_p, id_p;
+@dynamic hasPowerTime, powerTime;
+@dynamic hasReleaseTime, releaseTime;
 @dynamic giftArray, giftArray_Count;
-@dynamic fromUserId;
-@dynamic answerUserId;
-@dynamic operate;
-@dynamic desc;
+@dynamic hasFromUserId, fromUserId;
+@dynamic hasAnswerUserId, answerUserId;
+@dynamic hasOperate, operate;
+@dynamic hasDesc, desc;
 @dynamic hasPosition, position;
-@dynamic pushSum;
-@dynamic appealDesc;
-@dynamic appealTime;
+@dynamic hasPushSum, pushSum;
+@dynamic hasAppealDesc, appealDesc;
+@dynamic hasAppealTime, appealTime;
 
 typedef struct V2PReward__storage_ {
   uint32_t _has_storage_[1];
@@ -1330,18 +1306,6 @@ typedef struct V2PReward__storage_ {
 
 @end
 
-int32_t V2PReward_Operate_RawValue(V2PReward *message) {
-  GPBDescriptor *descriptor = [V2PReward descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PReward_FieldNumber_Operate];
-  return GPBGetMessageInt32Field(message, field);
-}
-
-void SetV2PReward_Operate_RawValue(V2PReward *message, int32_t value) {
-  GPBDescriptor *descriptor = [V2PReward descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PReward_FieldNumber_Operate];
-  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
-}
-
 #pragma mark - Enum V2PReward_Operate
 
 GPBEnumDescriptor *V2PReward_Operate_EnumDescriptor(void) {
@@ -1388,9 +1352,9 @@ BOOL V2PReward_Operate_IsValidValue(int32_t value__) {
 
 @implementation V2PGift
 
-@dynamic giftType;
-@dynamic amount;
-@dynamic sumOrRemain;
+@dynamic hasGiftType, giftType;
+@dynamic hasAmount, amount;
+@dynamic hasSumOrRemain, sumOrRemain;
 
 typedef struct V2PGift__storage_ {
   uint32_t _has_storage_[1];
@@ -1458,10 +1422,10 @@ typedef struct V2PGift__storage_ {
 
 @implementation V2PUserState
 
-@dynamic userId;
-@dynamic operateId;
-@dynamic state;
-@dynamic desc;
+@dynamic hasUserId, userId;
+@dynamic hasOperateId, operateId;
+@dynamic hasState, state;
+@dynamic hasDesc, desc;
 
 typedef struct V2PUserState__storage_ {
   uint32_t _has_storage_[1];
@@ -1535,18 +1499,6 @@ typedef struct V2PUserState__storage_ {
 
 @end
 
-int32_t V2PUserState_State_RawValue(V2PUserState *message) {
-  GPBDescriptor *descriptor = [V2PUserState descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PUserState_FieldNumber_State];
-  return GPBGetMessageInt32Field(message, field);
-}
-
-void SetV2PUserState_State_RawValue(V2PUserState *message, int32_t value) {
-  GPBDescriptor *descriptor = [V2PUserState descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PUserState_FieldNumber_State];
-  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
-}
-
 #pragma mark - Enum V2PUserState_State
 
 GPBEnumDescriptor *V2PUserState_State_EnumDescriptor(void) {
@@ -1594,19 +1546,19 @@ BOOL V2PUserState_State_IsValidValue(int32_t value__) {
 
 @implementation V2PAssetLog
 
-@dynamic fromUserId;
-@dynamic toUserId;
+@dynamic hasFromUserId, fromUserId;
+@dynamic hasToUserId, toUserId;
 @dynamic giftArray, giftArray_Count;
-@dynamic desc;
-@dynamic operateType;
-@dynamic operateTime;
-@dynamic soType;
-@dynamic payType;
-@dynamic payTime;
-@dynamic videoId;
-@dynamic rewardId;
-@dynamic appealDesc;
-@dynamic appealTime;
+@dynamic hasDesc, desc;
+@dynamic hasOperateType, operateType;
+@dynamic hasOperateTime, operateTime;
+@dynamic hasSoType, soType;
+@dynamic hasPayType, payType;
+@dynamic hasPayTime, payTime;
+@dynamic hasVideoId, videoId;
+@dynamic hasRewardId, rewardId;
+@dynamic hasAppealDesc, appealDesc;
+@dynamic hasAppealTime, appealTime;
 
 typedef struct V2PAssetLog__storage_ {
   uint32_t _has_storage_[1];
@@ -1769,18 +1721,6 @@ typedef struct V2PAssetLog__storage_ {
 }
 
 @end
-
-int32_t V2PAssetLog_OperateType_RawValue(V2PAssetLog *message) {
-  GPBDescriptor *descriptor = [V2PAssetLog descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PAssetLog_FieldNumber_OperateType];
-  return GPBGetMessageInt32Field(message, field);
-}
-
-void SetV2PAssetLog_OperateType_RawValue(V2PAssetLog *message, int32_t value) {
-  GPBDescriptor *descriptor = [V2PAssetLog descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PAssetLog_FieldNumber_OperateType];
-  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
-}
 
 #pragma mark - Enum V2PAssetLog_OperateType
 

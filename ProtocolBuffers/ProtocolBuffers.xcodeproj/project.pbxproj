@@ -7,46 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB5DAEF21D79847B00FB81A7 /* Message.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DAEEE1D79847B00FB81A7 /* Message.pbobjc.h */; };
+		743E97E11D7ADD6300F86194 /* GPBCodedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66321D7955560044E626 /* GPBCodedInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB5DAEF21D79847B00FB81A7 /* Message.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DAEEE1D79847B00FB81A7 /* Message.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB5DAEF31D79847B00FB81A7 /* Message.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DAEEF1D79847B00FB81A7 /* Message.pbobjc.m */; };
 		DBBB665A1D7955560044E626 /* GPBArray_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB662D1D7955560044E626 /* GPBArray_PackagePrivate.h */; };
-		DBBB665B1D7955560044E626 /* GPBArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB662E1D7955560044E626 /* GPBArray.h */; };
+		DBBB665B1D7955560044E626 /* GPBArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB662E1D7955560044E626 /* GPBArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB665C1D7955560044E626 /* GPBArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB662F1D7955560044E626 /* GPBArray.m */; };
-		DBBB665D1D7955560044E626 /* GPBBootstrap.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66301D7955560044E626 /* GPBBootstrap.h */; };
+		DBBB665D1D7955560044E626 /* GPBBootstrap.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66301D7955560044E626 /* GPBBootstrap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB665E1D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66311D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h */; };
-		DBBB665F1D7955560044E626 /* GPBCodedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66321D7955560044E626 /* GPBCodedInputStream.h */; };
+		DBBB665F1D7955560044E626 /* GPBCodedInputStream.h in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66321D7955560044E626 /* GPBCodedInputStream.h */; };
 		DBBB66601D7955560044E626 /* GPBCodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66331D7955560044E626 /* GPBCodedInputStream.m */; };
 		DBBB66611D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66341D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h */; };
-		DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66351D7955560044E626 /* GPBCodedOutputStream.h */; };
+		DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66351D7955560044E626 /* GPBCodedOutputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66631D7955560044E626 /* GPBCodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66361D7955560044E626 /* GPBCodedOutputStream.m */; };
 		DBBB66641D7955560044E626 /* GPBDescriptor_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66371D7955560044E626 /* GPBDescriptor_PackagePrivate.h */; };
-		DBBB66651D7955560044E626 /* GPBDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66381D7955560044E626 /* GPBDescriptor.h */; };
+		DBBB66651D7955560044E626 /* GPBDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66381D7955560044E626 /* GPBDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66661D7955560044E626 /* GPBDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66391D7955560044E626 /* GPBDescriptor.m */; };
 		DBBB66671D7955560044E626 /* GPBDictionary_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663A1D7955560044E626 /* GPBDictionary_PackagePrivate.h */; };
-		DBBB66681D7955560044E626 /* GPBDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663B1D7955560044E626 /* GPBDictionary.h */; };
+		DBBB66681D7955560044E626 /* GPBDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663B1D7955560044E626 /* GPBDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66691D7955560044E626 /* GPBDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB663C1D7955560044E626 /* GPBDictionary.m */; };
 		DBBB666A1D7955560044E626 /* GPBExtensionInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663D1D7955560044E626 /* GPBExtensionInternals.h */; };
 		DBBB666B1D7955560044E626 /* GPBExtensionInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB663E1D7955560044E626 /* GPBExtensionInternals.m */; };
-		DBBB666C1D7955560044E626 /* GPBExtensionRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663F1D7955560044E626 /* GPBExtensionRegistry.h */; };
+		DBBB666C1D7955560044E626 /* GPBExtensionRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB663F1D7955560044E626 /* GPBExtensionRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB666D1D7955560044E626 /* GPBExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66401D7955560044E626 /* GPBExtensionRegistry.m */; };
 		DBBB666E1D7955560044E626 /* GPBMessage_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66411D7955560044E626 /* GPBMessage_PackagePrivate.h */; };
-		DBBB666F1D7955560044E626 /* GPBMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66421D7955560044E626 /* GPBMessage.h */; };
+		DBBB666F1D7955560044E626 /* GPBMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66421D7955560044E626 /* GPBMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66701D7955560044E626 /* GPBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66431D7955560044E626 /* GPBMessage.m */; };
 		DBBB66711D7955560044E626 /* GPBProtocolBuffers_RuntimeSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66441D7955560044E626 /* GPBProtocolBuffers_RuntimeSupport.h */; };
 		DBBB66741D7955560044E626 /* GPBRootObject_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66471D7955560044E626 /* GPBRootObject_PackagePrivate.h */; };
-		DBBB66751D7955560044E626 /* GPBRootObject.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66481D7955560044E626 /* GPBRootObject.h */; };
+		DBBB66751D7955560044E626 /* GPBRootObject.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66481D7955560044E626 /* GPBRootObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66761D7955560044E626 /* GPBRootObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66491D7955560044E626 /* GPBRootObject.m */; };
-		DBBB66771D7955560044E626 /* GPBRuntimeTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664A1D7955560044E626 /* GPBRuntimeTypes.h */; };
+		DBBB66771D7955560044E626 /* GPBRuntimeTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664A1D7955560044E626 /* GPBRuntimeTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66781D7955560044E626 /* GPBUnknownField_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664B1D7955560044E626 /* GPBUnknownField_PackagePrivate.h */; };
-		DBBB66791D7955560044E626 /* GPBUnknownField.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664C1D7955560044E626 /* GPBUnknownField.h */; };
+		DBBB66791D7955560044E626 /* GPBUnknownField.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664C1D7955560044E626 /* GPBUnknownField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB667A1D7955560044E626 /* GPBUnknownField.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB664D1D7955560044E626 /* GPBUnknownField.m */; };
 		DBBB667B1D7955560044E626 /* GPBUnknownFieldSet_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664E1D7955560044E626 /* GPBUnknownFieldSet_PackagePrivate.h */; };
-		DBBB667C1D7955560044E626 /* GPBUnknownFieldSet.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664F1D7955560044E626 /* GPBUnknownFieldSet.h */; };
+		DBBB667C1D7955560044E626 /* GPBUnknownFieldSet.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB664F1D7955560044E626 /* GPBUnknownFieldSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB667D1D7955560044E626 /* GPBUnknownFieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66501D7955560044E626 /* GPBUnknownFieldSet.m */; };
 		DBBB667E1D7955560044E626 /* GPBUtilities_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66511D7955560044E626 /* GPBUtilities_PackagePrivate.h */; };
-		DBBB667F1D7955560044E626 /* GPBUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66521D7955560044E626 /* GPBUtilities.h */; };
+		DBBB667F1D7955560044E626 /* GPBUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66521D7955560044E626 /* GPBUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66801D7955560044E626 /* GPBUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66531D7955560044E626 /* GPBUtilities.m */; };
-		DBBB66831D7955560044E626 /* GPBWireFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66561D7955560044E626 /* GPBWireFormat.h */; };
+		DBBB66831D7955560044E626 /* GPBWireFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66561D7955560044E626 /* GPBWireFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66841D7955560044E626 /* GPBWireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66571D7955560044E626 /* GPBWireFormat.m */; };
 		DBBB66851D7955560044E626 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBBB66581D7955560044E626 /* Info.plist */; };
 		DBBB66861D7955560044E626 /* GPBProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66591D7955560044E626 /* GPBProtocolBuffers.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -191,33 +192,33 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBBB66861D7955560044E626 /* GPBProtocolBuffers.h in Headers */,
-				DBBB666F1D7955560044E626 /* GPBMessage.h in Headers */,
-				DBBB666C1D7955560044E626 /* GPBExtensionRegistry.h in Headers */,
-				DBBB66791D7955560044E626 /* GPBUnknownField.h in Headers */,
-				DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */,
-				DBBB666A1D7955560044E626 /* GPBExtensionInternals.h in Headers */,
-				DBBB66751D7955560044E626 /* GPBRootObject.h in Headers */,
-				DBBB66781D7955560044E626 /* GPBUnknownField_PackagePrivate.h in Headers */,
 				DBBB667F1D7955560044E626 /* GPBUtilities.h in Headers */,
 				DB5DAEF21D79847B00FB81A7 /* Message.pbobjc.h in Headers */,
+				DBBB66791D7955560044E626 /* GPBUnknownField.h in Headers */,
+				DBBB667C1D7955560044E626 /* GPBUnknownFieldSet.h in Headers */,
+				DBBB66751D7955560044E626 /* GPBRootObject.h in Headers */,
+				DBBB666F1D7955560044E626 /* GPBMessage.h in Headers */,
+				DBBB666C1D7955560044E626 /* GPBExtensionRegistry.h in Headers */,
+				DBBB66681D7955560044E626 /* GPBDictionary.h in Headers */,
+				DBBB66651D7955560044E626 /* GPBDescriptor.h in Headers */,
+				DBBB66831D7955560044E626 /* GPBWireFormat.h in Headers */,
+				DBBB66861D7955560044E626 /* GPBProtocolBuffers.h in Headers */,
+				DBBB665D1D7955560044E626 /* GPBBootstrap.h in Headers */,
+				DBBB665B1D7955560044E626 /* GPBArray.h in Headers */,
+				743E97E11D7ADD6300F86194 /* GPBCodedInputStream.h in Headers */,
+				DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */,
+				DBBB66771D7955560044E626 /* GPBRuntimeTypes.h in Headers */,
+				DBBB666A1D7955560044E626 /* GPBExtensionInternals.h in Headers */,
+				DBBB66781D7955560044E626 /* GPBUnknownField_PackagePrivate.h in Headers */,
 				DBBB667E1D7955560044E626 /* GPBUtilities_PackagePrivate.h in Headers */,
 				DBBB665E1D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h in Headers */,
 				DBBB665A1D7955560044E626 /* GPBArray_PackagePrivate.h in Headers */,
-				DBBB66681D7955560044E626 /* GPBDictionary.h in Headers */,
-				DBBB665B1D7955560044E626 /* GPBArray.h in Headers */,
 				DBBB666E1D7955560044E626 /* GPBMessage_PackagePrivate.h in Headers */,
-				DBBB665D1D7955560044E626 /* GPBBootstrap.h in Headers */,
-				DBBB667C1D7955560044E626 /* GPBUnknownFieldSet.h in Headers */,
 				DBBB66611D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h in Headers */,
 				DBBB66711D7955560044E626 /* GPBProtocolBuffers_RuntimeSupport.h in Headers */,
-				DBBB66831D7955560044E626 /* GPBWireFormat.h in Headers */,
 				DBBB667B1D7955560044E626 /* GPBUnknownFieldSet_PackagePrivate.h in Headers */,
-				DBBB66651D7955560044E626 /* GPBDescriptor.h in Headers */,
 				DBBB66741D7955560044E626 /* GPBRootObject_PackagePrivate.h in Headers */,
-				DBBB66771D7955560044E626 /* GPBRuntimeTypes.h in Headers */,
 				DBBB66641D7955560044E626 /* GPBDescriptor_PackagePrivate.h in Headers */,
-				DBBB665F1D7955560044E626 /* GPBCodedInputStream.h in Headers */,
 				DBBB66671D7955560044E626 /* GPBDictionary_PackagePrivate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBBB66761D7955560044E626 /* GPBRootObject.m in Sources */,
+				DBBB665F1D7955560044E626 /* GPBCodedInputStream.h in Sources */,
 				DBBB66691D7955560044E626 /* GPBDictionary.m in Sources */,
 				DBBB66631D7955560044E626 /* GPBCodedOutputStream.m in Sources */,
 				DBBB666D1D7955560044E626 /* GPBExtensionRegistry.m in Sources */,

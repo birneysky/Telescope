@@ -41,10 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///枚举。包类型
 typedef GPB_ENUM(V2PPacket_type) {
-  /// Value used if any message's field encounters a value that is not defined
-  /// by this enum. The message will also have C functions to get/set the rawValue
-  /// of the field.
-  V2PPacket_type_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
   ///信令类型
   V2PPacket_type_Iq = 0,
 
@@ -68,10 +64,6 @@ BOOL V2PPacket_type_IsValidValue(int32_t value);
 
 ///枚举。响应结果
 typedef GPB_ENUM(V2PGratuity_Answer) {
-  /// Value used if any message's field encounters a value that is not defined
-  /// by this enum. The message will also have C functions to get/set the rawValue
-  /// of the field.
-  V2PGratuity_Answer_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
   ///收到信息
   V2PGratuity_Answer_Receive = 0,
 
@@ -95,10 +87,6 @@ BOOL V2PGratuity_Answer_IsValidValue(int32_t value);
 
 ///枚举。操作类型
 typedef GPB_ENUM(V2PReward_Operate) {
-  /// Value used if any message's field encounters a value that is not defined
-  /// by this enum. The message will also have C functions to get/set the rawValue
-  /// of the field.
-  V2PReward_Operate_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
   ///发布悬赏
   V2PReward_Operate_Release = 0,
 
@@ -125,10 +113,6 @@ BOOL V2PReward_Operate_IsValidValue(int32_t value);
 
 ///枚举。用户状态
 typedef GPB_ENUM(V2PUserState_State) {
-  /// Value used if any message's field encounters a value that is not defined
-  /// by this enum. The message will also have C functions to get/set the rawValue
-  /// of the field.
-  V2PUserState_State_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
   ///在线
   V2PUserState_State_Online = 0,
 
@@ -155,10 +139,6 @@ BOOL V2PUserState_State_IsValidValue(int32_t value);
 
 ///枚举。查询类型
 typedef GPB_ENUM(V2PAssetLog_OperateType) {
-  /// Value used if any message's field encounters a value that is not defined
-  /// by this enum. The message will also have C functions to get/set the rawValue
-  /// of the field.
-  V2PAssetLog_OperateType_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
   ///充值
   V2PAssetLog_OperateType_Recharge = 0,
 
@@ -220,20 +200,31 @@ typedef GPB_ENUM(V2PPacket_FieldNumber) {
 ///（必填）包类型：枚举
 @property(nonatomic, readwrite) V2PPacket_type packetType;
 
+@property(nonatomic, readwrite) BOOL hasPacketType;
 ///（选填）发送者
 @property(nonatomic, readwrite, copy, null_resettable) NSString *from;
+/// Test to see if @c from has been set.
+@property(nonatomic, readwrite) BOOL hasFrom;
 
 ///（选填）接收者
 @property(nonatomic, readwrite, copy, null_resettable) NSString *to;
+/// Test to see if @c to has been set.
+@property(nonatomic, readwrite) BOOL hasTo;
 
 ///（选填）包ID
 @property(nonatomic, readwrite, copy, null_resettable) NSString *id_p;
+/// Test to see if @c id_p has been set.
+@property(nonatomic, readwrite) BOOL hasId_p;
 
 ///（选填）方法名
 @property(nonatomic, readwrite, copy, null_resettable) NSString *method;
+/// Test to see if @c method has been set.
+@property(nonatomic, readwrite) BOOL hasMethod;
 
 ///（选填）操作类型
 @property(nonatomic, readwrite, copy, null_resettable) NSString *operateType;
+/// Test to see if @c operateType has been set.
+@property(nonatomic, readwrite) BOOL hasOperateType;
 
 ///（选填）操作结果，是否成功，失败原因
 @property(nonatomic, readwrite, strong, null_resettable) V2PResult *result;
@@ -247,16 +238,10 @@ typedef GPB_ENUM(V2PPacket_FieldNumber) {
 
 ///（选填）版本号iq类型包必填
 @property(nonatomic, readwrite, copy, null_resettable) NSString *version;
+/// Test to see if @c version has been set.
+@property(nonatomic, readwrite) BOOL hasVersion;
 
 @end
-
-/// Fetches the raw value of a @c V2PPacket's @c packetType property, even
-/// if the value was not defined by the enum at the time the code was generated.
-int32_t V2PPacket_PacketType_RawValue(V2PPacket *message);
-/// Sets the raw value of an @c V2PPacket's @c packetType property, allowing
-/// it to be set to a value that was not defined by the enum at the time the code
-/// was generated.
-void SetV2PPacket_PacketType_RawValue(V2PPacket *message, int32_t value);
 
 #pragma mark - V2PResult
 
@@ -271,8 +256,11 @@ typedef GPB_ENUM(V2PResult_FieldNumber) {
 ///是否成功
 @property(nonatomic, readwrite) BOOL result;
 
+@property(nonatomic, readwrite) BOOL hasResult;
 ///错误信息
 @property(nonatomic, readwrite, copy, null_resettable) NSString *error;
+/// Test to see if @c error has been set.
+@property(nonatomic, readwrite) BOOL hasError;
 
 @end
 
@@ -300,25 +288,34 @@ typedef GPB_ENUM(V2PData_FieldNumber) {
 
 ///（选填）通用数据
 @property(nonatomic, readwrite, copy, null_resettable) NSString *normal;
+/// Test to see if @c normal has been set.
+@property(nonatomic, readwrite) BOOL hasNormal;
 
 ///（选填）二进制数据
 @property(nonatomic, readwrite, copy, null_resettable) NSData *byteDate;
+/// Test to see if @c byteDate has been set.
+@property(nonatomic, readwrite) BOOL hasByteDate;
 
 ///（选填）筛选数据的起始时间
 @property(nonatomic, readwrite) int64_t fromTime;
 
+@property(nonatomic, readwrite) BOOL hasFromTime;
 ///（选填）筛选数据的截止时间
 @property(nonatomic, readwrite) int64_t toTime;
 
+@property(nonatomic, readwrite) BOOL hasToTime;
 ///（选填）数据的总量
 @property(nonatomic, readwrite) int32_t sum;
 
+@property(nonatomic, readwrite) BOOL hasSum;
 ///（选填）当前传送数据的起始位置
 @property(nonatomic, readwrite) int32_t from;
 
+@property(nonatomic, readwrite) BOOL hasFrom;
 ///（选填）当前传送数据的结束位置
 @property(nonatomic, readwrite) int32_t to;
 
+@property(nonatomic, readwrite) BOOL hasTo;
 ///（可重复）位置类
 @property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<V2PPosition*> *positionArray;
 /// The number of items in @c positionArray without causing the array to be created.
@@ -390,42 +387,63 @@ typedef GPB_ENUM(V2PUser_FieldNumber) {
 ///（选填）用户ID
 @property(nonatomic, readwrite) int32_t id_p;
 
+@property(nonatomic, readwrite) BOOL hasId_p;
 ///（选填）电话号码
 @property(nonatomic, readwrite, copy, null_resettable) NSString *phone;
+/// Test to see if @c phone has been set.
+@property(nonatomic, readwrite) BOOL hasPhone;
 
 ///（选填）用户名/昵称
 @property(nonatomic, readwrite, copy, null_resettable) NSString *name;
+/// Test to see if @c name has been set.
+@property(nonatomic, readwrite) BOOL hasName;
 
 ///（选填）用户密码
 @property(nonatomic, readwrite, copy, null_resettable) NSString *pwd;
+/// Test to see if @c pwd has been set.
+@property(nonatomic, readwrite) BOOL hasPwd;
 
 ///（选填）新密码或者验证码
 @property(nonatomic, readwrite, copy, null_resettable) NSString *pwd2OrCode;
+/// Test to see if @c pwd2OrCode has been set.
+@property(nonatomic, readwrite) BOOL hasPwd2OrCode;
 
 ///（选填）用户真实姓名
 @property(nonatomic, readwrite, copy, null_resettable) NSString *realName;
+/// Test to see if @c realName has been set.
+@property(nonatomic, readwrite) BOOL hasRealName;
 
 ///（选填）用户头像地址
 @property(nonatomic, readwrite, copy, null_resettable) NSString *headurl;
+/// Test to see if @c headurl has been set.
+@property(nonatomic, readwrite) BOOL hasHeadurl;
 
 ///（选填）个性化签名
 @property(nonatomic, readwrite, copy, null_resettable) NSString *signText;
+/// Test to see if @c signText has been set.
+@property(nonatomic, readwrite) BOOL hasSignText;
 
 ///（选填）性别
 @property(nonatomic, readwrite) int32_t sex;
 
+@property(nonatomic, readwrite) BOOL hasSex;
 ///（选填）注册地址
 @property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+/// Test to see if @c address has been set.
+@property(nonatomic, readwrite) BOOL hasAddress;
 
 ///（选填）用户经验值
 @property(nonatomic, readwrite) int32_t experience;
 
+@property(nonatomic, readwrite) BOOL hasExperience;
 ///（选填）粉丝数量
 @property(nonatomic, readwrite) int32_t fansCount;
 
+@property(nonatomic, readwrite) BOOL hasFansCount;
 ///（选填）关注的用户数量
 @property(nonatomic, readwrite) int32_t followCount;
 
+@property(nonatomic, readwrite) BOOL hasFollowCount;
 ///（选填）用户所在的位置
 @property(nonatomic, readwrite, strong, null_resettable) V2PPosition *position;
 /// Test to see if @c position has been set.
@@ -433,30 +451,46 @@ typedef GPB_ENUM(V2PUser_FieldNumber) {
 
 ///（选填）登陆所用的设备ID
 @property(nonatomic, readwrite, copy, null_resettable) NSString *deviceId;
+/// Test to see if @c deviceId has been set.
+@property(nonatomic, readwrite) BOOL hasDeviceId;
 
 ///（选填）关注（其他用户）的类型
 @property(nonatomic, readwrite) int32_t followType;
 
+@property(nonatomic, readwrite) BOOL hasFollowType;
 ///（选填）备注名称
 @property(nonatomic, readwrite, copy, null_resettable) NSString *descName;
+/// Test to see if @c descName has been set.
+@property(nonatomic, readwrite) BOOL hasDescName;
 
 ///（选填）会议系统用户ID
 @property(nonatomic, readwrite, copy, null_resettable) NSString *v2Id;
+/// Test to see if @c v2Id has been set.
+@property(nonatomic, readwrite) BOOL hasV2Id;
 
 ///（选填）会议系统用户名
 @property(nonatomic, readwrite, copy, null_resettable) NSString *v2UserName;
+/// Test to see if @c v2UserName has been set.
+@property(nonatomic, readwrite) BOOL hasV2UserName;
 
 ///（选填）会议系统用户密码
 @property(nonatomic, readwrite, copy, null_resettable) NSString *v2Pwd;
+/// Test to see if @c v2Pwd has been set.
+@property(nonatomic, readwrite) BOOL hasV2Pwd;
 
 ///（选填）用户发布的直播总量
 @property(nonatomic, readwrite) int32_t videoCount;
 
+@property(nonatomic, readwrite) BOOL hasVideoCount;
 ///（选填）前置摄像头ID
 @property(nonatomic, readwrite, copy, null_resettable) NSString *v2DeviceId1;
+/// Test to see if @c v2DeviceId1 has been set.
+@property(nonatomic, readwrite) BOOL hasV2DeviceId1;
 
 ///（选填）后置摄像头ID
 @property(nonatomic, readwrite, copy, null_resettable) NSString *v2DeviceId2;
+/// Test to see if @c v2DeviceId2 has been set.
+@property(nonatomic, readwrite) BOOL hasV2DeviceId2;
 
 @end
 
@@ -474,12 +508,15 @@ typedef GPB_ENUM(V2PPosition_FieldNumber) {
 ///（选填）地图经度
 @property(nonatomic, readwrite) double longitude;
 
+@property(nonatomic, readwrite) BOOL hasLongitude;
 ///（选填）地图维度
 @property(nonatomic, readwrite) double latitude;
 
+@property(nonatomic, readwrite) BOOL hasLatitude;
 ///（选填）查询半径,以米为单位
 @property(nonatomic, readwrite) int32_t radius;
 
+@property(nonatomic, readwrite) BOOL hasRadius;
 @end
 
 #pragma mark - V2PVideo
@@ -505,12 +542,16 @@ typedef GPB_ENUM(V2PVideo_FieldNumber) {
 ///（选填）直播的ID
 @property(nonatomic, readwrite) int32_t id_p;
 
+@property(nonatomic, readwrite) BOOL hasId_p;
 ///（选填）直播的会议号
 @property(nonatomic, readwrite, copy, null_resettable) NSString *videoNum;
+/// Test to see if @c videoNum has been set.
+@property(nonatomic, readwrite) BOOL hasVideoNum;
 
 ///（选填）发起直播的用户ID
 @property(nonatomic, readwrite) int32_t userId;
 
+@property(nonatomic, readwrite) BOOL hasUserId;
 ///（选填）该直播所在的位置
 @property(nonatomic, readwrite, strong, null_resettable) V2PPosition *position;
 /// Test to see if @c position has been set.
@@ -519,26 +560,35 @@ typedef GPB_ENUM(V2PVideo_FieldNumber) {
 ///（选填）当前观看该直播的总人数
 @property(nonatomic, readwrite) int32_t sum;
 
+@property(nonatomic, readwrite) BOOL hasSum;
 ///（选填）累计观看人次
 @property(nonatomic, readwrite) int32_t userCount;
 
+@property(nonatomic, readwrite) BOOL hasUserCount;
 ///（选填）当前的点赞数
 @property(nonatomic, readwrite) int32_t likeCount;
 
+@property(nonatomic, readwrite) BOOL hasLikeCount;
 ///（选填）当前直播的打赏总额
 @property(nonatomic, readwrite) float gratuityCount;
 
+@property(nonatomic, readwrite) BOOL hasGratuityCount;
 ///与该用户的相关度，排序依据
 @property(nonatomic, readwrite) int32_t degree;
 
+@property(nonatomic, readwrite) BOOL hasDegree;
 ///结果类型：0搜索内容；1推荐内容
 @property(nonatomic, readwrite) int32_t resultType;
 
+@property(nonatomic, readwrite) BOOL hasResultType;
 ///是否为HLS格式
 @property(nonatomic, readwrite) BOOL hlsmode;
 
+@property(nonatomic, readwrite) BOOL hasHlsmode;
 ///直播的密码，默认为null
 @property(nonatomic, readwrite, copy, null_resettable) NSString *videoPwd;
+/// Test to see if @c videoPwd has been set.
+@property(nonatomic, readwrite) BOOL hasVideoPwd;
 
 @end
 
@@ -560,33 +610,32 @@ typedef GPB_ENUM(V2PGratuity_FieldNumber) {
 ///（选填）打赏物的类型
 @property(nonatomic, readwrite) int32_t giftType;
 
+@property(nonatomic, readwrite) BOOL hasGiftType;
 ///（选填）打赏的对象
 @property(nonatomic, readwrite) int32_t toUserId;
 
+@property(nonatomic, readwrite) BOOL hasToUserId;
 ///（选填）发起打赏的用户
 @property(nonatomic, readwrite) int32_t fromUserId;
 
+@property(nonatomic, readwrite) BOOL hasFromUserId;
 ///（选填）打赏金额
 @property(nonatomic, readwrite) float amount;
 
+@property(nonatomic, readwrite) BOOL hasAmount;
 ///累计打赏总额或者打赏后的剩余金额
 @property(nonatomic, readwrite) float sumOrRemain;
 
+@property(nonatomic, readwrite) BOOL hasSumOrRemain;
 ///（选填）枚举类。响应结果
 @property(nonatomic, readwrite) V2PGratuity_Answer answer;
 
+@property(nonatomic, readwrite) BOOL hasAnswer;
 ///（选填）打赏行为发生的那个直播
 @property(nonatomic, readwrite) int32_t videoId;
 
+@property(nonatomic, readwrite) BOOL hasVideoId;
 @end
-
-/// Fetches the raw value of a @c V2PGratuity's @c answer property, even
-/// if the value was not defined by the enum at the time the code was generated.
-int32_t V2PGratuity_Answer_RawValue(V2PGratuity *message);
-/// Sets the raw value of an @c V2PGratuity's @c answer property, allowing
-/// it to be set to a value that was not defined by the enum at the time the code
-/// was generated.
-void SetV2PGratuity_Answer_RawValue(V2PGratuity *message, int32_t value);
 
 #pragma mark - V2PReward
 
@@ -611,12 +660,15 @@ typedef GPB_ENUM(V2PReward_FieldNumber) {
 ///（选填）此次悬赏的数据库ID
 @property(nonatomic, readwrite) int32_t id_p;
 
+@property(nonatomic, readwrite) BOOL hasId_p;
 ///（选填）悬赏的有效时间
 @property(nonatomic, readwrite) int32_t powerTime;
 
+@property(nonatomic, readwrite) BOOL hasPowerTime;
 ///（选填）悬赏的开始时间
 @property(nonatomic, readwrite) int64_t releaseTime;
 
+@property(nonatomic, readwrite) BOOL hasReleaseTime;
 ///（选填）悬赏的物品及数量，可以是多种
 @property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<V2PGift*> *giftArray;
 /// The number of items in @c giftArray without causing the array to be created.
@@ -625,14 +677,19 @@ typedef GPB_ENUM(V2PReward_FieldNumber) {
 ///（选填）发起悬赏用户的ID
 @property(nonatomic, readwrite) int32_t fromUserId;
 
+@property(nonatomic, readwrite) BOOL hasFromUserId;
 ///（选填）接受悬赏用户的ID
 @property(nonatomic, readwrite) int32_t answerUserId;
 
+@property(nonatomic, readwrite) BOOL hasAnswerUserId;
 ///（选填）枚举类。操作类型
 @property(nonatomic, readwrite) V2PReward_Operate operate;
 
+@property(nonatomic, readwrite) BOOL hasOperate;
 ///（选填）文字描述
 @property(nonatomic, readwrite, copy, null_resettable) NSString *desc;
+/// Test to see if @c desc has been set.
+@property(nonatomic, readwrite) BOOL hasDesc;
 
 ///（选填）位置信息
 @property(nonatomic, readwrite, strong, null_resettable) V2PPosition *position;
@@ -642,21 +699,17 @@ typedef GPB_ENUM(V2PReward_FieldNumber) {
 ///（选填）推送的用户数量
 @property(nonatomic, readwrite) int32_t pushSum;
 
+@property(nonatomic, readwrite) BOOL hasPushSum;
 ///（选填）申诉的内容
 @property(nonatomic, readwrite, copy, null_resettable) NSString *appealDesc;
+/// Test to see if @c appealDesc has been set.
+@property(nonatomic, readwrite) BOOL hasAppealDesc;
 
 ///（选填）申诉的时间
 @property(nonatomic, readwrite) int64_t appealTime;
 
+@property(nonatomic, readwrite) BOOL hasAppealTime;
 @end
-
-/// Fetches the raw value of a @c V2PReward's @c operate property, even
-/// if the value was not defined by the enum at the time the code was generated.
-int32_t V2PReward_Operate_RawValue(V2PReward *message);
-/// Sets the raw value of an @c V2PReward's @c operate property, allowing
-/// it to be set to a value that was not defined by the enum at the time the code
-/// was generated.
-void SetV2PReward_Operate_RawValue(V2PReward *message, int32_t value);
 
 #pragma mark - V2PGift
 
@@ -672,12 +725,15 @@ typedef GPB_ENUM(V2PGift_FieldNumber) {
 ///（选填）类别
 @property(nonatomic, readwrite) int32_t giftType;
 
+@property(nonatomic, readwrite) BOOL hasGiftType;
 ///（选填）数量
 @property(nonatomic, readwrite) float amount;
 
+@property(nonatomic, readwrite) BOOL hasAmount;
 ///（选填）悬赏/打赏量，或者剩余量
 @property(nonatomic, readwrite) float sumOrRemain;
 
+@property(nonatomic, readwrite) BOOL hasSumOrRemain;
 @end
 
 #pragma mark - V2PUserState
@@ -695,24 +751,21 @@ typedef GPB_ENUM(V2PUserState_FieldNumber) {
 ///（选填）用户ID
 @property(nonatomic, readwrite) int32_t userId;
 
+@property(nonatomic, readwrite) BOOL hasUserId;
 ///（选填）操作ID（悬赏或者其他ID）
 @property(nonatomic, readwrite) int32_t operateId;
 
+@property(nonatomic, readwrite) BOOL hasOperateId;
 ///（枚举）当前状态
 @property(nonatomic, readwrite) V2PUserState_State state;
 
+@property(nonatomic, readwrite) BOOL hasState;
 ///（选填）说明（报告原由）
 @property(nonatomic, readwrite, copy, null_resettable) NSString *desc;
+/// Test to see if @c desc has been set.
+@property(nonatomic, readwrite) BOOL hasDesc;
 
 @end
-
-/// Fetches the raw value of a @c V2PUserState's @c state property, even
-/// if the value was not defined by the enum at the time the code was generated.
-int32_t V2PUserState_State_RawValue(V2PUserState *message);
-/// Sets the raw value of an @c V2PUserState's @c state property, allowing
-/// it to be set to a value that was not defined by the enum at the time the code
-/// was generated.
-void SetV2PUserState_State_RawValue(V2PUserState *message, int32_t value);
 
 #pragma mark - V2PAssetLog
 
@@ -738,9 +791,11 @@ typedef GPB_ENUM(V2PAssetLog_FieldNumber) {
 ///（选填）资金流出的用户ID
 @property(nonatomic, readwrite) int32_t fromUserId;
 
+@property(nonatomic, readwrite) BOOL hasFromUserId;
 ///（选填）资金流入的用户ID
 @property(nonatomic, readwrite) int32_t toUserId;
 
+@property(nonatomic, readwrite) BOOL hasToUserId;
 ///（可重复）涉及的资产类
 @property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<V2PGift*> *giftArray;
 /// The number of items in @c giftArray without causing the array to be created.
@@ -748,43 +803,47 @@ typedef GPB_ENUM(V2PAssetLog_FieldNumber) {
 
 ///（选填）文本说明
 @property(nonatomic, readwrite, copy, null_resettable) NSString *desc;
+/// Test to see if @c desc has been set.
+@property(nonatomic, readwrite) BOOL hasDesc;
 
 ///（选填）枚举，查询类型
 @property(nonatomic, readwrite) V2PAssetLog_OperateType operateType;
 
+@property(nonatomic, readwrite) BOOL hasOperateType;
 ///（选填）操作发生的时间
 @property(nonatomic, readwrite) int64_t operateTime;
 
+@property(nonatomic, readwrite) BOOL hasOperateTime;
 ///（选填）后台处理类型（支付、冻结、解冻）
 @property(nonatomic, readwrite) int32_t soType;
 
+@property(nonatomic, readwrite) BOOL hasSoType;
 ///（选填）支付类型（通道）
 @property(nonatomic, readwrite) int32_t payType;
 
+@property(nonatomic, readwrite) BOOL hasPayType;
 ///（选填）支付时间
 @property(nonatomic, readwrite) int64_t payTime;
 
+@property(nonatomic, readwrite) BOOL hasPayTime;
 ///（选填）所在的直播ID
 @property(nonatomic, readwrite) int32_t videoId;
 
+@property(nonatomic, readwrite) BOOL hasVideoId;
 ///（选填）所在的悬赏的ID
 @property(nonatomic, readwrite) int32_t rewardId;
 
+@property(nonatomic, readwrite) BOOL hasRewardId;
 ///（选填）申诉的内容
 @property(nonatomic, readwrite, copy, null_resettable) NSString *appealDesc;
+/// Test to see if @c appealDesc has been set.
+@property(nonatomic, readwrite) BOOL hasAppealDesc;
 
 ///（选填）申诉发生的时间
 @property(nonatomic, readwrite) int64_t appealTime;
 
+@property(nonatomic, readwrite) BOOL hasAppealTime;
 @end
-
-/// Fetches the raw value of a @c V2PAssetLog's @c operateType property, even
-/// if the value was not defined by the enum at the time the code was generated.
-int32_t V2PAssetLog_OperateType_RawValue(V2PAssetLog *message);
-/// Sets the raw value of an @c V2PAssetLog's @c operateType property, allowing
-/// it to be set to a value that was not defined by the enum at the time the code
-/// was generated.
-void SetV2PAssetLog_OperateType_RawValue(V2PAssetLog *message, int32_t value);
 
 NS_ASSUME_NONNULL_END
 

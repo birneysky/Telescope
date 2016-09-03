@@ -33,4 +33,4 @@ FOUNDATION_EXPORT const unsigned char ProtocolBuffersVersionString[];
 #import "GPBWireFormat.h"
 
 
-#import <ProtocolBuffers/Message.pbobjc.h>
+#import "Message.pbobjc.h"

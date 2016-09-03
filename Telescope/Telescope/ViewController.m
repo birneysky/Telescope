@@ -7,21 +7,49 @@
 //
 
 #import "ViewController.h"
+#import <CocoaAsyncSocket/CocoaAsyncSocket.h>
+#import <ProtocolBuffers/GPBProtocolBuffers.h>
 
-@interface ViewController ()
 
-@property (nonatomic,strong)  DFNettyCommonClient* client;
+@interface ViewController () <GCDAsyncSocketDelegate>
+
+@property (nonatomic,strong)  GCDAsyncSocket* client;
 
 @end
+
+void BinaryPrint(int n)
+{
+    for (int i=31;i >=0; i--)
+    {
+        if ((i+1) % 8 == 0 && i != 0) {
+            printf(" ");
+        }
+        printf("%d",(n >> i)&1);
+
+    }
+    printf("\n");
+}
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    int a = 0b10000000000000000000000010000001;
+    int b = a >> 7;
+    BinaryPrint(b);
+    
+    V2PPacket* packet = [[V2PPacket alloc] init];
+    packet.packetType = V2PPacket_type_Beat;
+    
+    NSData* data = packet.data;
     // Do any additional setup after loading the view, typically from a nib.
-    self.client = [[DFNettyCommonClient alloc] init];
-    [self.client connect:@"123.57.20.30" port:9997];
-    self.client.socket.delegate = self;
+//    dispatch_queue_t queue = dispatch_queue_create("com.telescope.network", DISPATCH_QUEUE_SERIAL);
+//    self.client = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:queue];
+//    self.client.delegate = self;
+//    NSError* error;
+//    [self.client connectToHost:@"123.57.20.30" onPort:9997 error:&error];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,8 +77,14 @@
         0x05, 0x31, 0x2e, 0x31,
         0x2e, 0x30};
     //[self.client write:[NSData dataWithBytes:buf length:3]];
-    [self.client write:[NSData dataWithBytes:bufLogin length:54]];
-    [self.client.socket readDataWithTimeout:100 tag:1000];
+    //[self.client write:[NSData dataWithBytes:bufLogin length:54]];
+    //[self.client.socket readDataWithTimeout:100 tag:1000];
+    [self.client readDataWithTimeout:100 tag:1000];
+    //for (int i = 0; i < 10000; i++) {
+        [self.client writeData:[NSData dataWithBytes:bufLogin length:sizeof(bufLogin)] withTimeout:100 tag:1000];
+    //}
+    NSLog(@"done");
+   
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
