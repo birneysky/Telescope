@@ -35,10 +35,13 @@ void BinaryPrint(int n)
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    int a = 0b10000000000000000000000010000001;
-    int b = a >> 7;
+    int a = 0b00000000000000000000000000001001;
+    int c = -9;
+    int b = a >> 1;
+    int d = c >> 1;
     BinaryPrint(b);
-    
+    BinaryPrint(c);
+    BinaryPrint(d);
     V2PPacket* packet = [[V2PPacket alloc] init];
     packet.packetType = V2PPacket_type_Beat;
     
@@ -49,7 +52,7 @@ void BinaryPrint(int n)
 //    self.client.delegate = self;
 //    NSError* error;
 //    [self.client connectToHost:@"123.57.20.30" onPort:9997 error:&error];
-    
+    NSLog(@"%@",data);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,6 +116,22 @@ completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler
 - (void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag
 {
     
+}
+
+- (NSInteger) computeByteSizeForInt32:(int32_t) value{
+    if ((value & (0xffffffff <<  7)) == 0) {
+        return 1;
+    }
+    if ((value & (0xffffffff << 14)) == 0) {
+        return 2;
+    }
+    if ((value & (0xffffffff << 21)) == 0) {
+        return 3;
+    }
+    if ((value & (0xffffffff << 28)) == 0) {
+        return 4;
+    }
+    return 5;
 }
 
 
