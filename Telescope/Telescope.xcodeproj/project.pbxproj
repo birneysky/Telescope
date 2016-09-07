@@ -16,6 +16,8 @@
 		DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */; };
 		DB6DA72D1D792D1900430922 /* TelescopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA72C1D792D1900430922 /* TelescopeTests.m */; };
 		DB6DA7381D792D1900430922 /* TelescopeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7371D792D1900430922 /* TelescopeUITests.m */; };
+		DB86C8371D7FE4AB0022754C /* TENetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DB86C8361D7FE4AB0022754C /* TENetworkEngine.m */; };
+		DB86C83A1D7FF7C90022754C /* TEStreamBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,10 @@
 		DB6DA7331D792D1900430922 /* TelescopeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelescopeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DA7371D792D1900430922 /* TelescopeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TelescopeUITests.m; sourceTree = "<group>"; };
 		DB6DA7391D792D1900430922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB86C8351D7FE4AB0022754C /* TENetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENetworkEngine.h; sourceTree = "<group>"; };
+		DB86C8361D7FE4AB0022754C /* TENetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENetworkEngine.m; sourceTree = "<group>"; };
+		DB86C8381D7FF7C90022754C /* TEStreamBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEStreamBuffer.h; sourceTree = "<group>"; };
+		DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEStreamBuffer.m; sourceTree = "<group>"; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -90,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				DBBB65FA1D79506A0044E626 /* FrameWorks */,
+				DB86C8341D7FE4AB0022754C /* Network */,
 				DB6DA70E1D792D1900430922 /* Telescope */,
 				DB6DA72B1D792D1900430922 /* TelescopeTests */,
 				DB6DA7361D792D1900430922 /* TelescopeUITests */,
@@ -148,6 +155,17 @@
 				DB6DA7391D792D1900430922 /* Info.plist */,
 			);
 			path = TelescopeUITests;
+			sourceTree = "<group>";
+		};
+		DB86C8341D7FE4AB0022754C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DB86C8351D7FE4AB0022754C /* TENetworkEngine.h */,
+				DB86C8361D7FE4AB0022754C /* TENetworkEngine.m */,
+				DB86C8381D7FF7C90022754C /* TEStreamBuffer.h */,
+				DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		DBBB65FA1D79506A0044E626 /* FrameWorks */ = {
@@ -290,8 +308,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6DA7171D792D1900430922 /* ViewController.m in Sources */,
+				DB86C8371D7FE4AB0022754C /* TENetworkEngine.m in Sources */,
 				DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */,
 				DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */,
+				DB86C83A1D7FF7C90022754C /* TEStreamBuffer.m in Sources */,
 				DB6DA7111D792D1900430922 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +460,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fa8c6289-9528-4d7c-a639-1877f395ef90";
 			};
 			name = Debug;
 		};
@@ -452,6 +473,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fa8c6289-9528-4d7c-a639-1877f395ef90";
 			};
 			name = Release;
 		};
