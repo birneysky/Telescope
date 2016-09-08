@@ -7,12 +7,19 @@
 //
 
 #import "TEStreamBuffer.h"
+#import <ProtocolBuffers/GPBProtocolBuffers.h>
+
+#define PER_ALLOC_SIZE 8192
 
 @interface TEStreamBuffer ()
 
-@property (nonatomic,strong) NSMutableArray<NSData*>* packetArray;
+@property (nonatomic,strong) NSMutableData* streamData;
+
+@property (nonatomic,strong) NSMutableArray<NSData*>* netPacketArray;
 
 @property (nonatomic,strong) dispatch_queue_t processPacketQueue ;
+
+@property (nonatomic,strong) NSMutableArray<NSData*>* localPacketArray;
 @end
 
 
@@ -21,12 +28,28 @@
 
 #pragma mark - *** Properties ***
 
-- (NSMutableArray<NSData*>*)packetArray
+- (NSMutableArray<NSData*>*)netPacketArray
 {
-    if (!_packetArray) {
-        _packetArray = [[NSMutableArray alloc] initWithCapacity:1000];
+    if (!_netPacketArray) {
+        _netPacketArray = [[NSMutableArray alloc] initWithCapacity:PER_ALLOC_SIZE];
     }
-    return _packetArray;
+    return _netPacketArray;
+}
+
+- (NSMutableArray<NSData*>*)localPacketArray
+{
+    if (!_localPacketArray) {
+        _localPacketArray = [[NSMutableArray alloc] init];
+    }
+    return _localPacketArray;
+}
+
+- (NSMutableData*)streamData
+{
+    if (!_streamData) {
+        _streamData = [[NSMutableData alloc] initWithCapacity:PER_ALLOC_SIZE];
+    }
+    return _streamData;
 }
 
 - (dispatch_queue_t) processPacketQueue
@@ -40,23 +63,8 @@
 #pragma mark - *** Api ***
 - (NSData*)readSliceData:(NSInteger) lenght offset:(NSInteger) offset;
 {
-    for ( int i = 0; i < self.packetArray.count; ) {
-        NSData* packet = self.packetArray[i];
-        if (packet.length > lenght+ offset) {
-            NSData* data = [packet subdataWithRange:NSMakeRange(offset, lenght)];
-            NSInteger remianLength = data.length - (offset + lenght);
-            NSData* remain = [packet subdataWithRange:NSMakeRange(offset + lenght, remianLength)];
-        }
-        else if (packet.length == lenght + offset){
-            NSData* data = [packet subdataWithRange:NSMakeRange(offset, lenght)];
-            [self.packetArray removeObjectAtIndex:i];
-            return data;
-        }
-        else{
-            
-        }
-        
-    }
+    NSMutableData* packetData = [[NSMutableData alloc] init];
+
     return nil;
 }
 
@@ -64,43 +72,75 @@
 {
     __weak TEStreamBuffer* weakSelf = self;
     dispatch_async(self.processPacketQueue, ^{
-        [weakSelf.packetArray addObject:data];
+        //[weakSelf.netPacketArray addObject:data];
+        [weakSelf.streamData appendData:data];
+        [self processPacket];
     });
-    [self processPacket];
+    
 }
 
 - (void)processPacket{
     __weak TEStreamBuffer* weakSelf = self;
-    dispatch_async(self.processPacketQueue, ^{
-        //NSMutableData* packetHeader = [[NSMutableData alloc] initWithCapacity:5];
-        NSData* packet = weakSelf.packetArray.firstObject;
-        NSInteger Offset = 0;
-        NSInteger packetLen = [weakSelf parsePacketLength:packet offset:&Offset];
-        if (packetLen > 0) {
-            //
-            
+
+    NSLog(@"recv stream %@",weakSelf.streamData);
+        NSInteger readOffset = 0;
+        NSInteger streamDataLength = weakSelf.streamData.length;
+        int8_t* streamBuffer = weakSelf.streamData.mutableBytes;
+    while (readOffset < streamDataLength) {
+        NSInteger offset = 0;
+        int8_t* buffer = streamBuffer + readOffset;
+        NSInteger remainLenght = streamDataLength - readOffset;
+        NSInteger packetLen = [weakSelf parseBufferHeader:buffer len:remainLenght offset:&offset];
+        if (0 == packetLen) {
+            return;
         }
-        else{
+        if (remainLenght >= packetLen+ offset){
+            NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset+offset, packetLen)];
+            readOffset += packetLen + offset;
+            //解析数据;
+            //NSLog(@"object %@ len %ld",data,(long)data.length);
+            NSError* error;
+            V2PPacket* V2packet = [V2PPacket parseFromData:data  error:&error];
+            if (!error) {
+                NSLog(@" reponse %@",V2packet);
+            }
+            else{
+                NSLog(@"%@",error);
+                assert(0);
+            }
+        }else{
             //
+             NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset, remainLenght)];
+            [self.streamData replaceBytesInRange:NSMakeRange(0, data.length) withBytes:data.bytes];
+            self.streamData.length = data.length;
+            //self.streamData = [[NSMutableData alloc] initWithData:data];
+            break;
         }
-        
-    });
+
+    }
+    
+    
+    if (readOffset == streamDataLength) {
+        //self.streamData = [[NSMutableData alloc] initWithCapacity:PER_ALLOC_SIZE];
+        self.streamData.length = 0;
+    }
 }
 
 
-- (NSInteger) parsePacketLength:(NSData*) data offset:(NSInteger*)offset{
-    if (data.length <= 0) {
+- (NSInteger) parseBufferHeader:(int8_t*)buffer len:(NSInteger)length offset:(NSInteger*)offset{
+    if (length <= 0) {
         return 0;
     }
-    int8_t* buffer = (int8_t*)data.bytes;
+   // int8_t* buffer = (int8_t*)data.bytes;
     *offset = 0;
     int8_t tmp = buffer[*offset];
     if (tmp >= 0) {
+        (*offset)++;
         return tmp;
     } else {
         int result = tmp & 127;
         (*offset) ++;
-        if ((*offset) >= data.length) {
+        if ((*offset) >= length) {
             return 0;
         }
         //判断流数据中是否还有数据
@@ -110,7 +150,7 @@
             result |= (tmp & 127) << 7;
             //判断流数据中是否还有数据
             (*offset) ++;
-            if ((*offset) >= data.length) {
+            if ((*offset) >= length) {
                 return 0;
             }
             if ((tmp = buffer[*offset]) >= 0) {
@@ -119,7 +159,7 @@
                 result |= (tmp & 127) << 14;
                 //判断流数据中是否还有数据
                 (*offset) ++;
-                if ((*offset) >= data.length) {
+                if ((*offset) >= length) {
                     return 0;
                 }
                 if ((tmp = buffer[*offset]) >= 0) {
@@ -128,7 +168,7 @@
                     result |= (tmp & 127) << 21;
                     //判断流数据中是否还有数据
                     (*offset) ++;
-                    if ((*offset) >= data.length) {
+                    if ((*offset) >= length) {
                         return 0;
                     }
                     result |= (tmp = buffer[*offset]) << 28;
@@ -142,4 +182,33 @@
     }
 }
 
+
+void BinaryPrint(int n)
+{
+    for (int i=31;i >=0; i--)
+    {
+        if ((i+1) % 8 == 0 && i != 0) {
+            printf(" ");
+        }
+        printf("%d",(n >> i)&1);
+        
+    }
+    printf("\n");
+}
+
+- (NSInteger) computeByteSizeForInt32:(int32_t) value{
+    if ((value & (0xffffffff <<  7)) == 0) {
+        return 1;
+    }
+    if ((value & (0xffffffff << 14)) == 0) {
+        return 2;
+    }
+    if ((value & (0xffffffff << 21)) == 0) {
+        return 3;
+    }
+    if ((value & (0xffffffff << 28)) == 0) {
+        return 4;
+    }
+    return 5;
+}
 @end

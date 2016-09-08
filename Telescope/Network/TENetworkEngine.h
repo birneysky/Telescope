@@ -12,4 +12,6 @@
 
 - (void) sendData:(NSData *)data;
 
+- (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr;
+
 @end

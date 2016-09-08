@@ -34,7 +34,7 @@ static GPBFileDescriptor *V2PMessageRoot_FileDescriptor(void) {
   if (!descriptor) {
     GPBDebugCheckRuntimeVersion();
     descriptor = [[GPBFileDescriptor alloc] initWithPackage:@""
-                                                     syntax:GPBFileSyntaxProto2];
+                                                     syntax:GPBFileSyntaxProto3];
   }
   return descriptor;
 }
@@ -43,15 +43,15 @@ static GPBFileDescriptor *V2PMessageRoot_FileDescriptor(void) {
 
 @implementation V2PPacket
 
-@dynamic hasPacketType, packetType;
-@dynamic hasFrom, from;
-@dynamic hasTo, to;
-@dynamic hasId_p, id_p;
-@dynamic hasMethod, method;
-@dynamic hasOperateType, operateType;
+@dynamic packetType;
+@dynamic from;
+@dynamic to;
+@dynamic id_p;
+@dynamic method;
+@dynamic operateType;
 @dynamic hasResult, result;
 @dynamic hasData_p, data_p;
-@dynamic hasVersion, version;
+@dynamic version;
 
 typedef struct V2PPacket__storage_ {
   uint32_t _has_storage_[1];
@@ -78,7 +78,7 @@ typedef struct V2PPacket__storage_ {
         .number = V2PPacket_FieldNumber_PacketType,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(V2PPacket__storage_, packetType),
-        .flags = GPBFieldRequired | GPBFieldTextFormatNameCustom | GPBFieldHasEnumDescriptor,
+        .flags = GPBFieldOptional | GPBFieldTextFormatNameCustom | GPBFieldHasEnumDescriptor,
         .dataType = GPBDataTypeEnum,
       },
       {
@@ -175,6 +175,18 @@ typedef struct V2PPacket__storage_ {
 
 @end
 
+int32_t V2PPacket_PacketType_RawValue(V2PPacket *message) {
+  GPBDescriptor *descriptor = [V2PPacket descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PPacket_FieldNumber_PacketType];
+  return GPBGetMessageInt32Field(message, field);
+}
+
+void SetV2PPacket_PacketType_RawValue(V2PPacket *message, int32_t value) {
+  GPBDescriptor *descriptor = [V2PPacket descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PPacket_FieldNumber_PacketType];
+  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+}
+
 #pragma mark - Enum V2PPacket_type
 
 GPBEnumDescriptor *V2PPacket_type_EnumDescriptor(void) {
@@ -219,8 +231,8 @@ BOOL V2PPacket_type_IsValidValue(int32_t value__) {
 
 @implementation V2PResult
 
-@dynamic hasResult, result;
-@dynamic hasError, error;
+@dynamic result;
+@dynamic error;
 
 typedef struct V2PResult__storage_ {
   uint32_t _has_storage_[1];
@@ -272,13 +284,13 @@ typedef struct V2PResult__storage_ {
 
 @implementation V2PData
 
-@dynamic hasNormal, normal;
-@dynamic hasByteDate, byteDate;
-@dynamic hasFromTime, fromTime;
-@dynamic hasToTime, toTime;
-@dynamic hasSum, sum;
-@dynamic hasFrom, from;
-@dynamic hasTo, to;
+@dynamic normal;
+@dynamic byteDate;
+@dynamic fromTime;
+@dynamic toTime;
+@dynamic sum;
+@dynamic from;
+@dynamic to;
 @dynamic positionArray, positionArray_Count;
 @dynamic userArray, userArray_Count;
 @dynamic videoArray, videoArray_Count;
@@ -286,6 +298,7 @@ typedef struct V2PResult__storage_ {
 @dynamic rewardArray, rewardArray_Count;
 @dynamic userStateArray, userStateArray_Count;
 @dynamic assetLogArray, assetLogArray_Count;
+@dynamic serverBeanArray, serverBeanArray_Count;
 
 typedef struct V2PData__storage_ {
   uint32_t _has_storage_[1];
@@ -301,6 +314,7 @@ typedef struct V2PData__storage_ {
   NSMutableArray *rewardArray;
   NSMutableArray *userStateArray;
   NSMutableArray *assetLogArray;
+  NSMutableArray *serverBeanArray;
   int64_t fromTime;
   int64_t toTime;
 } V2PData__storage_;
@@ -437,6 +451,15 @@ typedef struct V2PData__storage_ {
         .flags = GPBFieldRepeated | GPBFieldTextFormatNameCustom,
         .dataType = GPBDataTypeMessage,
       },
+      {
+        .name = "serverBeanArray",
+        .dataTypeSpecific.className = GPBStringifySymbol(V2PServerBean),
+        .number = V2PData_FieldNumber_ServerBeanArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(V2PData__storage_, serverBeanArray),
+        .flags = GPBFieldRepeated | GPBFieldTextFormatNameCustom,
+        .dataType = GPBDataTypeMessage,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[V2PData class]
@@ -448,7 +471,8 @@ typedef struct V2PData__storage_ {
                                          flags:0];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\005\002\010\000\003\010\000\004\006\000\r\000userState\000\016\000assetLog\000";
+        "\006\002\010\000\003\010\000\004\006\000\r\000userState\000\016\000assetLog\000\017\000serve"
+        "rBean\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
@@ -463,29 +487,29 @@ typedef struct V2PData__storage_ {
 
 @implementation V2PUser
 
-@dynamic hasId_p, id_p;
-@dynamic hasPhone, phone;
-@dynamic hasName, name;
-@dynamic hasPwd, pwd;
-@dynamic hasPwd2OrCode, pwd2OrCode;
-@dynamic hasRealName, realName;
-@dynamic hasHeadurl, headurl;
-@dynamic hasSignText, signText;
-@dynamic hasSex, sex;
-@dynamic hasAddress, address;
-@dynamic hasExperience, experience;
-@dynamic hasFansCount, fansCount;
-@dynamic hasFollowCount, followCount;
+@dynamic id_p;
+@dynamic phone;
+@dynamic name;
+@dynamic pwd;
+@dynamic pwd2OrCode;
+@dynamic realName;
+@dynamic headurl;
+@dynamic signText;
+@dynamic sex;
+@dynamic address;
+@dynamic experience;
+@dynamic fansCount;
+@dynamic followCount;
 @dynamic hasPosition, position;
-@dynamic hasDeviceId, deviceId;
-@dynamic hasFollowType, followType;
-@dynamic hasDescName, descName;
-@dynamic hasV2Id, v2Id;
-@dynamic hasV2UserName, v2UserName;
-@dynamic hasV2Pwd, v2Pwd;
-@dynamic hasVideoCount, videoCount;
-@dynamic hasV2DeviceId1, v2DeviceId1;
-@dynamic hasV2DeviceId2, v2DeviceId2;
+@dynamic deviceId;
+@dynamic followType;
+@dynamic descName;
+@dynamic v2Id;
+@dynamic v2UserName;
+@dynamic v2Pwd;
+@dynamic videoCount;
+@dynamic v2DeviceId1;
+@dynamic v2DeviceId2;
 
 typedef struct V2PUser__storage_ {
   uint32_t _has_storage_[1];
@@ -754,9 +778,9 @@ typedef struct V2PUser__storage_ {
 
 @implementation V2PPosition
 
-@dynamic hasLongitude, longitude;
-@dynamic hasLatitude, latitude;
-@dynamic hasRadius, radius;
+@dynamic longitude;
+@dynamic latitude;
+@dynamic radius;
 
 typedef struct V2PPosition__storage_ {
   uint32_t _has_storage_[1];
@@ -819,18 +843,18 @@ typedef struct V2PPosition__storage_ {
 
 @implementation V2PVideo
 
-@dynamic hasId_p, id_p;
-@dynamic hasVideoNum, videoNum;
-@dynamic hasUserId, userId;
+@dynamic id_p;
+@dynamic videoNum;
+@dynamic userId;
 @dynamic hasPosition, position;
-@dynamic hasSum, sum;
-@dynamic hasUserCount, userCount;
-@dynamic hasLikeCount, likeCount;
-@dynamic hasGratuityCount, gratuityCount;
-@dynamic hasDegree, degree;
-@dynamic hasResultType, resultType;
-@dynamic hasHlsmode, hlsmode;
-@dynamic hasVideoPwd, videoPwd;
+@dynamic sum;
+@dynamic userCount;
+@dynamic likeCount;
+@dynamic gratuityCount;
+@dynamic degree;
+@dynamic resultType;
+@dynamic hlsmode;
+@dynamic videoPwd;
 
 typedef struct V2PVideo__storage_ {
   uint32_t _has_storage_[1];
@@ -987,13 +1011,13 @@ typedef struct V2PVideo__storage_ {
 
 @implementation V2PGratuity
 
-@dynamic hasGiftType, giftType;
-@dynamic hasToUserId, toUserId;
-@dynamic hasFromUserId, fromUserId;
-@dynamic hasAmount, amount;
-@dynamic hasSumOrRemain, sumOrRemain;
-@dynamic hasAnswer, answer;
-@dynamic hasVideoId, videoId;
+@dynamic giftType;
+@dynamic toUserId;
+@dynamic fromUserId;
+@dynamic amount;
+@dynamic sumOrRemain;
+@dynamic answer;
+@dynamic videoId;
 
 typedef struct V2PGratuity__storage_ {
   uint32_t _has_storage_[1];
@@ -1097,6 +1121,18 @@ typedef struct V2PGratuity__storage_ {
 
 @end
 
+int32_t V2PGratuity_Answer_RawValue(V2PGratuity *message) {
+  GPBDescriptor *descriptor = [V2PGratuity descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PGratuity_FieldNumber_Answer];
+  return GPBGetMessageInt32Field(message, field);
+}
+
+void SetV2PGratuity_Answer_RawValue(V2PGratuity *message, int32_t value) {
+  GPBDescriptor *descriptor = [V2PGratuity descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PGratuity_FieldNumber_Answer];
+  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+}
+
 #pragma mark - Enum V2PGratuity_Answer
 
 GPBEnumDescriptor *V2PGratuity_Answer_EnumDescriptor(void) {
@@ -1141,18 +1177,18 @@ BOOL V2PGratuity_Answer_IsValidValue(int32_t value__) {
 
 @implementation V2PReward
 
-@dynamic hasId_p, id_p;
-@dynamic hasPowerTime, powerTime;
-@dynamic hasReleaseTime, releaseTime;
+@dynamic id_p;
+@dynamic powerTime;
+@dynamic releaseTime;
 @dynamic giftArray, giftArray_Count;
-@dynamic hasFromUserId, fromUserId;
-@dynamic hasAnswerUserId, answerUserId;
-@dynamic hasOperate, operate;
-@dynamic hasDesc, desc;
+@dynamic fromUserId;
+@dynamic answerUserId;
+@dynamic operate;
+@dynamic desc;
 @dynamic hasPosition, position;
-@dynamic hasPushSum, pushSum;
-@dynamic hasAppealDesc, appealDesc;
-@dynamic hasAppealTime, appealTime;
+@dynamic pushSum;
+@dynamic appealDesc;
+@dynamic appealTime;
 
 typedef struct V2PReward__storage_ {
   uint32_t _has_storage_[1];
@@ -1306,6 +1342,18 @@ typedef struct V2PReward__storage_ {
 
 @end
 
+int32_t V2PReward_Operate_RawValue(V2PReward *message) {
+  GPBDescriptor *descriptor = [V2PReward descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PReward_FieldNumber_Operate];
+  return GPBGetMessageInt32Field(message, field);
+}
+
+void SetV2PReward_Operate_RawValue(V2PReward *message, int32_t value) {
+  GPBDescriptor *descriptor = [V2PReward descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PReward_FieldNumber_Operate];
+  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+}
+
 #pragma mark - Enum V2PReward_Operate
 
 GPBEnumDescriptor *V2PReward_Operate_EnumDescriptor(void) {
@@ -1352,9 +1400,9 @@ BOOL V2PReward_Operate_IsValidValue(int32_t value__) {
 
 @implementation V2PGift
 
-@dynamic hasGiftType, giftType;
-@dynamic hasAmount, amount;
-@dynamic hasSumOrRemain, sumOrRemain;
+@dynamic giftType;
+@dynamic amount;
+@dynamic sumOrRemain;
 
 typedef struct V2PGift__storage_ {
   uint32_t _has_storage_[1];
@@ -1422,10 +1470,10 @@ typedef struct V2PGift__storage_ {
 
 @implementation V2PUserState
 
-@dynamic hasUserId, userId;
-@dynamic hasOperateId, operateId;
-@dynamic hasState, state;
-@dynamic hasDesc, desc;
+@dynamic userId;
+@dynamic operateId;
+@dynamic state;
+@dynamic desc;
 
 typedef struct V2PUserState__storage_ {
   uint32_t _has_storage_[1];
@@ -1499,6 +1547,18 @@ typedef struct V2PUserState__storage_ {
 
 @end
 
+int32_t V2PUserState_State_RawValue(V2PUserState *message) {
+  GPBDescriptor *descriptor = [V2PUserState descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PUserState_FieldNumber_State];
+  return GPBGetMessageInt32Field(message, field);
+}
+
+void SetV2PUserState_State_RawValue(V2PUserState *message, int32_t value) {
+  GPBDescriptor *descriptor = [V2PUserState descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PUserState_FieldNumber_State];
+  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+}
+
 #pragma mark - Enum V2PUserState_State
 
 GPBEnumDescriptor *V2PUserState_State_EnumDescriptor(void) {
@@ -1546,19 +1606,19 @@ BOOL V2PUserState_State_IsValidValue(int32_t value__) {
 
 @implementation V2PAssetLog
 
-@dynamic hasFromUserId, fromUserId;
-@dynamic hasToUserId, toUserId;
+@dynamic fromUserId;
+@dynamic toUserId;
 @dynamic giftArray, giftArray_Count;
-@dynamic hasDesc, desc;
-@dynamic hasOperateType, operateType;
-@dynamic hasOperateTime, operateTime;
-@dynamic hasSoType, soType;
-@dynamic hasPayType, payType;
-@dynamic hasPayTime, payTime;
-@dynamic hasVideoId, videoId;
-@dynamic hasRewardId, rewardId;
-@dynamic hasAppealDesc, appealDesc;
-@dynamic hasAppealTime, appealTime;
+@dynamic desc;
+@dynamic operateType;
+@dynamic operateTime;
+@dynamic soType;
+@dynamic payType;
+@dynamic payTime;
+@dynamic videoId;
+@dynamic rewardId;
+@dynamic appealDesc;
+@dynamic appealTime;
 
 typedef struct V2PAssetLog__storage_ {
   uint32_t _has_storage_[1];
@@ -1722,6 +1782,18 @@ typedef struct V2PAssetLog__storage_ {
 
 @end
 
+int32_t V2PAssetLog_OperateType_RawValue(V2PAssetLog *message) {
+  GPBDescriptor *descriptor = [V2PAssetLog descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PAssetLog_FieldNumber_OperateType];
+  return GPBGetMessageInt32Field(message, field);
+}
+
+void SetV2PAssetLog_OperateType_RawValue(V2PAssetLog *message, int32_t value) {
+  GPBDescriptor *descriptor = [V2PAssetLog descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:V2PAssetLog_FieldNumber_OperateType];
+  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+}
+
 #pragma mark - Enum V2PAssetLog_OperateType
 
 GPBEnumDescriptor *V2PAssetLog_OperateType_EnumDescriptor(void) {
@@ -1768,6 +1840,97 @@ BOOL V2PAssetLog_OperateType_IsValidValue(int32_t value__) {
       return NO;
   }
 }
+
+#pragma mark - V2PServerBean
+
+@implementation V2PServerBean
+
+@dynamic serverId;
+@dynamic addrZk;
+@dynamic addrBuffer;
+@dynamic addrWeb;
+@dynamic add;
+
+typedef struct V2PServerBean__storage_ {
+  uint32_t _has_storage_[1];
+  int32_t serverId;
+  NSString *addrZk;
+  NSString *addrBuffer;
+  NSString *addrWeb;
+} V2PServerBean__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "serverId",
+        .dataTypeSpecific.className = NULL,
+        .number = V2PServerBean_FieldNumber_ServerId,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(V2PServerBean__storage_, serverId),
+        .flags = GPBFieldOptional | GPBFieldTextFormatNameCustom,
+        .dataType = GPBDataTypeInt32,
+      },
+      {
+        .name = "addrZk",
+        .dataTypeSpecific.className = NULL,
+        .number = V2PServerBean_FieldNumber_AddrZk,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(V2PServerBean__storage_, addrZk),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "addrBuffer",
+        .dataTypeSpecific.className = NULL,
+        .number = V2PServerBean_FieldNumber_AddrBuffer,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(V2PServerBean__storage_, addrBuffer),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "addrWeb",
+        .dataTypeSpecific.className = NULL,
+        .number = V2PServerBean_FieldNumber_AddrWeb,
+        .hasIndex = 3,
+        .offset = (uint32_t)offsetof(V2PServerBean__storage_, addrWeb),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "add",
+        .dataTypeSpecific.className = NULL,
+        .number = V2PServerBean_FieldNumber_Add,
+        .hasIndex = 4,
+        .offset = 5,  // Stored in _has_storage_ to save space.
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeBool,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[V2PServerBean class]
+                                     rootClass:[V2PMessageRoot class]
+                                          file:V2PMessageRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(V2PServerBean__storage_)
+                                         flags:0];
+#if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    static const char *extraTextFormatInfo =
+        "\001\001\010\000";
+    [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
+#endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
 
 
 #pragma clang diagnostic pop

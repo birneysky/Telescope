@@ -7,7 +7,12 @@
 //
 
 #import "TENetworkEngine.h"
+#import "TEStreamBuffer.h"
 #import <CocoaAsyncSocket/CocoaAsyncSocket.h>
+#import <ProtocolBuffers/GPBProtocolBuffers.h>
+
+#define TAG_HEARTBEAT 1001
+#define TAG_lOGIC 1002
 
 @interface TENetworkEngine () <GCDAsyncSocketDelegate>
 
@@ -16,6 +21,8 @@
 @property (nonatomic,strong) NSOutputStream* outputStream;
 
 @property (nonatomic,strong) NSMutableData* streamData;
+
+@property (nonatomic,strong) TEStreamBuffer* streamBuffer;
 
 @end
 
@@ -39,9 +46,22 @@
 }
 
 
+- (TEStreamBuffer*)streamBuffer
+{
+    if (!_streamBuffer) {
+        _streamBuffer = [[TEStreamBuffer alloc] init];
+    }
+    return _streamBuffer;
+}
+
 #pragma mark - *** Api ***
 
 - (void) sendData:(NSData *)data
+{
+    [self sendData:data tag:TAG_lOGIC];
+}
+
+- (void) sendData:(NSData *)data tag:(NSInteger)tag
 {
     NSInteger lenght = data.length;
     NSMutableData* sendData = [[NSMutableData alloc] initWithCapacity:data.length + 4];
@@ -57,7 +77,13 @@
         }
     }
     [sendData appendData:data];
-    [self.asyncSocket writeData:[sendData copy] withTimeout:-1 tag:1000];
+    [self.asyncSocket writeData:[sendData copy] withTimeout:-1 tag:tag];
+}
+
+- (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr
+{
+    NSError* error;
+    return [self.asyncSocket connectToHost:host onPort:port error:&error];
 }
 
 #pragma mark - *** ***
@@ -68,16 +94,50 @@
 {
     NSLog(@"Connect to server successfully %@:%d",host,port);
     //启动心跳 定制器
+    uint8_t bufLogin[54] = {0x35, 0x08, 0x00, 0x22,
+        0x01, 0x31, 0x2a, 0x05,
+        0x6c, 0x6f, 0x67, 0x69,
+        0x6e, 0x32, 0x07, 0x73,
+        0x6d, 0x73, 0x63, 0x6f,
+        0x64, 0x65, 0x42, 0x17,
+        0x4a,0x15, 0x12,  0x0b,
+        0x31, 0x35, 0x38, 0x31,
+        0x31, 0x30, 0x30, 0x34,
+        0x34, 0x39, 0x34, 0x2a,
+        0x06, 0x31, 0x31, 0x31,
+        0x31, 0x31, 0x31, 0x4a,
+        0x05, 0x31, 0x2e, 0x31,
+        0x2e, 0x30};
+
+    //    //for (int i = 0; i < 10000; i++) {
+    //[self sendData:[NSData dataWithBytes:bufLogin length:sizeof(bufLogin)] tag:TAG_lOGIC];
+    [self.asyncSocket writeData:[NSData dataWithBytes:bufLogin length:sizeof(bufLogin)] withTimeout:-1 tag:TAG_lOGIC];
+    //NSLog(@"send login done");
+    //[sock readDataWithTimeout:10 tag:TAG_lOGIC];
+        //}
+    
+    
+    NSTimer* timer =  [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(autoSendHeartbeat:) userInfo:nil repeats:YES];
+    NSRunLoop *runloop = [NSRunLoop currentRunLoop];
+    [runloop addTimer:timer forMode:NSDefaultRunLoopMode];
+    [runloop run];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    NSLog(@"didReadData  %@,length %ld",data,(long)data.length);
+    //NSLog(@"didReadData  %@,length %ld",data,(long)data.length);
+    if (TAG_lOGIC == tag) {
+        
+    }
+    else if(TAG_HEARTBEAT == tag){
+        NSLog(@"heart Bead %@ len %ld",data,(long)data.length);
+    }
+    else{
+        NSLog(@"unknow tag");
+    }
     
+    [self.streamBuffer appendData:data];
     
-    
-    //    NSString* test = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    //    NSLog(@"string %@",test);
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didWritePartialDataOfLength:(NSUInteger)partialLength tag:(long)tag
@@ -87,12 +147,14 @@
 
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
+    if (TAG_lOGIC == tag) {
+        NSLog(@"didWriteDataWithTag");
+    }
     [sock readDataWithTimeout:10 tag:tag];
-    NSLog(@"didWriteDataWithTag");
+    //NSLog(@"didWriteDataWithTag");
 }
 
-- (void)socket:(GCDAsyncSocket *)sock didReceiveTrust:(SecTrustRef)trust
-completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler
+- (void)socket:(GCDAsyncSocket *)sock didReceiveTrust:(SecTrustRef)trust completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler
 {
     NSLog(@"didReceiveTrust");
 }
@@ -177,6 +239,15 @@ completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler
         }
         return result;
     }
+}
+
+
+- (void)autoSendHeartbeat:(NSTimer*)timer
+{
+    V2PPacket* packet = [[V2PPacket alloc] init];
+    packet.packetType = V2PPacket_type_Beat;
+    
+    [self sendData:packet.data tag:TAG_HEARTBEAT];
 }
 
 @end
