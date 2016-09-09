@@ -26,6 +26,26 @@
 
 @end
 
+
+NSString* gen_uuid()
+{
+    CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+    
+    CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
+    
+    
+    CFRelease(uuid_ref);
+    
+    NSString *uuid = [NSString stringWithString:(__bridge NSString*)uuid_string_ref];
+    
+    
+    CFRelease(uuid_string_ref);
+    
+    return uuid;
+    
+}
+
+
 @implementation TENetworkEngine
 
 #pragma mark - *** Properties ***
@@ -109,9 +129,26 @@
         0x05, 0x31, 0x2e, 0x31,
         0x2e, 0x30};
 
+    V2PPacket* loginPacket = [[V2PPacket alloc] init];
+    loginPacket.packetType = V2PPacket_type_Iq;
+    loginPacket.id_p = gen_uuid();
+    loginPacket.version = @"1.3.0";
+    loginPacket.method = @"login";
+    loginPacket.operateType = @"smscode";
+    
+    V2PData* data = [[V2PData alloc] init];
+    V2PUser* user= [[V2PUser alloc] init];
+    user.phone = @"15811004492";
+    user.pwd2OrCode = @"111111";
+    user.deviceId = @"12316546765164";
+    [data.userArray addObject:user];
+    loginPacket.data_p = data;
     //    //for (int i = 0; i < 10000; i++) {
     //[self sendData:[NSData dataWithBytes:bufLogin length:sizeof(bufLogin)] tag:TAG_lOGIC];
-    [self.asyncSocket writeData:[NSData dataWithBytes:bufLogin length:sizeof(bufLogin)] withTimeout:-1 tag:TAG_lOGIC];
+   //[self.asyncSocket writeData:[NSData dataWithBytes:bufLogin length:sizeof(bufLogin)] withTimeout:-1 tag:TAG_lOGIC];
+    NSLog(@"login Packet %@  len %ld",loginPacket.data,(long)loginPacket.data.length);
+    [self sendData:loginPacket.data tag:TAG_lOGIC];
+    // [self.asyncSocket writeData:loginPacket.data withTimeout:-1 tag:TAG_lOGIC];
     //NSLog(@"send login done");
     //[sock readDataWithTimeout:10 tag:TAG_lOGIC];
         //}
@@ -130,10 +167,10 @@
         
     }
     else if(TAG_HEARTBEAT == tag){
-        NSLog(@"heart Bead %@ len %ld",data,(long)data.length);
+        //NSLog(@"heart Bead %@ len %ld",data,(long)data.length);
     }
     else{
-        NSLog(@"unknow tag");
+       // NSLog(@"unknow tag");
     }
     
     [self.streamBuffer appendData:data];
@@ -147,10 +184,13 @@
 
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
-    if (TAG_lOGIC == tag) {
-        NSLog(@"didWriteDataWithTag");
-    }
-    [sock readDataWithTimeout:10 tag:tag];
+//    if (TAG_lOGIC == tag) {
+//        NSLog(@"didWriteDataWithTag");
+//    }
+//    else if(TAG_HEARTBEAT == tag){
+//        NSLog(@"didWriteData Heartbeat");
+//    }
+    [sock readDataWithTimeout:-1 tag:tag];
     //NSLog(@"didWriteDataWithTag");
 }
 
@@ -166,7 +206,7 @@
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err
 {
-    NSLog(@"socketDidDisconnect");
+    NSLog(@"socketDidDisconnect %@",err.localizedDescription);
 }
 
 - (NSInteger) computeByteSizeForInt32:(int32_t) value{
@@ -248,6 +288,8 @@
     packet.packetType = V2PPacket_type_Beat;
     
     [self sendData:packet.data tag:TAG_HEARTBEAT];
+    //[self.asyncSocket writeData:packet.data withTimeout:1 tag:TAG_HEARTBEAT];
 }
+
 
 @end

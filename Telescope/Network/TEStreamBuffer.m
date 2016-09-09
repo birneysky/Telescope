@@ -82,7 +82,7 @@
 - (void)processPacket{
     __weak TEStreamBuffer* weakSelf = self;
 
-    NSLog(@"recv stream %@",weakSelf.streamData);
+    NSLog(@"recv stream %@ len %ld",weakSelf.streamData,(long)weakSelf.streamData.length);
         NSInteger readOffset = 0;
         NSInteger streamDataLength = weakSelf.streamData.length;
         int8_t* streamBuffer = weakSelf.streamData.mutableBytes;
@@ -95,8 +95,8 @@
             return;
         }
         if (remainLenght >= packetLen+ offset){
-            NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset+offset, packetLen)];
-            readOffset += packetLen + offset;
+            NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset+offset + 1, packetLen)];
+            readOffset += packetLen + offset + 1;
             //解析数据;
             //NSLog(@"object %@ len %ld",data,(long)data.length);
             NSError* error;
@@ -106,7 +106,7 @@
             }
             else{
                 NSLog(@"%@",error);
-                assert(0);
+                //assert(0);
             }
         }else{
             //
@@ -135,7 +135,6 @@
     *offset = 0;
     int8_t tmp = buffer[*offset];
     if (tmp >= 0) {
-        (*offset)++;
         return tmp;
     } else {
         int result = tmp & 127;
