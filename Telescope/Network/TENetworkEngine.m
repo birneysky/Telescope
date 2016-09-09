@@ -10,6 +10,8 @@
 #import "TEStreamBuffer.h"
 #import <CocoaAsyncSocket/CocoaAsyncSocket.h>
 #import <ProtocolBuffers/GPBProtocolBuffers.h>
+#import <objc/objc.h>
+#include <sys/time.h>
 
 #define TAG_HEARTBEAT 1001
 #define TAG_lOGIC 1002

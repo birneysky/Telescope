@@ -97,5 +97,11 @@
 	这时再读取一个字节 temp = 0000 0001;如果 temp >= 0  result = result | (temp << 7) 
 	---> 0000 00001 << 7 = 0100 0000 --> 0000 0001 | 1000 0000 = 1000 0001 = 129 
 	
+	
+	
+###  Objective-C环境的protobuf 使用
+参考
+http://www.vviicc.com/blog/use-of-protobuf-3-0-0-for-objective-c/
+	
      
      
