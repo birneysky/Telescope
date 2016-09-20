@@ -14,4 +14,6 @@
 
 - (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr;
 
+- (void)disconnect;
+
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB5869BD1D8FCEE9006F99D6 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5869BC1D8FCEE9006F99D6 /* TestCollectionViewController.m */; };
+		DB5869C41D8FE226006F99D6 /* PictureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5869C21D8FE226006F99D6 /* PictureCollectionViewCell.m */; };
+		DB5869C51D8FE226006F99D6 /* PictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB5869C31D8FE226006F99D6 /* PictureCollectionViewCell.xib */; };
 		DB6DA7111D792D1900430922 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7101D792D1900430922 /* main.m */; };
 		DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7131D792D1900430922 /* AppDelegate.m */; };
 		DB6DA7171D792D1900430922 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7161D792D1900430922 /* ViewController.m */; };
@@ -18,6 +21,7 @@
 		DB6DA7381D792D1900430922 /* TelescopeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7371D792D1900430922 /* TelescopeUITests.m */; };
 		DB86C8371D7FE4AB0022754C /* TENetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DB86C8361D7FE4AB0022754C /* TENetworkEngine.m */; };
 		DB86C83A1D7FF7C90022754C /* TEStreamBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */; };
+		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
 /* End PBXBuildFile section */
@@ -40,6 +44,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB5869BB1D8FCEE9006F99D6 /* TestCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewController.h; sourceTree = "<group>"; };
+		DB5869BC1D8FCEE9006F99D6 /* TestCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewController.m; sourceTree = "<group>"; };
+		DB5869C11D8FE226006F99D6 /* PictureCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureCollectionViewCell.h; sourceTree = "<group>"; };
+		DB5869C21D8FE226006F99D6 /* PictureCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureCollectionViewCell.m; sourceTree = "<group>"; };
+		DB5869C31D8FE226006F99D6 /* PictureCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureCollectionViewCell.xib; sourceTree = "<group>"; };
 		DB6DA70C1D792D1800430922 /* Telescope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telescope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DA7101D792D1900430922 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB6DA7121D792D1900430922 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +70,7 @@
 		DB86C8361D7FE4AB0022754C /* TENetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENetworkEngine.m; sourceTree = "<group>"; };
 		DB86C8381D7FF7C90022754C /* TEStreamBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEStreamBuffer.h; sourceTree = "<group>"; };
 		DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEStreamBuffer.m; sourceTree = "<group>"; };
+		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -70,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */,
 				DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */,
 				DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */,
 			);
@@ -101,6 +112,7 @@
 				DB6DA72B1D792D1900430922 /* TelescopeTests */,
 				DB6DA7361D792D1900430922 /* TelescopeUITests */,
 				DB6DA70D1D792D1800430922 /* Products */,
+				DBA835701D90D0140055D7F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,6 +129,8 @@
 		DB6DA70E1D792D1900430922 /* Telescope */ = {
 			isa = PBXGroup;
 			children = (
+				DB5869BB1D8FCEE9006F99D6 /* TestCollectionViewController.h */,
+				DB5869BC1D8FCEE9006F99D6 /* TestCollectionViewController.m */,
 				DB6DA7121D792D1900430922 /* AppDelegate.h */,
 				DB6DA7131D792D1900430922 /* AppDelegate.m */,
 				DB6DA7151D792D1900430922 /* ViewController.h */,
@@ -127,6 +141,9 @@
 				DB6DA7231D792D1900430922 /* Info.plist */,
 				DB6DA71B1D792D1900430922 /* Telescope.xcdatamodeld */,
 				DB6DA70F1D792D1900430922 /* Supporting Files */,
+				DB5869C11D8FE226006F99D6 /* PictureCollectionViewCell.h */,
+				DB5869C21D8FE226006F99D6 /* PictureCollectionViewCell.m */,
+				DB5869C31D8FE226006F99D6 /* PictureCollectionViewCell.xib */,
 			);
 			path = Telescope;
 			sourceTree = "<group>";
@@ -166,6 +183,14 @@
 				DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		DBA835701D90D0140055D7F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBA835711D90D0140055D7F0 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DBBB65FA1D79506A0044E626 /* FrameWorks */ = {
@@ -281,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */,
+				DB5869C51D8FE226006F99D6 /* PictureCollectionViewCell.xib in Resources */,
 				DB6DA71F1D792D1900430922 /* Assets.xcassets in Resources */,
 				DB6DA71A1D792D1900430922 /* Main.storyboard in Resources */,
 			);
@@ -308,9 +334,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6DA7171D792D1900430922 /* ViewController.m in Sources */,
+				DB5869C41D8FE226006F99D6 /* PictureCollectionViewCell.m in Sources */,
 				DB86C8371D7FE4AB0022754C /* TENetworkEngine.m in Sources */,
 				DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */,
 				DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */,
+				DB5869BD1D8FCEE9006F99D6 /* TestCollectionViewController.m in Sources */,
 				DB86C83A1D7FF7C90022754C /* TEStreamBuffer.m in Sources */,
 				DB6DA7111D792D1900430922 /* main.m in Sources */,
 			);

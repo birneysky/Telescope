@@ -38,14 +38,25 @@
 
 
     //[self.client connectToHost:@"123.57.20.30" onPort:9997 error:&error];
-    NSError* error;
-    [self.netEngine connectToHost:@"123.57.20.30" onPort:9997 error:&error];
+
 
 }
 
 
+#pragma mark - *** Target Action ***
+
+- (IBAction)loginBtnClicked:(id)sender {
+    NSError* error;
+    [self.netEngine connectToHost:@"123.57.20.30" onPort:9997 error:&error];
+    if(error){
+        NSLog(@"%@",error);
+    }
+}
 
 
+- (IBAction)disconnectBtnClicked:(id)sender {
+    [self.netEngine disconnect];
+}
 
 
 @end

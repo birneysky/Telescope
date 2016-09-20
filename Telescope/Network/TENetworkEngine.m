@@ -26,6 +26,10 @@
 
 @property (nonatomic,strong) TEStreamBuffer* streamBuffer;
 
+@property (nonatomic,weak) NSTimer* heartBeatTimer;
+
+@property (nonatomic,assign) BOOL firstHeatBeatRecv;
+
 @end
 
 
@@ -104,10 +108,15 @@ NSString* gen_uuid()
 
 - (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr
 {
-    NSError* error;
-    return [self.asyncSocket connectToHost:host onPort:port error:&error];
+    return [self.asyncSocket connectToHost:host onPort:port error:&errPtr];
 }
 
+
+- (void)disconnect
+{
+    [self.asyncSocket disconnect];
+    
+}
 #pragma mark - *** ***
 
 
@@ -145,37 +154,66 @@ NSString* gen_uuid()
     user.deviceId = @"12316546765164";
     [data.userArray addObject:user];
     loginPacket.data_p = data;
+    
+    
     //    //for (int i = 0; i < 10000; i++) {
     //[self sendData:[NSData dataWithBytes:bufLogin length:sizeof(bufLogin)] tag:TAG_lOGIC];
    //[self.asyncSocket writeData:[NSData dataWithBytes:bufLogin length:sizeof(bufLogin)] withTimeout:-1 tag:TAG_lOGIC];
-    NSLog(@"login Packet %@  len %ld",loginPacket.data,(long)loginPacket.data.length);
+   
+
+    NSLog(@"login Packet id: %@ data: %@  len:%ld",loginPacket.id_p,loginPacket.data,(long)loginPacket.data.length);
     [self sendData:loginPacket.data tag:TAG_lOGIC];
+    
+    
+    
+    
     // [self.asyncSocket writeData:loginPacket.data withTimeout:-1 tag:TAG_lOGIC];
     //NSLog(@"send login done");
     //[sock readDataWithTimeout:10 tag:TAG_lOGIC];
         //}
     
-    
-    NSTimer* timer =  [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(autoSendHeartbeat:) userInfo:nil repeats:YES];
+    [self.asyncSocket readDataWithTimeout:-1 tag:TAG_HEARTBEAT];
+    self.heartBeatTimer =  [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(autoSendHeartbeat:) userInfo:nil repeats:YES];
     NSRunLoop *runloop = [NSRunLoop currentRunLoop];
-    [runloop addTimer:timer forMode:NSDefaultRunLoopMode];
+    [runloop addTimer:self.heartBeatTimer forMode:NSDefaultRunLoopMode];
     [runloop run];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
+    [self.streamBuffer appendData:data];
     //NSLog(@"didReadData  %@,length %ld",data,(long)data.length);
     if (TAG_lOGIC == tag) {
         
     }
     else if(TAG_HEARTBEAT == tag){
         //NSLog(@"heart Bead %@ len %ld",data,(long)data.length);
+//        if (!self.firstHeatBeatRecv) {
+//            V2PPacket* loginPacket = [[V2PPacket alloc] init];
+//            loginPacket.packetType = V2PPacket_type_Iq;
+//            loginPacket.id_p = gen_uuid();
+//            loginPacket.version = @"1.3.0";
+//            loginPacket.method = @"login";
+//            loginPacket.operateType = @"smscode";
+//            
+//            V2PData* data = [[V2PData alloc] init];
+//            V2PUser* user= [[V2PUser alloc] init];
+//            user.phone = @"15811004492";
+//            user.pwd2OrCode = @"111111";
+//            user.deviceId = @"12316546765164";
+//            [data.userArray addObject:user];
+//            loginPacket.data_p = data;
+//            
+//            NSLog(@"login Packet id: %@ data: %@  len:%ld",loginPacket.id_p,loginPacket.data,(long)loginPacket.data.length);
+//            [self sendData:loginPacket.data tag:TAG_lOGIC];
+//        }
+//        self.firstHeatBeatRecv = YES;
     }
     else{
        // NSLog(@"unknow tag");
     }
     
-    [self.streamBuffer appendData:data];
+
     
 }
 
@@ -208,6 +246,8 @@ NSString* gen_uuid()
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err
 {
+    [self.heartBeatTimer invalidate];
+    self.firstHeatBeatRecv = NO;
     NSLog(@"socketDidDisconnect %@",err.localizedDescription);
 }
 
@@ -288,8 +328,10 @@ NSString* gen_uuid()
 {
     V2PPacket* packet = [[V2PPacket alloc] init];
     packet.packetType = V2PPacket_type_Beat;
+//    for( int i = 0 ;i < 10;i ++){
+       [self sendData:packet.data tag:TAG_HEARTBEAT];
+//    }
     
-    [self sendData:packet.data tag:TAG_HEARTBEAT];
     //[self.asyncSocket writeData:packet.data withTimeout:1 tag:TAG_HEARTBEAT];
 }
 
