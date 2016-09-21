@@ -108,7 +108,7 @@ NSString* gen_uuid()
 
 - (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr
 {
-    return [self.asyncSocket connectToHost:host onPort:port error:&errPtr];
+    return [self.asyncSocket connectToHost:host onPort:port error:errPtr];
 }
 
 
@@ -140,20 +140,20 @@ NSString* gen_uuid()
         0x05, 0x31, 0x2e, 0x31,
         0x2e, 0x30};
 
-    V2PPacket* loginPacket = [[V2PPacket alloc] init];
-    loginPacket.packetType = V2PPacket_type_Iq;
-    loginPacket.id_p = gen_uuid();
-    loginPacket.version = @"1.3.0";
-    loginPacket.method = @"login";
-    loginPacket.operateType = @"smscode";
-    
-    V2PData* data = [[V2PData alloc] init];
-    V2PUser* user= [[V2PUser alloc] init];
-    user.phone = @"15811004492";
-    user.pwd2OrCode = @"111111";
-    user.deviceId = @"12316546765164";
-    [data.userArray addObject:user];
-    loginPacket.data_p = data;
+//    V2PPacket* loginPacket = [[V2PPacket alloc] init];
+//    loginPacket.packetType = V2PPacket_type_Iq;
+//    loginPacket.id_p = gen_uuid();
+//    loginPacket.version = @"1.3.0";
+//    loginPacket.method = @"login";
+//    loginPacket.operateType = @"smscode";
+//    
+//    V2PData* data = [[V2PData alloc] init];
+//    V2PUser* user= [[V2PUser alloc] init];
+//    user.phone = @"15811004492";
+//    user.pwd2OrCode = @"111111";
+//    user.deviceId = @"12316546765164";
+//    [data.userArray addObject:user];
+//    loginPacket.data_p = data;
     
     
     //    //for (int i = 0; i < 10000; i++) {
@@ -161,8 +161,8 @@ NSString* gen_uuid()
    //[self.asyncSocket writeData:[NSData dataWithBytes:bufLogin length:sizeof(bufLogin)] withTimeout:-1 tag:TAG_lOGIC];
    
 
-    NSLog(@"login Packet id: %@ data: %@  len:%ld",loginPacket.id_p,loginPacket.data,(long)loginPacket.data.length);
-    [self sendData:loginPacket.data tag:TAG_lOGIC];
+//    NSLog(@"login Packet id: %@ data: %@  len:%ld",loginPacket.id_p,loginPacket.data,(long)loginPacket.data.length);
+//    [self sendData:loginPacket.data tag:TAG_lOGIC];
     
     
     
@@ -173,7 +173,7 @@ NSString* gen_uuid()
         //}
     
     [self.asyncSocket readDataWithTimeout:-1 tag:TAG_HEARTBEAT];
-    self.heartBeatTimer =  [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(autoSendHeartbeat:) userInfo:nil repeats:YES];
+    self.heartBeatTimer =  [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(autoSendHeartbeat:) userInfo:nil repeats:YES];
     NSRunLoop *runloop = [NSRunLoop currentRunLoop];
     [runloop addTimer:self.heartBeatTimer forMode:NSDefaultRunLoopMode];
     [runloop run];
@@ -181,6 +181,7 @@ NSString* gen_uuid()
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
+    
     [self.streamBuffer appendData:data];
     //NSLog(@"didReadData  %@,length %ld",data,(long)data.length);
     if (TAG_lOGIC == tag) {
@@ -188,45 +189,46 @@ NSString* gen_uuid()
     }
     else if(TAG_HEARTBEAT == tag){
         //NSLog(@"heart Bead %@ len %ld",data,(long)data.length);
-//        if (!self.firstHeatBeatRecv) {
-//            V2PPacket* loginPacket = [[V2PPacket alloc] init];
-//            loginPacket.packetType = V2PPacket_type_Iq;
-//            loginPacket.id_p = gen_uuid();
-//            loginPacket.version = @"1.3.0";
-//            loginPacket.method = @"login";
-//            loginPacket.operateType = @"smscode";
-//            
-//            V2PData* data = [[V2PData alloc] init];
-//            V2PUser* user= [[V2PUser alloc] init];
-//            user.phone = @"15811004492";
-//            user.pwd2OrCode = @"111111";
-//            user.deviceId = @"12316546765164";
-//            [data.userArray addObject:user];
-//            loginPacket.data_p = data;
-//            
-//            NSLog(@"login Packet id: %@ data: %@  len:%ld",loginPacket.id_p,loginPacket.data,(long)loginPacket.data.length);
-//            [self sendData:loginPacket.data tag:TAG_lOGIC];
-//        }
-//        self.firstHeatBeatRecv = YES;
+        if (!self.firstHeatBeatRecv) {
+            V2PPacket* loginPacket = [[V2PPacket alloc] init];
+            loginPacket.packetType = V2PPacket_type_Iq;
+            loginPacket.id_p = gen_uuid();
+            loginPacket.version = @"1.3.0";
+            loginPacket.method = @"login";
+            loginPacket.operateType = @"smscode";
+            
+            V2PData* data = [[V2PData alloc] init];
+            V2PUser* user= [[V2PUser alloc] init];
+            user.phone = @"15811004492";
+            user.pwd2OrCode = @"111111";
+            user.deviceId = @"12316546765164";
+            [data.userArray addObject:user];
+            loginPacket.data_p = data;
+            
+            NSLog(@"login Packet id: %@ data: %@  len:%ld",loginPacket.id_p,loginPacket.data,(long)loginPacket.data.length);
+            [self sendData:loginPacket.data tag:TAG_lOGIC];
+        }
+        self.firstHeatBeatRecv = YES;
     }
     else{
        // NSLog(@"unknow tag");
     }
     
-
+    //[sock readDataWithTimeout:-1 tag:tag];
     
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didWritePartialDataOfLength:(NSUInteger)partialLength tag:(long)tag
 {
-    
+    NSLog(@"didWritePartialDataOfLength");
+    [sock readDataWithTimeout:-1 tag:tag];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
-//    if (TAG_lOGIC == tag) {
-//        NSLog(@"didWriteDataWithTag");
-//    }
+    if (TAG_lOGIC == tag) {
+        NSLog(@"didWriteDataWithTag");
+   }
 //    else if(TAG_HEARTBEAT == tag){
 //        NSLog(@"didWriteData Heartbeat");
 //    }
@@ -249,6 +251,11 @@ NSString* gen_uuid()
     [self.heartBeatTimer invalidate];
     self.firstHeatBeatRecv = NO;
     NSLog(@"socketDidDisconnect %@",err.localizedDescription);
+}
+
+- (void)socketDidCloseReadStream:(GCDAsyncSocket *)sock
+{
+    NSLog(@"socketDidCloseReadStream");
 }
 
 - (NSInteger) computeByteSizeForInt32:(int32_t) value{
@@ -326,11 +333,12 @@ NSString* gen_uuid()
 
 - (void)autoSendHeartbeat:(NSTimer*)timer
 {
-    V2PPacket* packet = [[V2PPacket alloc] init];
-    packet.packetType = V2PPacket_type_Beat;
-//    for( int i = 0 ;i < 10;i ++){
+
+   for( int i = 0 ;i < 100000;i ++){
+       V2PPacket* packet = [[V2PPacket alloc] init];
+       packet.packetType = V2PPacket_type_Beat;
        [self sendData:packet.data tag:TAG_HEARTBEAT];
-//    }
+   }
     
     //[self.asyncSocket writeData:packet.data withTimeout:1 tag:TAG_HEARTBEAT];
 }

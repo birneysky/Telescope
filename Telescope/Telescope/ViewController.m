@@ -43,6 +43,16 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+//    while (true) {
+//        [self loginBtnClicked:nil];
+//        sleep(5);
+//        [self disconnectBtnClicked:nil];
+//    }
+}
+
 #pragma mark - *** Target Action ***
 
 - (IBAction)loginBtnClicked:(id)sender {

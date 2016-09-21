@@ -74,7 +74,7 @@
     dispatch_async(self.processPacketQueue, ^{
         //[weakSelf.netPacketArray addObject:data];
         [weakSelf.streamData appendData:data];
-        [self processPacket];
+        [weakSelf processPacket];
     });
     
 }
@@ -87,35 +87,38 @@
         NSInteger streamDataLength = weakSelf.streamData.length;
         int8_t* streamBuffer = weakSelf.streamData.mutableBytes;
     while (readOffset < streamDataLength) {
-        NSInteger offset = 0;
-        int8_t* buffer = streamBuffer + readOffset;
-        NSInteger remainLenght = streamDataLength - readOffset;
-        NSInteger packetLen = [weakSelf parseBufferHeader:buffer len:remainLenght offset:&offset];
-        if (0 == packetLen) {
-            return;
-        }
-        if (remainLenght >= packetLen+ offset){
-            NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset+offset + 1, packetLen)];
-            readOffset += packetLen + offset + 1;
-            //解析数据;
-            //NSLog(@"object %@ len %ld",data,(long)data.length);
-            NSError* error;
-            V2PPacket* V2packet = [V2PPacket parseFromData:data  error:&error];
-            if (!error) {
-                NSLog(@" reponse %@",V2packet);
+        //@autoreleasepool {
+            NSInteger offset = 0;
+            int8_t* buffer = streamBuffer + readOffset;
+            NSInteger remainLenght = streamDataLength - readOffset;
+            NSInteger packetLen = [weakSelf parseBufferHeader:buffer len:remainLenght offset:&offset];
+            if (0 == packetLen) {
+                return;
             }
-            else{
-                NSLog(@"%@",error);
-                //assert(0);
+            if (remainLenght >= packetLen+ offset){
+                NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset+offset + 1, packetLen)];
+                readOffset += packetLen + offset + 1;
+                //解析数据;
+                //NSLog(@"object %@ len %ld",data,(long)data.length);
+                NSError* error;
+                V2PPacket* V2packet = [V2PPacket parseFromData:data  error:&error];
+                if (!error) {
+                    NSLog(@" reponse %@",V2packet);
+                }
+                else{
+                    NSLog(@"%@",error);
+                    //assert(0);
+                }
+            }else{
+                //
+                NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset, remainLenght)];
+                [self.streamData replaceBytesInRange:NSMakeRange(0, data.length) withBytes:data.bytes];
+                self.streamData.length = data.length;
+                //self.streamData = [[NSMutableData alloc] initWithData:data];
+                break;
             }
-        }else{
-            //
-             NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset, remainLenght)];
-            [self.streamData replaceBytesInRange:NSMakeRange(0, data.length) withBytes:data.bytes];
-            self.streamData.length = data.length;
-            //self.streamData = [[NSMutableData alloc] initWithData:data];
-            break;
-        }
+        //}
+
 
     }
     
