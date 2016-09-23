@@ -87,7 +87,7 @@
         NSInteger streamDataLength = weakSelf.streamData.length;
         int8_t* streamBuffer = weakSelf.streamData.mutableBytes;
     while (readOffset < streamDataLength) {
-        //@autoreleasepool {
+        @autoreleasepool {
             NSInteger offset = 0;
             int8_t* buffer = streamBuffer + readOffset;
             NSInteger remainLenght = streamDataLength - readOffset;
@@ -99,7 +99,7 @@
                 NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset+offset + 1, packetLen)];
                 readOffset += packetLen + offset + 1;
                 //解析数据;
-                //NSLog(@"object %@ len %ld",data,(long)data.length);
+                NSLog(@"object %@ len %ld",data,(long)data.length);
                 NSError* error;
                 V2PPacket* V2packet = [V2PPacket parseFromData:data  error:&error];
                 if (!error) {
@@ -112,20 +112,26 @@
             }else{
                 //
                 NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset, remainLenght)];
-                [self.streamData replaceBytesInRange:NSMakeRange(0, data.length) withBytes:data.bytes];
-                self.streamData.length = data.length;
+                [weakSelf.streamData replaceBytesInRange:NSMakeRange(0, data.length) withBytes:data.bytes];
+                weakSelf.streamData.length = data.length;
                 //self.streamData = [[NSMutableData alloc] initWithData:data];
                 break;
             }
-        //}
+        }
 
 
     }
     
     
     if (readOffset == streamDataLength) {
-        //self.streamData = [[NSMutableData alloc] initWithCapacity:PER_ALLOC_SIZE];
-        self.streamData.length = 0;
+        if (readOffset > PER_ALLOC_SIZE) {
+            weakSelf.streamData = [[NSMutableData alloc] initWithCapacity:PER_ALLOC_SIZE];
+        }
+        else{
+            weakSelf.streamData.length = 0;
+  
+        }
+        //
     }
 }
 

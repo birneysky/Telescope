@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB51DB321D9285F100A6E62A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB51DB311D9285F100A6E62A /* TableViewController.m */; };
+		DB51DB351D92867F00A6E62A /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB51DB341D92867F00A6E62A /* TestCell.m */; };
 		DB5869BD1D8FCEE9006F99D6 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5869BC1D8FCEE9006F99D6 /* TestCollectionViewController.m */; };
 		DB5869C41D8FE226006F99D6 /* PictureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5869C21D8FE226006F99D6 /* PictureCollectionViewCell.m */; };
 		DB5869C51D8FE226006F99D6 /* PictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB5869C31D8FE226006F99D6 /* PictureCollectionViewCell.xib */; };
@@ -44,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB51DB301D9285F100A6E62A /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		DB51DB311D9285F100A6E62A /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		DB51DB331D92867F00A6E62A /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
+		DB51DB341D92867F00A6E62A /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
 		DB5869BB1D8FCEE9006F99D6 /* TestCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewController.h; sourceTree = "<group>"; };
 		DB5869BC1D8FCEE9006F99D6 /* TestCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewController.m; sourceTree = "<group>"; };
 		DB5869C11D8FE226006F99D6 /* PictureCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureCollectionViewCell.h; sourceTree = "<group>"; };
@@ -144,6 +150,10 @@
 				DB5869C11D8FE226006F99D6 /* PictureCollectionViewCell.h */,
 				DB5869C21D8FE226006F99D6 /* PictureCollectionViewCell.m */,
 				DB5869C31D8FE226006F99D6 /* PictureCollectionViewCell.xib */,
+				DB51DB301D9285F100A6E62A /* TableViewController.h */,
+				DB51DB311D9285F100A6E62A /* TableViewController.m */,
+				DB51DB331D92867F00A6E62A /* TestCell.h */,
+				DB51DB341D92867F00A6E62A /* TestCell.m */,
 			);
 			path = Telescope;
 			sourceTree = "<group>";
@@ -337,8 +347,10 @@
 				DB5869C41D8FE226006F99D6 /* PictureCollectionViewCell.m in Sources */,
 				DB86C8371D7FE4AB0022754C /* TENetworkEngine.m in Sources */,
 				DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */,
+				DB51DB321D9285F100A6E62A /* TableViewController.m in Sources */,
 				DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */,
 				DB5869BD1D8FCEE9006F99D6 /* TestCollectionViewController.m in Sources */,
+				DB51DB351D92867F00A6E62A /* TestCell.m in Sources */,
 				DB86C83A1D7FF7C90022754C /* TEStreamBuffer.m in Sources */,
 				DB6DA7111D792D1900430922 /* main.m in Sources */,
 			);
