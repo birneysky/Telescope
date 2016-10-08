@@ -46,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB3336591DA88F5D007D44EB /* Telescope.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Telescope.pch; sourceTree = "<group>"; };
 		DB51DB301D9285F100A6E62A /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		DB51DB311D9285F100A6E62A /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		DB51DB331D92867F00A6E62A /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 				DB51DB311D9285F100A6E62A /* TableViewController.m */,
 				DB51DB331D92867F00A6E62A /* TestCell.h */,
 				DB51DB341D92867F00A6E62A /* TestCell.m */,
+				DB3336591DA88F5D007D44EB /* Telescope.pch */,
 			);
 			path = Telescope;
 			sourceTree = "<group>";
@@ -496,6 +498,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../library";
+				GCC_PREFIX_HEADER = Telescope/Telescope.pch;
 				INFOPLIST_FILE = Telescope/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;
@@ -509,6 +512,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../library";
+				GCC_PREFIX_HEADER = Telescope/Telescope.pch;
 				INFOPLIST_FILE = Telescope/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;

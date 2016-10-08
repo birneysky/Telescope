@@ -37,7 +37,7 @@
 
     //[self.client connectToHost:@"123.57.20.30" onPort:9997 error:&error];
 
-
+    self.view.backgroundColor = RGB(30, 30, 30);
 }
 
 

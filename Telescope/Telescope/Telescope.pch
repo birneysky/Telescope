@@ -1,0 +1,28 @@
+//
+//  Telescope.pch
+//  Telescope
+//
+//  Created by zhangguang on 16/10/8.
+//  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
+//
+
+#ifndef Telescope_pch
+#define Telescope_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#ifdef DEBUG
+#define DebugLog(fmt,...) NSLog(@"%s %d "fmt,__FUNCTION__,__LINE__,__VA_ARGS__)
+#define TRACE() NSLog(@"%s %d",__FUNCTION__,__LINE__)
+#else
+#define DebugLog(fmt,...)
+#define TRACE()
+#endif
+
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
+
+
+
+#endif /* Telescope_pch */
