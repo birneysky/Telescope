@@ -7,7 +7,7 @@
 //
 
 #import "TEStreamBuffer.h"
-#import <ProtocolBuffers/GPBProtocolBuffers.h>
+
 
 #define PER_ALLOC_SIZE 8192
 
@@ -104,6 +104,9 @@
                 V2PPacket* V2packet = [V2PPacket parseFromData:data  error:&error];
                 if (!error) {
                     NSLog(@" reponse %@",V2packet);
+                    if ([self.delegate respondsToSelector:@selector(didParsePacket:)]) {
+                        [self.delegate didParsePacket:V2packet];
+                    }
                 }
                 else{
                     NSLog(@"%@",error);

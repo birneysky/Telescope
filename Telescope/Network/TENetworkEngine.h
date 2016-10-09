@@ -10,6 +10,9 @@
 
 @interface TENetworkEngine : NSObject
 
+- (instancetype) initWithHostName:(NSString*)name port:(uint16_t)port;
+
+
 - (void) sendData:(NSData *)data;
 
 - (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr;

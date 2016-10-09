@@ -7,8 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ProtocolBuffers/GPBProtocolBuffers.h>
+
+
+@protocol TEStreamBufferDegate <NSObject>
+
+- (void)didParsePacket:(V2PPacket*)packet;
+
+@end
+
+
 
 @interface TEStreamBuffer : NSObject
+
+@property (nonatomic,weak) id<TEStreamBufferDegate> delegate;
 
 - (void) appendData:(NSData*)data;
 

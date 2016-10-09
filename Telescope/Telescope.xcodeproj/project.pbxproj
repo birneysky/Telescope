@@ -26,6 +26,7 @@
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
+		DBC9298E1DAA3D6500A97A9E /* TENetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC9298D1DAA3D6500A97A9E /* TENetworkOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
+		DBC9298C1DAA3D6500A97A9E /* TENetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENetworkOperation.h; sourceTree = "<group>"; };
+		DBC9298D1DAA3D6500A97A9E /* TENetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENetworkOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,8 @@
 				DB86C8361D7FE4AB0022754C /* TENetworkEngine.m */,
 				DB86C8381D7FF7C90022754C /* TEStreamBuffer.h */,
 				DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */,
+				DBC9298C1DAA3D6500A97A9E /* TENetworkOperation.h */,
+				DBC9298D1DAA3D6500A97A9E /* TENetworkOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 				DB51DB351D92867F00A6E62A /* TestCell.m in Sources */,
 				DB86C83A1D7FF7C90022754C /* TEStreamBuffer.m in Sources */,
 				DB6DA7111D792D1900430922 /* main.m in Sources */,
+				DBC9298E1DAA3D6500A97A9E /* TENetworkOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
