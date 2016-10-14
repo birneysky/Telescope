@@ -6,17 +6,32 @@
 //  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
 //
 
+
+/*
+ *  负责发送数据和接受数据的，处理断线重连，心跳等。
+ */
+
 #import <Foundation/Foundation.h>
+
+
+@class TENetworkOperation;
+@class V2PPacket;
 
 @interface TENetworkEngine : NSObject
 
 - (instancetype) initWithHostName:(NSString*)name port:(uint16_t)port;
 
 
-- (void) sendData:(NSData *)data;
+- (TENetworkOperation*) operationWithParams:(V2PPacket*)packet;
 
-- (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr;
 
-- (void)disconnect;
+- (void)enqueueOperation:(TENetworkOperation*)operation;
+
+
+//- (void) sendData:(NSData *)data;
+//
+//- (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr;
+//
+//- (void)disconnect;
 
 @end

@@ -20,11 +20,10 @@
 @property (nonatomic,strong) dispatch_queue_t processPacketQueue ;
 
 @property (nonatomic,strong) NSMutableArray<NSData*>* localPacketArray;
+
 @end
 
-
 @implementation TEStreamBuffer
-
 
 #pragma mark - *** Properties ***
 
@@ -61,9 +60,10 @@
 }
 
 #pragma mark - *** Api ***
+
 - (NSData*)readSliceData:(NSInteger) lenght offset:(NSInteger) offset;
 {
-    NSMutableData* packetData = [[NSMutableData alloc] init];
+    //NSMutableData* packetData = [[NSMutableData alloc] init];
 
     return nil;
 }
@@ -95,7 +95,7 @@
             if (0 == packetLen) {
                 return;
             }
-            if (remainLenght >= packetLen+ offset){
+            if (remainLenght >= packetLen+ offset) {
                 NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset+offset + 1, packetLen)];
                 readOffset += packetLen + offset + 1;
                 //解析数据;
@@ -134,7 +134,6 @@
             weakSelf.streamData.length = 0;
   
         }
-        //
     }
 }
 

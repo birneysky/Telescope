@@ -55,7 +55,7 @@
 
 - (IBAction)loginBtnClicked:(id)sender {
     NSError* error;
-    [self.netEngine connectToHost:@"123.57.20.30" onPort:9997 error:&error];
+    //[self.netEngine connectToHost:@"123.57.20.31" onPort:9997 error:&error];
     //[self.netEngine connectToHost:@"192.168.0.103" onPort:9997 error:&error];
     if(error){
         NSLog(@"%@",error);
@@ -64,7 +64,7 @@
 
 
 - (IBAction)disconnectBtnClicked:(id)sender {
-    [self.netEngine disconnect];
+    //[self.netEngine disconnect];
 }
 
 

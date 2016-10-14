@@ -23,10 +23,12 @@
 		DB6DA7381D792D1900430922 /* TelescopeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7371D792D1900430922 /* TelescopeUITests.m */; };
 		DB86C8371D7FE4AB0022754C /* TENetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DB86C8361D7FE4AB0022754C /* TENetworkEngine.m */; };
 		DB86C83A1D7FF7C90022754C /* TEStreamBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */; };
+		DB9DBBD61DAB867500B4F2EC /* TEPacketDisPatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9DBBD51DAB867500B4F2EC /* TEPacketDisPatcher.m */; };
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
 		DBC9298E1DAA3D6500A97A9E /* TENetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC9298D1DAA3D6500A97A9E /* TENetworkOperation.m */; };
+		DBC929911DAB3D6700A97A9E /* TENetworkKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC929901DAB3D6700A97A9E /* TENetworkKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,11 +80,15 @@
 		DB86C8361D7FE4AB0022754C /* TENetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENetworkEngine.m; sourceTree = "<group>"; };
 		DB86C8381D7FF7C90022754C /* TEStreamBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEStreamBuffer.h; sourceTree = "<group>"; };
 		DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEStreamBuffer.m; sourceTree = "<group>"; };
+		DB9DBBD41DAB867500B4F2EC /* TEPacketDisPatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEPacketDisPatcher.h; sourceTree = "<group>"; };
+		DB9DBBD51DAB867500B4F2EC /* TEPacketDisPatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEPacketDisPatcher.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
 		DBC9298C1DAA3D6500A97A9E /* TENetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENetworkOperation.h; sourceTree = "<group>"; };
 		DBC9298D1DAA3D6500A97A9E /* TENetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENetworkOperation.m; sourceTree = "<group>"; };
+		DBC9298F1DAB3D6700A97A9E /* TENetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENetworkKit.h; sourceTree = "<group>"; };
+		DBC929901DAB3D6700A97A9E /* TENetworkKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENetworkKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,10 @@
 				DB86C8391D7FF7C90022754C /* TEStreamBuffer.m */,
 				DBC9298C1DAA3D6500A97A9E /* TENetworkOperation.h */,
 				DBC9298D1DAA3D6500A97A9E /* TENetworkOperation.m */,
+				DBC9298F1DAB3D6700A97A9E /* TENetworkKit.h */,
+				DBC929901DAB3D6700A97A9E /* TENetworkKit.m */,
+				DB9DBBD41DAB867500B4F2EC /* TEPacketDisPatcher.h */,
+				DB9DBBD51DAB867500B4F2EC /* TEPacketDisPatcher.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -281,7 +291,7 @@
 		DB6DA7041D792D1800430922 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = com.v2tech.Telescope;
 				TargetAttributes = {
 					DB6DA70B1D792D1800430922 = {
@@ -350,6 +360,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB9DBBD61DAB867500B4F2EC /* TEPacketDisPatcher.m in Sources */,
+				DBC929911DAB3D6700A97A9E /* TENetworkKit.m in Sources */,
 				DB6DA7171D792D1900430922 /* ViewController.m in Sources */,
 				DB5869C41D8FE226006F99D6 /* PictureCollectionViewCell.m in Sources */,
 				DB86C8371D7FE4AB0022754C /* TENetworkEngine.m in Sources */,
@@ -429,8 +441,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -474,8 +488,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -503,8 +519,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../library";
 				GCC_PREFIX_HEADER = Telescope/Telescope.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = Telescope/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;
@@ -517,8 +538,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../library";
 				GCC_PREFIX_HEADER = Telescope/Telescope.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = Telescope/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;

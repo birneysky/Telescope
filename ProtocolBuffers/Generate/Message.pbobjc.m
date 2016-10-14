@@ -853,7 +853,8 @@ typedef struct V2PPosition__storage_ {
 @dynamic gratuityCount;
 @dynamic degree;
 @dynamic resultType;
-@dynamic hlsmode;
+@dynamic rtmpmode;
+@dynamic rtmpurl;
 @dynamic videoPwd;
 
 typedef struct V2PVideo__storage_ {
@@ -868,6 +869,7 @@ typedef struct V2PVideo__storage_ {
   int32_t resultType;
   NSString *videoNum;
   V2PPosition *position;
+  NSString *rtmpurl;
   NSString *videoPwd;
 } V2PVideo__storage_;
 
@@ -968,19 +970,28 @@ typedef struct V2PVideo__storage_ {
         .dataType = GPBDataTypeInt32,
       },
       {
-        .name = "hlsmode",
+        .name = "rtmpmode",
         .dataTypeSpecific.className = NULL,
-        .number = V2PVideo_FieldNumber_Hlsmode,
+        .number = V2PVideo_FieldNumber_Rtmpmode,
         .hasIndex = 10,
         .offset = 11,  // Stored in _has_storage_ to save space.
         .flags = GPBFieldOptional | GPBFieldTextFormatNameCustom,
         .dataType = GPBDataTypeBool,
       },
       {
+        .name = "rtmpurl",
+        .dataTypeSpecific.className = NULL,
+        .number = V2PVideo_FieldNumber_Rtmpurl,
+        .hasIndex = 12,
+        .offset = (uint32_t)offsetof(V2PVideo__storage_, rtmpurl),
+        .flags = GPBFieldOptional | GPBFieldTextFormatNameCustom,
+        .dataType = GPBDataTypeString,
+      },
+      {
         .name = "videoPwd",
         .dataTypeSpecific.className = NULL,
         .number = V2PVideo_FieldNumber_VideoPwd,
-        .hasIndex = 12,
+        .hasIndex = 13,
         .offset = (uint32_t)offsetof(V2PVideo__storage_, videoPwd),
         .flags = GPBFieldOptional | GPBFieldTextFormatNameCustom,
         .dataType = GPBDataTypeString,
@@ -996,7 +1007,7 @@ typedef struct V2PVideo__storage_ {
                                          flags:0];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\010\002\010\000\003\006\000\006\t\000\007\t\000\010\r\000\n\n\000\013d\003\000\014\010\000";
+        "\t\002\010\000\003\006\000\006\t\000\007\t\000\010\r\000\n\n\000\013e\003\000\014g\000\r\010\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");

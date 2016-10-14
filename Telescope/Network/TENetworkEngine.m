@@ -12,9 +12,17 @@
 #import <ProtocolBuffers/GPBProtocolBuffers.h>
 #import <objc/objc.h>
 #include <sys/time.h>
+#import "TENetworkOperation.h"
+#import "TEPacketDisPatcher.h"
+#import "TENetworkOperation.h"
+
 
 #define TAG_HEARTBEAT 1001
 #define TAG_lOGIC 1002
+
+
+static NSOperationQueue *_sharedNetworkQueue;
+
 
 @interface TENetworkEngine () <GCDAsyncSocketDelegate>
 
@@ -26,9 +34,15 @@
 
 @property (nonatomic,strong) TEStreamBuffer* streamBuffer;
 
+@property (nonatomic,strong) TEPacketDisPatcher* packetDipatcher;
+
 @property (nonatomic,weak) NSTimer* heartBeatTimer;
 
 @property (nonatomic,assign) BOOL firstHeatBeatRecv;
+
+@property (nonatomic,copy) NSString* houstName;
+
+@property (nonatomic,assign) uint16_t port;
 
 @end
 
@@ -54,6 +68,61 @@ NSString* gen_uuid()
 
 @implementation TENetworkEngine
 
+
++(void) initialize {
+    
+    if(!_sharedNetworkQueue) {
+        static dispatch_once_t oncePredicate;
+        dispatch_once(&oncePredicate, ^{
+            _sharedNetworkQueue = [[NSOperationQueue alloc] init];
+            [_sharedNetworkQueue addObserver:[self self] forKeyPath:@"operationCount" options:0 context:NULL];
+            [_sharedNetworkQueue setMaxConcurrentOperationCount:4];
+            
+        });
+    }
+}
+
++ (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                         change:(NSDictionary *)change context:(void *)context
+{
+    if (object == _sharedNetworkQueue && [keyPath isEqualToString:@"operationCount"]) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible =
+        ([_sharedNetworkQueue.operations count] > 0);
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object
+                               change:change context:context];
+    }
+    
+    if(_sharedNetworkQueue.operations.count ==0){
+        NSLog(@"All operations performed.");
+    }
+}
+
+- (instancetype) initWithHostName:(NSString*)name port:(uint16_t)port
+{
+    if (self = [super init]) {
+        self.houstName = name;
+        self.port = port;
+    }
+    
+    return self;
+}
+
+- (TENetworkOperation*) operationWithParams:(V2PPacket*)packet
+{
+    
+    TENetworkOperation* op = [[TENetworkOperation alloc] init];
+    packet.id_p = [NSString stringWithFormat:@"%@",op];
+    return op;
+}
+
+
+- (void)enqueueOperation:(TENetworkOperation*)operation
+{
+    [_sharedNetworkQueue addOperation:operation];
+}
+
 #pragma mark - *** Properties ***
 - (GCDAsyncSocket*) asyncSocket
 {
@@ -72,10 +141,18 @@ NSString* gen_uuid()
 }
 
 
+- (TEPacketDisPatcher*) packetDipatcher{
+    if (!_packetDipatcher) {
+        _packetDipatcher = [[TEPacketDisPatcher alloc] init];
+    }
+    return _packetDipatcher;
+}
+
 - (TEStreamBuffer*)streamBuffer
 {
     if (!_streamBuffer) {
         _streamBuffer = [[TEStreamBuffer alloc] init];
+        _streamBuffer.delegate = self.packetDipatcher;
     }
     return _streamBuffer;
 }
@@ -108,7 +185,8 @@ NSString* gen_uuid()
 
 - (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr
 {
-    return [self.asyncSocket connectToHost:host onPort:port error:errPtr];
+    //return [self.asyncSocket connectToHost:host onPort:port error:errPtr];
+    return [self.asyncSocket connectToHost:host onPort:port withTimeout:10 error:errPtr];
 }
 
 
@@ -125,25 +203,25 @@ NSString* gen_uuid()
 {
     NSLog(@"Connect to server successfully %@:%d",host,port);
     //启动心跳 定制器
-    uint8_t bufLogin[54] = {0x35, 0x08, 0x00, 0x22,
-        0x01, 0x31, 0x2a, 0x05,
-        0x6c, 0x6f, 0x67, 0x69,
-        0x6e, 0x32, 0x07, 0x73,
-        0x6d, 0x73, 0x63, 0x6f,
-        0x64, 0x65, 0x42, 0x17,
-        0x4a,0x15, 0x12,  0x0b,
-        0x31, 0x35, 0x38, 0x31,
-        0x31, 0x30, 0x30, 0x34,
-        0x34, 0x39, 0x34, 0x2a,
-        0x06, 0x31, 0x31, 0x31,
-        0x31, 0x31, 0x31, 0x4a,
-        0x05, 0x31, 0x2e, 0x31,
-        0x2e, 0x30};
+//    uint8_t bufLogin[54] = {0x35, 0x08, 0x00, 0x22,
+//        0x01, 0x31, 0x2a, 0x05,
+//        0x6c, 0x6f, 0x67, 0x69,
+//        0x6e, 0x32, 0x07, 0x73,
+//        0x6d, 0x73, 0x63, 0x6f,
+//        0x64, 0x65, 0x42, 0x17,
+//        0x4a,0x15, 0x12,  0x0b,
+//        0x31, 0x35, 0x38, 0x31,
+//        0x31, 0x30, 0x30, 0x34,
+//        0x34, 0x39, 0x34, 0x2a,
+//        0x06, 0x31, 0x31, 0x31,
+//        0x31, 0x31, 0x31, 0x4a,
+//        0x05, 0x31, 0x2e, 0x31,
+//        0x2e, 0x30};
 
     V2PPacket* loginPacket = [[V2PPacket alloc] init];
     loginPacket.packetType = V2PPacket_type_Iq;
     loginPacket.id_p = gen_uuid();
-    loginPacket.version = @"1.3.0";
+    loginPacket.version = @"1.3.1";
     loginPacket.method = @"login";
     loginPacket.operateType = @"smscode";
     
@@ -250,84 +328,12 @@ NSString* gen_uuid()
 {
     [self.heartBeatTimer invalidate];
     self.firstHeatBeatRecv = NO;
-    NSLog(@"socketDidDisconnect %@",err.localizedDescription);
+    NSLog(@"socketDidDisconnect %@",err);
 }
 
 - (void)socketDidCloseReadStream:(GCDAsyncSocket *)sock
 {
     NSLog(@"socketDidCloseReadStream");
-}
-
-- (NSInteger) computeByteSizeForInt32:(int32_t) value{
-    if ((value & (0xffffffff <<  7)) == 0) {
-        return 1;
-    }
-    if ((value & (0xffffffff << 14)) == 0) {
-        return 2;
-    }
-    if ((value & (0xffffffff << 21)) == 0) {
-        return 3;
-    }
-    if ((value & (0xffffffff << 28)) == 0) {
-        return 4;
-    }
-    return 5;
-}
-
-
-
-- (NSInteger) parsePacketLength:(NSData*) data offset:(NSInteger*)offset{
-    if (data.length <= 0) {
-        return 0;
-    }
-    int8_t* buffer = (int8_t*)data.bytes;
-    *offset = 0;
-    int8_t tmp = buffer[*offset];
-    if (tmp >= 0) {
-        return tmp;
-    } else {
-        int result = tmp & 127;
-        (*offset) ++;
-        if ((*offset) >= data.length) {
-            return 0;
-        }
-        //判断流数据中是否还有数据
-        if ((tmp = buffer[*offset]) >= 0) {
-            result |= tmp << 7;
-        } else {
-            result |= (tmp & 127) << 7;
-            //判断流数据中是否还有数据
-            (*offset) ++;
-            if ((*offset) >= data.length) {
-                return 0;
-            }
-            if ((tmp = buffer[*offset]) >= 0) {
-                result |= tmp << 14;
-            } else {
-                result |= (tmp & 127) << 14;
-                //判断流数据中是否还有数据
-                (*offset) ++;
-                if ((*offset) >= data.length) {
-                    return 0;
-                }
-                if ((tmp = buffer[*offset]) >= 0) {
-                    result |= tmp << 21;
-                } else {
-                    result |= (tmp & 127) << 21;
-                    //判断流数据中是否还有数据
-                    (*offset) ++;
-                    if ((*offset) >= data.length) {
-                        return 0;
-                    }
-                    result |= (tmp = buffer[*offset]) << 28;
-                    if (tmp < 0) {
-                        assert(0);
-                    }
-                }
-            }
-        }
-        return result;
-    }
 }
 
 

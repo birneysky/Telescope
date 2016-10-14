@@ -88,8 +88,9 @@ message Video{                         //直播视频类
     float gratuityCount = 8;  //当前直播的打赏总额
     int32 degree = 9;     //与该用户的相关度，排序依据
     int32 resultType = 10;//结果类型：0搜索内容；1推荐内容
-    bool HLSMode = 11;    //是否为HLS格式
-    string videoPwd = 12; //直播的密码，默认为null
+    bool RTMPMode = 11;    //是否为HLS格式
+    string RTMPURL = 12;   //RTMPURL地址
+    string videoPwd = 13; //直播的密码，默认为null
 }
 
 message Gratuity{                      //打赏类
@@ -102,11 +103,11 @@ message Gratuity{                      //打赏类
     int32 videoId = 7;    //打赏行为发生的那个直播
 
     enum Answer{      //枚举。响应结果
-        receive = 0; //收到信息
-        accept = 1;  //接受
-        refuse = 2;  //拒绝
-        cancel = 3;  //取消
-    }
+    receive = 0; //收到信息
+    accept = 1;  //接受
+    refuse = 2;  //拒绝
+    cancel = 3;  //取消
+}
 }
 
 message Reward{                          //悬赏类
@@ -124,12 +125,12 @@ message Reward{                          //悬赏类
     int64 appealTime = 12;  //申诉的时间
 
     enum Operate{    //枚举。操作类型
-        release  = 0; //发布悬赏
-        cancle = 1; //取消悬赏
-        pay = 2;    //支付
-        answer = 3; //接受
-        appeal = 4; //申诉
-    }
+    release  = 0; //发布悬赏
+    cancle = 1; //取消悬赏
+    pay = 2;    //支付
+    answer = 3; //接受
+    appeal = 4; //申诉
+}
 }
 
 message Gift{                           //礼物类

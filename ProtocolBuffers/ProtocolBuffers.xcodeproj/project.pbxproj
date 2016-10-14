@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		743E97E11D7ADD6300F86194 /* GPBCodedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66321D7955560044E626 /* GPBCodedInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		743E97E11D7ADD6300F86194 /* GPBCodedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66321D7955560044E626 /* GPBCodedInputStream.h */; };
+		DB4338E61DB0746300CF7E38 /* ProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = DB4338E51DB073D900CF7E38 /* ProtocolBuffers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB5DAEF21D79847B00FB81A7 /* Message.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DAEEE1D79847B00FB81A7 /* Message.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB5DAEF31D79847B00FB81A7 /* Message.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DAEEF1D79847B00FB81A7 /* Message.pbobjc.m */; };
 		DBBB665A1D7955560044E626 /* GPBArray_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB662D1D7955560044E626 /* GPBArray_PackagePrivate.h */; };
@@ -15,10 +16,9 @@
 		DBBB665C1D7955560044E626 /* GPBArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB662F1D7955560044E626 /* GPBArray.m */; };
 		DBBB665D1D7955560044E626 /* GPBBootstrap.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66301D7955560044E626 /* GPBBootstrap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB665E1D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66311D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h */; };
-		DBBB665F1D7955560044E626 /* GPBCodedInputStream.h in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66321D7955560044E626 /* GPBCodedInputStream.h */; };
 		DBBB66601D7955560044E626 /* GPBCodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66331D7955560044E626 /* GPBCodedInputStream.m */; };
 		DBBB66611D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66341D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h */; };
-		DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66351D7955560044E626 /* GPBCodedOutputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66351D7955560044E626 /* GPBCodedOutputStream.h */; };
 		DBBB66631D7955560044E626 /* GPBCodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66361D7955560044E626 /* GPBCodedOutputStream.m */; };
 		DBBB66641D7955560044E626 /* GPBDescriptor_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66371D7955560044E626 /* GPBDescriptor_PackagePrivate.h */; };
 		DBBB66651D7955560044E626 /* GPBDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66381D7955560044E626 /* GPBDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,11 +49,10 @@
 		DBBB66801D7955560044E626 /* GPBUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66531D7955560044E626 /* GPBUtilities.m */; };
 		DBBB66831D7955560044E626 /* GPBWireFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66561D7955560044E626 /* GPBWireFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66841D7955560044E626 /* GPBWireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66571D7955560044E626 /* GPBWireFormat.m */; };
-		DBBB66851D7955560044E626 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBBB66581D7955560044E626 /* Info.plist */; };
-		DBBB66861D7955560044E626 /* GPBProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66591D7955560044E626 /* GPBProtocolBuffers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB4338E51DB073D900CF7E38 /* ProtocolBuffers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers.h; sourceTree = "<group>"; };
 		DB5DAEEE1D79847B00FB81A7 /* Message.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.pbobjc.h; sourceTree = "<group>"; };
 		DB5DAEEF1D79847B00FB81A7 /* Message.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.pbobjc.m; sourceTree = "<group>"; };
 		DBBB66221D7954F70044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtocolBuffers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +96,6 @@
 		DBBB66561D7955560044E626 /* GPBWireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBWireFormat.h; sourceTree = "<group>"; };
 		DBBB66571D7955560044E626 /* GPBWireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBWireFormat.m; sourceTree = "<group>"; };
 		DBBB66581D7955560044E626 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBBB66591D7955560044E626 /* GPBProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBProtocolBuffers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +178,7 @@
 				DBBB66561D7955560044E626 /* GPBWireFormat.h */,
 				DBBB66571D7955560044E626 /* GPBWireFormat.m */,
 				DBBB66581D7955560044E626 /* Info.plist */,
-				DBBB66591D7955560044E626 /* GPBProtocolBuffers.h */,
+				DB4338E51DB073D900CF7E38 /* ProtocolBuffers.h */,
 			);
 			path = ProtocolBuffers;
 			sourceTree = "<group>";
@@ -202,12 +200,12 @@
 				DBBB66681D7955560044E626 /* GPBDictionary.h in Headers */,
 				DBBB66651D7955560044E626 /* GPBDescriptor.h in Headers */,
 				DBBB66831D7955560044E626 /* GPBWireFormat.h in Headers */,
-				DBBB66861D7955560044E626 /* GPBProtocolBuffers.h in Headers */,
 				DBBB665D1D7955560044E626 /* GPBBootstrap.h in Headers */,
 				DBBB665B1D7955560044E626 /* GPBArray.h in Headers */,
-				743E97E11D7ADD6300F86194 /* GPBCodedInputStream.h in Headers */,
-				DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */,
 				DBBB66771D7955560044E626 /* GPBRuntimeTypes.h in Headers */,
+				DB4338E61DB0746300CF7E38 /* ProtocolBuffers.h in Headers */,
+				DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */,
+				743E97E11D7ADD6300F86194 /* GPBCodedInputStream.h in Headers */,
 				DBBB666A1D7955560044E626 /* GPBExtensionInternals.h in Headers */,
 				DBBB66781D7955560044E626 /* GPBUnknownField_PackagePrivate.h in Headers */,
 				DBBB667E1D7955560044E626 /* GPBUtilities_PackagePrivate.h in Headers */,
@@ -250,7 +248,7 @@
 		DBBB66191D7954F70044E626 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = com.Telescope.Buffers;
 				TargetAttributes = {
 					DBBB66211D7954F70044E626 = {
@@ -280,7 +278,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBBB66851D7955560044E626 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +289,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBBB66761D7955560044E626 /* GPBRootObject.m in Sources */,
-				DBBB665F1D7955560044E626 /* GPBCodedInputStream.h in Sources */,
 				DBBB66691D7955560044E626 /* GPBDictionary.m in Sources */,
 				DBBB66631D7955560044E626 /* GPBCodedOutputStream.m in Sources */,
 				DBBB666D1D7955560044E626 /* GPBExtensionRegistry.m in Sources */,
@@ -326,8 +322,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -374,8 +372,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -406,6 +406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../library";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -426,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../library";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

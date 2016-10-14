@@ -502,8 +502,9 @@ typedef GPB_ENUM(V2PVideo_FieldNumber) {
   V2PVideo_FieldNumber_GratuityCount = 8,
   V2PVideo_FieldNumber_Degree = 9,
   V2PVideo_FieldNumber_ResultType = 10,
-  V2PVideo_FieldNumber_Hlsmode = 11,
-  V2PVideo_FieldNumber_VideoPwd = 12,
+  V2PVideo_FieldNumber_Rtmpmode = 11,
+  V2PVideo_FieldNumber_Rtmpurl = 12,
+  V2PVideo_FieldNumber_VideoPwd = 13,
 };
 
 ///直播视频类
@@ -542,7 +543,10 @@ typedef GPB_ENUM(V2PVideo_FieldNumber) {
 @property(nonatomic, readwrite) int32_t resultType;
 
 ///是否为HLS格式
-@property(nonatomic, readwrite) BOOL hlsmode;
+@property(nonatomic, readwrite) BOOL rtmpmode;
+
+///RTMPURL地址
+@property(nonatomic, readwrite, copy, null_resettable) NSString *rtmpurl;
 
 ///直播的密码，默认为null
 @property(nonatomic, readwrite, copy, null_resettable) NSString *videoPwd;

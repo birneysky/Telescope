@@ -150,7 +150,7 @@ __deprecated_msg("The RunLoop versions of CocoaAsyncSocket are deprecated and wi
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-__deprecated_msg("The RunLoop versions of CocoaAsyncSocket are deprecated and will be removed in a future release. Please migrate to GCDAsyncSocket.")
+//__deprecated_msg("The RunLoop versions of CocoaAsyncSocket are deprecated and will be removed in a future release. Please migrate to GCDAsyncSocket.")
 @interface AsyncSocket : NSObject
 {
 	CFSocketNativeHandle theNativeSocket4;
