@@ -106,4 +106,20 @@ http://www.vviicc.com/blog/use-of-protobuf-3-0-0-for-objective-c/
 ###  参考博客
     http://blog.sunnyxx.com/2015/06/12/objc-new-features-in-2015/     
     http://mobile.51cto.com/hot-404891.htm
+    
+    //基础知识
+    http://mobile.51cto.com/hot-404891.htm
+    http://blog.sunnyxx.com/2015/06/12/objc-new-features-in-2015/
+    http://wxgbridgeq.github.io/blog/2015/07/09/effective-oc-note-second/
+    http://www.jianshu.com/p/9368ce9bb8f9
+    
+    //多线程
+    http://www.jianshu.com/p/2de9c776f226
+    http://www.jianshu.com/p/813f7d58935d
+    https://blog.cnbluebox.com/blog/2014/07/01/cocoashen-ru-xue-xi-nsoperationqueuehe-nsoperationyuan-li-he-shi-yong/
+    http://blog.csdn.net/kiki1985/article/details/8734999
+    http://www.jianshu.com/p/fe1fec3d198f
+    
+    //直播
+    http://www.cnblogs.nbhczl.com/oldmanlv/p/5625923.html
      

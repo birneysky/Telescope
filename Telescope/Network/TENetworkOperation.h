@@ -28,7 +28,7 @@ typedef void (^TENKErrorBlock)( NSError* error);
 - (void)setPostedData:(NSData*)data;
 
 
-- (void)addTarget:(id)target executionSelector:(SEL)selector;
+- (void)setTarget:(id)target executionSelector:(SEL)selector;
 
 
 - (void)setCompletionHandler:(TENKCompletedBlock) completion errorHandler:(TENKErrorBlock) error;

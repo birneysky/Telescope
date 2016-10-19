@@ -12,9 +12,8 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "TENetworkOperation.h"
 
-
-@class TENetworkOperation;
 @class V2PPacket;
 
 @interface TENetworkEngine : NSObject

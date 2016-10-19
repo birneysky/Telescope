@@ -9,7 +9,6 @@
 #import "TENetworkEngine.h"
 #import "TEStreamBuffer.h"
 #import <CocoaAsyncSocket/CocoaAsyncSocket.h>
-#import <ProtocolBuffers/GPBProtocolBuffers.h>
 #import <objc/objc.h>
 #include <sys/time.h>
 #import "TENetworkOperation.h"
@@ -114,6 +113,7 @@ NSString* gen_uuid()
     
     TENetworkOperation* op = [[TENetworkOperation alloc] init];
     packet.id_p = [NSString stringWithFormat:@"%@",op];
+    [op addTarget:self executionSelector:@selector(sendData:)];
     return op;
 }
 

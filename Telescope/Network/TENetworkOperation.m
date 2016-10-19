@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
     NSLog(@"TENetworkOperation ~ %@",self);
 }
 
-- (void)addTarget:(id)target executionSelector:(SEL)selector
+- (void)setTarget:(id)target executionSelector:(SEL)selector
 {
     self.target = target;
     self.executionSelector = selector;
