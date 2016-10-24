@@ -122,4 +122,11 @@ http://www.vviicc.com/blog/use-of-protobuf-3-0-0-for-objective-c/
     
     //直播
     http://www.cnblogs.nbhczl.com/oldmanlv/p/5625923.html
+    
+    //开源总结
+    http://www.bigcode.top/ios-mac-open-source-projects-libraries-and-learning-blog-information/
+    
+    
+### Xcode最常用的快捷键整理
+http://www.jianshu.com/p/2b5ece8e1602
      
