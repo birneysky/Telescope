@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class TENetworkOperation;
+@class V2PPacket;
 
 typedef void (^TENKCompletedBlock)(TENetworkOperation* operation);
 typedef void (^TENKErrorBlock)( NSError* error);
-
+typedef void (^TENKExecutionBlock)();
 
 @interface TENetworkOperation : NSOperation
 
@@ -24,8 +26,9 @@ typedef void (^TENKErrorBlock)( NSError* error);
 
 @property (copy, nonatomic) NSString* certificate;
 
+@property (nonatomic,copy) TENKExecutionBlock excuteBlock;
 
-- (void)setPostedData:(NSData*)data;
+@property (nonatomic,strong) V2PPacket* postedPacket;
 
 
 - (void)setTarget:(id)target executionSelector:(SEL)selector;
@@ -37,6 +40,6 @@ typedef void (^TENKErrorBlock)( NSError* error);
 - (void)operationFailedWithError:(NSError*) error;
 
 
-- (void)operationSucceeded:(NSData*)data;
+- (void)operationSucceeded:(V2PPacket*)packet;
 
 @end

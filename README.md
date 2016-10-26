@@ -128,5 +128,9 @@ http://www.vviicc.com/blog/use-of-protobuf-3-0-0-for-objective-c/
     
     
 ### Xcode最常用的快捷键整理
-http://www.jianshu.com/p/2b5ece8e1602
+    
+    http://www.jianshu.com/p/2b5ece8e1602
      
+### github上关于iOS的各种开源项目集合
+    
+    http://blog.csdn.net/shaobo8910/article/details/52347215

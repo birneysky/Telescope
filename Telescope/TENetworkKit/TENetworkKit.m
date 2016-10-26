@@ -7,7 +7,6 @@
 //
 
 #import "TENetworkKit.h"
-#import <UIKit/UIKit.h>
 #import "TENetworkEngine.h"
 #import <ProtocolBuffers/ProtocolBuffers.h>
 
@@ -28,6 +27,7 @@ static TENetworkKit* defaultKit;
 {
     if (!defaultKit) {
         defaultKit = [[TENetworkKit alloc] init];
+        //[defaultKit networkEngine];
     }
     return defaultKit;
 }
@@ -50,6 +50,7 @@ static TENetworkKit* defaultKit;
 {
     if (!_networkEngine) {
         _networkEngine = [[TENetworkEngine alloc] initWithHostName:@"123.57.20.30" port:9997];
+       // _networkEngine = [[TENetworkEngine alloc] initWithHostName:@"192.168.0.93" port:5123];
     }
     return _networkEngine;
 }
@@ -65,11 +66,11 @@ static TENetworkKit* defaultKit;
     
     V2PData* data = [[V2PData alloc] init];
     V2PUser* user= [[V2PUser alloc] init];
-    //user.phone = @"15811004492";
-    //user.pwd2OrCode = @"111111";
-    //user.deviceId = @"12316546765164";
+    user.phone = @"15811004492";
+    user.pwd2OrCode = @"111111";
+    user.deviceId = @"12316546765164";
     [data.userArray addObject:user];
-    //loginPacket.data_p = data;
+    loginPacket.data_p = data;
     
     TENetworkOperation* op = [self.networkEngine operationWithParams:loginPacket];
 
@@ -87,3 +88,22 @@ static TENetworkKit* defaultKit;
 
 
 @end
+
+
+/*
+ 
+ V2PPacket* loginPacket = [[V2PPacket alloc] init];
+ loginPacket.packetType = V2PPacket_type_Iq;
+ loginPacket.id_p = gen_uuid();
+ loginPacket.version = @"1.3.1";
+ loginPacket.method = @"login";
+ loginPacket.operateType = @"smscode";
+ 
+ V2PData* data = [[V2PData alloc] init];
+ V2PUser* user= [[V2PUser alloc] init];
+ user.phone = @"15811004492";
+ user.pwd2OrCode = @"111111";
+ user.deviceId = @"12316546765164";
+ [data.userArray addObject:user];
+ loginPacket.data_p = data;
+ */

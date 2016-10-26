@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		743E97E11D7ADD6300F86194 /* GPBCodedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66321D7955560044E626 /* GPBCodedInputStream.h */; };
+		743E97E11D7ADD6300F86194 /* GPBCodedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66321D7955560044E626 /* GPBCodedInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB4338E61DB0746300CF7E38 /* ProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = DB4338E51DB073D900CF7E38 /* ProtocolBuffers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB5DAEF21D79847B00FB81A7 /* Message.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5DAEEE1D79847B00FB81A7 /* Message.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB5DAEF31D79847B00FB81A7 /* Message.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DAEEF1D79847B00FB81A7 /* Message.pbobjc.m */; };
@@ -18,7 +18,7 @@
 		DBBB665E1D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66311D7955560044E626 /* GPBCodedInputStream_PackagePrivate.h */; };
 		DBBB66601D7955560044E626 /* GPBCodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66331D7955560044E626 /* GPBCodedInputStream.m */; };
 		DBBB66611D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66341D7955560044E626 /* GPBCodedOutputStream_PackagePrivate.h */; };
-		DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66351D7955560044E626 /* GPBCodedOutputStream.h */; };
+		DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66351D7955560044E626 /* GPBCodedOutputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBBB66631D7955560044E626 /* GPBCodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBB66361D7955560044E626 /* GPBCodedOutputStream.m */; };
 		DBBB66641D7955560044E626 /* GPBDescriptor_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66371D7955560044E626 /* GPBDescriptor_PackagePrivate.h */; };
 		DBBB66651D7955560044E626 /* GPBDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBB66381D7955560044E626 /* GPBDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -203,9 +203,9 @@
 				DBBB665D1D7955560044E626 /* GPBBootstrap.h in Headers */,
 				DBBB665B1D7955560044E626 /* GPBArray.h in Headers */,
 				DBBB66771D7955560044E626 /* GPBRuntimeTypes.h in Headers */,
-				DB4338E61DB0746300CF7E38 /* ProtocolBuffers.h in Headers */,
-				DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */,
 				743E97E11D7ADD6300F86194 /* GPBCodedInputStream.h in Headers */,
+				DBBB66621D7955560044E626 /* GPBCodedOutputStream.h in Headers */,
+				DB4338E61DB0746300CF7E38 /* ProtocolBuffers.h in Headers */,
 				DBBB666A1D7955560044E626 /* GPBExtensionInternals.h in Headers */,
 				DBBB66781D7955560044E626 /* GPBUnknownField_PackagePrivate.h in Headers */,
 				DBBB667E1D7955560044E626 /* GPBUtilities_PackagePrivate.h in Headers */,

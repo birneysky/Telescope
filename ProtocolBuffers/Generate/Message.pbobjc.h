@@ -10,7 +10,7 @@
 #if GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS
  #import <Protobuf/GPBProtocolBuffers.h>
 #else
- #import "GPBProtocolBuffers.h"
+ #import "ProtocolBuffers.h"
 #endif
 
 #if GOOGLE_PROTOBUF_OBJC_GEN_VERSION != 30001

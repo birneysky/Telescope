@@ -82,10 +82,10 @@
 - (void)processPacket{
     __weak TEStreamBuffer* weakSelf = self;
 
-    NSLog(@"recv stream %@ len %ld",weakSelf.streamData,(long)weakSelf.streamData.length);
-        NSInteger readOffset = 0;
-        NSInteger streamDataLength = weakSelf.streamData.length;
-        int8_t* streamBuffer = weakSelf.streamData.mutableBytes;
+    //NSLog(@"recv stream %@ len %ld",weakSelf.streamData,(long)weakSelf.streamData.length);
+    NSInteger readOffset = 0;
+    NSInteger streamDataLength = weakSelf.streamData.length;
+    int8_t* streamBuffer = weakSelf.streamData.mutableBytes;
     while (readOffset < streamDataLength) {
         @autoreleasepool {
             NSInteger offset = 0;
@@ -99,11 +99,11 @@
                 NSData* data = [weakSelf.streamData subdataWithRange:NSMakeRange(readOffset+offset + 1, packetLen)];
                 readOffset += packetLen + offset + 1;
                 //解析数据;
-                NSLog(@"object %@ len %ld",data,(long)data.length);
+                //NSLog(@"object %@ len %ld",data,(long)data.length);
                 NSError* error;
                 V2PPacket* V2packet = [V2PPacket parseFromData:data  error:&error];
                 if (!error) {
-                    NSLog(@" reponse %@",V2packet);
+                    //NSLog(@" reponse %@",V2packet);
                     if ([self.delegate respondsToSelector:@selector(didParsePacket:)]) {
                         [self.delegate didParsePacket:V2packet];
                     }

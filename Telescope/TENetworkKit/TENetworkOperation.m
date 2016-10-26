@@ -6,8 +6,9 @@
 //  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
 //
 
+#import <ProtocolBuffers/ProtocolBuffers.h>
 #import "TENetworkOperation.h"
-#import <objc/message.h>
+
 
 typedef NS_ENUM(NSInteger, TENetworkOperationState) {
     TENetworkOperationStateReady = 1,
@@ -17,8 +18,6 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
 
 
 @interface TENetworkOperation ()
-
-@property (nonatomic,copy) NSData* toBePostedData;
 
 @property (nonatomic,copy) NSData* responseData;
 
@@ -38,15 +37,12 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
 {
     BOOL _executing;  // 执行中
     BOOL _finished;   // 已完成
-}
-
-- (void)setPostedData:(NSData*)data
-{
-    self.toBePostedData = data;
+    BOOL _canceled; //已取消
 }
 
 - (void)dealloc{
-    NSLog(@"TENetworkOperation ~ %@",self);
+    static long count = 0;
+    NSLog(@"♻️♻️♻️♻️ TENetworkOperation ~ %@ %ld",self,count++);
 }
 
 - (void)setTarget:(id)target executionSelector:(SEL)selector
@@ -66,17 +62,17 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
 {
     if (self.errorBlock) {
         self.errorBlock(error);
-        [self completeOperation];
     }
+    [self completeOperation];
 }
 
-- (void)operationSucceeded:(NSData*)data
+- (void)operationSucceeded:(NSDictionary*)data
 {
     self.responseData = data;
     if (self.completedBlock) {
         self.completedBlock(self);
-        [self completeOperation];
     }
+    [self completeOperation];
 }
 
 #pragma mark - *** Override ***
@@ -104,13 +100,18 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
  
         while (taskIsFinished == NO && [self isCancelled] == NO){
 
-            if([self.target respondsToSelector:self.executionSelector]){
-                objc_msgSend(self.target,self.executionSelector,self.toBePostedData);
+//            if([self.target respondsToSelector:self.executionSelector]){
+//                objc_msgSend(self.target,self.executionSelector,data);
+            if (self.excuteBlock) {
+                self.excuteBlock();
             }
             
             taskIsFinished = YES;
         }
 
+        if ([self isCancelled]) {
+            [self operationFailedWithError:nil];
+        }
     }
     @catch (NSException * e) {
         NSLog(@"Exception %@", e);
@@ -120,13 +121,12 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
 
 
 - (void)completeOperation {
-    [self willChangeValueForKey:@"isFinished"];
     [self willChangeValueForKey:@"isExecuting"];
-    
     _executing = NO;
-    _finished = YES;
-    
     [self didChangeValueForKey:@"isExecuting"];
+    
+    [self willChangeValueForKey:@"isFinished"];
+    _finished = YES;
     [self didChangeValueForKey:@"isFinished"];
 }
 
@@ -143,6 +143,15 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
     return _finished;
 }
 
+- (BOOL)isCancelled{
+    return _canceled;
+}
 
+- (void)cancel{
+    [self willChangeValueForKey:@"isCancelled"];
+    _canceled = NO;
+    [self didChangeValueForKey:@"isCancelled"];
+    [super cancel];
+}
 
 @end

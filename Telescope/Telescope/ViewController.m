@@ -7,13 +7,10 @@
 //
 
 #import "ViewController.h"
-
-#import "TENetworkEngine.h"
-
+#import "TENetworkKit.h"
 
 @interface ViewController ()
 
-@property (nonatomic,strong) TENetworkEngine* netEngine;
 
 @end
 
@@ -23,13 +20,6 @@
 
 #pragma mark - *** Properties ****
 
-- (TENetworkEngine*) netEngine
-{
-    if (!_netEngine) {
-        _netEngine = [[TENetworkEngine alloc] init];
-    }
-    return _netEngine;
-}
 
 #pragma makr - *** Init ***
 - (void)viewDidLoad {
@@ -38,6 +28,8 @@
     //[self.client connectToHost:@"123.57.20.30" onPort:9997 error:&error];
 
     self.view.backgroundColor = RGB(30, 30, 30);
+    
+    //[TENetworkKit defaultNetKit];
 }
 
 
@@ -57,6 +49,7 @@
     NSError* error;
     //[self.netEngine connectToHost:@"123.57.20.31" onPort:9997 error:&error];
     //[self.netEngine connectToHost:@"192.168.0.103" onPort:9997 error:&error];
+    [[TENetworkKit defaultNetKit] loginWithAccountNum:@"" password:@""];
     if(error){
         NSLog(@"%@",error);
     }
