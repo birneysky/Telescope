@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
 
 @interface TENetworkOperation ()
 
-@property (nonatomic,copy) NSData* responseData;
+@property (nonatomic,copy) V2PPacket* responseData;
 
 @property (nonatomic,assign) TENetworkOperationState state;
 
@@ -66,11 +66,14 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
     [self completeOperation];
 }
 
-- (void)operationSucceeded:(NSDictionary*)data
+- (void)operationSucceeded:(V2PPacket*)packet
 {
-    self.responseData = data;
+    self.responseData = packet;
     if (self.completedBlock) {
-        self.completedBlock(self);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.completedBlock(self);
+        });
+        
     }
     [self completeOperation];
 }

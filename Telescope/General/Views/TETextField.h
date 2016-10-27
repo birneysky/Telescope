@@ -1,13 +1,13 @@
 //
-//  TestCell.h
+//  TETextField.h
 //  Telescope
 //
-//  Created by Showers on 16/9/21.
+//  Created by zhangguang on 16/10/27.
 //  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface TestCell : UITableViewCell
+@interface TETextField : UITextField
 
 @end

@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  TEBezierPathButton.h
 //  Telescope
 //
-//  Created by Showers on 16/9/2.
+//  Created by zhangguang on 16/10/27.
 //  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface TEBezierPathButton : UIButton
 
 @end
-

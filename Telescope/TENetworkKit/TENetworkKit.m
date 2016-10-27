@@ -76,7 +76,13 @@ static TENetworkKit* defaultKit;
 
     
     [op setCompletionHandler:^(TENetworkOperation *operation) {
-        
+        V2PPacket* packet = [operation responseData];
+        if (packet.result.result) {
+            
+        }else{
+            
+        }
+        NSLog(@"login response %@",packet);
     } errorHandler:^(NSError *error) {
         
     }];
@@ -89,21 +95,3 @@ static TENetworkKit* defaultKit;
 
 @end
 
-
-/*
- 
- V2PPacket* loginPacket = [[V2PPacket alloc] init];
- loginPacket.packetType = V2PPacket_type_Iq;
- loginPacket.id_p = gen_uuid();
- loginPacket.version = @"1.3.1";
- loginPacket.method = @"login";
- loginPacket.operateType = @"smscode";
- 
- V2PData* data = [[V2PData alloc] init];
- V2PUser* user= [[V2PUser alloc] init];
- user.phone = @"15811004492";
- user.pwd2OrCode = @"111111";
- user.deviceId = @"12316546765164";
- [data.userArray addObject:user];
- loginPacket.data_p = data;
- */

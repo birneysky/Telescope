@@ -7,26 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB3C06751DC1AFF800E029D9 /* TETextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3C06741DC1AFF800E029D9 /* TETextField.m */; };
 		DB4E1C051DC082C600032B81 /* TENetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1BFC1DC082C600032B81 /* TENetworkEngine.m */; };
 		DB4E1C061DC082C600032B81 /* TENetworkKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1BFE1DC082C600032B81 /* TENetworkKit.m */; };
 		DB4E1C071DC082C600032B81 /* TENetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C001DC082C600032B81 /* TENetworkOperation.m */; };
 		DB4E1C081DC082C600032B81 /* TEPacketDisPatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C021DC082C600032B81 /* TEPacketDisPatcher.m */; };
 		DB4E1C091DC082C600032B81 /* TEStreamBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C041DC082C600032B81 /* TEStreamBuffer.m */; };
 		DB4E1C0D1DC0878300032B81 /* TEReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C0C1DC0878300032B81 /* TEReachability.m */; };
-		DB51DB321D9285F100A6E62A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB51DB311D9285F100A6E62A /* TableViewController.m */; };
-		DB51DB351D92867F00A6E62A /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB51DB341D92867F00A6E62A /* TestCell.m */; };
-		DB5869BD1D8FCEE9006F99D6 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5869BC1D8FCEE9006F99D6 /* TestCollectionViewController.m */; };
-		DB5869C41D8FE226006F99D6 /* PictureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5869C21D8FE226006F99D6 /* PictureCollectionViewCell.m */; };
-		DB5869C51D8FE226006F99D6 /* PictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB5869C31D8FE226006F99D6 /* PictureCollectionViewCell.xib */; };
 		DB6DA7111D792D1900430922 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7101D792D1900430922 /* main.m */; };
 		DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7131D792D1900430922 /* AppDelegate.m */; };
-		DB6DA7171D792D1900430922 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7161D792D1900430922 /* ViewController.m */; };
+		DB6DA7171D792D1900430922 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7161D792D1900430922 /* LoginViewController.m */; };
 		DB6DA71A1D792D1900430922 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7181D792D1900430922 /* Main.storyboard */; };
 		DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA71B1D792D1900430922 /* Telescope.xcdatamodeld */; };
 		DB6DA71F1D792D1900430922 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA71E1D792D1900430922 /* Assets.xcassets */; };
 		DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */; };
 		DB6DA72D1D792D1900430922 /* TelescopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA72C1D792D1900430922 /* TelescopeTests.m */; };
 		DB6DA7381D792D1900430922 /* TelescopeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7371D792D1900430922 /* TelescopeUITests.m */; };
+		DB860D8A1DC1E19F00C94035 /* TEBezierPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D891DC1E19F00C94035 /* TEBezierPathButton.m */; };
+		DB860D9E1DC1FEC700C94035 /* MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D901DC1FEC700C94035 /* MLLabel.m */; };
+		DB860D9F1DC1FEC700C94035 /* MLLabelLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D921DC1FEC700C94035 /* MLLabelLayoutManager.m */; };
+		DB860DA01DC1FEC700C94035 /* MLLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D941DC1FEC700C94035 /* MLLinkLabel.m */; };
+		DB860DA11DC1FEC700C94035 /* NSAttributedString+MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D961DC1FEC700C94035 /* NSAttributedString+MLLabel.m */; };
+		DB860DA21DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D981DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.m */; };
+		DB860DA31DC1FEC700C94035 /* NSString+MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D9A1DC1FEC700C94035 /* NSString+MLLabel.m */; };
+		DB860DA41DC1FEC700C94035 /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D9D1DC1FEC700C94035 /* EVCircularProgressView.m */; };
+		DB860DA71DC1FF8A00C94035 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DA61DC1FF8A00C94035 /* MBProgressHUD.m */; };
+		DB860DAA1DC2013800C94035 /* TEActiveWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DA91DC2013800C94035 /* TEActiveWheel.m */; };
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
@@ -51,6 +57,8 @@
 
 /* Begin PBXFileReference section */
 		DB3336591DA88F5D007D44EB /* Telescope.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Telescope.pch; sourceTree = "<group>"; };
+		DB3C06731DC1AFF800E029D9 /* TETextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TETextField.h; sourceTree = "<group>"; };
+		DB3C06741DC1AFF800E029D9 /* TETextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TETextField.m; sourceTree = "<group>"; };
 		DB4E1BFB1DC082C600032B81 /* TENetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENetworkEngine.h; sourceTree = "<group>"; };
 		DB4E1BFC1DC082C600032B81 /* TENetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENetworkEngine.m; sourceTree = "<group>"; };
 		DB4E1BFD1DC082C600032B81 /* TENetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENetworkKit.h; sourceTree = "<group>"; };
@@ -63,21 +71,12 @@
 		DB4E1C041DC082C600032B81 /* TEStreamBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEStreamBuffer.m; sourceTree = "<group>"; };
 		DB4E1C0B1DC0878300032B81 /* TEReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEReachability.h; sourceTree = "<group>"; };
 		DB4E1C0C1DC0878300032B81 /* TEReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEReachability.m; sourceTree = "<group>"; };
-		DB51DB301D9285F100A6E62A /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		DB51DB311D9285F100A6E62A /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		DB51DB331D92867F00A6E62A /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
-		DB51DB341D92867F00A6E62A /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
-		DB5869BB1D8FCEE9006F99D6 /* TestCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewController.h; sourceTree = "<group>"; };
-		DB5869BC1D8FCEE9006F99D6 /* TestCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewController.m; sourceTree = "<group>"; };
-		DB5869C11D8FE226006F99D6 /* PictureCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureCollectionViewCell.h; sourceTree = "<group>"; };
-		DB5869C21D8FE226006F99D6 /* PictureCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureCollectionViewCell.m; sourceTree = "<group>"; };
-		DB5869C31D8FE226006F99D6 /* PictureCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureCollectionViewCell.xib; sourceTree = "<group>"; };
 		DB6DA70C1D792D1800430922 /* Telescope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telescope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DA7101D792D1900430922 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB6DA7121D792D1900430922 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DB6DA7131D792D1900430922 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DB6DA7151D792D1900430922 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DB6DA7161D792D1900430922 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DB6DA7151D792D1900430922 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		DB6DA7161D792D1900430922 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		DB6DA7191D792D1900430922 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB6DA71C1D792D1900430922 /* Telescope.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Telescope.xcdatamodel; sourceTree = "<group>"; };
 		DB6DA71E1D792D1900430922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +88,27 @@
 		DB6DA7331D792D1900430922 /* TelescopeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelescopeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DA7371D792D1900430922 /* TelescopeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TelescopeUITests.m; sourceTree = "<group>"; };
 		DB6DA7391D792D1900430922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB860D881DC1E19F00C94035 /* TEBezierPathButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEBezierPathButton.h; sourceTree = "<group>"; };
+		DB860D891DC1E19F00C94035 /* TEBezierPathButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEBezierPathButton.m; sourceTree = "<group>"; };
+		DB860D8E1DC1FEC700C94035 /* MLLabel+Override.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MLLabel+Override.h"; sourceTree = "<group>"; };
+		DB860D8F1DC1FEC700C94035 /* MLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLabel.h; sourceTree = "<group>"; };
+		DB860D901DC1FEC700C94035 /* MLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLabel.m; sourceTree = "<group>"; };
+		DB860D911DC1FEC700C94035 /* MLLabelLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLabelLayoutManager.h; sourceTree = "<group>"; };
+		DB860D921DC1FEC700C94035 /* MLLabelLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLabelLayoutManager.m; sourceTree = "<group>"; };
+		DB860D931DC1FEC700C94035 /* MLLinkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLinkLabel.h; sourceTree = "<group>"; };
+		DB860D941DC1FEC700C94035 /* MLLinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLinkLabel.m; sourceTree = "<group>"; };
+		DB860D951DC1FEC700C94035 /* NSAttributedString+MLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+MLLabel.h"; sourceTree = "<group>"; };
+		DB860D961DC1FEC700C94035 /* NSAttributedString+MLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+MLLabel.m"; sourceTree = "<group>"; };
+		DB860D971DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+MLLabel.h"; sourceTree = "<group>"; };
+		DB860D981DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+MLLabel.m"; sourceTree = "<group>"; };
+		DB860D991DC1FEC700C94035 /* NSString+MLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MLLabel.h"; sourceTree = "<group>"; };
+		DB860D9A1DC1FEC700C94035 /* NSString+MLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MLLabel.m"; sourceTree = "<group>"; };
+		DB860D9C1DC1FEC700C94035 /* EVCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCircularProgressView.h; sourceTree = "<group>"; };
+		DB860D9D1DC1FEC700C94035 /* EVCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCircularProgressView.m; sourceTree = "<group>"; };
+		DB860DA51DC1FF8A00C94035 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		DB860DA61DC1FF8A00C94035 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		DB860DA81DC2013800C94035 /* TEActiveWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEActiveWheel.h; sourceTree = "<group>"; };
+		DB860DA91DC2013800C94035 /* TEActiveWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEActiveWheel.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
@@ -122,6 +142,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB3C06711DC1AFDD00E029D9 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				DB3C06721DC1AFDD00E029D9 /* Views */,
+			);
+			path = General;
+			sourceTree = SOURCE_ROOT;
+		};
+		DB3C06721DC1AFDD00E029D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DB860DA81DC2013800C94035 /* TEActiveWheel.h */,
+				DB860DA91DC2013800C94035 /* TEActiveWheel.m */,
+				DB3C06731DC1AFF800E029D9 /* TETextField.h */,
+				DB3C06741DC1AFF800E029D9 /* TETextField.m */,
+				DB860D881DC1E19F00C94035 /* TEBezierPathButton.h */,
+				DB860D891DC1E19F00C94035 /* TEBezierPathButton.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DB4E1BFA1DC082C600032B81 /* TENetworkKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +193,6 @@
 		DB6DA7031D792D1800430922 = {
 			isa = PBXGroup;
 			children = (
-				DBBB65FA1D79506A0044E626 /* FrameWorks */,
 				DB6DA70E1D792D1900430922 /* Telescope */,
 				DB6DA72B1D792D1900430922 /* TelescopeTests */,
 				DB6DA7361D792D1900430922 /* TelescopeUITests */,
@@ -174,26 +214,19 @@
 		DB6DA70E1D792D1900430922 /* Telescope */ = {
 			isa = PBXGroup;
 			children = (
+				DB860D8B1DC1FEC700C94035 /* Vendors */,
+				DB3C06711DC1AFDD00E029D9 /* General */,
 				DB4E1BFA1DC082C600032B81 /* TENetworkKit */,
-				DB5869BB1D8FCEE9006F99D6 /* TestCollectionViewController.h */,
-				DB5869BC1D8FCEE9006F99D6 /* TestCollectionViewController.m */,
 				DB6DA7121D792D1900430922 /* AppDelegate.h */,
 				DB6DA7131D792D1900430922 /* AppDelegate.m */,
-				DB6DA7151D792D1900430922 /* ViewController.h */,
-				DB6DA7161D792D1900430922 /* ViewController.m */,
+				DB6DA7151D792D1900430922 /* LoginViewController.h */,
+				DB6DA7161D792D1900430922 /* LoginViewController.m */,
 				DB6DA7181D792D1900430922 /* Main.storyboard */,
 				DB6DA71E1D792D1900430922 /* Assets.xcassets */,
 				DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */,
 				DB6DA7231D792D1900430922 /* Info.plist */,
 				DB6DA71B1D792D1900430922 /* Telescope.xcdatamodeld */,
 				DB6DA70F1D792D1900430922 /* Supporting Files */,
-				DB5869C11D8FE226006F99D6 /* PictureCollectionViewCell.h */,
-				DB5869C21D8FE226006F99D6 /* PictureCollectionViewCell.m */,
-				DB5869C31D8FE226006F99D6 /* PictureCollectionViewCell.xib */,
-				DB51DB301D9285F100A6E62A /* TableViewController.h */,
-				DB51DB311D9285F100A6E62A /* TableViewController.m */,
-				DB51DB331D92867F00A6E62A /* TestCell.h */,
-				DB51DB341D92867F00A6E62A /* TestCell.m */,
 				DB3336591DA88F5D007D44EB /* Telescope.pch */,
 			);
 			path = Telescope;
@@ -225,21 +258,62 @@
 			path = TelescopeUITests;
 			sourceTree = "<group>";
 		};
-		DBA835701D90D0140055D7F0 /* Frameworks */ = {
+		DB860D8B1DC1FEC700C94035 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				DBA835711D90D0140055D7F0 /* MapKit.framework */,
+				DB860D8C1DC1FEC700C94035 /* MBProgressHUD */,
+				DB860D8D1DC1FEC700C94035 /* MLLable */,
+				DB860D9B1DC1FEC700C94035 /* SDProgressView */,
 			);
-			name = Frameworks;
+			path = Vendors;
+			sourceTree = SOURCE_ROOT;
+		};
+		DB860D8C1DC1FEC700C94035 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				DB860DA51DC1FF8A00C94035 /* MBProgressHUD.h */,
+				DB860DA61DC1FF8A00C94035 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
-		DBBB65FA1D79506A0044E626 /* FrameWorks */ = {
+		DB860D8D1DC1FEC700C94035 /* MLLable */ = {
+			isa = PBXGroup;
+			children = (
+				DB860D8E1DC1FEC700C94035 /* MLLabel+Override.h */,
+				DB860D8F1DC1FEC700C94035 /* MLLabel.h */,
+				DB860D901DC1FEC700C94035 /* MLLabel.m */,
+				DB860D911DC1FEC700C94035 /* MLLabelLayoutManager.h */,
+				DB860D921DC1FEC700C94035 /* MLLabelLayoutManager.m */,
+				DB860D931DC1FEC700C94035 /* MLLinkLabel.h */,
+				DB860D941DC1FEC700C94035 /* MLLinkLabel.m */,
+				DB860D951DC1FEC700C94035 /* NSAttributedString+MLLabel.h */,
+				DB860D961DC1FEC700C94035 /* NSAttributedString+MLLabel.m */,
+				DB860D971DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.h */,
+				DB860D981DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.m */,
+				DB860D991DC1FEC700C94035 /* NSString+MLLabel.h */,
+				DB860D9A1DC1FEC700C94035 /* NSString+MLLabel.m */,
+			);
+			path = MLLable;
+			sourceTree = "<group>";
+		};
+		DB860D9B1DC1FEC700C94035 /* SDProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				DB860D9C1DC1FEC700C94035 /* EVCircularProgressView.h */,
+				DB860D9D1DC1FEC700C94035 /* EVCircularProgressView.m */,
+			);
+			path = SDProgressView;
+			sourceTree = "<group>";
+		};
+		DBA835701D90D0140055D7F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */,
 				DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */,
+				DBA835711D90D0140055D7F0 /* MapKit.framework */,
 			);
-			name = FrameWorks;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,7 +420,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */,
-				DB5869C51D8FE226006F99D6 /* PictureCollectionViewCell.xib in Resources */,
 				DB6DA71F1D792D1900430922 /* Assets.xcassets in Resources */,
 				DB6DA71A1D792D1900430922 /* Main.storyboard in Resources */,
 			);
@@ -373,20 +446,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB6DA7171D792D1900430922 /* ViewController.m in Sources */,
-				DB5869C41D8FE226006F99D6 /* PictureCollectionViewCell.m in Sources */,
+				DB860DAA1DC2013800C94035 /* TEActiveWheel.m in Sources */,
+				DB6DA7171D792D1900430922 /* LoginViewController.m in Sources */,
 				DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */,
+				DB860DA01DC1FEC700C94035 /* MLLinkLabel.m in Sources */,
 				DB4E1C081DC082C600032B81 /* TEPacketDisPatcher.m in Sources */,
-				DB51DB321D9285F100A6E62A /* TableViewController.m in Sources */,
+				DB3C06751DC1AFF800E029D9 /* TETextField.m in Sources */,
 				DB4E1C061DC082C600032B81 /* TENetworkKit.m in Sources */,
 				DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */,
+				DB860DA41DC1FEC700C94035 /* EVCircularProgressView.m in Sources */,
+				DB860D9E1DC1FEC700C94035 /* MLLabel.m in Sources */,
+				DB860DA21DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.m in Sources */,
 				DB4E1C0D1DC0878300032B81 /* TEReachability.m in Sources */,
-				DB5869BD1D8FCEE9006F99D6 /* TestCollectionViewController.m in Sources */,
-				DB51DB351D92867F00A6E62A /* TestCell.m in Sources */,
 				DB4E1C051DC082C600032B81 /* TENetworkEngine.m in Sources */,
+				DB860DA31DC1FEC700C94035 /* NSString+MLLabel.m in Sources */,
+				DB860DA71DC1FF8A00C94035 /* MBProgressHUD.m in Sources */,
 				DB6DA7111D792D1900430922 /* main.m in Sources */,
+				DB860DA11DC1FEC700C94035 /* NSAttributedString+MLLabel.m in Sources */,
 				DB4E1C071DC082C600032B81 /* TENetworkOperation.m in Sources */,
+				DB860D8A1DC1E19F00C94035 /* TEBezierPathButton.m in Sources */,
 				DB4E1C091DC082C600032B81 /* TEStreamBuffer.m in Sources */,
+				DB860D9F1DC1FEC700C94035 /* MLLabelLayoutManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +613,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../library";
 				GCC_PREFIX_HEADER = Telescope/Telescope.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -552,7 +632,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../library";
 				GCC_PREFIX_HEADER = Telescope/Telescope.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
