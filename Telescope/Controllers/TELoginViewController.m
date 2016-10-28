@@ -6,12 +6,13 @@
 //  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "TELoginViewController.h"
 #import "TENetworkKit.h"
 #import "TETextField.h"
 #import "TEBezierPathButton.h"
+#import "TEActiveWheel.h"
 
-@interface LoginViewController ()<UITextFieldDelegate>
+@interface TELoginViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet TETextField *userNameTextfield;
 @property (weak, nonatomic) IBOutlet TETextField *passwordTextfield;
@@ -22,7 +23,7 @@
 @end
 
 
-@implementation LoginViewController
+@implementation TELoginViewController
 
 #pragma mark - *** Properties ****
 
@@ -58,13 +59,22 @@
 #pragma mark - *** Target Action ***
 
 - (IBAction)loginBtnClicked:(id)sender {
-    NSError* error;
-    //[self.netEngine connectToHost:@"123.57.20.31" onPort:9997 error:&error];
-    //[self.netEngine connectToHost:@"192.168.0.103" onPort:9997 error:&error];
-    [[TENetworkKit defaultNetKit] loginWithAccountNum:self.userNameTextfield.text password:self.passwordTextfield.text];
-    if(error){
-        NSLog(@"%@",error);
-    }
+
+    [self.view endEditing:YES];
+    [TEActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正 在 登 录 ...";
+    [TENETWORKKIT loginWithAccountNum:self.userNameTextfield.text
+                             password:self.passwordTextfield.text
+                           completion:^(TEResponse<TEUser *> *response) {
+                               if (response.isSuccess) {
+                                   [TEActiveWheel dismissForView:self.navigationController.view];
+                                   [self performSegueWithIdentifier:@"te_show_main" sender:sender];
+                               }
+                               else{
+                                   [TEActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:response.errorInfo];
+                               }
+                           } onError:^{
+                               
+                           }];
 }
 
 
@@ -131,7 +141,13 @@
 }
 
 
-
+#pragma mark - Navigation
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"te_show_main"]) {
+        
+    }
+}
 
 
 @end

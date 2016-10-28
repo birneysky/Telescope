@@ -134,3 +134,68 @@ http://www.vviicc.com/blog/use-of-protobuf-3-0-0-for-objective-c/
 ### github上关于iOS的各种开源项目集合
     
     http://blog.csdn.net/shaobo8910/article/details/52347215
+    
+    
+### UICollectionView 的使用
+UICollectionView 是比 UITableview 更加强大的表格视图，它可以轻松优雅地完成一些UITableView不太能胜任工作。
+比如说当我需要一个可以水平方向滑动列表时，tableView 来完成就需要将其旋转180度的才可以完成，（其中的cell也要旋转），当年我就这么干过。而UICollectionView可以轻松的完成这项需求。
+
+
+###### 使用 StoryBoard 创建 UICollectionViewController
+这是最简单的方式，直接在StoryBoard中拖拽一个UICollectionViewController
+
+* 创建相应的UICollectionViewController的子类（TestCollectionViewController），实现 datasource，
+	
+      - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+      		return 1;
+      }
+      
+      - (NSInteger)collectionView:(UICollectionView *)collectionView 
+           numberOfItemsInSection:(NSInteger)section {
+      		return 1000;
+      }
+      
+      -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView 
+                       cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    	     UICollectionViewCell *cell = 
+    	     	[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell"
+    	     	                                          forIndexPath:indexPath];
+             cell.backgroundColor  = [UIColor greenColor];
+    
+    	    return cell;
+	   }
+
+      
+* 设置类名
+
+![](ShowImg/set_class_name.png)
+
+* 然后设置UICollectionCell的identifier 就可以了
+![](ShowImg/set_cell_identifier.png)
+
+* 运行效果
+
+![](ShowImg/ui.png)
+
+上述步骤中不设置cell的identifier  发现程序也可以正常工作。
+如果再删除viewDidLoad中的`[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];` 发现程序就奔溃了 😡
+     
+    *** Assertion failure in -[UICollectionView    
+    _dequeueReusableViewOfKind:withIdentifier:forIndexPath:viewCategory:],
+     /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIKit_Sim/
+     UIKit-3599.6/UICollectionView.m:4922
+     Terminating app due to uncaught exception 'NSInternalInconsistencyException',
+      reason: 'could not dequeue a view of kind: UICollectionElementKindCell 
+      with identifier Cell - must register a nib or a class for the identifier 
+      or connect a prototype cell in a storyboard'
+
+    
+从错误信息中可以看出是因为没有注册该cell导致的,
+但是如果重新设置cell的identifier，还是不调用registerClass 方法，程序依然可以正确运行。
+这说明，如果设置了StoryBoard中UICollectionViewCell的identifier，ios会自动注册cell。
+
+###### 在Storyboard中其他视图控制器中使用UICollectionView
+这是最常见的使用场景，这种情况下可以随意调整 UICollectionView的size，这种情况下在UICollectionView添加cell，特变不便于编辑cell，所以cell的创建可以用代码和xib结合的方式常见，不过使用这种方式时需要使用`registerNib`方法注册cell。
+    
+        	

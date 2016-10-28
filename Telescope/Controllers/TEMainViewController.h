@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  Telescope
 //
-//  Created by Showers on 16/9/2.
+//  Created by zhangguang on 16/10/28.
 //  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
-
+@interface TEMainViewController : UIViewController
 
 @end
-

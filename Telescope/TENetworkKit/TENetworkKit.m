@@ -23,7 +23,7 @@ static TENetworkKit* defaultKit;
 
 @implementation TENetworkKit
 
-+ (instancetype)defaultNetKit
++ (instancetype)defaultKit
 {
     if (!defaultKit) {
         defaultKit = [[TENetworkKit alloc] init];
@@ -56,7 +56,10 @@ static TENetworkKit* defaultKit;
 }
 
 
-- (void) loginWithAccountNum:(NSString*)anum password:(NSString*)pwd
+- (void)loginWithAccountNum:(NSString*)aNum
+                   password:(NSString*)pwd
+                 completion:(void(^)(TEResponse<TEUser*>* response))complation
+                    onError:(void(^)())error
 {
     V2PPacket* loginPacket = [[V2PPacket alloc] init];
     loginPacket.packetType = V2PPacket_type_Iq;
@@ -66,8 +69,10 @@ static TENetworkKit* defaultKit;
     
     V2PData* data = [[V2PData alloc] init];
     V2PUser* user= [[V2PUser alloc] init];
-    user.phone = @"15811004492";
-    user.pwd2OrCode = @"111111";
+//    user.phone = @"15811004492";
+//    user.pwd2OrCode = @"111111";
+    user.phone = aNum;
+    user.pwd2OrCode = pwd;
     user.deviceId = @"12316546765164";
     [data.userArray addObject:user];
     loginPacket.data_p = data;
@@ -77,11 +82,20 @@ static TENetworkKit* defaultKit;
     
     [op setCompletionHandler:^(TENetworkOperation *operation) {
         V2PPacket* packet = [operation responseData];
-        if (packet.result.result) {
-            
-        }else{
-            
-        }
+        TEResponse<TEUser*>* respone = [TEResponse new];
+        respone.isSuccess = packet.result.result;
+        respone.errorInfo = packet.result.error;
+        
+        TEUser* teUser = [[TEUser alloc] init];
+        V2PUser* v2User = packet.data_p.userArray.firstObject;
+        teUser.userID = v2User.id_p;
+        teUser.phoneNum = v2User.phone;
+        teUser.password = v2User.pwd;
+        teUser.passwordOrVerificationCode = v2User.pwd2OrCode;
+        teUser.showUserName = v2User.v2UserName;
+        teUser.showPassword = v2User.v2Pwd;
+        respone.body = teUser;
+        complation(respone);
         NSLog(@"login response %@",packet);
     } errorHandler:^(NSError *error) {
         
