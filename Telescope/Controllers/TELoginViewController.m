@@ -11,12 +11,16 @@
 #import "TETextField.h"
 #import "TEBezierPathButton.h"
 #import "TEActiveWheel.h"
+#import "MLLinkLabel.h"
+
+#import "TEWebViewController.h"
 
 @interface TELoginViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet TETextField *userNameTextfield;
 @property (weak, nonatomic) IBOutlet TETextField *passwordTextfield;
 @property (weak, nonatomic) IBOutlet TEBezierPathButton *verifyButton;
+@property (weak, nonatomic) IBOutlet MLLinkLabel *protocolLabel;
 
 @property (assign, nonatomic) CGRect verifyBtnFrame;
 
@@ -31,13 +35,7 @@
 #pragma makr - *** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    //[self.client connectToHost:@"123.57.20.30" onPort:9997 error:&error];
-
-//    self.view.backgroundColor = RGB(30, 30, 30);
-    
-    //[TENetworkKit defaultNetKit];
-
+    [self configProtocolLabel];
 }
 
 
@@ -49,19 +47,43 @@
 {
     [super viewDidAppear:animated];
     self.verifyBtnFrame = self.verifyButton.frame;
-//    while (true) {
-//        [self loginBtnClicked:nil];
-//        sleep(5);
-//        [self disconnectBtnClicked:nil];
-//    }
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.title = @"";
+}
+
+#pragma makr - *** Helper ***
+- (void)configProtocolLabel
+{
+    self.protocolLabel.dataDetectorTypes = MLDataDetectorTypeAll;
+    self.protocolLabel.allowLineBreakInsideLinks = YES;
+    self.protocolLabel.linkTextAttributes = nil;
+    self.protocolLabel.activeLinkTextAttributes = nil;
+    self.protocolLabel.linkTextAttributes = @{NSForegroundColorAttributeName:RGB(64, 213, 171)};
+    
+    [self.protocolLabel setDidClickLinkBlock:^(MLLink *link, NSString *linkText, MLLinkLabel *label) {
+        [self performSegueWithIdentifier:@"push_web_view" sender:link];
+    }];
+    
+    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:self.protocolLabel.text];
+    
+    NSRange range = [self.protocolLabel.text rangeOfString:@"《法律声明及隐私策略》" options:NSRegularExpressionSearch];
+    NSString* linkValue = @"https://www.apple.com";
+    [attrStr addAttribute:NSLinkAttributeName value:linkValue range:range];
+    
+    self.protocolLabel.attributedText = attrStr;
+}
+
 
 #pragma mark - *** Target Action ***
 
 - (IBAction)loginBtnClicked:(id)sender {
 
     [self.view endEditing:YES];
-    [TEActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正 在 登 录 ...";
+    [TEActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在登录 ...";
     [TENETWORKKIT loginWithAccountNum:self.userNameTextfield.text
                              password:self.passwordTextfield.text
                            completion:^(TEResponse<TEUser *> *response) {
@@ -146,6 +168,15 @@
 {
     if ([segue.identifier isEqualToString:@"te_show_main"]) {
         
+    }
+    
+    if ([segue.identifier isEqualToString:@"push_web_view"]) {
+        TEWebViewController* wvc = (TEWebViewController*)segue.destinationViewController;
+        MLLink* link = (MLLink*)sender;
+        NSString *linkText = [self.protocolLabel.text substringWithRange:link.linkRange];
+        wvc.url = link.linkValue;
+        wvc.linkTitle = linkText;
+
     }
 }
 

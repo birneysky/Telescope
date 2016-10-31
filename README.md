@@ -125,6 +125,8 @@ http://www.vviicc.com/blog/use-of-protobuf-3-0-0-for-objective-c/
     
     //开源总结
     http://www.bigcode.top/ios-mac-open-source-projects-libraries-and-learning-blog-information/
+    //监听wifi变化
+    http://ju.outofmemory.cn/entry/197886
     
     
 ### Xcode最常用的快捷键整理
@@ -198,4 +200,18 @@ UICollectionView 是比 UITableview 更加强大的表格视图，它可以轻�
 ###### 在Storyboard中其他视图控制器中使用UICollectionView
 这是最常见的使用场景，这种情况下可以随意调整 UICollectionView的size，这种情况下在UICollectionView添加cell，特变不便于编辑cell，所以cell的创建可以用代码和xib结合的方式常见，不过使用这种方式时需要使用`registerNib`方法注册cell。
     
-        	
+      
+      
+      
+      
+### 第三方登录
+|    平台    |  APP ID  |        APP KEY        |       注册地址    |      
+|-----------|-----------------|-----------------|-----------------|
+| QQ     | 1105791640 | JjcyxUsdjTlRncyp | http://open.qq.com |                 
+| sina微博      | 未完成 | 未完成 | http://open.weibo.com | 
+| 微信     | 1 1 1 1 1 1 1 1 | 1 1 1 1 1 1 1 1 | https://open.weixin.qq.com | 
+
+
+
+
+  	

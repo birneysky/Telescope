@@ -17,18 +17,13 @@
 
 static NSString * const reuseIdentifier = @"te_default_collection_cell_id";
 
+- (void)registerWithNibName:(NSString*)nibName forCellWithReuseIdentifier:(NSString*)identifier
+{
+    [(UICollectionView*)self.view registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellWithReuseIdentifier:identifier];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-//    [self.collectionView registerClass:[TEDefaultCollectionCell class] forCellWithReuseIdentifier:reuseIdentifier];
-//    [self.collectionView registerNib:[UINib nibWithNibName:@"TEDefaultCollectionCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
-
-    // Do any additional setup after loading the view.
-    //self.view.backgroundColor = [UIColor redColor];
 }
 
 - (void)didReceiveMemoryWarning {

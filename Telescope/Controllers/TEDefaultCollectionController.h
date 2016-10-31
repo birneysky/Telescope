@@ -10,4 +10,7 @@
 
 @interface TEDefaultCollectionController : UICollectionViewController
 
+- (void)registerWithNibName:(NSString*)nibName
+          forCellWithReuseIdentifier:(NSString*)identifier;
+
 @end

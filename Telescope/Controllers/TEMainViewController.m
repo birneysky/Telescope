@@ -19,15 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [(UICollectionView*)self.userCollectionController.view registerClass:[TEDefaultCollectionCell class] forCellWithReuseIdentifier:@"te_default_collection_cell_id"];
-    [(UICollectionView*)self.userCollectionController.view registerNib:[UINib nibWithNibName:@"TEDefaultCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"te_default_collection_cell_id"];
-   // self.userCollectionController.view.backgroundColor = [UIColor blackColor];
-    // Do any additional setup after loading the view.
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.userCollectionController registerWithNibName:@"TEDefaultCollectionCell"
+                            forCellWithReuseIdentifier:@"te_default_collection_cell_id"];
 }
 
 /*
