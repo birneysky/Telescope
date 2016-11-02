@@ -120,6 +120,9 @@
                                 <state key="normal" title="验证">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="verifyBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nvt-ba-SG3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92156862745098034" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -130,8 +133,8 @@
                         <outlet property="protocolLabel" destination="Vbh-o6-wl9" id="fgI-yr-GOb"/>
                         <outlet property="userNameTextfield" destination="bXa-yp-4wC" id="koM-Kd-Y5y"/>
                         <outlet property="verifyButton" destination="HOa-Tj-cS4" id="ZtM-Bx-Ixm"/>
-                        <segue destination="Uvw-HS-nHh" kind="presentation" identifier="te_show_main" id="d29-Hi-9FW"/>
                         <segue destination="YrG-OB-0Kn" kind="show" identifier="push_web_view" id="qG7-ze-Nq3"/>
+                        <segue destination="Uvw-HS-nHh" kind="presentation" identifier="te_show_main" id="Otl-me-Xba"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

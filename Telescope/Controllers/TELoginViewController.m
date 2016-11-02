@@ -104,7 +104,10 @@
     //[self.netEngine disconnect];
 }
 
-#pragma makr - *** UITextFieldDelegate ***
+- (IBAction)verifyBtnClicked:(id)sender {
+    [TENETWORKKIT fetchSMSVerificationCodeWithPhoneNumber:self.userNameTextfield.text];
+}
+#pragma mark - *** UITextFieldDelegate ***
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {

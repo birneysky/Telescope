@@ -106,6 +106,72 @@ static TENetworkKit* defaultKit;
 }
 
 
+- (void)fetchSMSVerificationCodeWithPhoneNumber:(NSString*)num
+{
+    V2PPacket* smsPacket = [[V2PPacket alloc] init];
+    smsPacket.packetType = V2PPacket_type_Iq;
+    smsPacket.version = @"1.3.1";
+    smsPacket.method = @"login";
+    smsPacket.operateType = @"getSMScode";
+    
+    V2PData* data = [[V2PData alloc] init];
+    data.normal = num;
+    smsPacket.data_p = data;
+    
+    TENetworkOperation* op = [self.networkEngine operationWithParams:smsPacket];
+    [op setCompletionHandler:^(TENetworkOperation *operation) {
+        V2PPacket* packet = [operation responseData];
+        NSLog(@"sms code Response %@",packet);
+    } errorHandler:^(NSError *error) {
+        
+    }];
+    
+    [self.networkEngine enqueueOperation:op];
+}
+
+- (void)fetchLiveShowListWithCompletion:(void(^)(TEResponse<NSArray<TELiveShowInfo*>*>* response))comletion
+                                onError:(void(^)(NSError* error))err
+{
+    V2PPacket* liveShowPacket = [[V2PPacket alloc] init];
+    liveShowPacket.packetType = V2PPacket_type_Iq;
+    liveShowPacket.version = @"1.3.1";
+    liveShowPacket.method = @"queryVideoList";
+    liveShowPacket.operateType = @"map";
+    
+    V2PData* data = [[V2PData alloc] init];
+    data.from = 1;
+    data.to = 20;
+
+    V2PPosition* postion = [[V2PPosition alloc] init];
+    postion.latitude = 34.770904;
+    postion.longitude = 113.612288;
+    postion.radius = 5000;
+    [data.positionArray addObject:postion];
+    
+    liveShowPacket.data_p = data;
+    
+    TENetworkOperation* op = [self.networkEngine operationWithParams:liveShowPacket];
+    [op setCompletionHandler:^(TENetworkOperation *operation) {
+        TEResponse<NSArray<TELiveShowInfo*>*>* respone = [TEResponse new];
+        V2PPacket* packet  = [operation responseData];
+         NSLog(@"liveShowList response %@",packet);
+        NSMutableArray<TELiveShowInfo*>* liveArray = [[NSMutableArray alloc] init];
+        [packet.data_p.videoArray enumerateObjectsUsingBlock:^(V2PVideo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            TELiveShowInfo* info = [[TELiveShowInfo alloc] init];
+            info.liveId = obj.id_p;
+            info.coordinate = CLLocationCoordinate2DMake(obj.position.latitude, obj.position.longitude);
+            info.totalNumberOfPeopleWatchingLive = obj.sum;
+            [liveArray addObject:info];
+        }];
+        respone.body = liveArray;
+        comletion(respone);
+    } errorHandler:^(NSError *error) {
+        err(error);
+    }];
+    
+    [self.networkEngine enqueueOperation:op];
+}
+
 
 @end
 

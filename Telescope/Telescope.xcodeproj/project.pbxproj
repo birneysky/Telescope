@@ -41,6 +41,7 @@
 		DB860DC51DC3236D00C94035 /* TEDefaultCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DC41DC3236D00C94035 /* TEDefaultCollectionController.m */; };
 		DB860DCD1DC3475D00C94035 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DCC1DC3475D00C94035 /* TestCollectionViewController.m */; };
 		DB860DD01DC6EF5D00C94035 /* TEWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DCF1DC6EF5D00C94035 /* TEWebViewController.m */; };
+		DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */; };
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
@@ -132,6 +133,8 @@
 		DB860DCC1DC3475D00C94035 /* TestCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewController.m; sourceTree = "<group>"; };
 		DB860DCE1DC6EF5D00C94035 /* TEWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEWebViewController.h; sourceTree = "<group>"; };
 		DB860DCF1DC6EF5D00C94035 /* TEWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEWebViewController.m; sourceTree = "<group>"; };
+		DB8CFE241DC9BBF500803AA5 /* TELiveShowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TELiveShowInfo.h; sourceTree = "<group>"; };
+		DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TELiveShowInfo.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
@@ -337,6 +340,8 @@
 				DB860DAD1DC2F35D00C94035 /* TEUser.m */,
 				DB860DAF1DC2F9AD00C94035 /* TEResponse.h */,
 				DB860DB01DC2F9AD00C94035 /* TEResponse.m */,
+				DB8CFE241DC9BBF500803AA5 /* TELiveShowInfo.h */,
+				DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */,
 			);
 			path = "Models-Network";
 			sourceTree = SOURCE_ROOT;
@@ -521,6 +526,7 @@
 				DB4E1C061DC082C600032B81 /* TENetworkKit.m in Sources */,
 				DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */,
 				DB860DC11DC3228800C94035 /* TELoginViewController.m in Sources */,
+				DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */,
 				DB860DA41DC1FEC700C94035 /* EVCircularProgressView.m in Sources */,
 				DB860D9E1DC1FEC700C94035 /* MLLabel.m in Sources */,
 				DB860DA21DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.m in Sources */,

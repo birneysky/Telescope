@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TEResponse.h"
 #import "TEUser.h"
+#import "TELiveShowInfo.h"
 
 #define TENETWORKKIT [TENetworkKit defaultKit]
 
@@ -34,16 +35,31 @@
 
  @param aNum       用户名
  @param pwd        密码
- @param complation 登录操作结束block
+ @param comletion 登录操作结束block
  @param error      错误block
  */
 
 - (void)loginWithAccountNum:(NSString*)aNum
                    password:(NSString*)pwd
-                 completion:(void(^)(TEResponse<TEUser*>* response))complation
+                 completion:(void(^)(TEResponse<TEUser*>* response))comletion
                     onError:(void(^)())error;
 
 
 
+/**
+ 获取手机验证码
+
+ @param num 手机号码
+ */
+- (void)fetchSMSVerificationCodeWithPhoneNumber:(NSString*)num;
+
+
+/**
+ 获取视频直播列表
+
+ @param comletion 列表回传完成 block
+ */
+- (void)fetchLiveShowListWithCompletion:(void(^)(TEResponse<NSArray<TELiveShowInfo*>*>* response))comletion
+                                onError:(void(^)(NSError* error))err;
 
 @end
