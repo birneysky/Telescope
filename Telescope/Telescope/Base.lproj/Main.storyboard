@@ -177,7 +177,7 @@
                     <navigationItem key="navigationItem" id="Utx-cM-6LQ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath=" self.navigationController.navigationBarHidden" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="navigationController.navigationBarHidden" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="passwordTextfield" destination="eQb-mE-GSs" id="1QD-OF-71n"/>
