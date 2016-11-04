@@ -9,15 +9,22 @@
 #import "TEMainViewController.h"
 #import "TEDefaultCollectionController.h"
 #import "TEDefaultCollectionCell.h"
+#import <MapKit/MapKit.h>
 
 #import "TENetworkKit.h"
 
 @interface TEMainViewController ()
 @property (strong, nonatomic) IBOutlet TEDefaultCollectionController *userCollectionController;
 @property (nonatomic, strong) NSArray<TELiveShowInfo*>* lives;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @end
 
 @implementation TEMainViewController
+
+- (void)dealloc
+{
+    NSLog(@"♻️♻️♻️♻️ TEMainViewController ~ %@ ",self);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +55,12 @@
         
     }];
 }
+
+#pragma mark - *** Target Action ****
+- (IBAction)cancelBtnClicked:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 /*
 #pragma mark - Navigation

@@ -63,13 +63,13 @@
         }
     }
     else{
-        NSLog(@"‼️‼️‼️‼️ packetId is null");
+        DDLogError(@"‼️‼️‼️‼️ packetId is null");
     }
 }
 
 - (void)handleHeartBeat:(V2PPacket*)packet{
     NSString* packetId = packet.id_p;
-    NSLog(@"❤️❤️❤️❤️ %@",packetId);
+    DDLogInfo(@"❤️❤️❤️❤️ %@",packetId);
 }
 
 @end

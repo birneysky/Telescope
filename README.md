@@ -125,9 +125,13 @@ http://www.vviicc.com/blog/use-of-protobuf-3-0-0-for-objective-c/
     
     //开源总结
     http://www.bigcode.top/ios-mac-open-source-projects-libraries-and-learning-blog-information/
-    //监听wifi变化
-    http://ju.outofmemory.cn/entry/197886
     
+    
+    
+  [监听wifi变化](http://ju.outofmemory.cn/entry/197886)  
+  [CocoaLumberjack 使用](http://www.cocoachina.com/industry/20140414/8157.html) 🔗<http://blog.csdn.net/jia12216/article/details/44412697>
+    
+  [微信支付](https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=11_1)
     
 ### Xcode最常用的快捷键整理
     
@@ -205,7 +209,54 @@ UICollectionView 是比 UITableview 更加强大的表格视图，它可以轻�
       
       
 
+###  关于视频大小自适应的解决方法 
+ios 提供了一个方法  
 
+     CGRect AVMakeRectWithAspectRatioInsideRect(CGSize aspectRatio, CGRect boundingRect)
+     
+ 这个方法跟 `AVSampleBufferDisplayLayer` 的属性`videoGravity`等于`AVLayerVideoGravityResizeAspect` 的效果一样
+
+`AVLayerVideoGravityResizeAspectFill`的效果是把视频的内容填满窗口，这样超出屏幕部分不会被显示
+
+如果要自己实现这样一个效果改如何计算视频的实际区域呢，苹果并没有想`AVMakeRectWithAspectRatioInsideRect`一样提供相应的方法，于是我自己实现了一个 方法名是`AVMakeRectWithAspectFillRatioInsideRect` 这样与`AVLayerVideoGravityResizeAspectFill` 相对应
+       
+    CGRect AVMakeRectWithAspectFillRatioInsideRect(CGSize aspectFillSize, CGRect boundingRect){
+    	CGFloat boundWidth = boundingRect.size.width;
+    	CGFloat boundHeight = boundingRect.size.height;
+    	CGFloat widthRatio = boundWidth / aspectFillSize.width ;
+    	CGFloat heightRatio = boundHeight / aspectFillSize.height;
+    	CGSize widthAspectSize = CGSizeZero;
+    	CGSize heightAspectSize = CGSizeZero;
+    	
+    	if (aspectFillSize.width >= boundWidth) {
+        	widthAspectSize = CGSizeMake(boundWidth, widthRatio > 1 ? aspectFillSize.height / widthRatio : 									aspectFillSize.height * widthRatio );
+    	}
+    	else{
+        	widthAspectSize = CGSizeMake(boundWidth, widthRatio > 1 ? aspectFillSize.height * widthRatio : 					aspectFillSize.height / widthRatio);
+    	}
+    
+    	if (aspectFillSize.height >= boundHeight) {
+        	heightAspectSize = CGSizeMake(heightRatio > 1 ? aspectFillSize.width / heightRatio : aspectFillSize.width * heightRatio, boundHeight);
+    	}
+    	else{
+        	heightAspectSize = CGSizeMake(heightRatio > 1 ? aspectFillSize.width * heightRatio : aspectFillSize.width / heightRatio, boundHeight);
+    	}
+    
+    	CGFloat widthOffset = fabs(heightAspectSize.width - boundWidth);
+    	CGFloat heightOffset = fabs(widthAspectSize.height - boundHeight);
+    	CGSize bestSize = CGSizeZero;
+    	if(widthAspectSize.height >= boundHeight && heightAspectSize.width >= boundWidth){
+        	bestSize = widthOffset < heightOffset ?  heightAspectSize : widthAspectSize;
+    	}
+    	else if(widthAspectSize.height > boundHeight){
+        	bestSize = widthAspectSize;
+    	}
+    	else {
+        	bestSize = heightAspectSize;
+    	}
+    
+    	return CGRectMake((boundWidth - bestSize.width) / 2, (boundHeight - bestSize.height) / 2, bestSize.width, bestSize.height);       
+    }
 
 
 

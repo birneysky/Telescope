@@ -41,8 +41,7 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
 }
 
 - (void)dealloc{
-    static long count = 0;
-    NSLog(@"♻️♻️♻️♻️ TENetworkOperation ~ %@ %ld",self,count++);
+    NSLog(@"♻️♻️♻️♻️ TENetworkOperation ~ %@ ",self);
 }
 
 - (void)setTarget:(id)target executionSelector:(SEL)selector

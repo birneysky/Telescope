@@ -7,6 +7,20 @@
 //
 
 #import "AppDelegate.h"
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import <ShareSDK/ShareSDK.h>
+
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
+//微信SDK头文件
+#import "WXApi.h"
+
+//新浪微博SDK头文件
+#import "WeiboSDK.h"
+//新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
+
 
 @interface AppDelegate ()
 
@@ -17,6 +31,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self configureThirdPartLogin];
+    [self configureLumberjack];
     return YES;
 }
 
@@ -123,5 +139,68 @@
         }
     }
 }
+
+#pragma mark - *** thirdpart login configure ***
+- (void) configureThirdPartLogin
+{
+    [ShareSDK registerApp:@"1882d268b4db0"
+          activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),@(SSDKPlatformTypeQQ),@(SSDKPlatformTypeWechat)]
+                 onImport:^(SSDKPlatformType platformType){
+                     switch (platformType)
+                     {
+                         case SSDKPlatformTypeWechat:
+                             [ShareSDKConnector connectWeChat:[WXApi class]];
+                             break;
+                         case SSDKPlatformTypeQQ:
+                             [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                             break;
+                         case SSDKPlatformTypeSinaWeibo:
+                             [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+                             break;
+                         default:
+                             break;
+                     }
+                 }
+          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
+              
+              switch (platformType)
+              {
+                  case SSDKPlatformTypeSinaWeibo:
+                      //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                      [appInfo SSDKSetupSinaWeiboByAppKey:@"2068650435"
+                                                appSecret:@"cf38e5c680ac5173c5e3f82b3699bd32"
+                                              redirectUri:@"http://www.baidu.com"
+                                                 authType:SSDKAuthTypeBoth];
+                      break;
+                  case SSDKPlatformTypeQQ:
+                      [appInfo SSDKSetupQQByAppId:@"1105793296"
+                                           appKey:@"VGpZnZELwZxsLjZr"
+                                         authType:SSDKAuthTypeBoth];
+                      break;
+                  case SSDKPlatformTypeWechat:
+                      [appInfo SSDKSetupWeChatByAppId:@"wx8316d1aef9764182"
+                                            appSecret:@"ad41e9404233983c265070ca1497f3c7"];
+                      break;
+                  default:
+                      break;
+              }
+          }];
+
+}
+
+#pragma mark - *** Lumberjack configure ***
+- (void) configureLumberjack
+{
+    // 写日志语句到苹果的日志系统，以便它们显示在Console.app上
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    //写日志语句到Xcode控制台
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    DDFileLogger* fileLogger = [[DDFileLogger alloc] init];
+    fileLogger.rollingFrequency = 60 * 60 * 24;
+    fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+    //把日志语句写至文件
+    [DDLog addLogger:fileLogger];
+}
+
 
 @end

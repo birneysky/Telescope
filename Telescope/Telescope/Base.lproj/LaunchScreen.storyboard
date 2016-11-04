@@ -17,12 +17,35 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlbumCommentPlainTextTip" translatesAutoresizingMaskIntoConstraints="NO" id="ySg-9A-S0H"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔭🔭🔭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7S-Ei-O0T">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="KrY-xj-YTz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ySg-9A-S0H" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Dq6-YN-cgy"/>
+                            <constraint firstItem="ySg-9A-S0H" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="KWq-Ia-iqt"/>
+                            <constraint firstItem="R7S-Ei-O0T" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="asf-jI-03E"/>
+                            <constraint firstAttribute="trailing" secondItem="R7S-Ei-O0T" secondAttribute="trailing" constant="20" id="etv-m5-SEu"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="ySg-9A-S0H" secondAttribute="bottom" id="gVc-gl-ueJ"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="R7S-Ei-O0T" secondAttribute="bottom" constant="50" id="h3g-om-KiP"/>
+                            <constraint firstAttribute="trailing" secondItem="ySg-9A-S0H" secondAttribute="trailing" id="r1E-GF-P4L"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AlbumCommentPlainTextTip" width="320" height="548"/>
+    </resources>
 </document>

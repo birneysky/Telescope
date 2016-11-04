@@ -304,7 +304,7 @@ NSString* gen_uuid()
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
 {
-    NSLog(@"📱🔗🖥   Connect to server successfully %@ : %d",host,port);
+    DDLogInfo(@"📱🔗🖥   Connect to server successfully %@ : %d",host,port);
     self.status = RUNNING;
     [self.asyncSocket readDataWithTimeout:-1 tag:0];
 }
@@ -337,7 +337,7 @@ NSString* gen_uuid()
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err
 {
     self.status = CLOSED;
-    NSLog(@"🚫🔗🚫🔗  socketDidDisconnect %@",err);
+    DDLogError(@"🚫🔗🚫🔗  socketDidDisconnect %@",err);
 }
 
 - (void)socketDidCloseReadStream:(GCDAsyncSocket *)sock
@@ -384,7 +384,7 @@ NSString* gen_uuid()
 
     else if([self.reachability currentReachabilityStatus] == NotReachable)
     {
-        NSLog(@"🌍🚷🌎🚷🌏 Server [%@] is not reachable",self.hostName);
+        DDLogError(@"🌍🚷🌎🚷🌏 Server [%@] is not reachable",self.hostName);
     }
 }
 

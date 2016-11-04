@@ -96,7 +96,7 @@ static TENetworkKit* defaultKit;
         teUser.showPassword = v2User.v2Pwd;
         respone.body = teUser;
         complation(respone);
-        NSLog(@"login response %@",packet);
+        DDLogInfo(@"📩📩📩📩 login response %@",packet);
     } errorHandler:^(NSError *error) {
         
     }];
@@ -121,7 +121,7 @@ static TENetworkKit* defaultKit;
     TENetworkOperation* op = [self.networkEngine operationWithParams:smsPacket];
     [op setCompletionHandler:^(TENetworkOperation *operation) {
         V2PPacket* packet = [operation responseData];
-        NSLog(@"sms code Response %@",packet);
+        DDLogInfo(@"📩📩📩📩 sms code Response %@",packet);
     } errorHandler:^(NSError *error) {
         
     }];
@@ -154,7 +154,7 @@ static TENetworkKit* defaultKit;
     [op setCompletionHandler:^(TENetworkOperation *operation) {
         TEResponse<NSArray<TELiveShowInfo*>*>* respone = [TEResponse new];
         V2PPacket* packet  = [operation responseData];
-         NSLog(@"liveShowList response %@",packet);
+        DDLogInfo(@"📩📩📩📩 liveShowList response %@",packet);
         NSMutableArray<TELiveShowInfo*>* liveArray = [[NSMutableArray alloc] init];
         [packet.data_p.videoArray enumerateObjectsUsingBlock:^(V2PVideo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             TELiveShowInfo* info = [[TELiveShowInfo alloc] init];
