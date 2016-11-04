@@ -132,6 +132,8 @@ http://www.vviicc.com/blog/use-of-protobuf-3-0-0-for-objective-c/
   [CocoaLumberjack 使用](http://www.cocoachina.com/industry/20140414/8157.html) 🔗<http://blog.csdn.net/jia12216/article/details/44412697>
     
   [微信支付](https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=11_1)
+  [AutoLayout](https://github.com/smileyborg/UIView-AutoLayout)🔗
+  <https://github.com/luodezhao/Autolayout_Demo>🔗<https://github.com/Buglife/Floater_>
     
 ### Xcode最常用的快捷键整理
     
