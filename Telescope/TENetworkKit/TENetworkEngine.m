@@ -153,7 +153,7 @@ NSString* gen_uuid()
             [self.reachability startNotifier];
         }
 
-        [self start];
+        //[self start];
     }
     return self;
 }
@@ -169,6 +169,7 @@ NSString* gen_uuid()
 {
     if (RUNNING != self.status) {
         [self.cacheOperations addObject:operation];
+        [self connectToHost];
     }
     else{
         [_sharedNetworkQueue addOperation:operation];
@@ -191,7 +192,7 @@ NSString* gen_uuid()
 
 #pragma mark - *** Helper ***
 
-- (void)start
+- (void)connectToHost
 {
     NSError* error;
     self.status = CONNECTING;
@@ -267,16 +268,23 @@ NSString* gen_uuid()
     }
 }
 
-- (void) startReconnectTimer{
+
+/**
+ 启动重连定时器
+
+ @return YES 启动成功，NO启动失败
+ */
+- (BOOL) startReconnectTimer{
     if (self.reachability.currentReachabilityStatus == NotReachable) {
         [self.autoReconnectTimer  invalidate];
         self.autoReconnectTimer = nil;
-        return;
+        return NO;
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         self.autoReconnectTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(autoReconnect:) userInfo:nil repeats:NO];
     });
+    return YES;
 }
 
 - (void) startHeartBeatTimer{
@@ -337,6 +345,23 @@ NSString* gen_uuid()
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err
 {
     self.status = CLOSED;
+    NSArray<NSOperation*>* operations = _sharedNetworkQueue.operations;
+    [operations enumerateObjectsUsingBlock:^(NSOperation * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isMemberOfClass:[TENetworkOperation class]]) {
+            TENetworkOperation* networkOperation = (TENetworkOperation*)obj;
+            NSError* error = [[NSError alloc] init];
+            [networkOperation operationFailedWithError:error];
+        }
+        else{
+            [obj cancel];
+        }
+    }];
+    
+    [self.cacheOperations enumerateObjectsUsingBlock:^(TENetworkOperation * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSError* error = [[NSError alloc] init];
+        [obj operationFailedWithError:error];
+    }];
+    [self.cacheOperations removeAllObjects];
     DDLogError(@"🚫🔗🚫🔗  socketDidDisconnect %@",err);
 }
 
@@ -350,7 +375,7 @@ NSString* gen_uuid()
                    elapsed:(NSTimeInterval)elapsed
                  bytesDone:(NSUInteger)length
 {
-    NSLog(@"shouldTimeoutWriteWithTag:%ld elapsed %f bytesDone %lu",tag,elapsed,length);
+    DDLogError(@"📤📤📤🕓 shouldTimeoutWriteWithTag:%ld elapsed %f bytesDone %lu",tag,elapsed,length);
     return -1;
 }
 
@@ -367,8 +392,9 @@ NSString* gen_uuid()
 
 - (void)autoReconnect:(NSTimer*)timer
 {
-    NSError* error;
-    [self connectToHost:self.hostName onPort:self.port error:&error];
+//    NSError* error;
+//    [self connectToHost:self.hostName onPort:self.port error:&error];
+    [self connectToHost];
 }
 
 #pragma mark - *** Notification ***

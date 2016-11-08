@@ -59,7 +59,7 @@ static TENetworkKit* defaultKit;
 - (void)loginWithAccountNum:(NSString*)aNum
                    password:(NSString*)pwd
                  completion:(void(^)(TEResponse<TEUser*>* response))complation
-                    onError:(void(^)())error
+                    onError:(void(^)())errorblock
 {
     V2PPacket* loginPacket = [[V2PPacket alloc] init];
     loginPacket.packetType = V2PPacket_type_Iq;
@@ -98,7 +98,7 @@ static TENetworkKit* defaultKit;
         complation(respone);
         DDLogInfo(@"📩📩📩📩 login response %@",packet);
     } errorHandler:^(NSError *error) {
-        
+        errorblock();
     }];
     
     

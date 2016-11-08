@@ -36,13 +36,13 @@
  @param aNum       用户名
  @param pwd        密码
  @param comletion 登录操作结束block
- @param error      错误block
+ @param errorblock      错误block
  */
 
 - (void)loginWithAccountNum:(NSString*)aNum
                    password:(NSString*)pwd
                  completion:(void(^)(TEResponse<TEUser*>* response))comletion
-                    onError:(void(^)())error;
+                    onError:(void(^)())errorblock;
 
 
 

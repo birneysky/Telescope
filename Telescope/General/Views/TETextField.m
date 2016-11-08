@@ -19,6 +19,7 @@
     
     //[self addObserver:self forKeyPath:@"editing" options:NSKeyValueObservingOptionNew context:nil];
     //[_textField addTarget:self action:@selector(textChange) forControlEvents:UIControlEventAllEditingEvents];
+  
 }
 
 - (void)dealloc

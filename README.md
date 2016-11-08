@@ -261,5 +261,30 @@ ios 提供了一个方法
     }
 
 
+### MKMapView 高度约束小于413  （iOS 9）
+      Unable to simultaneously satisfy constraints.
+	Probably at least one of the constraints in the following list is one you don't want. 
+	Try this: 
+		(1) look at each constraint and try to figure out which you don't expect; 
+		(2) find the code that added the unwanted constraint or constraints and fix it. 
+	(Note: If you're seeing NSAutoresizingMaskLayoutConstraints that you don't understand, refer to the documentation for the UIView property translatesAutoresizingMaskIntoConstraints) 
+      
+      "<NSLayoutConstraint:0x12623bb90 V:[MKMapView:0x126123360(412)]>",
+      "<NSLayoutConstraint:0x12894cca0 UILayoutGuide:0x12894c760'Edge Insets'.top == MKMapView:0x126123360.top + 72>",
+      "<NSLayoutConstraint:0x12894d0d0 UILayoutGuide:0x12894c760'Edge Insets'.bottom == MKMapView:0x126123360.bottom - 341>"
+      
+      Will attempt to recover by breaking constraint 
+		<NSLayoutConstraint:0x141a60070 UILayoutGuide:0x13d87ee30'Edge Insets'.bottom == MKMapView:0x1422ea4b0.bottom - 341>
 
-  	
+		Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
+		The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKit/UIView.h> may also 		be helpful.
+
+  
+ 
+ 
+### AutoLayout
+http://www.jianshu.com/p/4a4bc8f1eee8 
+http://www.jianshu.com/p/fee69fedd4d0
+https://lvwenhan.com/ios/431.html
+http://www.cnblogs.com/dsxniubility/p/4266581.html
+ 	

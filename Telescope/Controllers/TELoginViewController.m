@@ -117,7 +117,7 @@
                                    [TEActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:response.errorInfo];
                                }
                            } onError:^{
-                               
+                                [TEActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"连接服务器失败"];
                            }];
 }
 

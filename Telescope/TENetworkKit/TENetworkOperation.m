@@ -60,8 +60,11 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
 - (void) operationFailedWithError:(NSError*) error
 {
     if (self.errorBlock) {
-        self.errorBlock(error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.errorBlock(error);
+        });
     }
+    [self cancel];
     [self completeOperation];
 }
 
@@ -111,9 +114,9 @@ typedef NS_ENUM(NSInteger, TENetworkOperationState) {
             taskIsFinished = YES;
         }
 
-        if ([self isCancelled]) {
-            [self operationFailedWithError:nil];
-        }
+//        if ([self isCancelled]) {
+//            [self operationFailedWithError:nil];
+//        }
     }
     @catch (NSException * e) {
         NSLog(@"Exception %@", e);

@@ -56,6 +56,12 @@
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //[self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 #pragma mark - *** Target Action ****
 - (IBAction)cancelBtnClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
