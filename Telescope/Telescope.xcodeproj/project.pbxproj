@@ -78,6 +78,8 @@
 		DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9A1DCB4597000F994A /* libsqlite3.tbd */; };
 		DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9C1DCB45E0000F994A /* ImageIO.framework */; };
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
+		DBB390191DD2C23B0077EA90 /* TEVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB390181DD2C23A0077EA90 /* TEVideoPlayer.m */; };
+		DBB3901C1DD2C6C70077EA90 /* TENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
 /* End PBXBuildFile section */
@@ -236,6 +238,10 @@
 		DB8CFE241DC9BBF500803AA5 /* TELiveShowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TELiveShowInfo.h; sourceTree = "<group>"; };
 		DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TELiveShowInfo.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DBB390171DD2C23A0077EA90 /* TEVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEVideoPlayer.h; sourceTree = "<group>"; };
+		DBB390181DD2C23A0077EA90 /* TEVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEVideoPlayer.m; sourceTree = "<group>"; };
+		DBB3901A1DD2C6C70077EA90 /* TENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENavigationController.h; sourceTree = "<group>"; };
+		DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENavigationController.m; sourceTree = "<group>"; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -303,6 +309,8 @@
 				DB3C06741DC1AFF800E029D9 /* TETextField.m */,
 				DB860D881DC1E19F00C94035 /* TEBezierPathButton.h */,
 				DB860D891DC1E19F00C94035 /* TEBezierPathButton.m */,
+				DBB390171DD2C23A0077EA90 /* TEVideoPlayer.h */,
+				DBB390181DD2C23A0077EA90 /* TEVideoPlayer.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -631,6 +639,8 @@
 				DB860DCC1DC3475D00C94035 /* TestCollectionViewController.m */,
 				DB860DCE1DC6EF5D00C94035 /* TEWebViewController.h */,
 				DB860DCF1DC6EF5D00C94035 /* TEWebViewController.m */,
+				DBB3901A1DD2C6C70077EA90 /* TENavigationController.h */,
+				DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */,
 			);
 			path = Controllers;
 			sourceTree = SOURCE_ROOT;
@@ -807,6 +817,7 @@
 				DB437AFC1DCAD9D9000F994A /* DDAbstractDatabaseLogger.m in Sources */,
 				DB860DA01DC1FEC700C94035 /* MLLinkLabel.m in Sources */,
 				DB860DC21DC3228800C94035 /* TEMainViewController.m in Sources */,
+				DBB390191DD2C23B0077EA90 /* TEVideoPlayer.m in Sources */,
 				DB437B031DCAD9D9000F994A /* DDDispatchQueueLogFormatter.m in Sources */,
 				DB860DC51DC3236D00C94035 /* TEDefaultCollectionController.m in Sources */,
 				DB437B021DCAD9D9000F994A /* DDContextFilterLogFormatter.m in Sources */,
@@ -836,6 +847,7 @@
 				DB437B041DCAD9D9000F994A /* DDMultiFormatter.m in Sources */,
 				DB4E1C071DC082C600032B81 /* TENetworkOperation.m in Sources */,
 				DB860D8A1DC1E19F00C94035 /* TEBezierPathButton.m in Sources */,
+				DBB3901C1DD2C6C70077EA90 /* TENavigationController.m in Sources */,
 				DB4E1C091DC082C600032B81 /* TEStreamBuffer.m in Sources */,
 				DB860DD01DC6EF5D00C94035 /* TEWebViewController.m in Sources */,
 				DB860D9F1DC1FEC700C94035 /* MLLabelLayoutManager.m in Sources */,
@@ -1011,6 +1023,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "fa8c6289-9528-4d7c-a639-1877f395ef90";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1041,6 +1054,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.v2tech.Telescope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "fa8c6289-9528-4d7c-a639-1877f395ef90";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
