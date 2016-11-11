@@ -55,6 +55,7 @@
 		DB4338E51DB073D900CF7E38 /* ProtocolBuffers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers.h; sourceTree = "<group>"; };
 		DB5DAEEE1D79847B00FB81A7 /* Message.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.pbobjc.h; sourceTree = "<group>"; };
 		DB5DAEEF1D79847B00FB81A7 /* Message.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.pbobjc.m; sourceTree = "<group>"; };
+		DBB39E441DD570950077EA90 /* TEPlayerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TEPlayerKit.framework; path = ../library/TEPlayerKit.framework; sourceTree = "<group>"; };
 		DBBB66221D7954F70044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtocolBuffers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBB662D1D7955560044E626 /* GPBArray_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBArray_PackagePrivate.h; sourceTree = "<group>"; };
 		DBBB662E1D7955560044E626 /* GPBArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBArray.h; sourceTree = "<group>"; };
@@ -118,12 +119,21 @@
 			path = Generate;
 			sourceTree = "<group>";
 		};
+		DBB39E431DD570940077EA90 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBB39E441DD570950077EA90 /* TEPlayerKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DBBB66181D7954F70044E626 = {
 			isa = PBXGroup;
 			children = (
 				DB5DAEE51D796EBE00FB81A7 /* Generate */,
 				DBBB66241D7954F70044E626 /* ProtocolBuffers */,
 				DBBB66231D7954F70044E626 /* Products */,
+				DBB39E431DD570940077EA90 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

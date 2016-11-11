@@ -15,7 +15,9 @@
 
 #import "TEVideoPlayer.h"
 
-@interface TEMainViewController ()
+#import <TEPlayerKit/TEPlayerKit.h>
+
+@interface TEMainViewController ()<RTMPGuestRtmpDelegate>
 @property (strong, nonatomic) IBOutlet TEDefaultCollectionController *userCollectionController;
 @property (nonatomic, strong) NSArray<TELiveShowInfo*>* lives;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -41,6 +43,8 @@
  */
 @property (nonatomic,assign) BOOL resizeFlag;
 
+
+@property (nonatomic, strong) RTMPGuestKit *guestKit;
 
 @end
 
@@ -86,6 +90,9 @@
 //    CGSize screenSize = [UIScreen mainScreen].bounds.size;
 //    self.playerWidthConstraint.constant = screenSize.width;
 //    self.playerHeightConstraint.constant = screenSize.height;
+    
+    self.guestKit = [[RTMPGuestKit alloc] initWithDelegate:self];
+    [self.guestKit StartRtmpPlay:@"rtmp://124.128.26.173/live/jnyd_sd" andRender:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -134,85 +141,6 @@
     }
     
     [self rotateVideoViewFromOrientation:self.previousDeviceOrientation ToOrientation:deviceOrientation];
-    
-//    if (deviceOrientation != UIDeviceOrientationPortrait) {
-//        [self.navigationController setNavigationBarHidden:YES animated:YES];
-//    }
-//    else{
-//        [self.navigationController setNavigationBarHidden:NO animated:YES];
-//    }
-//    self.resizeFlag = NO;
-//    if((self.previousDeviceOrientation == UIDeviceOrientationPortrait &&
-//        deviceOrientation == UIDeviceOrientationLandscapeLeft) ||
-//       (self.previousDeviceOrientation == UIDeviceOrientationLandscapeLeft &&
-//        deviceOrientation == UIDeviceOrientationPortraitUpsideDown)||
-//       (self.previousDeviceOrientation == UIDeviceOrientationPortraitUpsideDown &&
-//        deviceOrientation == UIDeviceOrientationLandscapeRight) ||
-//       (self.previousDeviceOrientation == UIDeviceOrientationLandscapeRight &&
-//        deviceOrientation == UIDeviceOrientationPortrait)){
-//           self.angleRation ++;
-//           self.resizeFlag = YES;
-//       }
-//    if ((self.previousDeviceOrientation == UIDeviceOrientationPortrait &&
-//         deviceOrientation == UIDeviceOrientationLandscapeRight) ||
-//        (self.previousDeviceOrientation == UIDeviceOrientationLandscapeRight &&
-//         deviceOrientation == UIDeviceOrientationPortraitUpsideDown) ||
-//        (self.previousDeviceOrientation == UIDeviceOrientationPortraitUpsideDown &&
-//         deviceOrientation == UIDeviceOrientationLandscapeLeft) ||
-//        (self.previousDeviceOrientation == UIDeviceOrientationLandscapeLeft &&
-//         deviceOrientation == UIDeviceOrientationPortrait)) {
-//            self.angleRation --;
-//            self.resizeFlag = YES;
-//        }
-//    
-//    
-//    if ((self.previousDeviceOrientation == UIDeviceOrientationPortrait &&
-//         deviceOrientation == UIDeviceOrientationPortraitUpsideDown)||
-//        (self.previousDeviceOrientation == UIDeviceOrientationLandscapeLeft &&
-//         deviceOrientation == UIDeviceOrientationLandscapeRight)) {
-//            self.angleRation += 2;
-//        }
-//    
-//    
-//    if ((self.previousDeviceOrientation == UIDeviceOrientationPortraitUpsideDown &&
-//         deviceOrientation == UIDeviceOrientationPortrait) ||
-//        (self.previousDeviceOrientation == UIDeviceOrientationLandscapeRight &&
-//         deviceOrientation == UIDeviceOrientationLandscapeLeft)) {
-//            self.angleRation -= 2;
-//        }
-//    
-//
-//    [UIView animateWithDuration:0.5
-//                          delay:0.0
-//         usingSpringWithDamping:0.9
-//          initialSpringVelocity:4.0
-//                        options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
-//                     animations:^{
-//                         if (self.resizeFlag) {
-//                             if (deviceOrientation != UIDeviceOrientationPortrait) {
-//                                 self.videoPlayerYConstraint.constant = 0;
-//                                 self.videoPlayerWidthConstraint.constant = [UIScreen mainScreen].bounds.size.height;
-//                                 self.videoPlayerHeightConstraint.constant = [UIScreen mainScreen].bounds.size.width;
-//                             }
-//                             else{
-//                                 
-//                                 self.videoPlayerYConstraint.constant = -128;
-//                                 NSLog(@"videPlayer height %lf,%lf",([UIScreen mainScreen].bounds.size.width * 3 ) / 4.0f,floor(([UIScreen mainScreen].bounds.size.width * 3) / 4.0f));
-//                                 self.videoPlayerHeightConstraint.constant = floor(([UIScreen mainScreen].bounds.size.width * 3 ) / 4.0f);
-//                                 self.videoPlayerWidthConstraint.constant = [UIScreen mainScreen].bounds.size.width;
-//                             }
-//                             [self.videoView layoutIfNeeded];
-//                         }
-//                         self.videoView.transform =  CGAffineTransformMakeRotation( M_PI * self.angleRation / 2);
-//        }
-//        completion:^(BOOL finished) {
-//        }];
-// 
-//
-//    
-//    //NSInteger differValue = deviceOrientation - self.previousDeviceOrientation;
-//    //NSLog(@"previous %d, current %d, differVaue = %d,angleRation = %d",self.previousDeviceOrientation, deviceOrientation,differValue,_angleRation);
-//    self.previousDeviceOrientation = deviceOrientation;
 }
 
 #pragma mark - **** Helper ****
@@ -226,32 +154,33 @@
     }
     
     self.resizeFlag = NO;
+    
     if((fOrientation == UIDeviceOrientationPortrait && tOrientation == UIDeviceOrientationLandscapeLeft) ||
        (fOrientation == UIDeviceOrientationLandscapeLeft && tOrientation == UIDeviceOrientationPortraitUpsideDown)||
        (fOrientation == UIDeviceOrientationPortraitUpsideDown && tOrientation == UIDeviceOrientationLandscapeRight) ||
        (fOrientation == UIDeviceOrientationLandscapeRight && tOrientation == UIDeviceOrientationPortrait)){
            self.angleRation ++;
            self.resizeFlag = YES;
-       }
+    }
+    
     if ((fOrientation == UIDeviceOrientationPortrait && tOrientation == UIDeviceOrientationLandscapeRight) ||
         (fOrientation == UIDeviceOrientationLandscapeRight && tOrientation == UIDeviceOrientationPortraitUpsideDown) ||
         (fOrientation == UIDeviceOrientationPortraitUpsideDown && tOrientation == UIDeviceOrientationLandscapeLeft) ||
         (fOrientation == UIDeviceOrientationLandscapeLeft && tOrientation == UIDeviceOrientationPortrait)) {
             self.angleRation --;
             self.resizeFlag = YES;
-        }
-    
+    }
     
     if ((fOrientation == UIDeviceOrientationPortrait && tOrientation == UIDeviceOrientationPortraitUpsideDown)||
         (fOrientation == UIDeviceOrientationLandscapeLeft && tOrientation == UIDeviceOrientationLandscapeRight)) {
             self.angleRation += 2;
-        }
+    }
     
     
     if ((fOrientation == UIDeviceOrientationPortraitUpsideDown && tOrientation == UIDeviceOrientationPortrait) ||
         (fOrientation == UIDeviceOrientationLandscapeRight && tOrientation == UIDeviceOrientationLandscapeLeft)) {
             self.angleRation -= 2;
-        }
+    }
     
     
     [UIView animateWithDuration:0.5
@@ -267,23 +196,19 @@
                                  self.videoPlayerHeightConstraint.constant = [UIScreen mainScreen].bounds.size.width;
                              }
                              else{
-                                 
-                                 self.videoPlayerYConstraint.constant = -128;
-                                 NSLog(@"videPlayer height %lf,%lf",([UIScreen mainScreen].bounds.size.width * 3 ) / 4.0f,floor(([UIScreen mainScreen].bounds.size.width * 3) / 4.0f));
                                  self.videoPlayerHeightConstraint.constant = floor(([UIScreen mainScreen].bounds.size.width * 3 ) / 4.0f);
                                  self.videoPlayerWidthConstraint.constant = [UIScreen mainScreen].bounds.size.width;
+                                 self.videoPlayerYConstraint.constant = -([UIScreen mainScreen].bounds.size.height / 2 - 64 - self.videoPlayerHeightConstraint.constant / 2);
+                                  NSLog(@"videPlayer height %lf,%lf,offset %f",([UIScreen mainScreen].bounds.size.width * 3 ) / 4.0f,floor(([UIScreen mainScreen].bounds.size.width * 3) / 4.0f),[UIScreen mainScreen].bounds.size.height / 2 - 64 - self.videoPlayerHeightConstraint.constant / 2);
                              }
                              [self.videoView layoutIfNeeded];
                          }
                          self.videoView.transform =  CGAffineTransformMakeRotation( M_PI * self.angleRation / 2);
                      }
                      completion:^(BOOL finished) {
-                     }];
+                     }
+    ];
     
-    
-    
-    //NSInteger differValue = deviceOrientation - self.previousDeviceOrientation;
-    //NSLog(@"previous %d, current %d, differVaue = %d,angleRation = %d",self.previousDeviceOrientation, deviceOrientation,differValue,_angleRation);
     self.previousDeviceOrientation = tOrientation;
 }
 
@@ -300,4 +225,22 @@
     }
 }
 
+
+#pragma mark - *** RTMPGuestRtmpDelegate ***
+- (void)OnRtmplayerOK {
+    NSLog(@"OnRtmpStreamOK");
+    //self.stateRTMPLabel.text = @"连接RTMP服务成功";
+}
+- (void)OnRtmplayerStatus:(int) cacheTime withBitrate:(int) curBitrate {
+    NSLog(@"OnRtmplayerStatus:%d withBitrate:%d",cacheTime,curBitrate);
+    //self.stateRTMPLabel.text = [NSString stringWithFormat:@"RTMP缓存区:%d 码率:%d",cacheTime,curBitrate];
+}
+- (void)OnRtmplayerCache:(int) time {
+    NSLog(@"OnRtmplayerCache:%d",time);
+    //self.stateRTMPLabel.text = [NSString stringWithFormat:@"RTMP正在缓存:%d",time];
+}
+
+- (void)OnRtmplayerClosed:(int) errcode {
+    
+}
 @end

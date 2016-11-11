@@ -78,8 +78,12 @@
 		DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9A1DCB4597000F994A /* libsqlite3.tbd */; };
 		DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9C1DCB45E0000F994A /* ImageIO.framework */; };
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
-		DBB390191DD2C23B0077EA90 /* TEVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB390181DD2C23A0077EA90 /* TEVideoPlayer.m */; };
 		DBB3901C1DD2C6C70077EA90 /* TENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */; };
+		DBB390201DD4183B0077EA90 /* TEVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB3901F1DD4183B0077EA90 /* TEVideoPlayer.m */; };
+		DBB390231DD419410077EA90 /* TEVideoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB390221DD419410077EA90 /* TEVideoScrollView.m */; };
+		DBB390261DD441690077EA90 /* TETestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB390251DD441690077EA90 /* TETestViewController.m */; };
+		DBB39E471DD570AE0077EA90 /* TEPlayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */; };
+		DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E481DD572C30077EA90 /* VideoToolbox.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
 /* End PBXBuildFile section */
@@ -238,10 +242,16 @@
 		DB8CFE241DC9BBF500803AA5 /* TELiveShowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TELiveShowInfo.h; sourceTree = "<group>"; };
 		DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TELiveShowInfo.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		DBB390171DD2C23A0077EA90 /* TEVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEVideoPlayer.h; sourceTree = "<group>"; };
-		DBB390181DD2C23A0077EA90 /* TEVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEVideoPlayer.m; sourceTree = "<group>"; };
 		DBB3901A1DD2C6C70077EA90 /* TENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENavigationController.h; sourceTree = "<group>"; };
 		DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENavigationController.m; sourceTree = "<group>"; };
+		DBB3901E1DD4183B0077EA90 /* TEVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEVideoPlayer.h; sourceTree = "<group>"; };
+		DBB3901F1DD4183B0077EA90 /* TEVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEVideoPlayer.m; sourceTree = "<group>"; };
+		DBB390211DD419410077EA90 /* TEVideoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEVideoScrollView.h; sourceTree = "<group>"; };
+		DBB390221DD419410077EA90 /* TEVideoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEVideoScrollView.m; sourceTree = "<group>"; };
+		DBB390241DD441690077EA90 /* TETestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TETestViewController.h; sourceTree = "<group>"; };
+		DBB390251DD441690077EA90 /* TETestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TETestViewController.m; sourceTree = "<group>"; };
+		DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TEPlayerKit.framework; path = ../library/TEPlayerKit.framework; sourceTree = "<group>"; };
+		DBB39E481DD572C30077EA90 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -251,6 +261,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */,
+				DBB39E471DD570AE0077EA90 /* TEPlayerKit.framework in Frameworks */,
 				DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */,
 				DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */,
 				DB437BA11DCB4665000F994A /* libstdc++.tbd in Frameworks */,
@@ -309,8 +321,6 @@
 				DB3C06741DC1AFF800E029D9 /* TETextField.m */,
 				DB860D881DC1E19F00C94035 /* TEBezierPathButton.h */,
 				DB860D891DC1E19F00C94035 /* TEBezierPathButton.m */,
-				DBB390171DD2C23A0077EA90 /* TEVideoPlayer.h */,
-				DBB390181DD2C23A0077EA90 /* TEVideoPlayer.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -641,6 +651,8 @@
 				DB860DCF1DC6EF5D00C94035 /* TEWebViewController.m */,
 				DBB3901A1DD2C6C70077EA90 /* TENavigationController.h */,
 				DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */,
+				DBB390241DD441690077EA90 /* TETestViewController.h */,
+				DBB390251DD441690077EA90 /* TETestViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = SOURCE_ROOT;
@@ -648,9 +660,13 @@
 		DB860DB61DC3218B00C94035 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DBB3901E1DD4183B0077EA90 /* TEVideoPlayer.h */,
+				DBB3901F1DD4183B0077EA90 /* TEVideoPlayer.m */,
 				DB860DB81DC321D800C94035 /* TEDefaultCollectionCell.h */,
 				DB860DB91DC321D800C94035 /* TEDefaultCollectionCell.m */,
 				DB860DBA1DC321D800C94035 /* TEDefaultCollectionCell.xib */,
+				DBB390211DD419410077EA90 /* TEVideoScrollView.h */,
+				DBB390221DD419410077EA90 /* TEVideoScrollView.m */,
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
@@ -658,6 +674,8 @@
 		DBA835701D90D0140055D7F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBB39E481DD572C30077EA90 /* VideoToolbox.framework */,
+				DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */,
 				DB437BA01DCB4665000F994A /* libstdc++.tbd */,
 				DB437B9E1DCB462D000F994A /* SystemConfiguration.framework */,
 				DB437B9C1DCB45E0000F994A /* ImageIO.framework */,
@@ -817,7 +835,6 @@
 				DB437AFC1DCAD9D9000F994A /* DDAbstractDatabaseLogger.m in Sources */,
 				DB860DA01DC1FEC700C94035 /* MLLinkLabel.m in Sources */,
 				DB860DC21DC3228800C94035 /* TEMainViewController.m in Sources */,
-				DBB390191DD2C23B0077EA90 /* TEVideoPlayer.m in Sources */,
 				DB437B031DCAD9D9000F994A /* DDDispatchQueueLogFormatter.m in Sources */,
 				DB860DC51DC3236D00C94035 /* TEDefaultCollectionController.m in Sources */,
 				DB437B021DCAD9D9000F994A /* DDContextFilterLogFormatter.m in Sources */,
@@ -830,14 +847,17 @@
 				DB4E1C061DC082C600032B81 /* TENetworkKit.m in Sources */,
 				DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */,
 				DB437AFE1DCAD9D9000F994A /* DDASLLogger.m in Sources */,
+				DBB390261DD441690077EA90 /* TETestViewController.m in Sources */,
 				DB860DC11DC3228800C94035 /* TELoginViewController.m in Sources */,
 				DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */,
 				DB860DA41DC1FEC700C94035 /* EVCircularProgressView.m in Sources */,
+				DBB390201DD4183B0077EA90 /* TEVideoPlayer.m in Sources */,
 				DB860D9E1DC1FEC700C94035 /* MLLabel.m in Sources */,
 				DB437B011DCAD9D9000F994A /* DDTTYLogger.m in Sources */,
 				DB860DA21DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.m in Sources */,
 				DB860DAE1DC2F35D00C94035 /* TEUser.m in Sources */,
 				DB4E1C0D1DC0878300032B81 /* TEReachability.m in Sources */,
+				DBB390231DD419410077EA90 /* TEVideoScrollView.m in Sources */,
 				DB4E1C051DC082C600032B81 /* TENetworkEngine.m in Sources */,
 				DB860DB11DC2F9AD00C94035 /* TEResponse.m in Sources */,
 				DB860DA31DC1FEC700C94035 /* NSString+MLLabel.m in Sources */,

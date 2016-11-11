@@ -1,13 +1,13 @@
 //
-//  TEVideoPlayer.h
+//  TETestViewController.h
 //  Telescope
 //
-//  Created by zhangguang on 16/11/9.
+//  Created by zhangguang on 16/11/10.
 //  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface TEVideoPlayer : UIView
+@interface TETestViewController : UIViewController
 
 @end
