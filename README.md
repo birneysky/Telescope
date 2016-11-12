@@ -282,6 +282,45 @@ ios 提供了一个方法
   
  
  
+### 关于frame 的本质
+对于程序员来说，没有比代码更直接的方式了
+
+
+    -(CGRect) frame  
+	{  
+    	float x = center.x - layer.anchorPoint.x * bounds.width;   
+    	float y = center.y - layer.anchorPoint.y * bounds.height;  
+    	float width = bounds.width;
+    	float height = bounds.height;  
+    	return CGRectMake(x, y, width, height);
+	}
+
+	-(void) setFrame:(CGRect) rect
+	{
+    	center.x = rect.x + layer.anchorPoint.x * rect.width;
+    	center.y = rect.y + layer.anchorPoint.y * rect.height;
+    	bounds.width = rect.width;
+    	bounds.height = rect.height;
+	}
+	
+- bounds
+
+  UIView的大小是由bounds的size部分决定的，当你改变了bounds.x 或者 bounds.y,你会发现UIView的位置是巍然不动,但是UIView的子视图都会平移(-bounds.x,-bounds.y)的距离。
+  
+- center
+
+  代表了UIView的中心。（bounds.widht / 2,bounds.height / 2）,不行的是上面的结论只有在视图刚刚被创建时成立。其实`center`的作用的是决定视图的位置。当我设置视图的`frame`时，影响了`center`的值，从该改变了视图的位置。
+  
+  
+  `center`和`bounds`他们之间是相互独立的，其中某一个发生了变化，另外一个不会发生变化。也就是说当我们改变`center`时，视图的位置发生了变化，视图大小不变。
+ 
+- anchorPoint
+
+  `anchorPoint`的默认值是(0.5,0.5),默认情况下，对视图做缩放，旋转，都是以视图的中心为基准点
+  如果将`anchorPoint`设置为（0，0）则以左上角为基准点
+  
+
+
 ### AutoLayout
 http://www.jianshu.com/p/4a4bc8f1eee8 
 http://www.jianshu.com/p/fee69fedd4d0
