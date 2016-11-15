@@ -10,4 +10,6 @@
 
 @interface TEVideoScrollView : UIView
 
+@property (nonatomic,strong) NSArray<NSString*>* rtmpUrl;
+
 @end

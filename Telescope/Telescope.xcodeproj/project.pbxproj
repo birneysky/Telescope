@@ -40,7 +40,6 @@
 		DB437B951DCB4539000F994A /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B941DCB4539000F994A /* libicucore.tbd */; };
 		DB437B971DCB4551000F994A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B961DCB4551000F994A /* libz.tbd */; };
 		DB437B9F1DCB462D000F994A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9E1DCB462D000F994A /* SystemConfiguration.framework */; };
-		DB437BA11DCB4665000F994A /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437BA01DCB4665000F994A /* libstdc++.tbd */; };
 		DB4E1C051DC082C600032B81 /* TENetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1BFC1DC082C600032B81 /* TENetworkEngine.m */; };
 		DB4E1C061DC082C600032B81 /* TENetworkKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1BFE1DC082C600032B81 /* TENetworkKit.m */; };
 		DB4E1C071DC082C600032B81 /* TENetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C001DC082C600032B81 /* TENetworkOperation.m */; };
@@ -86,6 +85,9 @@
 		DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E481DD572C30077EA90 /* VideoToolbox.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
+		DBCDF6201DD9995100760111 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437BA01DCB4665000F994A /* libstdc++.tbd */; };
+		DBCDF6291DD99B6E00760111 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61E1DD9994100760111 /* libstdc++.6.tbd */; };
+		DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF62A1DD99B8800760111 /* libiconv.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +256,9 @@
 		DBB39E481DD572C30077EA90 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
+		DBCDF61C1DD998E900760111 /* V2Kit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = V2Kit.framework; path = ../library/V2Kit.framework; sourceTree = "<group>"; };
+		DBCDF61E1DD9994100760111 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
+		DBCDF62A1DD99B8800760111 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,11 +266,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */,
+				DBCDF6291DD99B6E00760111 /* libstdc++.6.tbd in Frameworks */,
+				DBCDF6201DD9995100760111 /* libstdc++.tbd in Frameworks */,
 				DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */,
 				DBB39E471DD570AE0077EA90 /* TEPlayerKit.framework in Frameworks */,
 				DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */,
 				DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */,
-				DB437BA11DCB4665000F994A /* libstdc++.tbd in Frameworks */,
 				DB437B9F1DCB462D000F994A /* SystemConfiguration.framework in Frameworks */,
 				DB437B971DCB4551000F994A /* libz.tbd in Frameworks */,
 				DB437B951DCB4539000F994A /* libicucore.tbd in Frameworks */,
@@ -674,6 +681,9 @@
 		DBA835701D90D0140055D7F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBCDF62A1DD99B8800760111 /* libiconv.tbd */,
+				DBCDF61E1DD9994100760111 /* libstdc++.6.tbd */,
+				DBCDF61C1DD998E900760111 /* V2Kit.framework */,
 				DBB39E481DD572C30077EA90 /* VideoToolbox.framework */,
 				DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */,
 				DB437BA01DCB4665000F994A /* libstdc++.tbd */,
@@ -1017,7 +1027,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../library",
@@ -1027,6 +1037,7 @@
 					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/Required",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = Telescope/Telescope.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1051,7 +1062,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../library",
@@ -1061,6 +1072,7 @@
 					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/Required",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = Telescope/Telescope.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = Telescope/Info.plist;

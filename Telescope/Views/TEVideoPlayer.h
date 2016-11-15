@@ -15,9 +15,19 @@
  */
 @interface TEVideoPlayer : UIView
 
+/**
+ 开始播放
+ 
+ @param url rtmp 播放地址
+ */
+- (void)startRtmpPlayWithUrl:(NSString*)url;
 
-- (void)startRtmpPlay:(NSString*)url;
 
+
+/**
+ 停止播放
+ */
 - (void)stopRtmpPlay;
+
 
 @end

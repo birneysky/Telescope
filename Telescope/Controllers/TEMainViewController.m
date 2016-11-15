@@ -15,13 +15,15 @@
 
 #import "TEVideoPlayer.h"
 
-#import <TEPlayerKit/TEPlayerKit.h>
+#import <V2Kit/V2Kit.h>
 
-@interface TEMainViewController ()<RTMPGuestRtmpDelegate>
+@interface TEMainViewController ()
 @property (strong, nonatomic) IBOutlet TEDefaultCollectionController *userCollectionController;
 @property (nonatomic, strong) NSArray<TELiveShowInfo*>* lives;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIView *videoView;
+@property (weak, nonatomic) IBOutlet TEVideoPlayer *videoPlayer;
+@property (weak, nonatomic) IBOutlet UIButton *fullScreenBtn;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoPlayerWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoPlayerHeightConstraint;
@@ -43,9 +45,6 @@
  */
 @property (nonatomic,assign) BOOL resizeFlag;
 
-
-@property (nonatomic, strong) RTMPGuestKit *guestKit;
-
 @end
 
 @implementation TEMainViewController
@@ -62,6 +61,7 @@
                             forCellWithReuseIdentifier:@"te_default_collection_cell_id"];
     
     /*
+     15811004492
      rtmp://203.207.99.19:1935/live/CCTV5   体育频道
      rtmp://203.207.99.19:1935/live/CCTV1
      rtmp://203.207.99.19:1935/live/CCTV2
@@ -87,18 +87,27 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DeviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
     self.previousDeviceOrientation = UIDeviceOrientationPortrait;
     self.angleRation = 0;
+    
 //    CGSize screenSize = [UIScreen mainScreen].bounds.size;
 //    self.playerWidthConstraint.constant = screenSize.width;
 //    self.playerHeightConstraint.constant = screenSize.height;
     
-    self.guestKit = [[RTMPGuestKit alloc] initWithDelegate:self];
-    [self.guestKit StartRtmpPlay:@"rtmp://124.128.26.173/live/jnyd_sd" andRender:self.view];
+//    NSString* docPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//    [[V2Kit defaultKit] InitializeKit:docPath logLevel:0];
+//    [[V2Kit defaultKit] configServerAddress:@"123.57.217.170" serverPort:5123];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.videoPlayer stopRtmpPlay];
 }
 
 #pragma mark - *** Target Action ****
@@ -199,13 +208,14 @@
                                  self.videoPlayerHeightConstraint.constant = floor(([UIScreen mainScreen].bounds.size.width * 3 ) / 4.0f);
                                  self.videoPlayerWidthConstraint.constant = [UIScreen mainScreen].bounds.size.width;
                                  self.videoPlayerYConstraint.constant = -([UIScreen mainScreen].bounds.size.height / 2 - 64 - self.videoPlayerHeightConstraint.constant / 2);
-                                  NSLog(@"videPlayer height %lf,%lf,offset %f",([UIScreen mainScreen].bounds.size.width * 3 ) / 4.0f,floor(([UIScreen mainScreen].bounds.size.width * 3) / 4.0f),[UIScreen mainScreen].bounds.size.height / 2 - 64 - self.videoPlayerHeightConstraint.constant / 2);
+                                  //NSLog(@"videPlayer height %lf,%lf,offset %f",([UIScreen mainScreen].bounds.size.width * 3 ) / 4.0f,floor(([UIScreen mainScreen].bounds.size.width * 3) / 4.0f),[UIScreen mainScreen].bounds.size.height / 2 - 64 - self.videoPlayerHeightConstraint.constant / 2);
                              }
                              [self.videoView layoutIfNeeded];
                          }
                          self.videoView.transform =  CGAffineTransformMakeRotation( M_PI * self.angleRation / 2);
                      }
                      completion:^(BOOL finished) {
+                         [self setNeedsStatusBarAppearanceUpdate];
                      }
     ];
     
@@ -218,10 +228,10 @@
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
     if (deviceOrientation == UIDeviceOrientationLandscapeLeft ||
         deviceOrientation == UIDeviceOrientationLandscapeRight) {
-        return YES;
+        return  YES;
     }
     else{
-        return NO;
+        return self.fullScreenBtn.selected ? YES : NO;
     }
 }
 
