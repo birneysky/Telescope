@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB1DFD541DDC61E30035A082 /* TESettingTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1DFD531DDC61E30035A082 /* TESettingTableController.m */; };
 		DB3C06751DC1AFF800E029D9 /* TETextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3C06741DC1AFF800E029D9 /* TETextField.m */; };
 		DB437AFB1DCAD9D9000F994A /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DB437AE21DCAD9D9000F994A /* CLIColor.m */; };
 		DB437AFC1DCAD9D9000F994A /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DB437AE51DCAD9D9000F994A /* DDAbstractDatabaseLogger.m */; };
@@ -46,6 +47,8 @@
 		DB4E1C081DC082C600032B81 /* TEPacketDisPatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C021DC082C600032B81 /* TEPacketDisPatcher.m */; };
 		DB4E1C091DC082C600032B81 /* TEStreamBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C041DC082C600032B81 /* TEStreamBuffer.m */; };
 		DB4E1C0D1DC0878300032B81 /* TEReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C0C1DC0878300032B81 /* TEReachability.m */; };
+		DB61AB681DDD4E1400F52A98 /* V2Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61C1DD998E900760111 /* V2Kit.framework */; };
+		DB61AB6B1DDD524900F52A98 /* TEBroadcastLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB61AB6A1DDD524900F52A98 /* TEBroadcastLiveViewController.m */; };
 		DB6DA7111D792D1900430922 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7101D792D1900430922 /* main.m */; };
 		DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7131D792D1900430922 /* AppDelegate.m */; };
 		DB6DA71A1D792D1900430922 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7181D792D1900430922 /* Main.storyboard */; };
@@ -74,6 +77,8 @@
 		DB860DCD1DC3475D00C94035 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DCC1DC3475D00C94035 /* TestCollectionViewController.m */; };
 		DB860DD01DC6EF5D00C94035 /* TEWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DCF1DC6EF5D00C94035 /* TEWebViewController.m */; };
 		DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */; };
+		DB9308761DDBF9AD00915CCD /* TEPersonaSettingsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9308751DDBF9AD00915CCD /* TEPersonaSettingsTableController.m */; };
+		DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9308781DDC08EE00915CCD /* TEAnnotation.m */; };
 		DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9A1DCB4597000F994A /* libsqlite3.tbd */; };
 		DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9C1DCB45E0000F994A /* ImageIO.framework */; };
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
@@ -108,6 +113,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB1DFD521DDC61E30035A082 /* TESettingTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TESettingTableController.h; sourceTree = "<group>"; };
+		DB1DFD531DDC61E30035A082 /* TESettingTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TESettingTableController.m; sourceTree = "<group>"; };
 		DB3336591DA88F5D007D44EB /* Telescope.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Telescope.pch; sourceTree = "<group>"; };
 		DB3C06731DC1AFF800E029D9 /* TETextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TETextField.h; sourceTree = "<group>"; };
 		DB3C06741DC1AFF800E029D9 /* TETextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TETextField.m; sourceTree = "<group>"; };
@@ -188,6 +195,8 @@
 		DB4E1C041DC082C600032B81 /* TEStreamBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEStreamBuffer.m; sourceTree = "<group>"; };
 		DB4E1C0B1DC0878300032B81 /* TEReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEReachability.h; sourceTree = "<group>"; };
 		DB4E1C0C1DC0878300032B81 /* TEReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEReachability.m; sourceTree = "<group>"; };
+		DB61AB691DDD524900F52A98 /* TEBroadcastLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEBroadcastLiveViewController.h; sourceTree = "<group>"; };
+		DB61AB6A1DDD524900F52A98 /* TEBroadcastLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEBroadcastLiveViewController.m; sourceTree = "<group>"; };
 		DB6DA70C1D792D1800430922 /* Telescope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telescope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DA7101D792D1900430922 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB6DA7121D792D1900430922 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -243,6 +252,10 @@
 		DB860DCF1DC6EF5D00C94035 /* TEWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEWebViewController.m; sourceTree = "<group>"; };
 		DB8CFE241DC9BBF500803AA5 /* TELiveShowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TELiveShowInfo.h; sourceTree = "<group>"; };
 		DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TELiveShowInfo.m; sourceTree = "<group>"; };
+		DB9308741DDBF9AD00915CCD /* TEPersonaSettingsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEPersonaSettingsTableController.h; sourceTree = "<group>"; };
+		DB9308751DDBF9AD00915CCD /* TEPersonaSettingsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEPersonaSettingsTableController.m; sourceTree = "<group>"; };
+		DB9308771DDC08EE00915CCD /* TEAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAnnotation.h; sourceTree = "<group>"; };
+		DB9308781DDC08EE00915CCD /* TEAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAnnotation.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBB3901A1DD2C6C70077EA90 /* TENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENavigationController.h; sourceTree = "<group>"; };
 		DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENavigationController.m; sourceTree = "<group>"; };
@@ -266,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB61AB681DDD4E1400F52A98 /* V2Kit.framework in Frameworks */,
 				DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */,
 				DBCDF6291DD99B6E00760111 /* libstdc++.6.tbd in Frameworks */,
 				DBCDF6201DD9995100760111 /* libstdc++.tbd in Frameworks */,
@@ -639,6 +653,8 @@
 				DB860DB01DC2F9AD00C94035 /* TEResponse.m */,
 				DB8CFE241DC9BBF500803AA5 /* TELiveShowInfo.h */,
 				DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */,
+				DB9308771DDC08EE00915CCD /* TEAnnotation.h */,
+				DB9308781DDC08EE00915CCD /* TEAnnotation.m */,
 			);
 			path = "Models-Network";
 			sourceTree = SOURCE_ROOT;
@@ -660,6 +676,12 @@
 				DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */,
 				DBB390241DD441690077EA90 /* TETestViewController.h */,
 				DBB390251DD441690077EA90 /* TETestViewController.m */,
+				DB9308741DDBF9AD00915CCD /* TEPersonaSettingsTableController.h */,
+				DB9308751DDBF9AD00915CCD /* TEPersonaSettingsTableController.m */,
+				DB1DFD521DDC61E30035A082 /* TESettingTableController.h */,
+				DB1DFD531DDC61E30035A082 /* TESettingTableController.m */,
+				DB61AB691DDD524900F52A98 /* TEBroadcastLiveViewController.h */,
+				DB61AB6A1DDD524900F52A98 /* TEBroadcastLiveViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = SOURCE_ROOT;
@@ -853,6 +875,7 @@
 				DB437AFB1DCAD9D9000F994A /* CLIColor.m in Sources */,
 				DB437AFD1DCAD9D9000F994A /* DDASLLogCapture.m in Sources */,
 				DB437AFF1DCAD9D9000F994A /* DDFileLogger.m in Sources */,
+				DB9308761DDBF9AD00915CCD /* TEPersonaSettingsTableController.m in Sources */,
 				DB860DBB1DC321D900C94035 /* TEDefaultCollectionCell.m in Sources */,
 				DB4E1C061DC082C600032B81 /* TENetworkKit.m in Sources */,
 				DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */,
@@ -861,8 +884,10 @@
 				DB860DC11DC3228800C94035 /* TELoginViewController.m in Sources */,
 				DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */,
 				DB860DA41DC1FEC700C94035 /* EVCircularProgressView.m in Sources */,
+				DB61AB6B1DDD524900F52A98 /* TEBroadcastLiveViewController.m in Sources */,
 				DBB390201DD4183B0077EA90 /* TEVideoPlayer.m in Sources */,
 				DB860D9E1DC1FEC700C94035 /* MLLabel.m in Sources */,
+				DB1DFD541DDC61E30035A082 /* TESettingTableController.m in Sources */,
 				DB437B011DCAD9D9000F994A /* DDTTYLogger.m in Sources */,
 				DB860DA21DC1FEC700C94035 /* NSMutableAttributedString+MLLabel.m in Sources */,
 				DB860DAE1DC2F35D00C94035 /* TEUser.m in Sources */,
@@ -874,6 +899,7 @@
 				DB860DA71DC1FF8A00C94035 /* MBProgressHUD.m in Sources */,
 				DB6DA7111D792D1900430922 /* main.m in Sources */,
 				DB860DA11DC1FEC700C94035 /* NSAttributedString+MLLabel.m in Sources */,
+				DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */,
 				DB437B041DCAD9D9000F994A /* DDMultiFormatter.m in Sources */,
 				DB4E1C071DC082C600032B81 /* TENetworkOperation.m in Sources */,
 				DB860D8A1DC1E19F00C94035 /* TEBezierPathButton.m in Sources */,

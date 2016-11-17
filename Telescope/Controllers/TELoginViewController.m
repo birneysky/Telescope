@@ -63,12 +63,11 @@
     self.protocolLabel.allowLineBreakInsideLinks = YES;
     self.protocolLabel.linkTextAttributes = nil;
     self.protocolLabel.activeLinkTextAttributes = nil;
-    self.protocolLabel.linkTextAttributes = @{NSForegroundColorAttributeName:RGB(64, 213, 171)};
+    self.protocolLabel.linkTextAttributes = @{NSForegroundColorAttributeName:TERGB(64, 213, 171)};
     
     [self.protocolLabel setDidClickLinkBlock:^(MLLink *link, NSString *linkText, MLLinkLabel *label) {
         [self performSegueWithIdentifier:@"push_web_view" sender:link];
     }];
-    
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:self.protocolLabel.text];
     

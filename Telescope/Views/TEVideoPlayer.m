@@ -30,6 +30,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    NSLog(@"♻️♻️♻️♻️ TEVideoPlayer ~ %@ ",self);
+}
+
 - (void)layoutSubviews
 {
     self.indicator.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
@@ -133,9 +138,11 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
 
 - (void)OnRtmplayerClosed:(int) errcode {
     NSLog(@"🌺🌺🌺🌺🌺🌺🌺OnRtmplayerClosed");
-    NSString* url = self.rtmpUrl[arc4random() % self.rtmpUrl.count];
-    [self startRtmpPlayWithUrl:url];
-    [self showIndicator];
+    if (self.automaticallySwitchToTheNext) {
+        NSString* url = self.rtmpUrl[arc4random() % self.rtmpUrl.count];
+        [self startRtmpPlayWithUrl:url];
+        [self showIndicator];
+    }
 }
 
 #pragma mark - ***Gesture Action ***
@@ -147,21 +154,12 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
     [recognizer setTranslation:CGPointZero inView:self.superview];
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         CGPoint velocity = [recognizer velocityInView:self.superview];
-        NSLog(@"Ended velocity %@",NSStringFromCGPoint(velocity));
-        //velocity.x = 0;
-        velocity.y = 0;
-        //[self.delegate draggableView:self draggingEndedWithVelocity:velocity];
-        //self.translatesAutoresizingMaskIntoConstraints = YES;
-        //[self layoutIfNeeded];
         [self startAnimatingWithInitialVelocity:velocity];
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged){
         CGPoint velocity = [recognizer velocityInView:self.superview];
-        NSLog(@"Changed velocity %@",NSStringFromCGPoint(velocity));
     }
     else if (recognizer.state == UIGestureRecognizerStateBegan) {
-        //self.translatesAutoresizingMaskIntoConstraints = NO;
-        //[self.delegate draggableViewBeganDragging:self];
     }
 }
 

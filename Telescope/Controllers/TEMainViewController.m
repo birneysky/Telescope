@@ -5,17 +5,21 @@
 //  Created by zhangguang on 16/10/28.
 //  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
 //
+#import <MapKit/MapKit.h>
+
+#import "TEDefaultCollectionCell.h"
+#import "TENetworkKit.h"
+#import "TEVideoPlayer.h"
+#import "TEAnnotation.h"
 
 #import "TEMainViewController.h"
 #import "TEDefaultCollectionController.h"
-#import "TEDefaultCollectionCell.h"
-#import <MapKit/MapKit.h>
+#import "TEBroadcastLiveViewController.h"
 
-#import "TENetworkKit.h"
 
-#import "TEVideoPlayer.h"
 
-#import <V2Kit/V2Kit.h>
+
+
 
 @interface TEMainViewController ()
 @property (strong, nonatomic) IBOutlet TEDefaultCollectionController *userCollectionController;
@@ -29,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoPlayerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoPlayerYConstraint;
 
+@property (weak, nonatomic) IBOutlet UIImageView *testImageView;
 
 /**
  上一次设备的方向
@@ -80,6 +85,14 @@
             obj.liveStreamingAddress = rtmps[idx];
         }];
         self.lives = array;
+        
+        __weak TEMainViewController*  weakSelf = self;
+        [self.lives enumerateObjectsUsingBlock:^(TELiveShowInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            TEAnnotation* annotation = [[TEAnnotation alloc] initWithCoordinate:obj.coordinate];
+            annotation.title = @"美女直播";
+            annotation.subtitle = @"大长腿，大长腿毛";
+            [weakSelf.mapView addAnnotation:annotation];
+        }];
     } onError:^(NSError *error) {
         
     }];
@@ -91,16 +104,14 @@
 //    CGSize screenSize = [UIScreen mainScreen].bounds.size;
 //    self.playerWidthConstraint.constant = screenSize.width;
 //    self.playerHeightConstraint.constant = screenSize.height;
-    
-//    NSString* docPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-//    [[V2Kit defaultKit] InitializeKit:docPath logLevel:0];
-//    [[V2Kit defaultKit] configServerAddress:@"123.57.217.170" serverPort:5123];
+   
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
+    self.videoPlayer.automaticallySwitchToTheNext = YES;
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
@@ -108,6 +119,7 @@
 {
     [super viewDidDisappear:animated];
     [self.videoPlayer stopRtmpPlay];
+    self.videoPlayer.automaticallySwitchToTheNext = NO;
 }
 
 #pragma mark - *** Target Action ****
@@ -127,16 +139,25 @@
     sender.selected = !sender.selected;
 }
 
+- (IBAction)shareBtnClicked:(UIButton *)sender {
+    //UIImage* screenImg = [self screenshot];
+    //self.testImageView.image = screenImg;
+    [self performSegueWithIdentifier:@"push_broadcast_live" sender:nil];
+}
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"push_broadcast_live"]) {
+        TEBroadcastLiveViewController* blvc = segue.destinationViewController;
+        blvc.backgroundImage = [self screenshot];
+    }
 }
-*/
+
 
 
 #pragma mark - *** notification selector ***
@@ -222,6 +243,22 @@
     self.previousDeviceOrientation = tOrientation;
 }
 
+- (UIImage *)screenshot{
+   // UIView* view = [self.view snapshotViewAfterScreenUpdates:YES];
+    //UIView* view = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:NO];
+    UIView* view = self.navigationController.view;
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
+    if ([view respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+        [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    } else {
+        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    }
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+
 #pragma mark - *** Override ***
 - (BOOL)prefersStatusBarHidden
 {
@@ -235,22 +272,4 @@
     }
 }
 
-
-#pragma mark - *** RTMPGuestRtmpDelegate ***
-- (void)OnRtmplayerOK {
-    NSLog(@"OnRtmpStreamOK");
-    //self.stateRTMPLabel.text = @"连接RTMP服务成功";
-}
-- (void)OnRtmplayerStatus:(int) cacheTime withBitrate:(int) curBitrate {
-    NSLog(@"OnRtmplayerStatus:%d withBitrate:%d",cacheTime,curBitrate);
-    //self.stateRTMPLabel.text = [NSString stringWithFormat:@"RTMP缓存区:%d 码率:%d",cacheTime,curBitrate];
-}
-- (void)OnRtmplayerCache:(int) time {
-    NSLog(@"OnRtmplayerCache:%d",time);
-    //self.stateRTMPLabel.text = [NSString stringWithFormat:@"RTMP正在缓存:%d",time];
-}
-
-- (void)OnRtmplayerClosed:(int) errcode {
-    
-}
 @end

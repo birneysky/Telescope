@@ -15,6 +15,12 @@
  */
 @interface TEVideoPlayer : UIView
 
+
+/**
+ 是否自动切换至下一个
+ */
+@property (nonatomic,assign) BOOL automaticallySwitchToTheNext;
+
 /**
  开始播放
  
@@ -28,6 +34,5 @@
  停止播放
  */
 - (void)stopRtmpPlay;
-
 
 @end
