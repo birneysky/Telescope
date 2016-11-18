@@ -15,7 +15,7 @@
 #import "TEPacketDisPatcher.h"
 #import "TENetworkOperation.h"
 
-#define kTENetworkKitOperationTimeOutInSeconds 5
+#define kTENetworkKitOperationTimeOutInSeconds 15
 #define kHeartBeatSendInterval 5
 #define kTagHeartBeat 1001
 #define kTagBiz 1002
@@ -225,6 +225,7 @@ NSString* gen_uuid()
     }
     [sendData appendData:data];
     [self.asyncSocket writeData:[sendData copy] withTimeout:kTENetworkKitOperationTimeOutInSeconds tag:tag];
+    [self.asyncSocket readDataWithTimeout:kTENetworkKitOperationTimeOutInSeconds tag:tag];
 }
 
 - (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr
@@ -319,17 +320,19 @@ NSString* gen_uuid()
     
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-     [self.streamBuffer appendData:data];
+    DDLogInfo(@"🔭🔭🔭🔭 didReadData:%ld",(long)data.length);
+    [self.streamBuffer appendData:data];
+    [sock readDataWithTimeout:-1 tag:kTagBiz];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didWritePartialDataOfLength:(NSUInteger)partialLength tag:(long)tag
 {
-    [sock readDataWithTimeout:-1 tag:tag];
+   // [sock readDataWithTimeout:-1 tag:kTagBiz];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
-    //NSLog(@"didWriteDataWithTag:%ld",tag);
+    DDLogInfo(@"🔭🔭🔭🔭 didWriteDataWithTag:%ld",tag);
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didReceiveTrust:(SecTrustRef)trust completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler
@@ -387,7 +390,7 @@ NSString* gen_uuid()
     //heartBead.id_p = gen_uuid();
     [self sendData:heartBead.data tag:kTagHeartBeat];
 
-    [self.asyncSocket readDataWithTimeout:kTENetworkKitOperationTimeOutInSeconds tag:0];
+   // [self.asyncSocket readDataWithTimeout:kTENetworkKitOperationTimeOutInSeconds tag:0];
 }
 
 - (void)autoReconnect:(NSTimer*)timer

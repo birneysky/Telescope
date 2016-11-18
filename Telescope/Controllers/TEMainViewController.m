@@ -14,6 +14,7 @@
 
 #import "TEMainViewController.h"
 #import "TEDefaultCollectionController.h"
+#import "TEMapViewController.h"
 #import "TEBroadcastLiveViewController.h"
 
 
@@ -23,6 +24,7 @@
 
 @interface TEMainViewController ()
 @property (strong, nonatomic) IBOutlet TEDefaultCollectionController *userCollectionController;
+@property (strong, nonatomic) IBOutlet TEMapViewController *mapViewController;
 @property (nonatomic, strong) NSArray<TELiveShowInfo*>* lives;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIView *videoView;
@@ -101,10 +103,13 @@
     self.previousDeviceOrientation = UIDeviceOrientationPortrait;
     self.angleRation = 0;
     
+    //self.mapView.showsUserLocation = YES;
+//    CLLocationCoordinate2D userCoordinate =  self.mapView.userLocation.coordinate;
+//    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(userCoordinate, 100000000, 100000000) animated:YES];
 //    CGSize screenSize = [UIScreen mainScreen].bounds.size;
 //    self.playerWidthConstraint.constant = screenSize.width;
 //    self.playerHeightConstraint.constant = screenSize.height;
-   
+    [self.mapViewController showUserLocation];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -115,9 +120,9 @@
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.videoPlayer stopRtmpPlay];
     self.videoPlayer.automaticallySwitchToTheNext = NO;
 }

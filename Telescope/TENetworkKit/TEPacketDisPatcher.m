@@ -63,7 +63,7 @@
         }
     }
     else{
-        DDLogError(@"‼️‼️‼️‼️ packetId is null");
+        DDLogError(@"‼️‼️‼️‼️ packetId is null  data %@",packet);
     }
 }
 

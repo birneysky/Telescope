@@ -42,7 +42,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="self.layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="18867368232" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4rJ-Ec-y6r" userLabel="PhoneNumTextfield" customClass="TETextField">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="18867368231" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4rJ-Ec-y6r" userLabel="PhoneNumTextfield" customClass="TETextField">
                                         <rect key="frame" x="20" y="165" width="335" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -273,6 +273,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Qc2-4c-Gln">
                                 <rect key="frame" x="0.0" y="345" width="375" height="322"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="eS4-oj-RSv" id="dl3-UM-EKl"/>
+                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rei-NS-1IY" userLabel="VideoView">
                                 <rect key="frame" x="0.0" y="65" width="375" height="281"/>
@@ -428,6 +431,7 @@
                     <connections>
                         <outlet property="fullScreenBtn" destination="QFt-20-fix" id="kNB-yJ-jhB"/>
                         <outlet property="mapView" destination="Qc2-4c-Gln" id="P5a-vT-xq6"/>
+                        <outlet property="mapViewController" destination="eS4-oj-RSv" id="Ujn-vN-aCM"/>
                         <outlet property="userCollectionController" destination="gb4-nm-dSM" id="a6J-F0-F9l"/>
                         <outlet property="videoPlayer" destination="oTR-sP-oYw" id="k7k-z1-3Y6"/>
                         <outlet property="videoPlayerHeightConstraint" destination="c4T-ob-ely" id="9RY-IZ-72G"/>
@@ -441,6 +445,11 @@
                 <customObject id="gb4-nm-dSM" customClass="TEDefaultCollectionController">
                     <connections>
                         <outlet property="view" destination="9sY-re-1Tj" id="QY3-K2-bcn"/>
+                    </connections>
+                </customObject>
+                <customObject id="eS4-oj-RSv" customClass="TEMapViewController">
+                    <connections>
+                        <outlet property="view" destination="Qc2-4c-Gln" id="gSs-Zb-jfh"/>
                     </connections>
                 </customObject>
             </objects>
@@ -467,18 +476,18 @@
                                 <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EFv-nM-tvW" id="jfN-eC-d6p">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kjw-t7-DWH">
-                                            <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aph-6d-GxZ">
-                                            <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                            <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>

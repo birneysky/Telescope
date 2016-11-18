@@ -47,7 +47,6 @@
 		DB4E1C081DC082C600032B81 /* TEPacketDisPatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C021DC082C600032B81 /* TEPacketDisPatcher.m */; };
 		DB4E1C091DC082C600032B81 /* TEStreamBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C041DC082C600032B81 /* TEStreamBuffer.m */; };
 		DB4E1C0D1DC0878300032B81 /* TEReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E1C0C1DC0878300032B81 /* TEReachability.m */; };
-		DB61AB681DDD4E1400F52A98 /* V2Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61C1DD998E900760111 /* V2Kit.framework */; };
 		DB61AB6B1DDD524900F52A98 /* TEBroadcastLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB61AB6A1DDD524900F52A98 /* TEBroadcastLiveViewController.m */; };
 		DB6DA7111D792D1900430922 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7101D792D1900430922 /* main.m */; };
 		DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7131D792D1900430922 /* AppDelegate.m */; };
@@ -81,6 +80,7 @@
 		DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9308781DDC08EE00915CCD /* TEAnnotation.m */; };
 		DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9A1DCB4597000F994A /* libsqlite3.tbd */; };
 		DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9C1DCB45E0000F994A /* ImageIO.framework */; };
+		DB9916761DDE9B8D00BFEBF6 /* TEMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9916751DDE9B8D00BFEBF6 /* TEMapViewController.m */; };
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
 		DBB3901C1DD2C6C70077EA90 /* TENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */; };
 		DBB390201DD4183B0077EA90 /* TEVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB3901F1DD4183B0077EA90 /* TEVideoPlayer.m */; };
@@ -90,8 +90,8 @@
 		DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E481DD572C30077EA90 /* VideoToolbox.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
+		DBBFDD481DDEC5DE0084677B /* V2Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61C1DD998E900760111 /* V2Kit.framework */; };
 		DBCDF6201DD9995100760111 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437BA01DCB4665000F994A /* libstdc++.tbd */; };
-		DBCDF6291DD99B6E00760111 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61E1DD9994100760111 /* libstdc++.6.tbd */; };
 		DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF62A1DD99B8800760111 /* libiconv.tbd */; };
 /* End PBXBuildFile section */
 
@@ -256,6 +256,8 @@
 		DB9308751DDBF9AD00915CCD /* TEPersonaSettingsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEPersonaSettingsTableController.m; sourceTree = "<group>"; };
 		DB9308771DDC08EE00915CCD /* TEAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAnnotation.h; sourceTree = "<group>"; };
 		DB9308781DDC08EE00915CCD /* TEAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAnnotation.m; sourceTree = "<group>"; };
+		DB9916741DDE9B8D00BFEBF6 /* TEMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEMapViewController.h; sourceTree = "<group>"; };
+		DB9916751DDE9B8D00BFEBF6 /* TEMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEMapViewController.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBB3901A1DD2C6C70077EA90 /* TENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENavigationController.h; sourceTree = "<group>"; };
 		DBB3901B1DD2C6C70077EA90 /* TENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENavigationController.m; sourceTree = "<group>"; };
@@ -279,9 +281,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB61AB681DDD4E1400F52A98 /* V2Kit.framework in Frameworks */,
+				DBBFDD481DDEC5DE0084677B /* V2Kit.framework in Frameworks */,
 				DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */,
-				DBCDF6291DD99B6E00760111 /* libstdc++.6.tbd in Frameworks */,
 				DBCDF6201DD9995100760111 /* libstdc++.tbd in Frameworks */,
 				DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */,
 				DBB39E471DD570AE0077EA90 /* TEPlayerKit.framework in Frameworks */,
@@ -682,6 +683,8 @@
 				DB1DFD531DDC61E30035A082 /* TESettingTableController.m */,
 				DB61AB691DDD524900F52A98 /* TEBroadcastLiveViewController.h */,
 				DB61AB6A1DDD524900F52A98 /* TEBroadcastLiveViewController.m */,
+				DB9916741DDE9B8D00BFEBF6 /* TEMapViewController.h */,
+				DB9916751DDE9B8D00BFEBF6 /* TEMapViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = SOURCE_ROOT;
@@ -898,6 +901,7 @@
 				DB860DA31DC1FEC700C94035 /* NSString+MLLabel.m in Sources */,
 				DB860DA71DC1FF8A00C94035 /* MBProgressHUD.m in Sources */,
 				DB6DA7111D792D1900430922 /* main.m in Sources */,
+				DB9916761DDE9B8D00BFEBF6 /* TEMapViewController.m in Sources */,
 				DB860DA11DC1FEC700C94035 /* NSAttributedString+MLLabel.m in Sources */,
 				DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */,
 				DB437B041DCAD9D9000F994A /* DDMultiFormatter.m in Sources */,
@@ -1069,7 +1073,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = Telescope/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1101,7 +1107,9 @@
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = Telescope/Telescope.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = Telescope/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

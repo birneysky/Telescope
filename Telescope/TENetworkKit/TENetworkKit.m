@@ -96,7 +96,7 @@ static TENetworkKit* defaultKit;
         teUser.showPassword = v2User.v2Pwd;
         respone.body = teUser;
         complation(respone);
-        DDLogInfo(@"📩📩📩📩 login response %@",packet);
+        DDLogInfo(@"📩📩📩📩 login response len %ld %@",(long)[packet.data length],packet);
     } errorHandler:^(NSError *error) {
         errorblock();
     }];

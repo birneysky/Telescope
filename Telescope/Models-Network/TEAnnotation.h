@@ -17,6 +17,6 @@
 @property (nonatomic, copy, nullable) NSString *subtitle;
 
 
-- (instancetype) initWithCoordinate:(CLLocationCoordinate2D) coordinate;
+- (nonnull instancetype) initWithCoordinate:(CLLocationCoordinate2D) coordinate;
 
 @end
