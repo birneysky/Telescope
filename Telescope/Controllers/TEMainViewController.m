@@ -17,11 +17,6 @@
 #import "TEMapViewController.h"
 #import "TEBroadcastLiveViewController.h"
 
-
-
-
-
-
 @interface TEMainViewController ()
 @property (strong, nonatomic) IBOutlet TEDefaultCollectionController *userCollectionController;
 @property (strong, nonatomic) IBOutlet TEMapViewController *mapViewController;

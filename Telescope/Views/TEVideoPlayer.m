@@ -110,6 +110,13 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
     [self.guestKit StopRtmpPlay];
 }
 
+- (void)clear
+{
+    [self.guestKit clear];
+    self.guestKit = nil;
+    
+}
+
 //- (void)layoutSubviews
 //{
 //    [super layoutSubviews];

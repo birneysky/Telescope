@@ -10,11 +10,12 @@
 
 #import <V2Kit/V2Kit.h>
 
-@interface TEBroadcastLiveViewController ()
+@interface TEBroadcastLiveViewController () <ShowDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIView *videoView;
 
 @property (weak, nonatomic) IBOutlet UIView *liveVideoView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @end
 
 @implementation TEBroadcastLiveViewController
@@ -23,7 +24,11 @@
     [super viewDidLoad];
 
     self.backgroundImageView.image = self.backgroundImage;
-    [[V2Kit defaultKit] videoOpenDevice:0 deviceID:@"0:Camera" videoView:self.liveVideoView];
+
+
+    
+    [V2Kit defaultKit].showDelegate = self;
+    [[V2Kit defaultKit] openCameraWithRenderView:self.liveVideoView useFrontCamera:YES];
     
     UIPanGestureRecognizer* recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
     [self.videoView addGestureRecognizer:recognizer];
@@ -47,10 +52,13 @@
 #pragma mark - *** Target Action ***
 - (IBAction)closeBtnClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        [[V2Kit defaultKit] closeCamera];
     }];
 }
 
+- (IBAction)goLiveBtnClicked:(id)sender {
+    [[V2Kit defaultKit] quickEnterShow:30 userID:88 showRole:ROLE_TYPE_CHAIRMAN];
+}
 #pragma mark - *** Override  orientation ***
 - (BOOL)shouldAutorotate
 {
@@ -61,14 +69,6 @@
 {
     return UIInterfaceOrientationPortrait;
 }
-
-
-#pragma mark - *** Override  Statusbar***
-
-//- (BOOL)prefersStatusBarHidden
-//{
-//    return YES;
-//}
 
 
 #pragma mark - ***Gesture Selector ***
@@ -107,14 +107,43 @@
                      }
                      completion:^(BOOL finished) {
                          if(leaveScreen){
-                             //[self stopRtmpPlay];
-                             //CGSize size = self.bounds.size;
-                             //self.center = CGPointMake(size.width / 2, size.height / 2);
-                             //[self showIndicator];
+                             [[V2Kit defaultKit] closeCamera];
                              [self dismissViewControllerAnimated:NO completion:nil];
                          }
                      }
      ];
 }
 
+#pragma mark - *** ShowDelegate ***
+- (void)onEnterShow:(long long)showId showInfoXml:(NSString *)xml code:(NSInteger)code
+{
+   dispatch_async(dispatch_get_main_queue(), ^{
+       self.statusLabel.text = xml;
+//       NSString* deviceID = [NSString stringWithFormat:@"%lld:Camera",(long long)88];
+//       [[V2Kit defaultKit] videoOpenDevice:88 deviceID:deviceID videoView:self.liveVideoView];
+       [[V2Kit defaultKit] uploadVideo:88];
+        //[[V2Kit defaultKit] videoSwitchCamera:self.videoView];
+    });
+    
+    
+    
+}
+
+-  (void) onMemberEnterShow:(long long)showId userID:(long long)uid userInfoXml:(NSString*)xml
+{
+//    NSString* deviceID = [NSString stringWithFormat:@"%lld:Camera",uid];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [[V2Kit defaultKit] videoOpenDevice:uid deviceID:deviceID videoView:self.remoteVideoView];
+//    });
+    
+}
+
+-  (void) onMemberExitShow:(long long)showId userID:(long long) nUserID
+{
+//    NSString* deviceID = [NSString stringWithFormat:@"%lld:Camera",nUserID];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [[V2Kit defaultKit] videoCloseDevice:nUserID deviceID:deviceID videoView:self.remoteVideoView];
+//    });
+    
+}
 @end

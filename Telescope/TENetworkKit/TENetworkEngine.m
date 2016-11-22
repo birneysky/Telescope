@@ -225,7 +225,7 @@ NSString* gen_uuid()
     }
     [sendData appendData:data];
     [self.asyncSocket writeData:[sendData copy] withTimeout:kTENetworkKitOperationTimeOutInSeconds tag:tag];
-    [self.asyncSocket readDataWithTimeout:kTENetworkKitOperationTimeOutInSeconds tag:tag];
+    //[self.asyncSocket readDataWithTimeout:kTENetworkKitOperationTimeOutInSeconds tag:tag];
 }
 
 - (BOOL)connectToHost:(NSString*)host onPort:(uint16_t)port error:(NSError **)errPtr

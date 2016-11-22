@@ -86,13 +86,13 @@
 		DBB390201DD4183B0077EA90 /* TEVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB3901F1DD4183B0077EA90 /* TEVideoPlayer.m */; };
 		DBB390231DD419410077EA90 /* TEVideoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB390221DD419410077EA90 /* TEVideoScrollView.m */; };
 		DBB390261DD441690077EA90 /* TETestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB390251DD441690077EA90 /* TETestViewController.m */; };
-		DBB39E471DD570AE0077EA90 /* TEPlayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */; };
 		DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E481DD572C30077EA90 /* VideoToolbox.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
-		DBBFDD481DDEC5DE0084677B /* V2Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61C1DD998E900760111 /* V2Kit.framework */; };
-		DBCDF6201DD9995100760111 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437BA01DCB4665000F994A /* libstdc++.tbd */; };
 		DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF62A1DD99B8800760111 /* libiconv.tbd */; };
+		DBDD58A21DE4200800473F9A /* TEPlayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */; };
+		DBDD58A31DE421D900473F9A /* V2Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61C1DD998E900760111 /* V2Kit.framework */; };
+		DBDD58A41DE428B900473F9A /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437BA01DCB4665000F994A /* libstdc++.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,19 +281,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBBFDD481DDEC5DE0084677B /* V2Kit.framework in Frameworks */,
-				DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */,
-				DBCDF6201DD9995100760111 /* libstdc++.tbd in Frameworks */,
-				DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */,
-				DBB39E471DD570AE0077EA90 /* TEPlayerKit.framework in Frameworks */,
+				DBDD58A41DE428B900473F9A /* libstdc++.tbd in Frameworks */,
+				DBDD58A21DE4200800473F9A /* TEPlayerKit.framework in Frameworks */,
+				DBDD58A31DE421D900473F9A /* V2Kit.framework in Frameworks */,
 				DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */,
-				DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */,
 				DB437B9F1DCB462D000F994A /* SystemConfiguration.framework in Frameworks */,
+				DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */,
+				DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */,
+				DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */,
+				DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */,
 				DB437B971DCB4551000F994A /* libz.tbd in Frameworks */,
 				DB437B951DCB4539000F994A /* libicucore.tbd in Frameworks */,
 				DB437B891DCB449C000F994A /* WechatConnector.framework in Frameworks */,
 				DB437B831DCB449C000F994A /* ShareSDKConfigFile.framework in Frameworks */,
-				DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */,
 				DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */,
 				DB437B8E1DCB449C000F994A /* libWeChatSDK.a in Frameworks */,
 				DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */,

@@ -35,9 +35,10 @@
     // Override point for customization after application launch.
     [self configureThirdPartLogin];
     [self configureLumberjack];
-//    NSString* docPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-//    [[V2Kit defaultKit] InitializeKit:docPath logLevel:0];
-//    [[V2Kit defaultKit] configServerAddress:@"123.57.217.170" serverPort:5123];
+
+    NSString* docPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    [[V2Kit defaultKit] InitializeKit:docPath logLevel:0];
+    [[V2Kit defaultKit] configServerAddress:@"123.57.217.170" serverPort:5123];
     return YES;
 }
 
