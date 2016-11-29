@@ -61,6 +61,7 @@ static TENetworkKit* defaultKit;
                  completion:(void(^)(TEResponse<TEUser*>* response))complation
                     onError:(void(^)())errorblock
 {
+    NSString* uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];;
     V2PPacket* loginPacket = [[V2PPacket alloc] init];
     loginPacket.packetType = V2PPacket_type_Iq;
     loginPacket.version = @"1.3.1";
@@ -73,7 +74,7 @@ static TENetworkKit* defaultKit;
 //    user.pwd2OrCode = @"111111";
     user.phone = aNum;
     user.pwd2OrCode = pwd;
-    user.deviceId = @"12316546765164";
+    user.deviceId = uuid;
     [data.userArray addObject:user];
     loginPacket.data_p = data;
     

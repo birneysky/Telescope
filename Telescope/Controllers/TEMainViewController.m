@@ -118,8 +118,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.videoPlayer stopRtmpPlay];
     self.videoPlayer.automaticallySwitchToTheNext = NO;
+    [self.videoPlayer stopRtmpPlay];
 }
 
 #pragma mark - *** Target Action ****

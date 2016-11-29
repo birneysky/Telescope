@@ -44,6 +44,7 @@ static NSOperationQueue *_sharedNetworkQueue;
 @end
 
 
+//NSString* uuid = [[NSUUID UUID] UUIDString];
 NSString* gen_uuid()
 {
     CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
