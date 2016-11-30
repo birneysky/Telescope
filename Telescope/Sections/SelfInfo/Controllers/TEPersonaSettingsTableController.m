@@ -112,6 +112,10 @@
     if ([text isEqualToString:@"设置"]) {
         [self performSegueWithIdentifier:@"te_push_setting" sender:indexPath];
     }
+    
+    if ([text isEqualToString:@"我的消息"]) {
+        [self performSegueWithIdentifier:@"te_push_messages" sender:indexPath];
+    }
 }
 
 
@@ -157,6 +161,10 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"te_push_setting"]) {
+        
+    }
+    
+    if ([segue.identifier isEqualToString:@"te_push_messages"]) {
         
     }
 }

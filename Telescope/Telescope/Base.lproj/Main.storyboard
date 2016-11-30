@@ -468,7 +468,7 @@
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pi5-lq-p43" id="DAd-5r-5EN">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -505,6 +505,7 @@
                     <navigationItem key="navigationItem" title="我" id="Cct-Kt-YGc"/>
                     <connections>
                         <segue destination="btf-gR-Or1" kind="show" identifier="te_push_setting" id="hro-Um-sdV"/>
+                        <segue destination="E10-FR-C4u" kind="show" identifier="te_push_messages" id="6lS-aG-wBI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIf-0e-wRt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -628,7 +629,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hG-m2-QOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3797.5999999999999" y="248.72563718140933"/>
+            <point key="canvasLocation" x="2974" y="224"/>
+        </scene>
+        <!--消息-->
+        <scene sceneID="zyR-o3-BJM">
+            <objects>
+                <tableViewController id="E10-FR-C4u" customClass="TEChatSessionViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ued-07-38d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iAy-Er-Rlf">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iAy-Er-Rlf" id="G5K-Ye-L8h">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="E10-FR-C4u" id="tdH-Px-bdZ"/>
+                            <outlet property="delegate" destination="E10-FR-C4u" id="m5h-NI-xu0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="消息" id="ijd-GQ-F1T"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tr1-99-TOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3780" y="224"/>
         </scene>
         <!--设置-->
         <scene sceneID="V7G-zI-KaJ">
@@ -643,7 +673,7 @@
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ips-qR-wK9" id="rg6-st-Bfm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

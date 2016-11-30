@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB012D551DEED367009EB45A /* TECacheUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB012D541DEED367009EB45A /* TECacheUser.m */; };
+		DB012D5B1DEED396009EB45A /* TECacheUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DB012D591DEED396009EB45A /* TECacheUser+CoreDataProperties.m */; };
 		DB3C06751DC1AFF800E029D9 /* TETextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3C06741DC1AFF800E029D9 /* TETextField.m */; };
 		DB437B951DCB4539000F994A /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B941DCB4539000F994A /* libicucore.tbd */; };
 		DB437B971DCB4551000F994A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B961DCB4551000F994A /* libz.tbd */; };
@@ -70,10 +72,18 @@
 		DB664E9E1DEE848900EC40A8 /* TELoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664E9D1DEE848900EC40A8 /* TELoginViewController.m */; };
 		DB664EA31DEE849C00EC40A8 /* TEPersonaSettingsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664EA01DEE849C00EC40A8 /* TEPersonaSettingsTableController.m */; };
 		DB664EA41DEE849C00EC40A8 /* TESettingTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664EA21DEE849C00EC40A8 /* TESettingTableController.m */; };
+		DB664EA61DEE856A00EC40A8 /* Telescope.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = DB664EA51DEE856A00EC40A8 /* Telescope.xcdatamodel */; };
+		DB664EA91DEEA48300EC40A8 /* TECoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664EA81DEEA48300EC40A8 /* TECoreDataHelper.m */; };
+		DB664EAC1DEEA61700EC40A8 /* TEFetchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664EAB1DEEA61700EC40A8 /* TEFetchTableViewController.m */; };
+		DB664EAF1DEEA7EE00EC40A8 /* TEChatSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664EAE1DEEA7EE00EC40A8 /* TEChatSessionViewController.m */; };
+		DB664F031DEEC1B700EC40A8 /* TEChatSession.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664F021DEEC1B700EC40A8 /* TEChatSession.m */; };
+		DB664F061DEEC1DA00EC40A8 /* TEMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664F051DEEC1DA00EC40A8 /* TEMessage.m */; };
+		DB664F0C1DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664F0A1DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.m */; };
+		DB664F181DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664F161DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m */; };
+		DB664F1B1DEEC7C700EC40A8 /* TEMessageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664F1A1DEEC7C700EC40A8 /* TEMessageFactory.m */; };
 		DB6DA7111D792D1900430922 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7101D792D1900430922 /* main.m */; };
 		DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7131D792D1900430922 /* AppDelegate.m */; };
 		DB6DA71A1D792D1900430922 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7181D792D1900430922 /* Main.storyboard */; };
-		DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA71B1D792D1900430922 /* Telescope.xcdatamodeld */; };
 		DB6DA71F1D792D1900430922 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA71E1D792D1900430922 /* Assets.xcassets */; };
 		DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */; };
 		DB6DA72D1D792D1900430922 /* TelescopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA72C1D792D1900430922 /* TelescopeTests.m */; };
@@ -114,6 +124,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB012D531DEED367009EB45A /* TECacheUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECacheUser.h; sourceTree = "<group>"; };
+		DB012D541DEED367009EB45A /* TECacheUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECacheUser.m; sourceTree = "<group>"; };
+		DB012D581DEED396009EB45A /* TECacheUser+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TECacheUser+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DB012D591DEED396009EB45A /* TECacheUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TECacheUser+CoreDataProperties.m"; sourceTree = "<group>"; };
 		DB3336591DA88F5D007D44EB /* Telescope.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Telescope.pch; sourceTree = "<group>"; };
 		DB3C06731DC1AFF800E029D9 /* TETextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TETextField.h; sourceTree = "<group>"; };
 		DB3C06741DC1AFF800E029D9 /* TETextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TETextField.m; sourceTree = "<group>"; };
@@ -242,12 +256,28 @@
 		DB664EA01DEE849C00EC40A8 /* TEPersonaSettingsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEPersonaSettingsTableController.m; sourceTree = "<group>"; };
 		DB664EA11DEE849C00EC40A8 /* TESettingTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TESettingTableController.h; sourceTree = "<group>"; };
 		DB664EA21DEE849C00EC40A8 /* TESettingTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TESettingTableController.m; sourceTree = "<group>"; };
+		DB664EA51DEE856A00EC40A8 /* Telescope.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Telescope.xcdatamodel; sourceTree = "<group>"; };
+		DB664EA71DEEA48300EC40A8 /* TECoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECoreDataHelper.h; sourceTree = "<group>"; };
+		DB664EA81DEEA48300EC40A8 /* TECoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECoreDataHelper.m; sourceTree = "<group>"; };
+		DB664EAA1DEEA61700EC40A8 /* TEFetchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEFetchTableViewController.h; sourceTree = "<group>"; };
+		DB664EAB1DEEA61700EC40A8 /* TEFetchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEFetchTableViewController.m; sourceTree = "<group>"; };
+		DB664EAD1DEEA7EE00EC40A8 /* TEChatSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatSessionViewController.h; sourceTree = "<group>"; };
+		DB664EAE1DEEA7EE00EC40A8 /* TEChatSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatSessionViewController.m; sourceTree = "<group>"; };
+		DB664F011DEEC1B700EC40A8 /* TEChatSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatSession.h; sourceTree = "<group>"; };
+		DB664F021DEEC1B700EC40A8 /* TEChatSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatSession.m; sourceTree = "<group>"; };
+		DB664F041DEEC1DA00EC40A8 /* TEMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEMessage.h; sourceTree = "<group>"; };
+		DB664F051DEEC1DA00EC40A8 /* TEMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEMessage.m; sourceTree = "<group>"; };
+		DB664F091DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TEChatSession+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DB664F0A1DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TEChatSession+CoreDataProperties.m"; sourceTree = "<group>"; };
+		DB664F151DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TEMessage+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DB664F161DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TEMessage+CoreDataProperties.m"; sourceTree = "<group>"; };
+		DB664F191DEEC7C700EC40A8 /* TEMessageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEMessageFactory.h; sourceTree = "<group>"; };
+		DB664F1A1DEEC7C700EC40A8 /* TEMessageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEMessageFactory.m; sourceTree = "<group>"; };
 		DB6DA70C1D792D1800430922 /* Telescope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telescope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DA7101D792D1900430922 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB6DA7121D792D1900430922 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DB6DA7131D792D1900430922 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DB6DA7191D792D1900430922 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DB6DA71C1D792D1900430922 /* Telescope.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Telescope.xcdatamodel; sourceTree = "<group>"; };
 		DB6DA71E1D792D1900430922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB6DA7211D792D1900430922 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB6DA7231D792D1900430922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -410,6 +440,10 @@
 		DB664DD11DEE80ED00EC40A8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DB664EAA1DEEA61700EC40A8 /* TEFetchTableViewController.h */,
+				DB664EAB1DEEA61700EC40A8 /* TEFetchTableViewController.m */,
+				DB664EAD1DEEA7EE00EC40A8 /* TEChatSessionViewController.h */,
+				DB664EAE1DEEA7EE00EC40A8 /* TEChatSessionViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -417,6 +451,23 @@
 		DB664DD21DEE80ED00EC40A8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DB664EA51DEE856A00EC40A8 /* Telescope.xcdatamodel */,
+				DB664EA71DEEA48300EC40A8 /* TECoreDataHelper.h */,
+				DB664EA81DEEA48300EC40A8 /* TECoreDataHelper.m */,
+				DB664F091DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.h */,
+				DB664F0A1DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.m */,
+				DB664F151DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.h */,
+				DB664F161DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m */,
+				DB664F011DEEC1B700EC40A8 /* TEChatSession.h */,
+				DB664F021DEEC1B700EC40A8 /* TEChatSession.m */,
+				DB664F041DEEC1DA00EC40A8 /* TEMessage.h */,
+				DB664F051DEEC1DA00EC40A8 /* TEMessage.m */,
+				DB012D531DEED367009EB45A /* TECacheUser.h */,
+				DB012D541DEED367009EB45A /* TECacheUser.m */,
+				DB012D581DEED396009EB45A /* TECacheUser+CoreDataProperties.h */,
+				DB012D591DEED396009EB45A /* TECacheUser+CoreDataProperties.m */,
+				DB664F191DEEC7C700EC40A8 /* TEMessageFactory.h */,
+				DB664F1A1DEEC7C700EC40A8 /* TEMessageFactory.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -818,17 +869,16 @@
 		DB6DA70E1D792D1900430922 /* Telescope */ = {
 			isa = PBXGroup;
 			children = (
-				DB664DED1DEE843E00EC40A8 /* Helpers */,
-				DB664DCB1DEE80ED00EC40A8 /* Sections */,
-				DB860DAB1DC2F29000C94035 /* Models-Network */,
 				DB3C06711DC1AFDD00E029D9 /* General */,
+				DB664DED1DEE843E00EC40A8 /* Helpers */,
+				DB860DAB1DC2F29000C94035 /* Models-Network */,
+				DB664DCB1DEE80ED00EC40A8 /* Sections */,
 				DB6DA7121D792D1900430922 /* AppDelegate.h */,
 				DB6DA7131D792D1900430922 /* AppDelegate.m */,
 				DB6DA7181D792D1900430922 /* Main.storyboard */,
 				DB6DA71E1D792D1900430922 /* Assets.xcassets */,
 				DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */,
 				DB6DA7231D792D1900430922 /* Info.plist */,
-				DB6DA71B1D792D1900430922 /* Telescope.xcdatamodeld */,
 				DB6DA70F1D792D1900430922 /* Supporting Files */,
 				DB3336591DA88F5D007D44EB /* Telescope.pch */,
 			);
@@ -1048,24 +1098,29 @@
 				DB664E631DEE843F00EC40A8 /* DDTTYLogger.m in Sources */,
 				DB664E641DEE843F00EC40A8 /* DDContextFilterLogFormatter.m in Sources */,
 				DB664E6A1DEE843F00EC40A8 /* MLLinkLabel.m in Sources */,
+				DB664F1B1DEEC7C700EC40A8 /* TEMessageFactory.m in Sources */,
 				DB664E681DEE843F00EC40A8 /* MLLabel.m in Sources */,
 				DB664E601DEE843F00EC40A8 /* DDASLLogger.m in Sources */,
 				DB664E621DEE843F00EC40A8 /* DDLog.m in Sources */,
 				DB664E971DEE847000EC40A8 /* TEMapViewController.m in Sources */,
 				DB3C06751DC1AFF800E029D9 /* TETextField.m in Sources */,
 				DB664E951DEE847000EC40A8 /* TEDefaultCollectionController.m in Sources */,
+				DB664F061DEEC1DA00EC40A8 /* TEMessage.m in Sources */,
 				DB664DEC1DEE83E200EC40A8 /* TEWebViewController.m in Sources */,
 				DB664E571DEE843F00EC40A8 /* TEReachability.m in Sources */,
 				DB664E5E1DEE843F00EC40A8 /* DDAbstractDatabaseLogger.m in Sources */,
-				DB6DA71D1D792D1900430922 /* Telescope.xcdatamodeld in Sources */,
 				DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */,
+				DB664F181DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m in Sources */,
 				DB664E671DEE843F00EC40A8 /* MBProgressHUD.m in Sources */,
+				DB012D551DEED367009EB45A /* TECacheUser.m in Sources */,
 				DB664DE81DEE83E200EC40A8 /* CALayer+Additions.m in Sources */,
 				DB664E6B1DEE843F00EC40A8 /* NSAttributedString+MLLabel.m in Sources */,
 				DB664E5C1DEE843F00EC40A8 /* TEStreamBuffer.m in Sources */,
 				DB664E691DEE843F00EC40A8 /* MLLabelLayoutManager.m in Sources */,
 				DB664E981DEE847000EC40A8 /* TEDefaultCollectionCell.m in Sources */,
+				DB664EAF1DEEA7EE00EC40A8 /* TEChatSessionViewController.m in Sources */,
 				DB664E661DEE843F00EC40A8 /* DDMultiFormatter.m in Sources */,
+				DB664EA91DEEA48300EC40A8 /* TECoreDataHelper.m in Sources */,
 				DB664E651DEE843F00EC40A8 /* DDDispatchQueueLogFormatter.m in Sources */,
 				DB860DAE1DC2F35D00C94035 /* TEUser.m in Sources */,
 				DB860DB11DC2F9AD00C94035 /* TEResponse.m in Sources */,
@@ -1074,12 +1129,17 @@
 				DB664E9A1DEE847000EC40A8 /* TEVideoPlayer.m in Sources */,
 				DB6DA7111D792D1900430922 /* main.m in Sources */,
 				DB664E581DEE843F00EC40A8 /* TENetworkEngine.m in Sources */,
+				DB664F0C1DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.m in Sources */,
 				DB664E5B1DEE843F00EC40A8 /* TEPacketDisPatcher.m in Sources */,
 				DB664EA41DEE849C00EC40A8 /* TESettingTableController.m in Sources */,
 				DB664E5F1DEE843F00EC40A8 /* DDASLLogCapture.m in Sources */,
 				DB664E961DEE847000EC40A8 /* TEMainViewController.m in Sources */,
 				DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */,
+				DB664EAC1DEEA61700EC40A8 /* TEFetchTableViewController.m in Sources */,
+				DB664F031DEEC1B700EC40A8 /* TEChatSession.m in Sources */,
+				DB012D5B1DEED396009EB45A /* TECacheUser+CoreDataProperties.m in Sources */,
 				DB664DEA1DEE83E200EC40A8 /* TestCollectionViewController.m in Sources */,
+				DB664EA61DEE856A00EC40A8 /* Telescope.xcdatamodel in Sources */,
 				DB664E6E1DEE843F00EC40A8 /* EVCircularProgressView.m in Sources */,
 				DB860D8A1DC1E19F00C94035 /* TEBezierPathButton.m in Sources */,
 				DB664E841DEE845400EC40A8 /* TEBroadcastLiveViewController.m in Sources */,
@@ -1398,19 +1458,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		DB6DA71B1D792D1900430922 /* Telescope.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DB6DA71C1D792D1900430922 /* Telescope.xcdatamodel */,
-			);
-			currentVersion = DB6DA71C1D792D1900430922 /* Telescope.xcdatamodel */;
-			path = Telescope.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = DB6DA7041D792D1800430922 /* Project object */;
 }
