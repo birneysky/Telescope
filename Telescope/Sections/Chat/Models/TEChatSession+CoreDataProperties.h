@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) int64_t groupID;
 @property (nonatomic) int16_t groupType;
-@property (nonatomic) int64_t remoteUserID;
+@property (nonatomic) int64_t senderID;
 @property (nullable, nonatomic, copy) NSDate *timeToRecvLastMessage;
 @property (nullable, nonatomic, copy) NSString *overviewOfLastMessage;
 @property (nonatomic) int16_t lastMessageType;

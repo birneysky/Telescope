@@ -51,6 +51,7 @@ static TECoreDataHelper* helper;
     [_defaultContext setPersistentStoreCoordinator:_coordinator];
     
     _backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    _backgroundContext.stalenessInterval = 10000;
     [_backgroundContext performBlockAndWait:^{
         [_backgroundContext setPersistentStoreCoordinator:_coordinator];
         [_backgroundContext setUndoManager:nil];

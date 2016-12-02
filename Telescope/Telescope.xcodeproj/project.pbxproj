@@ -100,6 +100,9 @@
 		DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E481DD572C30077EA90 /* VideoToolbox.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
 		DBBB668E1D79588C0044E626 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */; };
+		DBC779121DEFF8A300615DC8 /* TEChatSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC779111DEFF8A300615DC8 /* TEChatSessionCell.m */; };
+		DBC779151DF01B0200615DC8 /* TEChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC779141DF01B0200615DC8 /* TEChatViewController.m */; };
+		DBC779181DF01B2300615DC8 /* TEChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC779171DF01B2300615DC8 /* TEChatTableViewController.m */; };
 		DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF62A1DD99B8800760111 /* libiconv.tbd */; };
 		DBDD58A21DE4200800473F9A /* TEPlayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */; };
 		DBDD58A31DE421D900473F9A /* V2Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61C1DD998E900760111 /* V2Kit.framework */; };
@@ -304,6 +307,12 @@
 		DBB39E481DD572C30077EA90 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtocolBuffers.framework; path = /Users/zhangguang/mysource/source_git/Telescope/ProtocolBuffers/../library/ProtocolBuffers.framework; sourceTree = "<absolute>"; };
 		DBBB668D1D79588C0044E626 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = /Users/zhangguang/mysource/source_git/Telescope/CocoaAsyncSocket/../library/CocoaAsyncSocket.framework; sourceTree = "<absolute>"; };
+		DBC779101DEFF8A300615DC8 /* TEChatSessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatSessionCell.h; sourceTree = "<group>"; };
+		DBC779111DEFF8A300615DC8 /* TEChatSessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatSessionCell.m; sourceTree = "<group>"; };
+		DBC779131DF01B0200615DC8 /* TEChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatViewController.h; sourceTree = "<group>"; };
+		DBC779141DF01B0200615DC8 /* TEChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatViewController.m; sourceTree = "<group>"; };
+		DBC779161DF01B2300615DC8 /* TEChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatTableViewController.h; sourceTree = "<group>"; };
+		DBC779171DF01B2300615DC8 /* TEChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatTableViewController.m; sourceTree = "<group>"; };
 		DBCDF61C1DD998E900760111 /* V2Kit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = V2Kit.framework; path = ../library/V2Kit.framework; sourceTree = "<group>"; };
 		DBCDF61E1DD9994100760111 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		DBCDF62A1DD99B8800760111 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
@@ -444,6 +453,10 @@
 				DB664EAB1DEEA61700EC40A8 /* TEFetchTableViewController.m */,
 				DB664EAD1DEEA7EE00EC40A8 /* TEChatSessionViewController.h */,
 				DB664EAE1DEEA7EE00EC40A8 /* TEChatSessionViewController.m */,
+				DBC779131DF01B0200615DC8 /* TEChatViewController.h */,
+				DBC779141DF01B0200615DC8 /* TEChatViewController.m */,
+				DBC779161DF01B2300615DC8 /* TEChatTableViewController.h */,
+				DBC779171DF01B2300615DC8 /* TEChatTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -475,6 +488,8 @@
 		DB664DD31DEE80ED00EC40A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DBC779101DEFF8A300615DC8 /* TEChatSessionCell.h */,
+				DBC779111DEFF8A300615DC8 /* TEChatSessionCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1091,6 +1106,7 @@
 				DB664E9B1DEE847000EC40A8 /* TEVideoScrollView.m in Sources */,
 				DB860DAA1DC2013800C94035 /* TEActiveWheel.m in Sources */,
 				DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */,
+				DBC779151DF01B0200615DC8 /* TEChatViewController.m in Sources */,
 				DB664DE91DEE83E200EC40A8 /* TENavigationController.m in Sources */,
 				DB664E6D1DEE843F00EC40A8 /* NSString+MLLabel.m in Sources */,
 				DB664EA31DEE849C00EC40A8 /* TEPersonaSettingsTableController.m in Sources */,
@@ -1121,6 +1137,7 @@
 				DB664EAF1DEEA7EE00EC40A8 /* TEChatSessionViewController.m in Sources */,
 				DB664E661DEE843F00EC40A8 /* DDMultiFormatter.m in Sources */,
 				DB664EA91DEEA48300EC40A8 /* TECoreDataHelper.m in Sources */,
+				DBC779121DEFF8A300615DC8 /* TEChatSessionCell.m in Sources */,
 				DB664E651DEE843F00EC40A8 /* DDDispatchQueueLogFormatter.m in Sources */,
 				DB860DAE1DC2F35D00C94035 /* TEUser.m in Sources */,
 				DB860DB11DC2F9AD00C94035 /* TEResponse.m in Sources */,
@@ -1136,6 +1153,7 @@
 				DB664E961DEE847000EC40A8 /* TEMainViewController.m in Sources */,
 				DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */,
 				DB664EAC1DEEA61700EC40A8 /* TEFetchTableViewController.m in Sources */,
+				DBC779181DF01B2300615DC8 /* TEChatTableViewController.m in Sources */,
 				DB664F031DEEC1B700EC40A8 /* TEChatSession.m in Sources */,
 				DB012D5B1DEED396009EB45A /* TECacheUser+CoreDataProperties.m in Sources */,
 				DB664DEA1DEE83E200EC40A8 /* TestCollectionViewController.m in Sources */,

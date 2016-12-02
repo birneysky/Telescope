@@ -110,16 +110,16 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
-    self.videoPlayer.automaticallySwitchToTheNext = YES;
+//    [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
+//    self.videoPlayer.automaticallySwitchToTheNext = YES;
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.videoPlayer.automaticallySwitchToTheNext = NO;
-    [self.videoPlayer stopRtmpPlay];
+//    self.videoPlayer.automaticallySwitchToTheNext = NO;
+//    [self.videoPlayer stopRtmpPlay];
 }
 
 #pragma mark - *** Target Action ****

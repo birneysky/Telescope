@@ -9,12 +9,13 @@
         <attribute name="groupType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastMessageType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="overviewOfLastMessage" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="remoteUserID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="senderID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timeToRecvLastMessage" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TEMessage" inverseName="session" inverseEntity="TEMessage" syncable="YES"/>
     </entity>
     <entity name="TEMessage" representedClassName="TEMessage" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="receiverID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="recvTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="senderID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -24,7 +25,7 @@
     </entity>
     <elements>
         <element name="TECacheUser" positionX="990" positionY="531" width="128" height="75"/>
-        <element name="TEChatSession" positionX="799" positionY="455" width="128" height="148"/>
-        <element name="TEMessage" positionX="1188" positionY="479" width="128" height="148"/>
+        <element name="TEChatSession" positionX="799" positionY="455" width="128" height="150"/>
+        <element name="TEMessage" positionX="1188" positionY="479" width="128" height="165"/>
     </elements>
 </model>
