@@ -10,4 +10,9 @@
 
 @implementation TEMessage
 
+- (void)dealloc
+{
+    NSLog(@"♻️♻️♻️♻️ TEMessage ~ %@ ",self);
+}
+
 @end

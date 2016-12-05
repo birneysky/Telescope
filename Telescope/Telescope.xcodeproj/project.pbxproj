@@ -93,6 +93,11 @@
 		DB860DAE1DC2F35D00C94035 /* TEUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DAD1DC2F35D00C94035 /* TEUser.m */; };
 		DB860DB11DC2F9AD00C94035 /* TEResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DB01DC2F9AD00C94035 /* TEResponse.m */; };
 		DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */; };
+		DB8D0BAA1DF504DB008E8B15 /* TEChatExpressionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BA71DF504DB008E8B15 /* TEChatExpressionPanel.m */; };
+		DB8D0BAB1DF504DB008E8B15 /* TEChatMorePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BA91DF504DB008E8B15 /* TEChatMorePanel.m */; };
+		DB8D0BAE1DF50656008E8B15 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BAD1DF50656008E8B15 /* UIView+Frame.m */; };
+		DB8D0BB01DF5193B008E8B15 /* TEExpression.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DB8D0BAF1DF5193B008E8B15 /* TEExpression.bundle */; };
+		DB8D0BB21DF51B08008E8B15 /* TEExpressionNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB8D0BB11DF51B08008E8B15 /* TEExpressionNames.plist */; };
 		DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9308781DDC08EE00915CCD /* TEAnnotation.m */; };
 		DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9A1DCB4597000F994A /* libsqlite3.tbd */; };
 		DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9C1DCB45E0000F994A /* ImageIO.framework */; };
@@ -300,6 +305,14 @@
 		DB860DB01DC2F9AD00C94035 /* TEResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEResponse.m; sourceTree = "<group>"; };
 		DB8CFE241DC9BBF500803AA5 /* TELiveShowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TELiveShowInfo.h; sourceTree = "<group>"; };
 		DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TELiveShowInfo.m; sourceTree = "<group>"; };
+		DB8D0BA61DF504DB008E8B15 /* TEChatExpressionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatExpressionPanel.h; sourceTree = "<group>"; };
+		DB8D0BA71DF504DB008E8B15 /* TEChatExpressionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatExpressionPanel.m; sourceTree = "<group>"; };
+		DB8D0BA81DF504DB008E8B15 /* TEChatMorePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatMorePanel.h; sourceTree = "<group>"; };
+		DB8D0BA91DF504DB008E8B15 /* TEChatMorePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatMorePanel.m; sourceTree = "<group>"; };
+		DB8D0BAC1DF50656008E8B15 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		DB8D0BAD1DF50656008E8B15 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		DB8D0BAF1DF5193B008E8B15 /* TEExpression.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TEExpression.bundle; sourceTree = "<group>"; };
+		DB8D0BB11DF51B08008E8B15 /* TEExpressionNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TEExpressionNames.plist; sourceTree = "<group>"; };
 		DB9308771DDC08EE00915CCD /* TEAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAnnotation.h; sourceTree = "<group>"; };
 		DB9308781DDC08EE00915CCD /* TEAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAnnotation.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -488,6 +501,10 @@
 		DB664DD31DEE80ED00EC40A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DB8D0BA61DF504DB008E8B15 /* TEChatExpressionPanel.h */,
+				DB8D0BA71DF504DB008E8B15 /* TEChatExpressionPanel.m */,
+				DB8D0BA81DF504DB008E8B15 /* TEChatMorePanel.h */,
+				DB8D0BA91DF504DB008E8B15 /* TEChatMorePanel.m */,
 				DBC779101DEFF8A300615DC8 /* TEChatSessionCell.h */,
 				DBC779111DEFF8A300615DC8 /* TEChatSessionCell.m */,
 			);
@@ -567,6 +584,8 @@
 		DB664DDC1DEE83E200EC40A8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DB8D0BAC1DF50656008E8B15 /* UIView+Frame.h */,
+				DB8D0BAD1DF50656008E8B15 /* UIView+Frame.m */,
 				DB664DDD1DEE83E200EC40A8 /* CALayer+Additions.h */,
 				DB664DDE1DEE83E200EC40A8 /* CALayer+Additions.m */,
 			);
@@ -893,6 +912,8 @@
 				DB6DA7181D792D1900430922 /* Main.storyboard */,
 				DB6DA71E1D792D1900430922 /* Assets.xcassets */,
 				DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */,
+				DB8D0BB11DF51B08008E8B15 /* TEExpressionNames.plist */,
+				DB8D0BAF1DF5193B008E8B15 /* TEExpression.bundle */,
 				DB6DA7231D792D1900430922 /* Info.plist */,
 				DB6DA70F1D792D1900430922 /* Supporting Files */,
 				DB3336591DA88F5D007D44EB /* Telescope.pch */,
@@ -1070,9 +1091,11 @@
 				DB664E7E1DEE843F00EC40A8 /* README.txt in Resources */,
 				DB664E701DEE843F00EC40A8 /* ShareSDKConfigFile.bundle in Resources */,
 				DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */,
+				DB8D0BB01DF5193B008E8B15 /* TEExpression.bundle in Resources */,
 				DB664E731DEE843F00EC40A8 /* ShareSDKUI.bundle in Resources */,
 				DB664E7B1DEE843F00EC40A8 /* WeiboSDK.bundle in Resources */,
 				DB664E801DEE843F00EC40A8 /* ShareSDK.bundle in Resources */,
+				DB8D0BB21DF51B08008E8B15 /* TEExpressionNames.plist in Resources */,
 				DB6DA71F1D792D1900430922 /* Assets.xcassets in Resources */,
 				DB664E7D1DEE843F00EC40A8 /* read_me.txt in Resources */,
 				DB664E991DEE847000EC40A8 /* TEDefaultCollectionCell.xib in Resources */,
@@ -1119,6 +1142,7 @@
 				DB664E601DEE843F00EC40A8 /* DDASLLogger.m in Sources */,
 				DB664E621DEE843F00EC40A8 /* DDLog.m in Sources */,
 				DB664E971DEE847000EC40A8 /* TEMapViewController.m in Sources */,
+				DB8D0BAE1DF50656008E8B15 /* UIView+Frame.m in Sources */,
 				DB3C06751DC1AFF800E029D9 /* TETextField.m in Sources */,
 				DB664E951DEE847000EC40A8 /* TEDefaultCollectionController.m in Sources */,
 				DB664F061DEEC1DA00EC40A8 /* TEMessage.m in Sources */,
@@ -1132,6 +1156,7 @@
 				DB664DE81DEE83E200EC40A8 /* CALayer+Additions.m in Sources */,
 				DB664E6B1DEE843F00EC40A8 /* NSAttributedString+MLLabel.m in Sources */,
 				DB664E5C1DEE843F00EC40A8 /* TEStreamBuffer.m in Sources */,
+				DB8D0BAB1DF504DB008E8B15 /* TEChatMorePanel.m in Sources */,
 				DB664E691DEE843F00EC40A8 /* MLLabelLayoutManager.m in Sources */,
 				DB664E981DEE847000EC40A8 /* TEDefaultCollectionCell.m in Sources */,
 				DB664EAF1DEEA7EE00EC40A8 /* TEChatSessionViewController.m in Sources */,
@@ -1163,6 +1188,7 @@
 				DB664E841DEE845400EC40A8 /* TEBroadcastLiveViewController.m in Sources */,
 				DB664E5D1DEE843F00EC40A8 /* CLIColor.m in Sources */,
 				DB664E5A1DEE843F00EC40A8 /* TENetworkOperation.m in Sources */,
+				DB8D0BAA1DF504DB008E8B15 /* TEChatExpressionPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

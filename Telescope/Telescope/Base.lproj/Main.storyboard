@@ -662,7 +662,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82Y-XN-qnC">
-                                            <rect key="frame" x="278" y="19" width="87" height="21"/>
+                                            <rect key="frame" x="278" y="18" width="86" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -756,6 +756,9 @@
                                             </constraints>
                                             <state key="normal" image="te_chat_toolbar_input_voice"/>
                                             <state key="highlighted" image="te_chat_toolbar_input_voice_hl"/>
+                                            <connections>
+                                                <action selector="voiceBtnClicked:" destination="nqp-Ao-Sqe" eventType="touchUpInside" id="5OO-3z-uiH"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z60-oE-APf">
                                             <rect key="frame" x="331" y="7" width="36" height="36"/>
@@ -765,6 +768,9 @@
                                             </constraints>
                                             <state key="normal" image="te_chat_toolbar_more"/>
                                             <state key="highlighted" image="te_chat_toolbar_more_hl"/>
+                                            <connections>
+                                                <action selector="moreBtnClicked:" destination="nqp-Ao-Sqe" eventType="touchUpInside" id="YQL-t9-6ZK"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8l-Wt-lTy">
                                             <rect key="frame" x="287" y="7" width="36" height="36"/>
@@ -774,6 +780,9 @@
                                             </constraints>
                                             <state key="normal" image="te_chat_toolbar_emotion"/>
                                             <state key="highlighted" image="te_chat_toolbar_emotion_hl"/>
+                                            <connections>
+                                                <action selector="expressionBtnClicked:" destination="nqp-Ao-Sqe" eventType="touchUpInside" id="m6m-53-V96"/>
+                                            </connections>
                                         </button>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ue-47-gh7">
                                             <rect key="frame" x="52" y="8" width="227" height="34"/>
@@ -862,6 +871,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="chatTVC" destination="2gf-Mr-zfC" id="KJG-Z7-ToS"/>
+                        <outlet property="expressionBtn" destination="O8l-Wt-lTy" id="ChV-Vk-Gfx"/>
+                        <outlet property="pressTalkBtn" destination="7ue-47-gh7" id="uFv-oa-lWi"/>
+                        <outlet property="tableView" destination="XHb-Ir-sob" id="Z8F-aJ-hLv"/>
+                        <outlet property="tableViewBottomConstraint" destination="bTO-L1-6eP" id="k06-0z-aIU"/>
+                        <outlet property="textView" destination="Bxh-lb-qjw" id="bW6-HJ-pud"/>
+                        <outlet property="toolbar" destination="USn-uj-M3o" id="qoz-hm-luX"/>
+                        <outlet property="toolbarBottomConstraint" destination="xgI-EV-bNC" id="MiI-iS-jAs"/>
+                        <outlet property="voiceBtn" destination="3ko-am-BhG" id="X10-ek-dNv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qv-Lz-Tk6" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -123,21 +123,27 @@ NSString* gen_uuid()
             self.previousdate = ttDate;
             //[helper.backgroundContext refreshAllObjects];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"SomethingChanged" object:nil];
+            //[helper.backgroundContext refreshAllObjects];
         }
-//        [helper.backgroundContext refreshObject:session mergeChanges:NO];
-//        [helper.backgroundContext refreshObject:message mergeChanges:NO];
+        
+        //[helper.backgroundContext refreshObject:message mergeChanges:NO];
+        //[helper.backgroundContext refreshObject:session mergeChanges:NO];
         //NSLog(@"backgroundContext managed object count = %lu",[[helper.backgroundContext registeredObjects] count]);
 
 
+        [helper.backgroundContext refreshAllObjects];
         
     }];
+    
+    
+    
 }
 
 #pragma mark - *** api ***
 - (void)start
 {
-    NSArray<NSNumber*>* usrIDs = @[@100001,@100002,@100003,@100004,@100005,@100006,@100007,@100008/*,@100009,@100010,@100011,@100012,@100013,@100014,@100015,@100016,@100017,@100018,@100019,@100020,@100021,@100022,@100023,@100024,@100025,@100026,@100027,@100028*/];
-    NSArray<NSString*>* names = @[@"张一",@"张二",@"张三",@"张四",@"张五",@"张六",@"张七",@"张八",@"张九",@"李一",@"李二",@"李三",@"李四",@"李五",@"李六",@"🍐七",@"🍐八",@"🍐九",@"🍎一",@"🍎二",@"🍎三",@"🍎四",@"🍎屋",@"☂️一",@"☂️二",@"☂️三",@"☂️四",@"☂️五"];
+    NSArray<NSNumber*>* usrIDs = @[@100001,@100002/*,@100003,@100004,@100005,@100006,@100007,@100008,@100009,@100010,@100011,@100012,@100013,@100014,@100015,@100016,@100017,@100018,@100019,@100020,@100021,@100022,@100023,@100024,@100025,@100026,@100027,@100028*/];
+    NSArray<NSString*>* names = @[@"张一☂️",@"张二🍐"/*,@"张三♥️",@"张四🍎",@"张五",@"张六",@"张七",@"张八",@"张九",@"李一",@"李二",@"李三",@"李四",@"李五",@"李六",@"🍐七",@"🍐八",@"🍐九",@"🍎一",@"🍎二",@"🍎三",@"🍎四",@"🍎屋",@"☂️一",@"☂️二",@"☂️三",@"☂️四",@"☂️五"*/];
     self.runing = YES;
     
     TECoreDataHelper* helper = [TECoreDataHelper defaultHelper];
@@ -155,7 +161,7 @@ NSString* gen_uuid()
         }
     }];
     
-    //[helper saveDefaultContext];
+    [helper saveDefaultContext];
 
     __weak TEMessageFactory* weakSelf = self;
     dispatch_async(self.workQueue, ^{
@@ -164,7 +170,7 @@ NSString* gen_uuid()
         [[NSRunLoop currentRunLoop] addPort:dummyPort forMode:NSDefaultRunLoopMode];
         while (weakSelf.runing) {
 //            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
+            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
             NSLog(@"🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂");
             NSInteger randomIndex = arc4random() % [usrIDs count];
             [self produceMessagesWithSenderID:usrIDs[randomIndex] index:count++ sendTime:[NSDate date]];

@@ -12,14 +12,35 @@
 
 @interface TEChatTableViewController ()
 
+@property (nonatomic,strong) NSFetchRequest* fetchRequest;
+
+
+
 @end
 
 @implementation TEChatTableViewController
 
+#pragma mark - *** Properties ***
+- (NSFetchRequest*)fetchRequest
+{
+    if (!_fetchRequest) {
+        _fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"TEMessage"];
+    }
+    return _fetchRequest;
+}
+
+#pragma mark - *** Initializer ***
 - (void)dealloc
 {
     
     [self.tableView removeObserver:self forKeyPath:@"contentSize"];
+    [self.timer invalidate];
+    self.timer = nil;
+    
+//    for (int i =0 ; i < self.frc.fetchedObjects.count; i++) {
+//        TEMessage* messageItem = [self.frc objectAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+//        [self.frc.managedObjectContext refreshObject:messageItem mergeChanges:NO];
+//    }
     self.frc = nil;
 }
 
@@ -41,17 +62,19 @@
 - (void)configureFetch
 {
     TECoreDataHelper* helper = [TECoreDataHelper defaultHelper];
-    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
+
     NSPredicate* predicate  = [NSPredicate predicateWithFormat:@"session = %@",self.session];
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sendTime" ascending:YES]];
-    fetchRequest.predicate = predicate;
-    [fetchRequest setFetchBatchSize:5];
-    [fetchRequest setFetchLimit:15];
-    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:helper.backgroundContext sectionNameKeyPath:nil cacheName:nil];
+    self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sendTime" ascending:YES]];
+    self.fetchRequest.predicate = predicate;
+    [self.fetchRequest setFetchBatchSize:50];
+    [self.fetchRequest setFetchLimit:50];
+    
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:helper.backgroundContext sectionNameKeyPath:nil cacheName:nil];/* cacheName TEChatMessage*/
     self.frc.delegate = self;
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerSelecotor:) userInfo:nil repeats:YES];
 }
-
 #pragma mark - *** KVO ***
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -59,7 +82,7 @@
     if ([keyPath isEqualToString:@"contentSize"]) {
         NSLog(@"change %@",change);
         NSLog(@"contentSize %@, contentinset %@,",NSStringFromCGSize(self.tableView.contentSize) ,NSStringFromUIEdgeInsets(self.tableView.contentInset));
-        [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.contentSize.height - 44, self.tableView.contentSize.width, 44) animated:NO];
+        //[self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.contentSize.height - 44, self.tableView.contentSize.width, 44) animated:NO];
     }
 }
 
@@ -140,4 +163,39 @@
     [self.frc.managedObjectContext processPendingChanges];
 }
 
+#pragma mark - *** Timer ***
+- (void)timerSelecotor:(NSTimer*)timer
+{
+    //self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sendTime" ascending:YES]];
+    
+    //NSArray<NSIndexPath*>* visibles = self.tableView.indexPathsForVisibleRows;
+    NSLog(@"😁😁😁😁😁😁😁😁😁😁😁😁😁😁😁 %ld  ",self.frc.fetchedObjects.count);
+    //NSInteger visibleFirstIndex = visibles.firstObject.row;
+
+        __weak TEChatTableViewController* weakSelf = self;
+        [weakSelf.frc.managedObjectContext performBlock:^{
+            if(weakSelf.frc.fetchedObjects.count > 200){
+                TEMessage* message = [weakSelf.frc objectAtIndexPath:[NSIndexPath indexPathForRow:99 inSection:0]];
+                weakSelf.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"session = %@ and sendTime > %@",weakSelf.session,message.sendTime];
+                [weakSelf.fetchRequest setFetchBatchSize:weakSelf.frc.fetchedObjects.count - 100];
+                [weakSelf.fetchRequest setFetchLimit:weakSelf.frc.fetchedObjects.count - 100];
+                
+                
+                NSError* error;
+                if (![weakSelf.frc performFetch:&error]) {
+                    DebugLog(@"Failed to perform fetch : %@",error);
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                });
+                
+        }
+        }];
+        
+        //[self performFetch];
+   
+    
+    
+}
+    
 @end

@@ -15,6 +15,11 @@
 
 @implementation TEFetchTableViewController
 
+- (void)dealloc
+{
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.tableView.separatorColor = [UIColor redColor];

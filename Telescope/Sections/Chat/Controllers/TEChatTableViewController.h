@@ -15,4 +15,6 @@
 
 @property (nonatomic,weak) TEChatSession* session;
 
+@property (nonatomic,strong) NSTimer* timer;
+
 @end
