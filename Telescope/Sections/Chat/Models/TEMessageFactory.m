@@ -11,6 +11,9 @@
 #import "TEMessage+CoreDataProperties.h"
 #import "TEChatSession+CoreDataProperties.h"
 #import "TECacheUser+CoreDataProperties.h"
+#import "XMLReader.h"
+#import "TEXmlMessage.h"
+#import "XMLDictionary.h"
 
 @interface TEMessageFactory ()
 
@@ -135,8 +138,11 @@ NSString* gen_uuid()
         
     }];
     
-    
-    
+    NSString* message =  @"<TChatData IsAutoReply=\"False\" MessageID=\"2CA31945-7DCD-4552-9673-EC6A38065C70\"><ItemList><TLinkTextChatItem NewLine=\"True\" FontIndex=\"0\" Text=\"www.baidu.com\" GroupGUID=\"\" LinkType=\"lteHttp\" URL=\"www.baidu.com\"/><TTextChatItem NewLine=\"False\" FontIndex=\"1\" Text=\"  wo范德萨了附近的拉萨解放了多少房间打扫垃圾分类的撒娇法律框架大使来访记录的撒激烈反抗附近的撒离开房间里的撒娇了\"/></ItemList></TChatData>";
+    NSDictionary* dic = [XMLReader dictionaryForXMLString:message  keepOrderElement:@"ItemList" error:nil];
+    //NSDictionary* dic = [NSDictionary dictionaryWithXMLString:message];
+    TEXmlMessage* xmlMessage = [[TEXmlMessage alloc] initWithDictionary:dic];
+    NSLog(@"dic %@",dic);
 }
 
 #pragma mark - *** api ***
@@ -169,8 +175,8 @@ NSString* gen_uuid()
         NSPort* dummyPort = [NSMachPort port];
         [[NSRunLoop currentRunLoop] addPort:dummyPort forMode:NSDefaultRunLoopMode];
         while (weakSelf.runing) {
-//            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+            //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
             NSLog(@"🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂");
             NSInteger randomIndex = arc4random() % [usrIDs count];
             [self produceMessagesWithSenderID:usrIDs[randomIndex] index:count++ sendTime:[NSDate date]];
@@ -197,6 +203,9 @@ NSString* gen_uuid()
     //dispatch_release(self.workQueue);
 }
 
-
+- (NSArray<NSString*>*)messages
+{
+    return nil;
+}
 
 @end
