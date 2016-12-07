@@ -9,6 +9,7 @@
 #import "TEChatTableViewController.h"
 #import "TECoreDataHelper.h"
 #import "TEMessage+CoreDataProperties.h"
+#import "TEBubbleCell.h"
 
 @interface TEChatTableViewController ()
 
@@ -32,7 +33,7 @@
 #pragma mark - *** Initializer ***
 - (void)dealloc
 {
-    
+    NSLog(@"♻️♻️♻️♻️ TEChatTableViewController dealloc");
     [self.tableView removeObserver:self forKeyPath:@"contentSize"];
     [self.timer invalidate];
     self.timer = nil;
@@ -90,11 +91,13 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TEMessageCell" forIndexPath:indexPath];
+    TEBubbleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TEMessageCell" forIndexPath:indexPath];
     
     // Configure the cell...
     TEMessage* message = [self.frc objectAtIndexPath:indexPath];
-    cell.textLabel.text  = message.content;
+    //[message layoutModel];
+    //cell.textLabel.text  = message.content;
+    [cell setLayoutModel:message.layoutModel];
     NSDateFormatter*  dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSString* dateString = [dateFormatter stringFromDate:message.sendTime];
@@ -113,6 +116,13 @@
     //NSIndexPath* lastIndexPath = [NSIndexPath indexPathForRow:self.frc.fetchedObjects.count - 1 inSection:0];
     NSLog(@"new indexpath row %ld, count %ld",indexPath.row, self.frc.fetchedObjects.count);
     //[self.tableView scrollToRowAtIndexPath:lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TEMessage* message = [self.frc objectAtIndexPath:indexPath];
+    
+    return message.layoutModel.height;
 }
 
 /*
@@ -174,11 +184,11 @@
 
         __weak TEChatTableViewController* weakSelf = self;
         [weakSelf.frc.managedObjectContext performBlock:^{
-            if(weakSelf.frc.fetchedObjects.count > 200){
-                TEMessage* message = [weakSelf.frc objectAtIndexPath:[NSIndexPath indexPathForRow:99 inSection:0]];
+            if(weakSelf.frc.fetchedObjects.count > 50){
+                TEMessage* message = [weakSelf.frc objectAtIndexPath:[NSIndexPath indexPathForRow:24 inSection:0]];
                 weakSelf.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"session = %@ and sendTime > %@",weakSelf.session,message.sendTime];
-                [weakSelf.fetchRequest setFetchBatchSize:weakSelf.frc.fetchedObjects.count - 100];
-                [weakSelf.fetchRequest setFetchLimit:weakSelf.frc.fetchedObjects.count - 100];
+                [weakSelf.fetchRequest setFetchBatchSize:weakSelf.frc.fetchedObjects.count - 25];
+                [weakSelf.fetchRequest setFetchLimit:weakSelf.frc.fetchedObjects.count - 25];
                 
                 
                 NSError* error;
@@ -188,6 +198,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.tableView reloadData];
                 });
+                //[weakSelf.frc.managedObjectContext refreshAllObjects];
                 
         }
         }];

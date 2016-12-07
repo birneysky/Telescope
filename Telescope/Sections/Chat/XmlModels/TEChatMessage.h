@@ -7,13 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TEXmlModel.h"
-#import "TEXmlItemList.h"
+#import "TEMsgSubItem.h"
 
-@interface TEXmlChatData : TEXmlModel
+@interface TEChatMessage : NSObject
 
 @property (nonatomic,assign) BOOL isAutoReply;
-@property (nonatomic,strong) TEXmlItemList* msgItemList;
+@property (nonatomic,readonly) NSArray<TEMsgSubItem*>* msgItemList;
 @property (nonatomic,copy) NSString* messageID;
+
+- (void)addItem:(TEMsgSubItem*) item;
+- (void)removeItem:(TEMsgSubItem*) item;
+
+//- (NSDictionary*)toDictionary;
+
+- (NSString*)xmlString;
 
 @end

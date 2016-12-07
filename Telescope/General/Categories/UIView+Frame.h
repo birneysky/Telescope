@@ -10,6 +10,8 @@
 
 @interface UIView (Frame)
 
+@property (nonatomic,assign) CGPoint origin;
+
 @property (nonatomic,assign) CGFloat x;
 
 @property (nonatomic,assign) CGFloat y;

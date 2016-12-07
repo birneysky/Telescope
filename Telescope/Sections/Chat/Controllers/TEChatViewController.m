@@ -87,6 +87,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 - (void)dealloc
 {
+     NSLog(@"♻️♻️♻️♻️ TEChatViewController dealloc");
     [self.chatTVC.timer invalidate];
 }
 

@@ -9,16 +9,43 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
-    Text          = 0,
+    Unknown = 0,
+    Text,
     Image,
     Link,
     Face
 };
 
 
+#define TETextElement    @"TTextChatItem"
+#define TETextAttribute @"Text"
+
+#define TELinkElement    @"TLinkTextChatItem"
+#define TEURLAttribute @"URL"
+
+#define TESysFaceElement @"TSysFaceChatItem"
+#define TEFileNameAttribute @"FileName"
+
+#define TEPictureElement @"TPictureChatItem"
+#define TEFileExtAttribute @"FileExt"
+#define TEUUIDAttribute @"GUID"
+#define TEWidhtAttribute @"Width"
+#define TEHeightAttribute @"Height"
+
+#define TEChatElement @"TChatData"
+#define TEAutoRelyAttribute @"IsAutoReply"
+#define TEMessageIDAttribute @"MessageID"
+
+#define TEChatItemElement @"ItemList"
+
+
 @interface TEMsgSubItem : NSObject
 
 @property (nonatomic,assign) TEMsgSubItemType type;
+
+- (instancetype)initWithType:(TEMsgSubItemType)type;
+
+- (NSDictionary*) toDictionary;
 
 @end
 
@@ -27,15 +54,19 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 
 @property (nonatomic,copy) NSString* textContent;
 
+- (NSDictionary*) toDictionary;
+
 @end
 
 @interface TEMsgImageSubItem : TEMsgSubItem
 
-@property (strong, nonatomic) NSString * name;
+@property (strong, nonatomic) NSString * fileName;
 
 @property (nonatomic) int position;
 
 @property (nonatomic) CGRect imagePosition;
+
+- (NSDictionary*) toDictionary;
 
 @end
 
@@ -46,6 +77,8 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 @property (strong, nonatomic) NSString * url;
 
 @property (assign, nonatomic) NSRange range;
+
+- (NSDictionary*) toDictionary;
 
 @end
 

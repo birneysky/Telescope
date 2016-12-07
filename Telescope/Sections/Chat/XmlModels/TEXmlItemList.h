@@ -10,7 +10,10 @@
 #import "TEXmlModel.h"
 #import "TEMsgSubItem.h"
 
-@interface TEXmlItemList : TEXmlModel
+@interface TEXmlItemList : NSObject
+
+- (instancetype)initWithArray:(NSArray<NSDictionary*>*)array;
+
 
 @property (nonatomic,readonly) NSArray<TEMsgSubItem*>* items;
 

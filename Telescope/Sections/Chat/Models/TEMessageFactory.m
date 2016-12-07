@@ -11,9 +11,9 @@
 #import "TEMessage+CoreDataProperties.h"
 #import "TEChatSession+CoreDataProperties.h"
 #import "TECacheUser+CoreDataProperties.h"
-#import "XMLReader.h"
 #import "TEXmlMessage.h"
 #import "XMLDictionary.h"
+#import "TEChatXMLReader.h"
 
 @interface TEMessageFactory ()
 
@@ -33,7 +33,6 @@ NSString* gen_uuid()
     CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
     
     CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
-    
     
     CFRelease(uuid_ref);
     
@@ -77,28 +76,48 @@ NSString* gen_uuid()
          @property (nullable, nonatomic, copy) NSDate *recvTime;
 
          */
+        
+        TEChatMessage* chatMessage = [[TEChatMessage alloc] init];
+        chatMessage.isAutoReply = NO;
+        chatMessage.messageID = gen_uuid();
+        
+        
+        BOOL isProduceText = arc4random() % 2 == 0 ? YES : NO;
+        if (isProduceText) {
+            TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
+            textItem.textContent = @"念小编有一个好消息要告诉大家，我们的“老外说”终于要回归了！每期节目我们都会邀请一位“老外”现身说法，回答关于“歪国”和“歪果仁”的各种问题。念念的粉丝们也可以在公众号参与互动，留下你们的问题，小编会尽最大努力满足大家的好奇心～";
+            [chatMessage addItem:textItem];
+        }
+        
+        BOOL isproduceLink = arc4random() % 2 == 0 ? YES : NO;
+        if (isproduceLink) {
+            TEMsgLinkSubItem* linkItem = [[TEMsgLinkSubItem alloc] initWithType:Link];
+            linkItem.url = @"www.baidu.com";
+            [chatMessage addItem:linkItem];
+        }
+        
+
+        
+        TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
+        textItem.textContent = [NSString stringWithFormat:@"%@:%lu ---> self are you ok",sid,index];
+        [chatMessage addItem:textItem];
+        
+        
+        NSString* content = [chatMessage xmlString];
         TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:helper.backgroundContext];
-        message.mid = gen_uuid();
+        message.mid = chatMessage.messageID;
         message.senderID = [sid longLongValue];
         message.receiverID = 100001;
-        message.content = [NSString stringWithFormat:@"%@:%lu ---> self are you ok ",sid,index];
+        message.content = content;
         message.sendTime = date;
         message.type = 0;
         message.recvTime = [NSDate date];
         
+        NSLog(@"context Xml %@",content);
+        
         TEChatSession* session = nil;
         
         if (result.count == 0) {
-            
-            /*
-             @property (nonatomic) int64_t groupID;
-             @property (nonatomic) int16_t groupType;
-             @property (nonatomic) int64_t senderID;
-             @property (nullable, nonatomic, copy) NSDate *timeToRecvLastMessage;
-             @property (nullable, nonatomic, copy) NSString *overviewOfLastMessage;
-             @property (nonatomic) int16_t lastMessageType;
-
-             */
             session  = [NSEntityDescription insertNewObjectForEntityForName:@"TEChatSession" inManagedObjectContext:helper.backgroundContext];
             session.groupID = 0;
             session.groupType = 0;
@@ -134,15 +153,24 @@ NSString* gen_uuid()
         //NSLog(@"backgroundContext managed object count = %lu",[[helper.backgroundContext registeredObjects] count]);
 
 
-        [helper.backgroundContext refreshAllObjects];
+        //[helper.backgroundContext refreshAllObjects];
         
     }];
     
-    NSString* message =  @"<TChatData IsAutoReply=\"False\" MessageID=\"2CA31945-7DCD-4552-9673-EC6A38065C70\"><ItemList><TLinkTextChatItem NewLine=\"True\" FontIndex=\"0\" Text=\"www.baidu.com\" GroupGUID=\"\" LinkType=\"lteHttp\" URL=\"www.baidu.com\"/><TTextChatItem NewLine=\"False\" FontIndex=\"1\" Text=\"  wo范德萨了附近的拉萨解放了多少房间打扫垃圾分类的撒娇法律框架大使来访记录的撒激烈反抗附近的撒离开房间里的撒娇了\"/></ItemList></TChatData>";
-    NSDictionary* dic = [XMLReader dictionaryForXMLString:message  keepOrderElement:@"ItemList" error:nil];
-    //NSDictionary* dic = [NSDictionary dictionaryWithXMLString:message];
-    TEXmlMessage* xmlMessage = [[TEXmlMessage alloc] initWithDictionary:dic];
-    NSLog(@"dic %@",dic);
+    
+    
+//    NSString* message =  @"<TChatData IsAutoReply=\"False\" MessageID=\"2CA31945-7DCD-4552-9673-EC6A38065C70\"><ItemList><TLinkTextChatItem NewLine=\"True\" FontIndex=\"0\" Text=\"www.baidu.com\" GroupGUID=\"\" LinkType=\"lteHttp\" URL=\"www.baidu.com\"/><TTextChatItem NewLine=\"False\" FontIndex=\"1\" Text=\"  wo范德萨了附近的拉萨解放了多少房间打扫垃圾分类的撒娇法律框架大使来访记录的撒激烈反抗附近的撒离开房间里的撒娇了\"/></ItemList></TChatData>";
+//    TEChatMessage* messageModel = [TEChatXMLReader messageForXmlString:message error:nil];
+//    
+//    //NSDictionary* dic = [NSDictionary dictionaryWithXMLString:message];
+//    
+//    
+//    NSDictionary* messageDic = [messageModel toDictionary];
+//    NSString* xml = [messageDic XMLString];
+//    
+//    TEChatMessage* message2 = [TEChatXMLReader messageForXmlString:xml error:nil];
+//    TEXmlMessage* xmlMessage = [[TEXmlMessage alloc] initWithDictionary:dic];
+//    NSLog(@"dic %@",dic);
 }
 
 #pragma mark - *** api ***

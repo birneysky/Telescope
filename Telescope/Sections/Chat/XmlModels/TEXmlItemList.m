@@ -8,6 +8,8 @@
 
 #import "TEXmlItemList.h"
 
+
+
 @interface TEXmlItemList ()
 
 @property (nonatomic,strong) NSMutableArray<TEMsgSubItem*>* itemArray;
@@ -16,6 +18,25 @@
 
 @implementation TEXmlItemList
 
+- (instancetype)initWithArray:(NSArray<NSDictionary*>*)array
+{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
+
+#pragma mark - *** Helper ***
+- (void)configItemArray:(NSArray<NSDictionary*>*)array{
+    [array enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj objectForKey:@"TTextChatItem"]) {
+            
+        }
+
+        
+    }];
+}
 
 #pragma mark - *** Properties ***
 - (NSMutableArray<TEMsgSubItem*>*)itemArray

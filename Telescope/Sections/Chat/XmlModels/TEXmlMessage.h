@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TEXmlModel.h"
-#import "TEXmlChatData.h"
+//#import "TEXmlChatData.h"
 
 
 /**
@@ -18,6 +18,6 @@
 
 
 
-@property (nonatomic,strong) TEXmlChatData* tchatData;
+//@property (nonatomic,strong) TEXmlChatData* tchatData;
 
 @end

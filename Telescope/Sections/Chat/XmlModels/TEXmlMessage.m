@@ -15,12 +15,12 @@
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     
-    if ([key isEqualToString:@"TChatData"]) {
-        self.tchatData = [[TEXmlChatData alloc] initWithDictionary:value];
-    }
-    else{
-        NSLog(@"Undefine Key %@,value = %@",key,value);
-    }
+//    if ([key isEqualToString:@"TChatData"]) {
+//        self.tchatData = [[TEXmlChatData alloc] initWithDictionary:value];
+//    }
+//    else{
+//        NSLog(@"Undefine Key %@,value = %@",key,value);
+//    }
     
 }
 
