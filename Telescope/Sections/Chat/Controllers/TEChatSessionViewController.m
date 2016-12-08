@@ -80,7 +80,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-  
+    //self.frc.delegate = self;
     //NSLog(@"session view controller context managed object count = %lu",[[self.frc.managedObjectContext registeredObjects] count]);
 }
 
@@ -92,7 +92,7 @@
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"timeToRecvLastMessage" ascending:NO]];
     [request setFetchBatchSize:20];
     //[request setFetchLimit:20];
-    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataHelper.defaultContext sectionNameKeyPath:nil cacheName:@"TEChatCache"];
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:dataHelper.backgroundContext sectionNameKeyPath:nil cacheName:@"TEChatCache"];
     //self.frc.delegate = self;
 }
 
@@ -114,8 +114,8 @@
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"uid == %lld",session.senderID];
     [request setPredicate:predicate];
     NSError* error;
-    NSArray* arry =  [dataHelper.defaultContext executeFetchRequest:request error:&error];
-    if (arry.count == 1) {
+    NSArray* arry =  [dataHelper.backgroundContext executeFetchRequest:request error:&error];
+    if (arry.count >= 1) {
         [sessionCell setUserName:((TECacheUser*)arry.firstObject).nickName];
     }
     else{

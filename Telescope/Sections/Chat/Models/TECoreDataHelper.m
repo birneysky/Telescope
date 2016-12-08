@@ -46,15 +46,16 @@ static TECoreDataHelper* helper;
     }
     
     _model = [NSManagedObjectModel mergedModelFromBundles:nil];
-    _defaultContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+//    _defaultContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     _coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_model];
-    [_defaultContext setPersistentStoreCoordinator:_coordinator];
+//    [_defaultContext setPersistentStoreCoordinator:_coordinator];
+//    [_defaultContext setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
     
     _backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    _backgroundContext.stalenessInterval = 10000;
     [_backgroundContext performBlockAndWait:^{
         [_backgroundContext setPersistentStoreCoordinator:_coordinator];
-        [_backgroundContext setUndoManager:nil];
+        [_backgroundContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+        //[_backgroundContext setUndoManager:nil];
     }];
     
     NSDictionary* options = @{NSSQLitePragmasOption:@{@"journal_mode":@"DELETE"},

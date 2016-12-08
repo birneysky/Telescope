@@ -18,18 +18,16 @@
 - (TETextLayoutModel*)layoutModel
 {
     if (!_layoutModel) {
-        NSLog(@"%@",self.content);
+        //NSLog(@"%@",self.content);
         TEChatMessage* message = [TEChatXMLReader messageForXmlString:self.content error:nil];
         _layoutModel = [TETextFrameParser parseChatMessage:message];
     }
     return _layoutModel;
 }
 
-
-
 - (void)dealloc
 {
-    NSLog(@"♻️♻️♻️♻️ TEMessage ~ %@ ",self);
+    //NSLog(@"♻️♻️♻️♻️ TEMessage ~ %@ ",self);
 }
 
 @end

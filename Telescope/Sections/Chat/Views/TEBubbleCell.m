@@ -13,6 +13,10 @@
 
 @property (nonatomic,strong) TETextLayoutView* layoutView;
 
+@property (nonatomic,strong) UIButton* headImageBtn;
+
+
+
 @end
 
 @implementation TEBubbleCell
@@ -26,12 +30,22 @@
     return _layoutView;
 }
 
+- (UIButton*) headImageBtn
+{
+    if (!_headImageBtn) {
+        _headImageBtn = [[UIButton alloc] initWithFrame:CGRectMake(8, 8, 44, 44)];
+    }
+    return _headImageBtn;
+}
+
+
 #pragma mark - *** Init ***
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     
     [self.contentView addSubview:self.layoutView];
+    [self.contentView addSubview:self.headImageBtn];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -45,7 +59,9 @@
 
 - (void)setLayoutModel:(TETextLayoutModel*)model
 {
-    self.layoutView.frame = CGRectMake(0, 0, 375, model.height);
+    
+    self.layoutView.frame = CGRectMake(self.headImageBtn.rightTop.x, 8, 375, model.height);
+    
     [self.layoutView setLayoutModel:model];
 }
 

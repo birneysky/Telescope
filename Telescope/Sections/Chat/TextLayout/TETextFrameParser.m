@@ -115,7 +115,7 @@ static CGFloat widthCallback(void* ref){
     NSMutableDictionary *attributes = [self attributesWithConfig:config];
     // set color
     attributes[(id)kCTForegroundColorAttributeName] = (id)config.textColor.CGColor;
-    
+    //attributes[(id)kCTForegroundColorAttributeName] = (id)[UIColor blueColor].CGColor;
     // set font size
     CGFloat fontSize = config.fontSize;
     if (fontSize > 0) {
@@ -232,6 +232,7 @@ static CGFloat widthCallback(void* ref){
     // 将生成好的CTFrameRef实例和计算好的缓制高度保存到TETextLayoutModel实例中，最后返回TETextLayoutModel实例
     TETextLayoutModel *data = [[TETextLayoutModel alloc] init];
     data.ctFrame = frame;
+    data.width = config.width;
     data.height = textHeight;
     data.content = content;
     

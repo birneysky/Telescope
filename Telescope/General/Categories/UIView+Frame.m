@@ -63,4 +63,26 @@
     self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, height);
 }
 
+
+- (CGPoint)leftTop
+{
+    return self.origin;
+}
+
+- (CGPoint)rightTop
+{
+    return CGPointMake(self.x + self.width, self.y);
+}
+
+- (CGPoint)leftBottom
+{
+    return CGPointMake(self.x, self.y + self.height);
+}
+
+- (CGPoint)rightBottom
+{
+    return CGPointMake(self.x + self.width, self.y + self.height);
+}
+
+
 @end

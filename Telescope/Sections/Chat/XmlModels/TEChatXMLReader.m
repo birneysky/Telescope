@@ -159,6 +159,7 @@ NSString *const kXMLReaderTextNodeKey = @"text";
         TEMsgLinkSubItem* linkSubItem = [[TEMsgLinkSubItem alloc] init];
         linkSubItem.type = Link;
         linkSubItem.url = attributeDict[TEURLAttribute];
+        linkSubItem.title = attributeDict[TEURLAttribute];
         [_chatMessage addItem:linkSubItem];
     }
     else if ([elementName isEqualToString:TEPictureElement]){

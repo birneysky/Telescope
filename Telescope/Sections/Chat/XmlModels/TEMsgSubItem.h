@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TETextLayoutModelProtocol.h"
+
 typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
     Unknown = 0,
     Text,
     Image,
     Link,
-    Face
+    Face,
+    Audio
 };
 
 
@@ -39,6 +42,12 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 #define TEChatItemElement @"ItemList"
 
 
+
+
+/**
+ 理论上，一条消息是可以一个或者多个不同类型的子消息项
+ 它们通常是，文本，图片，语音，表情（跟图像是一回事）。语音类型只包含一个子消息项
+ */
 @interface TEMsgSubItem : NSObject
 
 @property (nonatomic,assign) TEMsgSubItemType type;
@@ -50,6 +59,9 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 @end
 
 
+/**
+ 文本子消息项
+ */
 @interface TEMsgTextSubItem : TEMsgSubItem
 
 @property (nonatomic,copy) NSString* textContent;
@@ -58,9 +70,12 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 
 @end
 
+/**
+ 图片子消息项
+ */
 @interface TEMsgImageSubItem : TEMsgSubItem
 
-@property (strong, nonatomic) NSString * fileName;
+@property (copy, nonatomic) NSString * fileName;
 
 @property (nonatomic) int position;
 
@@ -70,15 +85,27 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 
 @end
 
-@interface TEMsgLinkSubItem : TEMsgSubItem
 
-//@property (strong, nonatomic) NSString * title;
+/**
+ 链接子消息项
+ */
+@interface TEMsgLinkSubItem : TEMsgSubItem <TETextLinkModel>
 
-@property (strong, nonatomic) NSString * url;
+@property (copy, nonatomic) NSString * title;
+
+@property (copy, nonatomic) NSString * url;
 
 @property (assign, nonatomic) NSRange range;
 
 - (NSDictionary*) toDictionary;
+
+@end
+
+
+/**
+ 语音文件子消息项
+ */
+@interface TEMSgAudioSubItem : TEMsgSubItem
 
 @end
 

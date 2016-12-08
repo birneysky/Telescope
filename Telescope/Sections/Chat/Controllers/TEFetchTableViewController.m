@@ -64,7 +64,7 @@
             if (![weakSelf.frc performFetch:&error]) {
                 DebugLog(@"Failed to perform fetch : %@",error);
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_sync(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
             });
             //NSLog(@"context managed object count = %lx",[[weakSelf.frc.managedObjectContext registeredObjects] count]);
@@ -76,14 +76,14 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView beginUpdates];
     });
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView endUpdates];
     });
 }
@@ -96,7 +96,7 @@
     switch (type) {
         case NSFetchedResultsChangeInsert:
         {
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                               withRowAnimation:UITableViewRowAnimationFade];
@@ -105,7 +105,7 @@
             break;
         case NSFetchedResultsChangeDelete:
         {
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                               withRowAnimation:UITableViewRowAnimationFade];
                 
@@ -126,7 +126,7 @@
     switch (type) {
         case NSFetchedResultsChangeInsert:
             {
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
 //                    NSIndexPath* lastIndexPath = [NSIndexPath indexPathForRow:self.frc.fetchedObjects.count - 1 -1 inSection:0];
 //                    NSLog(@"new indexpath row %ld, count %ld",indexPath.row, self.frc.fetchedObjects.count);
 //                    [self.tableView scrollToRowAtIndexPath:lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -141,7 +141,7 @@
             break;
         case NSFetchedResultsChangeDelete:
             {
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
                     
                     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                           withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -150,7 +150,7 @@
             break;
         case NSFetchedResultsChangeUpdate:
             {
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
                     if (!newIndexPath) {
                         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                               withRowAnimation:UITableViewRowAnimationNone];
@@ -166,11 +166,13 @@
             break;
         case NSFetchedResultsChangeMove:
             {
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                          withRowAnimation:UITableViewRowAnimationNone];
-                    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                                          withRowAnimation:UITableViewRowAnimationNone];
+                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+//                                          withRowAnimation:UITableViewRowAnimationNone];
+//                    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+//                                          withRowAnimation:UITableViewRowAnimationNone];
+                    //[self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+                    [self.tableView reloadRowsAtIndexPaths:@[newIndexPath,indexPath] withRowAnimation:UITableViewRowAnimationNone];
                 });
             }
             break;

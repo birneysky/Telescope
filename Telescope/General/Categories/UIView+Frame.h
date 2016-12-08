@@ -20,5 +20,12 @@
 
 @property (nonatomic,assign) CGFloat height;
 
+@property (nonatomic,readonly) CGPoint leftTop;
+
+@property (nonatomic,readonly) CGPoint rightTop;
+
+@property (nonatomic,readonly) CGPoint leftBottom;
+
+@property (nonatomic,readonly) CGPoint rightBottom;
 
 @end

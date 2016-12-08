@@ -59,13 +59,14 @@ NSString* gen_uuid()
 #pragma makr - *** ****
 - (void)produceMessagesWithSenderID:(NSNumber*)sid index:(NSUInteger)index sendTime:(NSDate*)date;
 {
-    __weak TECoreDataHelper* helper = [TECoreDataHelper defaultHelper];
-    [helper.backgroundContext performBlock:^{
-        NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEChatSession"];
-        NSPredicate* predicat = [NSPredicate predicateWithFormat:@"senderID == %@",sid];
-        [fetchRequest setPredicate:predicat];
-        NSError* error;
-        NSArray* result = [helper.backgroundContext executeFetchRequest:fetchRequest error:&error];
+    __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEChatSession"];
+    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"senderID == %@",sid];
+    [fetchRequest setPredicate:predicat];
+    NSError* error;
+    NSArray* result = [weakContext executeFetchRequest:fetchRequest error:&error];
+    [weakContext performBlock:^{
+
         
         /*
          @property (nonatomic) int64_t senderID;
@@ -104,7 +105,7 @@ NSString* gen_uuid()
         
         
         NSString* content = [chatMessage xmlString];
-        TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:helper.backgroundContext];
+        TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:weakContext];
         message.mid = chatMessage.messageID;
         message.senderID = [sid longLongValue];
         message.receiverID = 100001;
@@ -113,12 +114,12 @@ NSString* gen_uuid()
         message.type = 0;
         message.recvTime = [NSDate date];
         
-        NSLog(@"context Xml %@",content);
+        //NSLog(@"context Xml %@",content);
         
         TEChatSession* session = nil;
         
         if (result.count == 0) {
-            session  = [NSEntityDescription insertNewObjectForEntityForName:@"TEChatSession" inManagedObjectContext:helper.backgroundContext];
+            session  = [NSEntityDescription insertNewObjectForEntityForName:@"TEChatSession" inManagedObjectContext:weakContext];
             session.groupID = 0;
             session.groupType = 0;
             session.senderID = [sid longLongValue];
@@ -138,12 +139,16 @@ NSString* gen_uuid()
         }
         
         message.session = session;
-        
-        [helper saveBackgroundContext];
+//        if ([weakContext hasChanges]) {
+//            NSError* error;
+//            [weakContext save:&error];
+//        }
+
+        [[TECoreDataHelper defaultHelper] saveBackgroundContext];
         NSDate* ttDate = [NSDate date];
         if( [ttDate timeIntervalSinceDate:self.previousdate] > 3){
             self.previousdate = ttDate;
-            //[helper.backgroundContext refreshAllObjects];
+            //[weakContext refreshAllObjects];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"SomethingChanged" object:nil];
             //[helper.backgroundContext refreshAllObjects];
         }
@@ -189,13 +194,13 @@ NSString* gen_uuid()
         [request setPredicate:predicate];
         NSArray* arry =  [helper.defaultContext executeFetchRequest:request error:&error];
         if (arry.count == 0) {
-            TECacheUser* user = [NSEntityDescription insertNewObjectForEntityForName:@"TECacheUser" inManagedObjectContext:helper.defaultContext];
+            TECacheUser* user = [NSEntityDescription insertNewObjectForEntityForName:@"TECacheUser" inManagedObjectContext:helper.backgroundContext];
             user.uid = [obj longLongValue];
             user.nickName = names[idx];
         }
     }];
     
-    [helper saveDefaultContext];
+    [helper saveBackgroundContext];
 
     __weak TEMessageFactory* weakSelf = self;
     dispatch_async(self.workQueue, ^{
@@ -203,9 +208,9 @@ NSString* gen_uuid()
         NSPort* dummyPort = [NSMachPort port];
         [[NSRunLoop currentRunLoop] addPort:dummyPort forMode:NSDefaultRunLoopMode];
         while (weakSelf.runing) {
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
             //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
-            NSLog(@"🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂");
+            //NSLog(@"🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂");
             NSInteger randomIndex = arc4random() % [usrIDs count];
             [self produceMessagesWithSenderID:usrIDs[randomIndex] index:count++ sendTime:[NSDate date]];
         }

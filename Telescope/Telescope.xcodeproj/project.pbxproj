@@ -355,6 +355,7 @@
 		DB8D0BDE1DF7F998008E8B15 /* TETextTouchUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TETextTouchUtils.m; sourceTree = "<group>"; };
 		DB8D0BE01DF80139008E8B15 /* TEBubbleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEBubbleCell.h; sourceTree = "<group>"; };
 		DB8D0BE11DF80139008E8B15 /* TEBubbleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEBubbleCell.m; sourceTree = "<group>"; };
+		DB8D0BE31DF96A5F008E8B15 /* TETextLayoutModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TETextLayoutModelProtocol.h; sourceTree = "<group>"; };
 		DB9308771DDC08EE00915CCD /* TEAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAnnotation.h; sourceTree = "<group>"; };
 		DB9308781DDC08EE00915CCD /* TEAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAnnotation.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -1046,6 +1047,7 @@
 				DB8D0BDA1DF7F911008E8B15 /* TEMagnifiterView.m */,
 				DB8D0BCE1DF7E58B008E8B15 /* TETextLayoutModel.h */,
 				DB8D0BCF1DF7E708008E8B15 /* TETextLayoutModel.m */,
+				DB8D0BE31DF96A5F008E8B15 /* TETextLayoutModelProtocol.h */,
 				DB8D0BD11DF7EB5D008E8B15 /* TETextAttibuteConfig.h */,
 				DB8D0BD21DF7EB5D008E8B15 /* TETextAttibuteConfig.m */,
 				DB8D0BD41DF7EC91008E8B15 /* TETextFrameParser.h */,

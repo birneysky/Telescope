@@ -35,6 +35,10 @@
 {
     NSLog(@"♻️♻️♻️♻️ TEChatTableViewController dealloc");
     [self.tableView removeObserver:self forKeyPath:@"contentSize"];
+    
+    self.frc.delegate = nil;
+    self.frc = nil;
+    
     [self.timer invalidate];
     self.timer = nil;
     
@@ -42,13 +46,26 @@
 //        TEMessage* messageItem = [self.frc objectAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
 //        [self.frc.managedObjectContext refreshObject:messageItem mergeChanges:NO];
 //    }
-    self.frc = nil;
+    
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self configureFetch];
 //    [self performFetch];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.frc.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.frc.delegate = nil;
 }
 
 
@@ -67,8 +84,8 @@
     NSPredicate* predicate  = [NSPredicate predicateWithFormat:@"session = %@",self.session];
     self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sendTime" ascending:YES]];
     self.fetchRequest.predicate = predicate;
-    [self.fetchRequest setFetchBatchSize:50];
-    [self.fetchRequest setFetchLimit:50];
+    [self.fetchRequest setFetchBatchSize:100];
+    [self.fetchRequest setFetchLimit:100];
     
     self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:helper.backgroundContext sectionNameKeyPath:nil cacheName:nil];/* cacheName TEChatMessage*/
     self.frc.delegate = self;
@@ -81,8 +98,8 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"contentSize"]) {
-        NSLog(@"change %@",change);
-        NSLog(@"contentSize %@, contentinset %@,",NSStringFromCGSize(self.tableView.contentSize) ,NSStringFromUIEdgeInsets(self.tableView.contentInset));
+        //NSLog(@"change %@",change);
+        //NSLog(@"contentSize %@, contentinset %@,",NSStringFromCGSize(self.tableView.contentSize) ,NSStringFromUIEdgeInsets(self.tableView.contentInset));
         //[self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.contentSize.height - 44, self.tableView.contentSize.width, 44) animated:NO];
     }
 }
@@ -91,38 +108,54 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     TEBubbleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TEMessageCell" forIndexPath:indexPath];
+
+
     
     // Configure the cell...
-    TEMessage* message = [self.frc objectAtIndexPath:indexPath];
-    //[message layoutModel];
-    //cell.textLabel.text  = message.content;
-    [cell setLayoutModel:message.layoutModel];
-    NSDateFormatter*  dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSString* dateString = [dateFormatter stringFromDate:message.sendTime];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",dateString];
+
+   
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSLog(@"new indexpath row %ld, count %ld",indexPath.row, self.frc.fetchedObjects.count);  
+    if (indexPath.row >= [self.frc.sections.lastObject numberOfObjects]) {
+        return;
+    }
+    
+    TEBubbleCell *bulleCell = (TEBubbleCell*)cell;
+    TEMessage* message = [self.frc objectAtIndexPath:indexPath];
+    //[message layoutModel];
+    //cell.textLabel.text  = message.content;
+    [bulleCell setLayoutModel:message.layoutModel];
+    NSDateFormatter*  dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSString* dateString = [dateFormatter stringFromDate:message.sendTime];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",dateString];
+   //NSLog(@"new indexpath row %ld, count %ld",indexPath.row, self.frc.fetchedObjects.count);
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //NSIndexPath* lastIndexPath = [NSIndexPath indexPathForRow:self.frc.fetchedObjects.count - 1 inSection:0];
-    NSLog(@"new indexpath row %ld, count %ld",indexPath.row, self.frc.fetchedObjects.count);
+    //NSLog(@"new indexpath row %ld, count %ld",indexPath.row, self.frc.fetchedObjects.count);
     //[self.tableView scrollToRowAtIndexPath:lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row >= [self.frc.sections.lastObject numberOfObjects]) {
+        return 0;
+    }
     TEMessage* message = [self.frc objectAtIndexPath:indexPath];
-    
-    return message.layoutModel.height;
+    CGFloat height = message.layoutModel.height;
+    if(height < 44){
+        return 44 + 16;
+    }
+    return height + 16;
 }
 
 /*
@@ -170,7 +203,7 @@
 */
 #pragma makr - ***Target Action***
 - (IBAction)tt:(id)sender {
-    [self.frc.managedObjectContext processPendingChanges];
+   // [self.frc.managedObjectContext processPendingChanges];
 }
 
 #pragma mark - *** Timer ***
@@ -178,30 +211,35 @@
 {
     //self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sendTime" ascending:YES]];
     
-    //NSArray<NSIndexPath*>* visibles = self.tableView.indexPathsForVisibleRows;
+    NSArray<NSIndexPath*>* visibles = self.tableView.indexPathsForVisibleRows;
     NSLog(@"😁😁😁😁😁😁😁😁😁😁😁😁😁😁😁 %ld  ",self.frc.fetchedObjects.count);
-    //NSInteger visibleFirstIndex = visibles.firstObject.row;
+    NSInteger visibleFirstIndex = visibles.firstObject.row;
 
         __weak TEChatTableViewController* weakSelf = self;
         [weakSelf.frc.managedObjectContext performBlock:^{
             if(weakSelf.frc.fetchedObjects.count > 50){
-                TEMessage* message = [weakSelf.frc objectAtIndexPath:[NSIndexPath indexPathForRow:24 inSection:0]];
+                TEMessage* message = [weakSelf.frc objectAtIndexPath:[NSIndexPath indexPathForRow:visibleFirstIndex inSection:0]];
                 weakSelf.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"session = %@ and sendTime > %@",weakSelf.session,message.sendTime];
-                [weakSelf.fetchRequest setFetchBatchSize:weakSelf.frc.fetchedObjects.count - 25];
-                [weakSelf.fetchRequest setFetchLimit:weakSelf.frc.fetchedObjects.count - 25];
+                [weakSelf.fetchRequest setFetchBatchSize:weakSelf.frc.fetchedObjects.count - visibleFirstIndex+1];
+                [weakSelf.fetchRequest setFetchLimit:weakSelf.frc.fetchedObjects.count - visibleFirstIndex+1];
                 
                 
                 NSError* error;
                 if (![weakSelf.frc performFetch:&error]) {
                     DebugLog(@"Failed to perform fetch : %@",error);
                 }
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
                     [weakSelf.tableView reloadData];
                 });
-                //[weakSelf.frc.managedObjectContext refreshAllObjects];
+                [weakSelf.frc.managedObjectContext refreshAllObjects];
                 
-        }
+            }
         }];
+    
+    
+    
+    
+     
         
         //[self performFetch];
    

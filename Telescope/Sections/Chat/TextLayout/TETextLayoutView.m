@@ -43,7 +43,8 @@ typedef enum CTDisplayViewState : NSInteger {
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupEvents];
+        //[self setupEvents];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -51,14 +52,15 @@ typedef enum CTDisplayViewState : NSInteger {
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self setupEvents];
+        //[self setupEvents];
     }
     return self;
 }
 
 - (void)setLayoutModel:(TETextLayoutModel *)model {
     _layoutModel = model;
-    self.state = CTDisplayViewStateNormal;
+     [self setNeedsDisplay];
+    //self.state = CTDisplayViewStateNormal;
 }
 
 - (void)setupAnchors {
@@ -128,29 +130,29 @@ typedef enum CTDisplayViewState : NSInteger {
 }
 
 - (void)setState:(CTDisplayViewState)state {
-    if (_state == state) {
-        return;
-    }
-    _state = state;
-    if (_state == CTDisplayViewStateNormal) {
-        _selectionStartPosition = -1;
-        _selectionEndPosition = -1;
-        [self removeSelectionAnchor];
-        [self removeMaginfierView];
-        [self hideMenuController];
-    } else if (_state == CTDisplayViewStateTouching) {
-        if (_leftSelectionAnchor == nil && _rightSelectionAnchor == nil) {
-            [self setupAnchors];
-        }
-    } else if (_state == CTDisplayViewStateSelecting) {
-        if (_leftSelectionAnchor == nil && _rightSelectionAnchor == nil) {
-            [self setupAnchors];
-        }
-        if (_leftSelectionAnchor.tag != ANCHOR_TARGET_TAG && _rightSelectionAnchor.tag != ANCHOR_TARGET_TAG) {
-            [self removeMaginfierView];
-            [self hideMenuController];
-        }
-    }
+//    if (_state == state) {
+//        return;
+//    }
+//    _state = state;
+//    if (_state == CTDisplayViewStateNormal) {
+//        _selectionStartPosition = -1;
+//        _selectionEndPosition = -1;
+//        [self removeSelectionAnchor];
+//        [self removeMaginfierView];
+//        [self hideMenuController];
+//    } else if (_state == CTDisplayViewStateTouching) {
+//        if (_leftSelectionAnchor == nil && _rightSelectionAnchor == nil) {
+//            [self setupAnchors];
+//        }
+//    } else if (_state == CTDisplayViewStateSelecting) {
+//        if (_leftSelectionAnchor == nil && _rightSelectionAnchor == nil) {
+//            [self setupAnchors];
+//        }
+//        if (_leftSelectionAnchor.tag != ANCHOR_TARGET_TAG && _rightSelectionAnchor.tag != ANCHOR_TARGET_TAG) {
+//            [self removeMaginfierView];
+//            [self hideMenuController];
+//        }
+//    }
     [self setNeedsDisplay];
 }
 
