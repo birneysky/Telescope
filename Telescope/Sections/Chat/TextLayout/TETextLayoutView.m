@@ -43,7 +43,7 @@ typedef enum CTDisplayViewState : NSInteger {
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        //[self setupEvents];
+        [self setupEvents];
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
@@ -52,7 +52,7 @@ typedef enum CTDisplayViewState : NSInteger {
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        //[self setupEvents];
+        [self setupEvents];
     }
     return self;
 }
@@ -130,10 +130,10 @@ typedef enum CTDisplayViewState : NSInteger {
 }
 
 - (void)setState:(CTDisplayViewState)state {
-//    if (_state == state) {
-//        return;
-//    }
-//    _state = state;
+    if (_state == state) {
+        return;
+    }
+    _state = state;
 //    if (_state == CTDisplayViewStateNormal) {
 //        _selectionStartPosition = -1;
 //        _selectionEndPosition = -1;
@@ -181,16 +181,19 @@ typedef enum CTDisplayViewState : NSInteger {
     UIGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                     action:@selector(userTapGestureDetected:)];
     [self addGestureRecognizer:tapRecognizer];
+    
+//    UISwipeGestureRecognizer* swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(userSwipeGestureDetected:)];
+//    [self addGestureRecognizer:swipe];
 
-    UIGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                    action:@selector(userLongPressedGuestureDetected:)];
-    [self addGestureRecognizer:longPressRecognizer];
-
-    UIGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                    action:@selector(userPanGuestureDetected:)];
-    [self addGestureRecognizer:panRecognizer];
-
-    self.userInteractionEnabled = YES;
+//    UIGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+//                                                    action:@selector(userLongPressedGuestureDetected:)];
+//    [self addGestureRecognizer:longPressRecognizer];
+//
+//    UIGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+//                                                    action:@selector(userPanGuestureDetected:)];
+//    [self addGestureRecognizer:panRecognizer];
+//
+//    self.userInteractionEnabled = YES;
 }
 
 - (void)drawRect:(CGRect)rect
@@ -227,10 +230,49 @@ typedef enum CTDisplayViewState : NSInteger {
 //    }
 }
 
+//- (void)userSwipeGestureDetected:(UIGestureRecognizer*)recognizer{
+//    NSLog(@"Swipe recognizer state %ld",recognizer.state);
+//}
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
+{
+    NSLog(@"touchesBegan %@",touches);
+    UITouch* touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    
+    id<TETextLinkModel> linkData = [TETextTouchUtils touchLinkInView:self atPoint:point layoutModel:self.layoutModel];
+    if (linkData) {
+//        NSLog(@"hint link!");
+//        NSDictionary *userInfo = @{ @"linkData": linkData };
+//        [[NSNotificationCenter defaultCenter] postNotificationName:CTDisplayViewLinkPressedNotification
+//                                                            object:self userInfo:userInfo];
+        _selectionStartPosition = linkData.range.location;
+        _selectionEndPosition = linkData.range.location + linkData.range.length;
+        self.state = CTDisplayViewStateTouching;
+        return;
+    }
+
+    
+}
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
+{
+    NSLog(@"touchesMoved %@",touches);
+}
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
+{
+     NSLog(@"touchesEnded");
+}
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
+{
+     NSLog(@"touchesCancelled");
+}
+
 - (void)userTapGestureDetected:(UIGestureRecognizer *)recognizer {
     if (UIGestureRecognizerStateBegan ==  recognizer.state) {
         
     }
+    NSLog(@"tap recognizer state %ld",recognizer.state);
     CGPoint point = [recognizer locationInView:self];
     if (_state == CTDisplayViewStateNormal) {
         for (id<TETextImageModel>   imageData in self.layoutModel.imageArray) {

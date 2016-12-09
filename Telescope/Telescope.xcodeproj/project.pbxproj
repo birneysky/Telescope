@@ -112,6 +112,8 @@
 		DB8D0BDC1DF7F911008E8B15 /* TEMagnifiterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BDA1DF7F911008E8B15 /* TEMagnifiterView.m */; };
 		DB8D0BDF1DF7F998008E8B15 /* TETextTouchUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BDE1DF7F998008E8B15 /* TETextTouchUtils.m */; };
 		DB8D0BE21DF80139008E8B15 /* TEBubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BE11DF80139008E8B15 /* TEBubbleCell.m */; };
+		DB8D0BE61DFA84C7008E8B15 /* TEBubbleCellInnerLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BE51DFA84C4008E8B15 /* TEBubbleCellInnerLayout.m */; };
+		DB8D0BE91DFA9633008E8B15 /* TEMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BE81DFA9633008E8B15 /* TEMessageView.m */; };
 		DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9308781DDC08EE00915CCD /* TEAnnotation.m */; };
 		DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9A1DCB4597000F994A /* libsqlite3.tbd */; };
 		DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9C1DCB45E0000F994A /* ImageIO.framework */; };
@@ -356,6 +358,10 @@
 		DB8D0BE01DF80139008E8B15 /* TEBubbleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEBubbleCell.h; sourceTree = "<group>"; };
 		DB8D0BE11DF80139008E8B15 /* TEBubbleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEBubbleCell.m; sourceTree = "<group>"; };
 		DB8D0BE31DF96A5F008E8B15 /* TETextLayoutModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TETextLayoutModelProtocol.h; sourceTree = "<group>"; };
+		DB8D0BE41DFA84C4008E8B15 /* TEBubbleCellInnerLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEBubbleCellInnerLayout.h; sourceTree = "<group>"; };
+		DB8D0BE51DFA84C4008E8B15 /* TEBubbleCellInnerLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEBubbleCellInnerLayout.m; sourceTree = "<group>"; };
+		DB8D0BE71DFA9633008E8B15 /* TEMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEMessageView.h; sourceTree = "<group>"; };
+		DB8D0BE81DFA9633008E8B15 /* TEMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEMessageView.m; sourceTree = "<group>"; };
 		DB9308771DDC08EE00915CCD /* TEAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAnnotation.h; sourceTree = "<group>"; };
 		DB9308781DDC08EE00915CCD /* TEAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAnnotation.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -537,6 +543,8 @@
 				DB012D541DEED367009EB45A /* TECacheUser.m */,
 				DB012D581DEED396009EB45A /* TECacheUser+CoreDataProperties.h */,
 				DB012D591DEED396009EB45A /* TECacheUser+CoreDataProperties.m */,
+				DB8D0BE41DFA84C4008E8B15 /* TEBubbleCellInnerLayout.h */,
+				DB8D0BE51DFA84C4008E8B15 /* TEBubbleCellInnerLayout.m */,
 				DB664F191DEEC7C700EC40A8 /* TEMessageFactory.h */,
 				DB664F1A1DEEC7C700EC40A8 /* TEMessageFactory.m */,
 			);
@@ -554,6 +562,8 @@
 				DBC779111DEFF8A300615DC8 /* TEChatSessionCell.m */,
 				DB8D0BE01DF80139008E8B15 /* TEBubbleCell.h */,
 				DB8D0BE11DF80139008E8B15 /* TEBubbleCell.m */,
+				DB8D0BE71DFA9633008E8B15 /* TEMessageView.h */,
+				DB8D0BE81DFA9633008E8B15 /* TEMessageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1255,6 +1265,7 @@
 				DB664F181DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m in Sources */,
 				DB8D0BC31DF6998E008E8B15 /* TEXmlModel.m in Sources */,
 				DB8D0BDF1DF7F998008E8B15 /* TETextTouchUtils.m in Sources */,
+				DB8D0BE61DFA84C7008E8B15 /* TEBubbleCellInnerLayout.m in Sources */,
 				DB8D0BC61DF6A198008E8B15 /* TEMsgSubItem.m in Sources */,
 				DB664E671DEE843F00EC40A8 /* MBProgressHUD.m in Sources */,
 				DB012D551DEED367009EB45A /* TECacheUser.m in Sources */,
@@ -1267,6 +1278,7 @@
 				DB8D0BBA1DF69418008E8B15 /* TEXmlMessage.m in Sources */,
 				DB664E691DEE843F00EC40A8 /* MLLabelLayoutManager.m in Sources */,
 				DB664E981DEE847000EC40A8 /* TEDefaultCollectionCell.m in Sources */,
+				DB8D0BE91DFA9633008E8B15 /* TEMessageView.m in Sources */,
 				DB664EAF1DEEA7EE00EC40A8 /* TEChatSessionViewController.m in Sources */,
 				DB664E661DEE843F00EC40A8 /* DDMultiFormatter.m in Sources */,
 				DB664EA91DEEA48300EC40A8 /* TECoreDataHelper.m in Sources */,

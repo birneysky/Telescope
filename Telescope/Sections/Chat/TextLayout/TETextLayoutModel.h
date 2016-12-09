@@ -12,8 +12,6 @@
 #import "TETextLayoutModelProtocol.h"
 
 
-
-
 @interface TETextLayoutModel: NSObject
 
 @property (assign, nonatomic) CTFrameRef ctFrame;

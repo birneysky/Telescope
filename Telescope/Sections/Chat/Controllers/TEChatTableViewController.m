@@ -91,7 +91,7 @@
     self.frc.delegate = self;
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerSelecotor:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(timerSelecotor:) userInfo:nil repeats:YES];
 }
 #pragma mark - *** KVO ***
 
@@ -130,7 +130,8 @@
     TEMessage* message = [self.frc objectAtIndexPath:indexPath];
     //[message layoutModel];
     //cell.textLabel.text  = message.content;
-    [bulleCell setLayoutModel:message.layoutModel];
+    //[bulleCell setLayoutModel:message.layoutModel];
+    [bulleCell setMessage:message];
     NSDateFormatter*  dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSString* dateString = [dateFormatter stringFromDate:message.sendTime];
@@ -151,11 +152,11 @@
         return 0;
     }
     TEMessage* message = [self.frc objectAtIndexPath:indexPath];
-    CGFloat height = message.layoutModel.height;
+    CGFloat height  = message.layout.cellHeight;
     if(height < 44){
         return 44 + 16;
     }
-    return height + 16;
+    return height;
 }
 
 /*

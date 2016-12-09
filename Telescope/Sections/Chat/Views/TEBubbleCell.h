@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "TETextLayoutModel.h"
 
+@class TEMessage;
+
 @interface TEBubbleCell : UITableViewCell
 
-- (void)setLayoutModel:(TETextLayoutModel*)model;
+- (void)setMessage:(TEMessage*)message;
 
 @end

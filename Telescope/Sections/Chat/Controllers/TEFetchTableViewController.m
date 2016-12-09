@@ -76,14 +76,14 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_sync(dispatch_get_main_queue(), ^{
         [self.tableView beginUpdates];
     });
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_sync(dispatch_get_main_queue(), ^{
         [self.tableView endUpdates];
     });
 }

@@ -151,15 +151,21 @@ static CGFloat widthCallback(void* ref){
                 TEMsgLinkSubItem* linkItem = (TEMsgLinkSubItem*)item;
                 NSAttributedString *as = [self parseAttributedContentFromNSString:linkItem.url
                                                                            config:config];
+                NSUInteger startPos = result.length;
                 [result appendAttributedString:as];
+                NSUInteger length = result.length - startPos;
+                linkItem.range = NSMakeRange(startPos, length);
+                [linkArray addObject:linkItem];
             }
                 break;
             case Image:
             {
                  TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)item;
+                 imageItem.position = [result length];
                 NSAttributedString *as =  [self parseImageDataFromNSDictionary:@{@"Width":@(imageItem.imagePosition.size.width),@"height":@(imageItem.imagePosition.size.height)}
                                                                         config:config];
                 [result appendAttributedString:as];
+                [imageArray addObject:imageItem];
             }
                 break;
             case Face:

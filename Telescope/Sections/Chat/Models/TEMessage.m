@@ -7,22 +7,17 @@
 //
 
 #import "TEMessage.h"
-#import "TETextFrameParser.h"
-#import "TEChatXMLReader.h"
-#import "TEMessage+CoreDataProperties.h"
 
 @implementation TEMessage
 
-@synthesize layoutModel = _layoutModel;
+@synthesize layout = _layout;
 
-- (TETextLayoutModel*)layoutModel
+- (TEBubbleCellInnerLayout*)layout
 {
-    if (!_layoutModel) {
-        //NSLog(@"%@",self.content);
-        TEChatMessage* message = [TEChatXMLReader messageForXmlString:self.content error:nil];
-        _layoutModel = [TETextFrameParser parseChatMessage:message];
+    if (!_layout) {
+        _layout = [[TEBubbleCellInnerLayout alloc] initWithMessage:self];
     }
-    return _layoutModel;
+    return _layout;
 }
 
 - (void)dealloc

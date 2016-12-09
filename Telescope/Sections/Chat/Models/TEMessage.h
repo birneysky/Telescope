@@ -7,11 +7,11 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "TETextLayoutModel.h"
+#import "TEBubbleCellInnerLayout.h"
 
 @interface TEMessage : NSManagedObject
 
 
-@property (nonatomic,readonly) TETextLayoutModel* layoutModel;
+@property (nonatomic,readonly) TEBubbleCellInnerLayout* layout;
 
 @end

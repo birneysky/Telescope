@@ -86,7 +86,7 @@ NSString* gen_uuid()
         BOOL isProduceText = arc4random() % 2 == 0 ? YES : NO;
         if (isProduceText) {
             TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
-            textItem.textContent = @"念小编有一个好消息要告诉大家，我们的“老外说”终于要回归了！每期节目我们都会邀请一位“老外”现身说法，回答关于“歪国”和“歪果仁”的各种问题。念念的粉丝们也可以在公众号参与互动，留下你们的问题，小编会尽最大努力满足大家的好奇心～";
+            textItem.textContent = @"念小编有一个好消息要告诉大家，我们的“老外说”终于要回归了！每期节目我们都会邀请一位“老外”现身说法 回答关于“歪国”和“歪果仁”的各种问题。念念的粉丝们也可以在公众号参与互动，留下你们的问题，小编会尽最大努力满足大家的好奇心～";
             [chatMessage addItem:textItem];
         }
         
@@ -139,6 +139,8 @@ NSString* gen_uuid()
         }
         
         message.session = session;
+        
+        //[message layout];
 //        if ([weakContext hasChanges]) {
 //            NSError* error;
 //            [weakContext save:&error];
@@ -200,7 +202,16 @@ NSString* gen_uuid()
         }
     }];
     
-    [helper saveBackgroundContext];
+    
+    __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
+    [weakContext performBlock:^{
+         //[[TECoreDataHelper defaultHelper] saveBackgroundContext];
+        if ([weakContext hasChanges]) {
+                NSError* error;
+                [weakContext save:&error];
+        }
+    }];
+    //[helper saveBackgroundContext];
 
     __weak TEMessageFactory* weakSelf = self;
     dispatch_async(self.workQueue, ^{
