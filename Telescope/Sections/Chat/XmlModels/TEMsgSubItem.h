@@ -73,7 +73,7 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 /**
  图片子消息项
  */
-@interface TEMsgImageSubItem : TEMsgSubItem
+@interface TEMsgImageSubItem : TEMsgSubItem <TETextImageModel>
 
 @property (copy, nonatomic) NSString * fileName;
 
@@ -85,6 +85,13 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 
 @end
 
+
+/**
+ 表情子消息项
+ */
+@interface TEExpresssionSubItem : TEMsgImageSubItem
+
+@end
 
 /**
  链接子消息项

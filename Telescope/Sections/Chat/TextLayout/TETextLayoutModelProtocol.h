@@ -9,6 +9,7 @@
 #ifndef TETextLayoutModelProtocol_h
 #define TETextLayoutModelProtocol_h
 
+
 @protocol TETextLinkModel <NSObject>
 
 @property (copy, nonatomic) NSString * title;
@@ -20,8 +21,8 @@
 
 @protocol TETextImageModel <NSObject>
 
-@property (copy, nonatomic) NSString * name;
-@property (nonatomic) int position;
+@property (copy, nonatomic) NSString * fileName;
+@property (nonatomic) NSUInteger position;
 
 // 此坐标是 CoreText 的坐标系，而不是UIKit的坐标系
 @property (nonatomic) CGRect imagePosition;

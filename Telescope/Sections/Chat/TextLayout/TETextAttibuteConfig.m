@@ -14,8 +14,8 @@
     self = [super init];
     if (self) {
         _width = 200.0f;
-        _fontSize = 16.0f;
-        _lineSpace = 8.0f;
+        _fontSize = 17.0f;
+        _lineSpace = 4.0f;
         _textColor = TERGB(108, 108, 108);
     }
     return self;

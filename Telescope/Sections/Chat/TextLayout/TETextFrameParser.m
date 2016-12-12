@@ -50,15 +50,17 @@ static TETextAttibuteConfig* _config;
 
 #pragma mark  ***CTRunDelegateCallbacks ***
 static CGFloat ascentCallback(void *ref){
-    return [(NSNumber*)[(__bridge NSDictionary*)ref objectForKey:@"height"] floatValue];
+    id<TETextImageModel> model = (__bridge id<TETextImageModel>)(ref);
+    return model.imagePosition.size.height;
 }
 
 static CGFloat descentCallback(void *ref){
-    return 0;
+    return 4;
 }
 
 static CGFloat widthCallback(void* ref){
-    return [(NSNumber*)[(__bridge NSDictionary*)ref objectForKey:@"width"] floatValue];
+    id<TETextImageModel> model = (__bridge id<TETextImageModel>)(ref);
+    return model.imagePosition.size.width;
 }
 
 #pragma mark - *** Helper ***
@@ -88,7 +90,7 @@ static CGFloat widthCallback(void* ref){
     return dict;
 }
 
-+ (NSAttributedString *)parseImageDataFromNSDictionary:(NSDictionary *)dict
++ (NSAttributedString *)parseImageDataFromImageModel:(id<TETextImageModel>)model
                                                 config:(TETextAttibuteConfig*)config {
     CTRunDelegateCallbacks callbacks;
     memset(&callbacks, 0, sizeof(CTRunDelegateCallbacks));
@@ -96,7 +98,7 @@ static CGFloat widthCallback(void* ref){
     callbacks.getAscent = ascentCallback;
     callbacks.getDescent = descentCallback;
     callbacks.getWidth = widthCallback;
-    CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)(dict));
+    CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void * _Nullable)(model));
     
     // 使用0xFFFC作为空白的占位符
     unichar objectReplacementChar = 0xFFFC;
@@ -162,17 +164,20 @@ static CGFloat widthCallback(void* ref){
             {
                  TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)item;
                  imageItem.position = [result length];
-                NSAttributedString *as =  [self parseImageDataFromNSDictionary:@{@"Width":@(imageItem.imagePosition.size.width),@"height":@(imageItem.imagePosition.size.height)}
-                                                                        config:config];
+                NSAttributedString *as =  [self parseImageDataFromImageModel:imageItem config:config];
                 [result appendAttributedString:as];
                 [imageArray addObject:imageItem];
             }
                 break;
             case Face:
             {
-//                TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)item;
-//                NSAttributedString *as =  [self parseImageDataFromNSDictionary:@{@"Width":@(44),@"height":@(44)} config:config];
-//                [result appendAttributedString:as];
+                TEExpresssionSubItem* faceItem = (TEExpresssionSubItem*)item;
+                faceItem.position = [result length];
+                faceItem.imagePosition = CGRectMake(0, 0, 20, 20);
+                /*@{@"width":@(44),@"height":@(44)}*/
+                NSAttributedString *as =  [self parseImageDataFromImageModel:faceItem config:config];
+                [result appendAttributedString:as];
+                [imageArray addObject:faceItem];
             }
                 break;
             default:

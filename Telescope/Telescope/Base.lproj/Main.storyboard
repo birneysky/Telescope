@@ -468,7 +468,7 @@
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pi5-lq-p43" id="DAd-5r-5EN">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -711,7 +711,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Xf-3a-R37" id="tRH-Xi-NKt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -726,7 +726,7 @@
                                     <outlet property="delegate" destination="2gf-Mr-zfC" id="Jr5-ur-cqd"/>
                                 </connections>
                             </tableView>
-                            <visualEffectView opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USn-uj-M3o">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USn-uj-M3o">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hw3-1N-yV6">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -789,7 +789,7 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bxh-lb-qjw">
                                             <rect key="frame" x="52" y="8" width="227" height="34"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" returnKeyType="send"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
@@ -820,11 +820,10 @@
                                         <constraint firstItem="7ue-47-gh7" firstAttribute="top" secondItem="hw3-1N-yV6" secondAttribute="top" constant="8" id="swe-IO-51x"/>
                                     </constraints>
                                 </view>
-                                <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="tBg-Pt-Scp"/>
                                 </constraints>
-                                <blurEffect style="light"/>
+                                <blurEffect style="extraLight"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                         <real key="value" value="0.5"/>
@@ -862,6 +861,7 @@
                         <outlet property="textView" destination="Bxh-lb-qjw" id="bW6-HJ-pud"/>
                         <outlet property="toolbar" destination="USn-uj-M3o" id="qoz-hm-luX"/>
                         <outlet property="toolbarBottomConstraint" destination="xgI-EV-bNC" id="MiI-iS-jAs"/>
+                        <outlet property="toolbarHeightConstraint" destination="tBg-Pt-Scp" id="z5L-e6-Hyr"/>
                         <outlet property="voiceBtn" destination="3ko-am-BhG" id="X10-ek-dNv"/>
                     </connections>
                 </viewController>
@@ -887,7 +887,7 @@
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ips-qR-wK9" id="rg6-st-Bfm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

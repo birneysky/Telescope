@@ -11,6 +11,7 @@
 
 #import "TEChatMorePanel.h"
 #import "TEChatExpressionPanel.h"
+#import "TEExpressionNamesManager.h"
 
 
 typedef NS_ENUM(NSUInteger,TEChatToolBarState){
@@ -21,8 +22,10 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     TEToolbarInputTextState       = 1 << 3
 };
 
+#define TEToolbarMaxHeight 100
 
-@interface TEChatViewController ()
+
+@interface TEChatViewController ()<TEChatExpressionPannelDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *toolbar;
 @property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
@@ -33,6 +36,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightConstraint;
 @property (nonatomic, strong) TEChatMorePanel* morePanel;
 @property (nonatomic, strong) TEChatExpressionPanel* expressionPanel;
 @property (nonatomic, assign) TEChatToolBarState toolbarState;
@@ -56,6 +60,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 {
     if (!_expressionPanel) {
         _expressionPanel = [[TEChatExpressionPanel alloc] initWithFrame:CGRectMake(0, SCREENHEIGHT, SCREENWIDTH, 240)];
+        _expressionPanel.delegate = self;
     }
     return _expressionPanel;
 }
@@ -78,6 +83,8 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [self.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,6 +95,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 - (void)dealloc
 {
      NSLog(@"♻️♻️♻️♻️ TEChatViewController dealloc");
+    [self.textView removeObserver:self forKeyPath:@"contentSize"];
     [self.chatTVC.timer invalidate];
 }
 
@@ -221,4 +229,70 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     }
 
 }
+
+
+- (void)sendMessage
+{
+    NSString* pattern = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
+    NSRegularExpression* regularExpression = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSString* text = self.textView.text;
+    NSArray<NSTextCheckingResult*>* result = [regularExpression matchesInString:text options:NSMatchingWithTransparentBounds range:NSMakeRange(0, text.length)];
+    
+    [result enumerateObjectsUsingBlock:^(NSTextCheckingResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+    }];
+    
+    NSAssert(regularExpression,@"正则%@有误",pattern);
+}
+
+#pragma mark - *** KVO ***
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        //NSLog(@"textVewContentSize %@",NSStringFromCGSize(self.textView.contentSize));
+        CGFloat totalHeight = self.textView.contentSize.height + 16;
+        if (totalHeight > 50 && totalHeight <= TEToolbarMaxHeight) {
+            self.toolbarHeightConstraint.constant = totalHeight;
+        }
+        else if(totalHeight <= 50){
+            self.toolbarHeightConstraint.constant = 50;
+        }
+        else{
+            return;
+        }
+        [self.toolbar setNeedsUpdateConstraints];
+    }
+}
+
+
+#pragma mark - *** TextViewDelegate ***
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        
+        return NO;
+    }
+    return YES;
+}
+
+
+#pragma mark - ***TEChatExpressionPannelDelegate ***
+- (void)factButtonClickedAtIndex:(NSUInteger)index
+{
+    TEExpressionNamesManager* manager = [TEExpressionNamesManager defaultManager];
+    
+    NSString* expresssionName =  manager.names[index];
+    self.textView.text = [self.textView.text stringByAppendingFormat:@"[%@]",expresssionName];
+    [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length - 1, 1)];
+}
+
+- (void)sendButtonClickedInPannnel
+{
+    if (self.textView.text.length <= 0) {
+        return;
+    }
+    [self sendMessage];
+}
+
 @end

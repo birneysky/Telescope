@@ -171,6 +171,12 @@ NSString *const kXMLReaderTextNodeKey = @"text";
         pictureSubItem.imagePosition = CGRectMake(0, 0, width, height);
         [_chatMessage addItem:pictureSubItem];
     }
+    else if([elementName isEqualToString:TESysFaceElement]){
+        TEExpresssionSubItem* faceItem = [[TEExpresssionSubItem alloc] initWithType:Face];
+        faceItem.fileName = attributeDict[TEFileNameAttribute];
+        faceItem.imagePosition = CGRectMake(0, 0, 20, 20);
+        [_chatMessage addItem:faceItem];
+    }
     
     
 }

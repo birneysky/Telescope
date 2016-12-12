@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TEChatExpressionPannelDelegate <NSObject>
+
+- (void)factButtonClickedAtIndex:(NSUInteger)index;
+
+- (void)sendButtonClickedInPannnel;
+
+@end
+
 @interface TEChatExpressionPanel : UIView
+
+@property (nonatomic,weak) id<TEChatExpressionPannelDelegate> delegate;
 
 @end

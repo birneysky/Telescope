@@ -80,6 +80,19 @@
 
 @end
 
+@implementation TEExpresssionSubItem
+
+- (NSDictionary*) toDictionary
+{
+    NSDictionary* rootDic = [super toDictionary];
+    NSMutableDictionary* sub = [rootDic objectForKey:TESysFaceElement];
+    [sub setObject:self.fileName
+            forKey:[NSString stringWithFormat:@"_%@",TEFileNameAttribute]];
+    return rootDic;
+}
+
+@end
+
 @implementation TEMsgLinkSubItem
 
 - (NSDictionary*) toDictionary

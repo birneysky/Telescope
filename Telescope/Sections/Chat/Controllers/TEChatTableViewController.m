@@ -9,6 +9,7 @@
 #import "TEChatTableViewController.h"
 #import "TECoreDataHelper.h"
 #import "TEMessage+CoreDataProperties.h"
+#import "TEChatSession+CoreDataProperties.h"
 #import "TEBubbleCell.h"
 
 @interface TEChatTableViewController ()
@@ -16,6 +17,10 @@
 @property (nonatomic,strong) NSFetchRequest* fetchRequest;
 
 
+/**
+ 是否自动滑动到底部，当收到新消息时
+ */
+@property (nonatomic,assign) BOOL autoScrollToBottomWhenNewMessaeComming;
 
 @end
 
@@ -81,26 +86,34 @@
 {
     TECoreDataHelper* helper = [TECoreDataHelper defaultHelper];
 
-    NSPredicate* predicate  = [NSPredicate predicateWithFormat:@"session = %@",self.session];
+    NSPredicate* predicate  = [NSPredicate predicateWithFormat:@"sessionID = %lld",self.session.sID];
+    
     self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sendTime" ascending:YES]];
     self.fetchRequest.predicate = predicate;
-    [self.fetchRequest setFetchBatchSize:100];
-    [self.fetchRequest setFetchLimit:100];
+    NSInteger offset = self.session.totalNumOfMessage - 20 < 0 ? 0 : self.session.totalNumOfMessage - 20;
+    [self.fetchRequest setFetchOffset:offset];
+    [self.fetchRequest setFetchLimit:20];
     
     self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:helper.backgroundContext sectionNameKeyPath:nil cacheName:nil];/* cacheName TEChatMessage*/
     self.frc.delegate = self;
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(timerSelecotor:) userInfo:nil repeats:YES];
+    self.autoScrollToBottomWhenNewMessaeComming = YES;
 }
 #pragma mark - *** KVO ***
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"contentSize"]) {
+    if ([keyPath isEqualToString:@"contentSize"] && self.autoScrollToBottomWhenNewMessaeComming) {
         //NSLog(@"change %@",change);
         //NSLog(@"contentSize %@, contentinset %@,",NSStringFromCGSize(self.tableView.contentSize) ,NSStringFromUIEdgeInsets(self.tableView.contentInset));
-        //[self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.contentSize.height - 44, self.tableView.contentSize.width, 44) animated:NO];
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.25f];
+        [UIView setAnimationCurve:7];
+        [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.contentSize.height - 44, self.tableView.contentSize.width, 44) animated:NO];
+        [UIView commitAnimations];
     }
 }
 
@@ -220,7 +233,7 @@
         [weakSelf.frc.managedObjectContext performBlock:^{
             if(weakSelf.frc.fetchedObjects.count > 50){
                 TEMessage* message = [weakSelf.frc objectAtIndexPath:[NSIndexPath indexPathForRow:visibleFirstIndex inSection:0]];
-                weakSelf.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"session = %@ and sendTime > %@",weakSelf.session,message.sendTime];
+                weakSelf.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"sessionID = %lld and sendTime > %@",weakSelf.session.sID,message.sendTime];
                 [weakSelf.fetchRequest setFetchBatchSize:weakSelf.frc.fetchedObjects.count - visibleFirstIndex+1];
                 [weakSelf.fetchRequest setFetchLimit:weakSelf.frc.fetchedObjects.count - visibleFirstIndex+1];
                 
@@ -232,7 +245,7 @@
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [weakSelf.tableView reloadData];
                 });
-                [weakSelf.frc.managedObjectContext refreshAllObjects];
+               // [weakSelf.frc.managedObjectContext refreshAllObjects];
                 
             }
         }];
@@ -246,6 +259,26 @@
    
     
     
+}
+
+
+#pragma mark - *** UIScrollViewDelegate ***
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"scrollViewDidEndDecelerating");
+    NSArray<NSIndexPath *> * cellArray = [self.tableView indexPathsForVisibleRows];
+    NSIndexPath* lastIndexPath =  cellArray.lastObject;
+    NSIndexPath* firstIndexPath = cellArray.firstObject;
+    
+    NSLog(@"firstPath row:%ld,lastPath row:%ld",firstIndexPath.row,lastIndexPath.row);
+    NSInteger rowCount = [self.tableView  numberOfRowsInSection:0];
+    if ( rowCount - lastIndexPath.row < 5) {
+        self.autoScrollToBottomWhenNewMessaeComming = YES;
+    }
+    else{
+        self.autoScrollToBottomWhenNewMessaeComming = NO;
+    }
 }
     
 @end

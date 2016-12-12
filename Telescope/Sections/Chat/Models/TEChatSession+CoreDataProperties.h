@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *timeToRecvLastMessage;
 @property (nullable, nonatomic, copy) NSString *overviewOfLastMessage;
 @property (nonatomic) int16_t lastMessageType;
-@property (nullable, nonatomic, retain) NSSet<TEMessage *> *messages;
+@property (nonatomic, assign) int32_t sID;
+@property (nonatomic, assign) int32_t totalNumOfMessage;
 
 @end
 

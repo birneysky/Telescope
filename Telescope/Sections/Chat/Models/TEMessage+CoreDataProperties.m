@@ -14,13 +14,13 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"TEMessage"];
 }
 
-@dynamic mid;
+@dynamic mID;
 @dynamic senderID;
 @dynamic receiverID;
 @dynamic content;
 @dynamic sendTime;
 @dynamic type;
 @dynamic recvTime;
-@dynamic session;
+@dynamic sessionID;
 
 @end

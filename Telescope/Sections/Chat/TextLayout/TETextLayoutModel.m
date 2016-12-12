@@ -58,8 +58,9 @@
                 continue;
             }
             
-            NSDictionary * metaDic = CTRunDelegateGetRefCon(delegate);
-            if (![metaDic isKindOfClass:[NSDictionary class]]) {
+            id<TETextImageModel>  model = CTRunDelegateGetRefCon(delegate);
+            
+            if (![model respondsToSelector:@selector(imagePosition)]) {
                 continue;
             }
             

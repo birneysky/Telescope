@@ -86,8 +86,25 @@ NSString* gen_uuid()
         BOOL isProduceText = arc4random() % 2 == 0 ? YES : NO;
         if (isProduceText) {
             TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
-            textItem.textContent = @"念小编有一个好消息要告诉大家，我们的“老外说”终于要回归了！每期节目我们都会邀请一位“老外”现身说法 回答关于“歪国”和“歪果仁”的各种问题。念念的粉丝们也可以在公众号参与互动，留下你们的问题，小编会尽最大努力满足大家的好奇心～";
+            textItem.textContent = @"念小编有一个好消息要告诉大家，我们的“老外说”终于要回归了！每期节目我们都会邀请一位“老外”现身说法 回答关于“歪国”和“歪果仁”的各种问题。念念的粉丝们也可以在公众号参与互动，留下你们的问题，小编会尽最大努力满足大家的好奇心～ 前路还漫长越过荆棘沼泽 能坚持就会看到繁花锦簇 这故事永远不会结束";
             [chatMessage addItem:textItem];
+        }
+        
+        if (isProduceText) {
+            for (int i = 0;  i < arc4random() % 10; i++) {
+                TEExpresssionSubItem* faceItem = [[TEExpresssionSubItem alloc] initWithType:Face];
+                faceItem.imagePosition = CGRectMake(0, 0, 24, 24);
+                NSUInteger expressionIndex = arc4random() % 105;
+                NSString* path = [[NSBundle mainBundle] pathForResource:@"TEExpression" ofType:@"bundle"];
+                NSString* itemName = [NSString stringWithFormat:@"Expression_%ld",expressionIndex];
+                NSString* imageName = [path stringByAppendingPathComponent:itemName];
+                faceItem.fileName = imageName;
+                [chatMessage addItem:faceItem];
+                
+                TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
+                textItem.textContent = @"把每个角落刻满你我的名字 闪烁着光芒就像宝石那样子 一同经历过磨砺万次 我们互相照耀着彼此 每当我凝望孤单寂寞的影子 你总是出现在身旁为我驻足";
+                [chatMessage addItem:textItem];
+            }
         }
         
         BOOL isproduceLink = arc4random() % 2 == 0 ? YES : NO;
@@ -95,6 +112,17 @@ NSString* gen_uuid()
             TEMsgLinkSubItem* linkItem = [[TEMsgLinkSubItem alloc] initWithType:Link];
             linkItem.url = @"www.baidu.com";
             [chatMessage addItem:linkItem];
+        }
+        
+        if (isproduceLink) {
+            TEExpresssionSubItem* faceItem = [[TEExpresssionSubItem alloc] initWithType:Face];
+            faceItem.imagePosition = CGRectMake(0, 0, 24, 24);
+            NSUInteger expressionIndex = arc4random() % 105;
+            NSString* path = [[NSBundle mainBundle] pathForResource:@"TEExpression" ofType:@"bundle"];
+            NSString* itemName = [NSString stringWithFormat:@"Expression_%ld",expressionIndex];
+            NSString* imageName = [path stringByAppendingPathComponent:itemName];
+            faceItem.fileName = imageName;
+            [chatMessage addItem:faceItem];
         }
         
 
@@ -106,7 +134,7 @@ NSString* gen_uuid()
         
         NSString* content = [chatMessage xmlString];
         TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:weakContext];
-        message.mid = chatMessage.messageID;
+        message.mID = chatMessage.messageID;
         message.senderID = [sid longLongValue];
         message.receiverID = 100001;
         message.content = content;
@@ -119,14 +147,15 @@ NSString* gen_uuid()
         TEChatSession* session = nil;
         
         if (result.count == 0) {
+             NSInteger sessionCount = [weakContext countForFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"TEChatSession"] error:nil];
             session  = [NSEntityDescription insertNewObjectForEntityForName:@"TEChatSession" inManagedObjectContext:weakContext];
             session.groupID = 0;
             session.groupType = 0;
             session.senderID = [sid longLongValue];
             session.timeToRecvLastMessage = [NSDate date];
-            session.overviewOfLastMessage = [NSString stringWithFormat:@"%@:%lu ---> self are you ok ",sid,index];
+            session.overviewOfLastMessage = [NSString stringWithFormat:@"%@:%lu ---> self are you ok",sid,index];
             session.lastMessageType = message.type;
-            
+            session.sID = (int32_t)sessionCount + 1;
         }
         else if (1 == result.count){
             session = result.firstObject;
@@ -138,7 +167,8 @@ NSString* gen_uuid()
             assert(0);
         }
         
-        message.session = session;
+        message.sessionID = session.sID;
+        session.totalNumOfMessage += 1;
         
         //[message layout];
 //        if ([weakContext hasChanges]) {

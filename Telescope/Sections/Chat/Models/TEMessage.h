@@ -14,4 +14,6 @@
 
 @property (nonatomic,readonly) TEBubbleCellInnerLayout* layout;
 
+@property (nonatomic,readonly,copy) NSString* timeLabelString;
+
 @end

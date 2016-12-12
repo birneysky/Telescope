@@ -216,7 +216,7 @@ typedef enum CTDisplayViewState : NSInteger {
     CTFrameDraw(self.layoutModel.ctFrame, context);
     
     [self.layoutModel.imageArray enumerateObjectsUsingBlock:^(id<TETextImageModel>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIImage *image = [UIImage imageNamed:obj.name];
+        UIImage *image = [UIImage imageNamed:obj.fileName];
         if (image) {
             CGContextDrawImage(context, obj.imagePosition, image.CGImage);
         }

@@ -10,22 +10,23 @@
         <attribute name="lastMessageType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="overviewOfLastMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="senderID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sID" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
         <attribute name="timeToRecvLastMessage" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TEMessage" inverseName="session" inverseEntity="TEMessage" syncable="YES"/>
+        <attribute name="totalNumOfMessage" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="TEMessage" representedClassName="TEMessage" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="mid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="receiverID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="recvTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="senderID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sendTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sessionID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TEChatSession" inverseName="messages" inverseEntity="TEChatSession" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TECacheUser" positionX="990" positionY="531" width="128" height="75"/>
-        <element name="TEChatSession" positionX="799" positionY="455" width="128" height="150"/>
-        <element name="TEMessage" positionX="1188" positionY="479" width="128" height="165"/>
+        <element name="TECacheUser" positionX="1042" positionY="333" width="128" height="75"/>
+        <element name="TEChatSession" positionX="799" positionY="455" width="128" height="163"/>
+        <element name="TEMessage" positionX="1033" positionY="441" width="128" height="163"/>
     </elements>
 </model>

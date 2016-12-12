@@ -117,6 +117,8 @@
 		DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9308781DDC08EE00915CCD /* TEAnnotation.m */; };
 		DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9A1DCB4597000F994A /* libsqlite3.tbd */; };
 		DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9C1DCB45E0000F994A /* ImageIO.framework */; };
+		DB9DDCE51DFE460B00A223E6 /* NSDate+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9DDCE41DFE460B00A223E6 /* NSDate+Utils.m */; };
+		DB9DDCE81DFEA54600A223E6 /* TEExpressionNamesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9DDCE71DFEA54600A223E6 /* TEExpressionNamesManager.m */; };
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
 		DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E481DD572C30077EA90 /* VideoToolbox.framework */; };
 		DBBB668C1D7958760044E626 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBB668B1D7958760044E626 /* ProtocolBuffers.framework */; };
@@ -364,6 +366,10 @@
 		DB8D0BE81DFA9633008E8B15 /* TEMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEMessageView.m; sourceTree = "<group>"; };
 		DB9308771DDC08EE00915CCD /* TEAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAnnotation.h; sourceTree = "<group>"; };
 		DB9308781DDC08EE00915CCD /* TEAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAnnotation.m; sourceTree = "<group>"; };
+		DB9DDCE31DFE460B00A223E6 /* NSDate+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utils.h"; sourceTree = "<group>"; };
+		DB9DDCE41DFE460B00A223E6 /* NSDate+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utils.m"; sourceTree = "<group>"; };
+		DB9DDCE61DFEA54600A223E6 /* TEExpressionNamesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEExpressionNamesManager.h; sourceTree = "<group>"; };
+		DB9DDCE71DFEA54600A223E6 /* TEExpressionNamesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEExpressionNamesManager.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TEPlayerKit.framework; path = ../library/TEPlayerKit.framework; sourceTree = "<group>"; };
 		DBB39E481DD572C30077EA90 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
@@ -547,6 +553,8 @@
 				DB8D0BE51DFA84C4008E8B15 /* TEBubbleCellInnerLayout.m */,
 				DB664F191DEEC7C700EC40A8 /* TEMessageFactory.h */,
 				DB664F1A1DEEC7C700EC40A8 /* TEMessageFactory.m */,
+				DB9DDCE61DFEA54600A223E6 /* TEExpressionNamesManager.h */,
+				DB9DDCE71DFEA54600A223E6 /* TEExpressionNamesManager.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -641,6 +649,8 @@
 		DB664DDC1DEE83E200EC40A8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DB9DDCE31DFE460B00A223E6 /* NSDate+Utils.h */,
+				DB9DDCE41DFE460B00A223E6 /* NSDate+Utils.m */,
 				DB8D0BAC1DF50656008E8B15 /* UIView+Frame.h */,
 				DB8D0BAD1DF50656008E8B15 /* UIView+Frame.m */,
 				DB664DDD1DEE83E200EC40A8 /* CALayer+Additions.h */,
@@ -1262,6 +1272,7 @@
 				DB664E571DEE843F00EC40A8 /* TEReachability.m in Sources */,
 				DB664E5E1DEE843F00EC40A8 /* DDAbstractDatabaseLogger.m in Sources */,
 				DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */,
+				DB9DDCE81DFEA54600A223E6 /* TEExpressionNamesManager.m in Sources */,
 				DB664F181DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m in Sources */,
 				DB8D0BC31DF6998E008E8B15 /* TEXmlModel.m in Sources */,
 				DB8D0BDF1DF7F998008E8B15 /* TETextTouchUtils.m in Sources */,
@@ -1294,6 +1305,7 @@
 				DB664E581DEE843F00EC40A8 /* TENetworkEngine.m in Sources */,
 				DB664F0C1DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.m in Sources */,
 				DB664E5B1DEE843F00EC40A8 /* TEPacketDisPatcher.m in Sources */,
+				DB9DDCE51DFE460B00A223E6 /* NSDate+Utils.m in Sources */,
 				DB664EA41DEE849C00EC40A8 /* TESettingTableController.m in Sources */,
 				DB664E5F1DEE843F00EC40A8 /* DDASLLogCapture.m in Sources */,
 				DB664E961DEE847000EC40A8 /* TEMainViewController.m in Sources */,

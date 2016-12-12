@@ -20,6 +20,7 @@
 @dynamic timeToRecvLastMessage;
 @dynamic overviewOfLastMessage;
 @dynamic lastMessageType;
-@dynamic messages;
+@dynamic sID;
+@dynamic totalNumOfMessage;
 
 @end

@@ -66,8 +66,8 @@
     CGFloat panelWith = self.width;
     CGFloat panelHeight = self.height - self.pageControl.height;
     
-    CGFloat expressionWidth = 44.0f;
-    CGFloat expressionHeight = 44.0f;
+    CGFloat expressionWidth = 48.0f;
+    CGFloat expressionHeight = 48.0f;
     
     NSUInteger rowCount = panelHeight / (expressionHeight );
     NSUInteger columnCount = panelWith / (expressionWidth );
@@ -82,6 +82,10 @@
     self.pageControl.numberOfPages = pageCount;
     self.pageControl.currentPage = 0;
     
+    
+    CGFloat xOffset = (self.width - columnCount * expressionWidth) / 2;
+    CGFloat yOffset = (panelHeight - rowCount * expressionHeight) / 2;
+    
     NSString* expressionBundlePath = [[NSBundle mainBundle] pathForResource:@"TEExpression" ofType:@"bundle"];
     
     for (NSUInteger i = 0; i < expressionStringArray.count; i++) {
@@ -89,15 +93,31 @@
         NSUInteger rowIndex = (i%numberPerPage) / columnCount;
         NSUInteger columnIndex = i % columnCount;
         
-        CGRect frame = CGRectMake(pageIndex * panelWith + columnIndex * expressionWidth + 8, rowIndex * expressionHeight + 4, expressionWidth, expressionHeight);
+        CGRect frame = CGRectMake(pageIndex * panelWith + columnIndex * expressionWidth + xOffset, rowIndex * expressionHeight + yOffset, expressionWidth, expressionHeight);
         UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = frame;
         NSString* imageName = [NSString stringWithFormat:@"Expression_%lu",i+1];
         NSString* imagePathName = [expressionBundlePath stringByAppendingPathComponent:imageName];
+        button.tag = i;
         [button setImage:[UIImage imageNamed:imagePathName] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(faceClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.scrollView addSubview:button];
+//        UIImageView* imageView = [[UIImageView alloc] initWithFrame:frame];
+//        NSString* imageName = [NSString stringWithFormat:@"Expression_%lu",i+1];
+//        NSString* imagePathName = [expressionBundlePath stringByAppendingPathComponent:imageName];
+//        imageView.image = [UIImage imageNamed:imagePathName];
+//        [self.scrollView addSubview:imageView];
     }
 
+    UIButton* sendButton = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 50, self.height - 30, 50, 30)];
+    sendButton.backgroundColor = TERGB(23, 126, 253);
+    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [sendButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [sendButton setTitle:@"发送" forState:UIControlStateNormal];
+    [sendButton addTarget:self action:@selector(sendBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:sendButton];
+    
+    
 }
 
 
@@ -107,6 +127,21 @@
 {
     NSUInteger pageIndex = scrollView.contentOffset.x / self.width;
     self.pageControl.currentPage = pageIndex;
+}
+
+
+#pragma mark - *** Target Action ***
+
+- (void)faceClicked:(UIButton*)sender{
+    if ([self.delegate respondsToSelector:@selector(factButtonClickedAtIndex:)]) {
+        [self.delegate factButtonClickedAtIndex:sender.tag];
+    }
+}
+
+- (void)sendBtnClicked:(UIButton*)sender{
+    if ([self.delegate respondsToSelector:@selector(sendButtonClickedInPannnel)]) {
+        [self.delegate sendButtonClickedInPannnel];
+    }
 }
 
 @end

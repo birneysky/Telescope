@@ -37,8 +37,11 @@
 
 - (UILabel*)timeLabel
 {
-    if (_timeLabel) {
+    if (!_timeLabel) {
         _timeLabel = [[UILabel alloc] init];
+        _timeLabel.font = [UIFont systemFontOfSize:11];
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
+        _timeLabel.textColor = [UIColor grayColor];
     }
     return _timeLabel;
 }
@@ -60,6 +63,7 @@
     
     [self.contentView addSubview:self.messageView];
     [self.contentView addSubview:self.headImageBtn];
+    [self.contentView addSubview:self.timeLabel];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -76,7 +80,10 @@
 - (void)setMessage:(TEMessage*)message;
 {
     self.messageView.frame = message.layout.contentFrame;//CGRectMake(self.headImageBtn.rightTop.x, 8, message.layout.contentFrame.size.width, message.layout.cellHeight);
-    
+    self.headImageBtn.frame = message.layout.avatarFrame;
+    self.timeLabel.frame = message.layout.timeLabelFrame;
+  
+    self.timeLabel.text = message.timeLabelString;
     [self.messageView.layoutView setLayoutModel:message.layout.layoutModel];
 }
 

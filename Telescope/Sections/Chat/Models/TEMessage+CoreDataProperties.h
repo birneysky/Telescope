@@ -16,14 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<TEMessage *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSString* mid;
+@property (nullable, nonatomic, copy) NSString* mID;
 @property (nonatomic) int64_t senderID;
 @property (nonatomic) int64_t receiverID;
 @property (nullable, nonatomic, copy) NSString *content;
 @property (nullable, nonatomic, copy) NSDate *sendTime;
 @property (nonatomic) int16_t type;
 @property (nullable, nonatomic, copy) NSDate *recvTime;
-@property (nullable, nonatomic, retain) TEChatSession *session;
+@property (nonatomic, assign) int32_t sessionID;
 
 @end
 
