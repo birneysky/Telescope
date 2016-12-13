@@ -69,11 +69,13 @@ static CGFloat widthCallback(void* ref){
     CGFloat fontSize = config.fontSize;
     CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"ArialMT", fontSize, NULL);
     CGFloat lineSpacing = config.lineSpace;
-    const CFIndex kNumberOfSettings = 3;
+    CTLineBreakMode lineBreakMode = kCTLineBreakByCharWrapping;
+    const CFIndex kNumberOfSettings = 4;
     CTParagraphStyleSetting theSettings[kNumberOfSettings] = {
         { kCTParagraphStyleSpecifierLineSpacingAdjustment, sizeof(CGFloat), &lineSpacing },
         { kCTParagraphStyleSpecifierMaximumLineSpacing, sizeof(CGFloat), &lineSpacing },
-        { kCTParagraphStyleSpecifierMinimumLineSpacing, sizeof(CGFloat), &lineSpacing }
+        { kCTParagraphStyleSpecifierMinimumLineSpacing, sizeof(CGFloat), &lineSpacing },
+        { kCTParagraphStyleSpecifierLineBreakMode,sizeof(CTLineBreakMode),&lineBreakMode}
     };
     
     CTParagraphStyleRef theParagraphRef = CTParagraphStyleCreate(theSettings, kNumberOfSettings);
@@ -112,7 +114,7 @@ static CGFloat widthCallback(void* ref){
     return space;
 }
 
-+ (NSAttributedString *)parseAttributedContentFromNSString:(NSString*)content
++ (NSAttributedString *)parseAttributedContentFromText:(NSString*)content
                                                         config:(TETextAttibuteConfig*)config {
     NSMutableDictionary *attributes = [self attributesWithConfig:config];
     // set color
@@ -127,8 +129,43 @@ static CGFloat widthCallback(void* ref){
     }
     
     return [[NSAttributedString alloc] initWithString:content attributes:attributes];
+   // return [self parseAttributedStringWithNSString:content fontSize:config.fontSize fontColor:config.textColor];
 }
 
++ (NSAttributedString *)parseAttributedContentFromLinkText:(NSString*)content
+                                                config:(TETextAttibuteConfig*)config
+{
+   //return [self parseAttributedStringWithNSString:content fontSize:config.fontSize fontColor:[UIColor blueColor]];
+    NSMutableDictionary *attributes = [self attributesWithConfig:config];
+    // set color
+    attributes[(id)kCTForegroundColorAttributeName] = (id)[UIColor blueColor].CGColor;
+    //attributes[(id)kCTForegroundColorAttributeName] = (id)[UIColor blueColor].CGColor;
+    // set font size
+    CGFloat fontSize = config.fontSize;
+    if (fontSize > 0) {
+        CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"ArialMT", fontSize, NULL);
+        attributes[(id)kCTFontAttributeName] = (__bridge id)fontRef;
+        CFRelease(fontRef);
+    }
+    
+    return [[NSAttributedString alloc] initWithString:content attributes:attributes];
+}
+
++ (NSAttributedString*)parseAttributedStringWithNSString:(NSString*)content config:(TETextAttibuteConfig*)config
+{
+    NSMutableDictionary *attributes = [self attributesWithConfig:config];
+    // set color
+    attributes[(id)kCTForegroundColorAttributeName] = (id)config.textColor.CGColor;
+    // set font size
+    CGFloat fontSize = config.fontSize;
+    if (fontSize > 0) {
+        CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"ArialMT", fontSize, NULL);
+        attributes[(id)kCTFontAttributeName] = (__bridge id)fontRef;
+        CFRelease(fontRef);
+    }
+    
+    return [[NSAttributedString alloc] initWithString:content attributes:attributes];
+}
 
 + (NSAttributedString *)loadChatMessage:(TEChatMessage*)message
                                   config:(TETextAttibuteConfig*)config
@@ -143,7 +180,7 @@ static CGFloat widthCallback(void* ref){
             case Text:
             {
                 TEMsgTextSubItem* textItem = (TEMsgTextSubItem*)item;
-                NSAttributedString *as = [self parseAttributedContentFromNSString:textItem.textContent
+                NSAttributedString *as = [self parseAttributedContentFromText:textItem.textContent
                                                                                config:config];
                 [result appendAttributedString:as];
             }
@@ -151,7 +188,7 @@ static CGFloat widthCallback(void* ref){
             case Link:
             {
                 TEMsgLinkSubItem* linkItem = (TEMsgLinkSubItem*)item;
-                NSAttributedString *as = [self parseAttributedContentFromNSString:linkItem.url
+                NSAttributedString *as = [self parseAttributedContentFromLinkText:linkItem.url
                                                                            config:config];
                 NSUInteger startPos = result.length;
                 [result appendAttributedString:as];
@@ -186,44 +223,6 @@ static CGFloat widthCallback(void* ref){
         
         
     }];
-    
-//    if (data) {
-//        NSArray *array = [NSJSONSerialization JSONObjectWithData:data
-//                                                         options:NSJSONReadingAllowFragments
-//                                                           error:nil];
-//        if ([array isKindOfClass:[NSArray class]]) {
-//            for (NSDictionary *dict in array) {
-//                NSString *type = dict[@"type"];
-//                if ([type isEqualToString:@"txt"]) {
-//                    NSAttributedString *as = [self parseAttributedContentFromNSDictionary:dict
-//                                                                                   config:config];
-//                    [result appendAttributedString:as];
-//                } else if ([type isEqualToString:@"img"]) {
-//                    // 创建 CoreTextImageData
-//                    CoreTextImageData *imageData = [[CoreTextImageData alloc] init];
-//                    imageData.name = dict[@"name"];
-//                    imageData.position = [result length];
-//                    [imageArray addObject:imageData];
-//                    // 创建空白占位符，并且设置它的CTRunDelegate信息
-//                    NSAttributedString *as = [self parseImageDataFromNSDictionary:dict config:config];
-//                    [result appendAttributedString:as];
-//                } else if ([type isEqualToString:@"link"]) {
-//                    NSUInteger startPos = result.length;
-//                    NSAttributedString *as = [self parseAttributedContentFromNSDictionary:dict
-//                                                                                   config:config];
-//                    [result appendAttributedString:as];
-//                    // 创建 CoreTextLinkData
-//                    NSUInteger length = result.length - startPos;
-//                    NSRange linkRange = NSMakeRange(startPos, length);
-//                    CoreTextLinkData *linkData = [[CoreTextLinkData alloc] init];
-//                    linkData.title = dict[@"content"];
-//                    linkData.url = dict[@"url"];
-//                    linkData.range = linkRange;
-//                    [linkArray addObject:linkData];
-//                }
-//            }
-//        }
-//    }
     return result;
 }
 

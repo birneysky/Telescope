@@ -40,12 +40,24 @@
         CGSize timeTextSize = [timeText sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11]}];
         
         _timeLabelFrame = CGRectMake((screenW - timeTextSize.width) / 2, Spacing, timeTextSize.width + 15, 20);
-        
-        
+       
         CGFloat avatarY = CGRectGetMaxY(_timeLabelFrame) + Spacing;
-        _avatarFrame = CGRectMake(Spacing,avatarY, AvatarWidth, AvatarHeight);
+        CGFloat avatarX = Spacing;
+        if (message.senderIsMe) {
+            avatarX = screenW - Spacing - AvatarWidth;
+        }
         
-        CGFloat contextX = _avatarFrame.origin.x + _avatarFrame.size.width + Spacing;
+        _avatarFrame = CGRectMake(avatarX,avatarY, AvatarWidth, AvatarHeight);
+        
+        
+        CGFloat contextX = 0;
+        if (message.senderIsMe) {
+            contextX = CGRectGetMinX(_avatarFrame) - _layoutModel.width - Spacing * 2;
+        }
+        else{
+            contextX = CGRectGetMaxX(_avatarFrame) + Spacing;
+        }
+        
         _contentFrame = CGRectMake(contextX, avatarY, _layoutModel.width + Spacing * 2, _layoutModel.height+ Spacing * 2);
 
     }

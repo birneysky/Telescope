@@ -81,6 +81,17 @@
 		DB664F0C1DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664F0A1DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.m */; };
 		DB664F181DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664F161DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m */; };
 		DB664F1B1DEEC7C700EC40A8 /* TEMessageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664F1A1DEEC7C700EC40A8 /* TEMessageFactory.m */; };
+		DB6C7E2A1DFFDB4B000BCE8C /* ALAssetsGroup+isEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E181DFFDB4B000BCE8C /* ALAssetsGroup+isEqual.m */; };
+		DB6C7E2B1DFFDB4B000BCE8C /* CTAssetsGroupViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E1A1DFFDB4B000BCE8C /* CTAssetsGroupViewCell.m */; };
+		DB6C7E2C1DFFDB4B000BCE8C /* CTAssetsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E1C1DFFDB4B000BCE8C /* CTAssetsGroupViewController.m */; };
+		DB6C7E2D1DFFDB4B000BCE8C /* CTAssetsPickerConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E1E1DFFDB4B000BCE8C /* CTAssetsPickerConstants.m */; };
+		DB6C7E2E1DFFDB4B000BCE8C /* CTAssetsPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E201DFFDB4B000BCE8C /* CTAssetsPickerController.m */; };
+		DB6C7E2F1DFFDB4B000BCE8C /* CTAssetsSupplementaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E221DFFDB4B000BCE8C /* CTAssetsSupplementaryView.m */; };
+		DB6C7E301DFFDB4B000BCE8C /* CTAssetsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E241DFFDB4B000BCE8C /* CTAssetsViewCell.m */; };
+		DB6C7E311DFFDB4B000BCE8C /* CTAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E261DFFDB4B000BCE8C /* CTAssetsViewController.m */; };
+		DB6C7E321DFFDB4B000BCE8C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB6C7E271DFFDB4B000BCE8C /* Images.xcassets */; };
+		DB6C7E331DFFDB4B000BCE8C /* NSDate+timeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E291DFFDB4B000BCE8C /* NSDate+timeDescription.m */; };
+		DB6C7E361DFFF404000BCE8C /* TESizeAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E341DFFF404000BCE8C /* TESizeAspect.m */; };
 		DB6DA7111D792D1900430922 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7101D792D1900430922 /* main.m */; };
 		DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7131D792D1900430922 /* AppDelegate.m */; };
 		DB6DA71A1D792D1900430922 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7181D792D1900430922 /* Main.storyboard */; };
@@ -130,6 +141,7 @@
 		DBDD58A21DE4200800473F9A /* TEPlayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */; };
 		DBDD58A31DE421D900473F9A /* V2Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61C1DD998E900760111 /* V2Kit.framework */; };
 		DBDD58A41DE428B900473F9A /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437BA01DCB4665000F994A /* libstdc++.tbd */; };
+		DBF2089D1DFFA136009654F6 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF2089C1DFFA136009654F6 /* NSString+UUID.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,6 +311,27 @@
 		DB664F161DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TEMessage+CoreDataProperties.m"; sourceTree = "<group>"; };
 		DB664F191DEEC7C700EC40A8 /* TEMessageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEMessageFactory.h; sourceTree = "<group>"; };
 		DB664F1A1DEEC7C700EC40A8 /* TEMessageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEMessageFactory.m; sourceTree = "<group>"; };
+		DB6C7E171DFFDB4B000BCE8C /* ALAssetsGroup+isEqual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsGroup+isEqual.h"; sourceTree = "<group>"; };
+		DB6C7E181DFFDB4B000BCE8C /* ALAssetsGroup+isEqual.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsGroup+isEqual.m"; sourceTree = "<group>"; };
+		DB6C7E191DFFDB4B000BCE8C /* CTAssetsGroupViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAssetsGroupViewCell.h; sourceTree = "<group>"; };
+		DB6C7E1A1DFFDB4B000BCE8C /* CTAssetsGroupViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsGroupViewCell.m; sourceTree = "<group>"; };
+		DB6C7E1B1DFFDB4B000BCE8C /* CTAssetsGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAssetsGroupViewController.h; sourceTree = "<group>"; };
+		DB6C7E1C1DFFDB4B000BCE8C /* CTAssetsGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsGroupViewController.m; sourceTree = "<group>"; };
+		DB6C7E1D1DFFDB4B000BCE8C /* CTAssetsPickerConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAssetsPickerConstants.h; sourceTree = "<group>"; };
+		DB6C7E1E1DFFDB4B000BCE8C /* CTAssetsPickerConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsPickerConstants.m; sourceTree = "<group>"; };
+		DB6C7E1F1DFFDB4B000BCE8C /* CTAssetsPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAssetsPickerController.h; sourceTree = "<group>"; };
+		DB6C7E201DFFDB4B000BCE8C /* CTAssetsPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsPickerController.m; sourceTree = "<group>"; };
+		DB6C7E211DFFDB4B000BCE8C /* CTAssetsSupplementaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAssetsSupplementaryView.h; sourceTree = "<group>"; };
+		DB6C7E221DFFDB4B000BCE8C /* CTAssetsSupplementaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsSupplementaryView.m; sourceTree = "<group>"; };
+		DB6C7E231DFFDB4B000BCE8C /* CTAssetsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAssetsViewCell.h; sourceTree = "<group>"; };
+		DB6C7E241DFFDB4B000BCE8C /* CTAssetsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsViewCell.m; sourceTree = "<group>"; };
+		DB6C7E251DFFDB4B000BCE8C /* CTAssetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAssetsViewController.h; sourceTree = "<group>"; };
+		DB6C7E261DFFDB4B000BCE8C /* CTAssetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsViewController.m; sourceTree = "<group>"; };
+		DB6C7E271DFFDB4B000BCE8C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DB6C7E281DFFDB4B000BCE8C /* NSDate+timeDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timeDescription.h"; sourceTree = "<group>"; };
+		DB6C7E291DFFDB4B000BCE8C /* NSDate+timeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timeDescription.m"; sourceTree = "<group>"; };
+		DB6C7E341DFFF404000BCE8C /* TESizeAspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TESizeAspect.m; sourceTree = "<group>"; };
+		DB6C7E351DFFF404000BCE8C /* TESizeAspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TESizeAspect.h; sourceTree = "<group>"; };
 		DB6DA70C1D792D1800430922 /* Telescope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telescope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DA7101D792D1900430922 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB6DA7121D792D1900430922 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -384,6 +417,8 @@
 		DBCDF61C1DD998E900760111 /* V2Kit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = V2Kit.framework; path = ../library/V2Kit.framework; sourceTree = "<group>"; };
 		DBCDF61E1DD9994100760111 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		DBCDF62A1DD99B8800760111 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		DBF2089B1DFFA136009654F6 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
+		DBF2089C1DFFA136009654F6 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -655,6 +690,10 @@
 				DB8D0BAD1DF50656008E8B15 /* UIView+Frame.m */,
 				DB664DDD1DEE83E200EC40A8 /* CALayer+Additions.h */,
 				DB664DDE1DEE83E200EC40A8 /* CALayer+Additions.m */,
+				DBF2089B1DFFA136009654F6 /* NSString+UUID.h */,
+				DBF2089C1DFFA136009654F6 /* NSString+UUID.m */,
+				DB6C7E351DFFF404000BCE8C /* TESizeAspect.h */,
+				DB6C7E341DFFF404000BCE8C /* TESizeAspect.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -714,6 +753,7 @@
 		DB664DFC1DEE843F00EC40A8 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				DB6C7E161DFFDB4B000BCE8C /* CTAssetsPickerController */,
 				DB664DFD1DEE843F00EC40A8 /* CocoaLumberjack */,
 				DB664E191DEE843F00EC40A8 /* MBProgressHUD */,
 				DB664E1C1DEE843F00EC40A8 /* MLLable */,
@@ -945,6 +985,32 @@
 				DB664E941DEE847000EC40A8 /* TEVideoScrollView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DB6C7E161DFFDB4B000BCE8C /* CTAssetsPickerController */ = {
+			isa = PBXGroup;
+			children = (
+				DB6C7E171DFFDB4B000BCE8C /* ALAssetsGroup+isEqual.h */,
+				DB6C7E181DFFDB4B000BCE8C /* ALAssetsGroup+isEqual.m */,
+				DB6C7E191DFFDB4B000BCE8C /* CTAssetsGroupViewCell.h */,
+				DB6C7E1A1DFFDB4B000BCE8C /* CTAssetsGroupViewCell.m */,
+				DB6C7E1B1DFFDB4B000BCE8C /* CTAssetsGroupViewController.h */,
+				DB6C7E1C1DFFDB4B000BCE8C /* CTAssetsGroupViewController.m */,
+				DB6C7E1D1DFFDB4B000BCE8C /* CTAssetsPickerConstants.h */,
+				DB6C7E1E1DFFDB4B000BCE8C /* CTAssetsPickerConstants.m */,
+				DB6C7E1F1DFFDB4B000BCE8C /* CTAssetsPickerController.h */,
+				DB6C7E201DFFDB4B000BCE8C /* CTAssetsPickerController.m */,
+				DB6C7E211DFFDB4B000BCE8C /* CTAssetsSupplementaryView.h */,
+				DB6C7E221DFFDB4B000BCE8C /* CTAssetsSupplementaryView.m */,
+				DB6C7E231DFFDB4B000BCE8C /* CTAssetsViewCell.h */,
+				DB6C7E241DFFDB4B000BCE8C /* CTAssetsViewCell.m */,
+				DB6C7E251DFFDB4B000BCE8C /* CTAssetsViewController.h */,
+				DB6C7E261DFFDB4B000BCE8C /* CTAssetsViewController.m */,
+				DB6C7E271DFFDB4B000BCE8C /* Images.xcassets */,
+				DB6C7E281DFFDB4B000BCE8C /* NSDate+timeDescription.h */,
+				DB6C7E291DFFDB4B000BCE8C /* NSDate+timeDescription.m */,
+			);
+			path = CTAssetsPickerController;
 			sourceTree = "<group>";
 		};
 		DB6DA7031D792D1800430922 = {
@@ -1212,6 +1278,7 @@
 				DB664E7B1DEE843F00EC40A8 /* WeiboSDK.bundle in Resources */,
 				DB664E801DEE843F00EC40A8 /* ShareSDK.bundle in Resources */,
 				DB8D0BB21DF51B08008E8B15 /* TEExpressionNames.plist in Resources */,
+				DB6C7E321DFFDB4B000BCE8C /* Images.xcassets in Resources */,
 				DB6DA71F1D792D1900430922 /* Assets.xcassets in Resources */,
 				DB664E7D1DEE843F00EC40A8 /* read_me.txt in Resources */,
 				DB664E991DEE847000EC40A8 /* TEDefaultCollectionCell.xib in Resources */,
@@ -1247,6 +1314,7 @@
 				DB8D0BC01DF69595008E8B15 /* TEXmlItemList.m in Sources */,
 				DB860DAA1DC2013800C94035 /* TEActiveWheel.m in Sources */,
 				DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */,
+				DB6C7E2E1DFFDB4B000BCE8C /* CTAssetsPickerController.m in Sources */,
 				DBC779151DF01B0200615DC8 /* TEChatViewController.m in Sources */,
 				DB664DE91DEE83E200EC40A8 /* TENavigationController.m in Sources */,
 				DB8D0BDC1DF7F911008E8B15 /* TEMagnifiterView.m in Sources */,
@@ -1255,12 +1323,14 @@
 				DB664E6C1DEE843F00EC40A8 /* NSMutableAttributedString+MLLabel.m in Sources */,
 				DB664E631DEE843F00EC40A8 /* DDTTYLogger.m in Sources */,
 				DB664E641DEE843F00EC40A8 /* DDContextFilterLogFormatter.m in Sources */,
+				DB6C7E331DFFDB4B000BCE8C /* NSDate+timeDescription.m in Sources */,
 				DB664E6A1DEE843F00EC40A8 /* MLLinkLabel.m in Sources */,
 				DB664F1B1DEEC7C700EC40A8 /* TEMessageFactory.m in Sources */,
 				DB664E681DEE843F00EC40A8 /* MLLabel.m in Sources */,
 				DB664E601DEE843F00EC40A8 /* DDASLLogger.m in Sources */,
 				DB8D0BDB1DF7F911008E8B15 /* TETextLayoutView.m in Sources */,
 				DB8D0BC91DF6A7DC008E8B15 /* XMLDictionary.m in Sources */,
+				DB6C7E2F1DFFDB4B000BCE8C /* CTAssetsSupplementaryView.m in Sources */,
 				DB664E621DEE843F00EC40A8 /* DDLog.m in Sources */,
 				DB664E971DEE847000EC40A8 /* TEMapViewController.m in Sources */,
 				DB8D0BAE1DF50656008E8B15 /* UIView+Frame.m in Sources */,
@@ -1269,6 +1339,7 @@
 				DB664F061DEEC1DA00EC40A8 /* TEMessage.m in Sources */,
 				DB8D0BE21DF80139008E8B15 /* TEBubbleCell.m in Sources */,
 				DB664DEC1DEE83E200EC40A8 /* TEWebViewController.m in Sources */,
+				DB6C7E2A1DFFDB4B000BCE8C /* ALAssetsGroup+isEqual.m in Sources */,
 				DB664E571DEE843F00EC40A8 /* TEReachability.m in Sources */,
 				DB664E5E1DEE843F00EC40A8 /* DDAbstractDatabaseLogger.m in Sources */,
 				DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */,
@@ -1281,11 +1352,14 @@
 				DB664E671DEE843F00EC40A8 /* MBProgressHUD.m in Sources */,
 				DB012D551DEED367009EB45A /* TECacheUser.m in Sources */,
 				DB8D0BBD1DF69499008E8B15 /* TEChatMessage.m in Sources */,
+				DB6C7E2B1DFFDB4B000BCE8C /* CTAssetsGroupViewCell.m in Sources */,
 				DB8D0BCC1DF7A327008E8B15 /* TEChatXMLReader.m in Sources */,
+				DB6C7E2C1DFFDB4B000BCE8C /* CTAssetsGroupViewController.m in Sources */,
 				DB664DE81DEE83E200EC40A8 /* CALayer+Additions.m in Sources */,
 				DB664E6B1DEE843F00EC40A8 /* NSAttributedString+MLLabel.m in Sources */,
 				DB664E5C1DEE843F00EC40A8 /* TEStreamBuffer.m in Sources */,
 				DB8D0BAB1DF504DB008E8B15 /* TEChatMorePanel.m in Sources */,
+				DB6C7E301DFFDB4B000BCE8C /* CTAssetsViewCell.m in Sources */,
 				DB8D0BBA1DF69418008E8B15 /* TEXmlMessage.m in Sources */,
 				DB664E691DEE843F00EC40A8 /* MLLabelLayoutManager.m in Sources */,
 				DB664E981DEE847000EC40A8 /* TEDefaultCollectionCell.m in Sources */,
@@ -1304,11 +1378,13 @@
 				DB6DA7111D792D1900430922 /* main.m in Sources */,
 				DB664E581DEE843F00EC40A8 /* TENetworkEngine.m in Sources */,
 				DB664F0C1DEEC20500EC40A8 /* TEChatSession+CoreDataProperties.m in Sources */,
+				DBF2089D1DFFA136009654F6 /* NSString+UUID.m in Sources */,
 				DB664E5B1DEE843F00EC40A8 /* TEPacketDisPatcher.m in Sources */,
 				DB9DDCE51DFE460B00A223E6 /* NSDate+Utils.m in Sources */,
 				DB664EA41DEE849C00EC40A8 /* TESettingTableController.m in Sources */,
 				DB664E5F1DEE843F00EC40A8 /* DDASLLogCapture.m in Sources */,
 				DB664E961DEE847000EC40A8 /* TEMainViewController.m in Sources */,
+				DB6C7E2D1DFFDB4B000BCE8C /* CTAssetsPickerConstants.m in Sources */,
 				DB9308791DDC08EE00915CCD /* TEAnnotation.m in Sources */,
 				DB664EAC1DEEA61700EC40A8 /* TEFetchTableViewController.m in Sources */,
 				DBC779181DF01B2300615DC8 /* TEChatTableViewController.m in Sources */,
@@ -1316,10 +1392,12 @@
 				DB012D5B1DEED396009EB45A /* TECacheUser+CoreDataProperties.m in Sources */,
 				DB664DEA1DEE83E200EC40A8 /* TestCollectionViewController.m in Sources */,
 				DB664EA61DEE856A00EC40A8 /* Telescope.xcdatamodel in Sources */,
+				DB6C7E361DFFF404000BCE8C /* TESizeAspect.m in Sources */,
 				DB664E6E1DEE843F00EC40A8 /* EVCircularProgressView.m in Sources */,
 				DB860D8A1DC1E19F00C94035 /* TEBezierPathButton.m in Sources */,
 				DB664E841DEE845400EC40A8 /* TEBroadcastLiveViewController.m in Sources */,
 				DB8D0BD61DF7EC91008E8B15 /* TETextFrameParser.m in Sources */,
+				DB6C7E311DFFDB4B000BCE8C /* CTAssetsViewController.m in Sources */,
 				DB664E5D1DEE843F00EC40A8 /* CLIColor.m in Sources */,
 				DB664E5A1DEE843F00EC40A8 /* TENetworkOperation.m in Sources */,
 				DB8D0BAA1DF504DB008E8B15 /* TEChatExpressionPanel.m in Sources */,

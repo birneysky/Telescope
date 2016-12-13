@@ -32,7 +32,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelOff;
 
 
 #import "UIView+Frame.h"
-
+#import "NSString+UUID.h"
 
 
 #ifdef DEBUG

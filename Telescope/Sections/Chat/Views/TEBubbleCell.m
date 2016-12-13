@@ -50,8 +50,6 @@
 {
     if (!_messageView) {
         _messageView = [[TEMessageView alloc] init];
-        UIImage* image = [UIImage imageNamed:@"recv_bubble_bg"];
-        _messageView.image =  [image resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 8, 8) resizingMode:UIImageResizingModeStretch];
     }
     return _messageView;
 }
@@ -84,6 +82,17 @@
     self.timeLabel.frame = message.layout.timeLabelFrame;
   
     self.timeLabel.text = message.timeLabelString;
+    
+    if (message.senderIsMe) {
+        UIImage* image = [UIImage imageNamed:@"sendto_bubble_bg"];
+        self.messageView.image =  [image resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 8, 8) resizingMode:UIImageResizingModeStretch];
+    }
+    else{
+        UIImage* image = [UIImage imageNamed:@"recv_bubble_bg"];
+        self.messageView.image =  [image resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 8, 8) resizingMode:UIImageResizingModeStretch];
+
+    }
+    
     [self.messageView.layoutView setLayoutModel:message.layout.layoutModel];
 }
 

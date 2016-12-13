@@ -76,7 +76,7 @@
     NSUInteger columnCount = 4;
     
     NSArray* titileArray = @[@"照片",@"拍摄",@"小视屏",@"视频聊天",@"红包",@"转账",@"位置",@"收藏",@"个人名片",@"语音输入"];
-    NSArray* imageNameArray = @[@"sharemore_pic",@"sharemore_video",@"sharemore_sight",@"sharemore_videovoip",@"sharemore_wallet",@"sharemorePay",@"sharemore_location",@"sharemore_myfav",@"sharemore_friendcard",@"sharemore_voiceinput"];
+    NSArray* imageNameArray = @[@"te_sharemore_pic",@"te_sharemore_video",@"te_sharemore_sight",@"te_sharemore_videovoip",@"te_sharemore_wallet",@"te_sharemorePay",@"te_sharemore_location",@"te_sharemore_myfav",@"te_sharemore_friendcard",@"te_sharemore_voiceinput"];
     
     CGFloat horizontalSpace = (panelWidth - columnCount*buttonWidth) / (columnCount + 1);
     CGFloat verticalSpace = (panelHeight - rowCount*buttonHeight) / (rowCount + 1);
@@ -95,8 +95,8 @@
         UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = frame;
         [button setImage:[UIImage imageNamed:imageNameArray[i]] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"sharemore_other"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"sharemore_other_HL"] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[UIImage imageNamed:@"te_sharemore_other"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"te_sharemore_other_HL"] forState:UIControlStateHighlighted];
         [self.scrollView addSubview:button];
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(button.x, button.y + buttonHeight + 5, button.width, 21)];
         label.textAlignment = NSTextAlignmentCenter;
@@ -104,6 +104,9 @@
         label.font = [UIFont systemFontOfSize:12.0f];
         label.textColor = TERGB(149, 149, 149);
         [self.scrollView addSubview:label];
+        
+        button.tag = i;
+        [button addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     
 
@@ -123,5 +126,14 @@
     // Drawing code
 }
 */
+
+#pragma mark - *** Target Action ***
+- (void)btnClicked:(UIButton*)sender
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectItemOfType:)]) {
+        [self.delegate didSelectItemOfType:sender.tag];
+    }
+}
+
 
 @end

@@ -13,6 +13,17 @@
 #import "TEChatExpressionPanel.h"
 #import "TEExpressionNamesManager.h"
 
+#import "TEChatMessage.h"
+#import "TEMsgSubItem.h"
+
+#import "TECoreDataHelper.h"
+#import "TEMessage+CoreDataProperties.h"
+#import "TEChatSession+CoreDataProperties.h"
+
+#import "CTAssetsPickerController.h"
+
+#import <Photos/Photos.h>
+#import "TESizeAspect.h"
 
 typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     TEToolbarNormalState          = 0,
@@ -24,8 +35,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 #define TEToolbarMaxHeight 100
 
-
-@interface TEChatViewController ()<TEChatExpressionPannelDelegate>
+@interface TEChatViewController ()<TEChatExpressionPannelDelegate,TEChatMorePanelDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *toolbar;
 @property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
@@ -52,6 +62,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 {
     if (!_morePanel) {
         _morePanel = [[TEChatMorePanel alloc] initWithFrame:CGRectMake(0, SCREENHEIGHT, SCREENWIDTH, 240)];
+        _morePanel.delegate = self;
     }
     return _morePanel;
 }
@@ -75,6 +86,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.chatTVC.session = self.session;
     [self addChildViewController:self.chatTVC];
 
@@ -233,17 +245,110 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 - (void)sendMessage
 {
-    NSString* pattern = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
+    /*
+     匹配带方括号的汉字
+     [[\u4e00-\u9fa5]+]
+     匹配方括号中包含英文和数字
+      [[a-zA-Z0-9]+]
+     匹配不带http://的网址
+     [a-zA-Z0-9\\.\\-]+\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?
+     带http的网址
+     (http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?
+     */
+    NSString* pattern = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]|((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,3})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,3})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(((http[s]{0,1}|ftp)://|)((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
     NSRegularExpression* regularExpression = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
     
-    NSString* text = self.textView.text;
-    NSArray<NSTextCheckingResult*>* result = [regularExpression matchesInString:text options:NSMatchingWithTransparentBounds range:NSMakeRange(0, text.length)];
+//    NSString* text = @"http://www.baidu.comfjdkalfjdlsafjldsk[抓狂][调皮][大哭][尴尬][难过][酷],https:www.apple.com,fjdlafjdls https://www.baidu.com www.baidu.com [难过][酷] wolegequfdjlafcjdas ,,,fjdksajfdsa, [抓狂][调皮][大哭]fjdkSafjsda www.baidu.com,[尴尬][难过][酷] developer.apple.com,www.baidu.com http://www.baidu.com http://tool.oschina.net/regex/#";//self.textView.text;
+    NSString* sendText = self.textView.text;
+    NSArray<NSTextCheckingResult*>* result = [regularExpression matchesInString:sendText options:NSMatchingWithTransparentBounds range:NSMakeRange(0, sendText.length)];
     
+    TEChatMessage* chatMessage = [[TEChatMessage alloc] init];
+    chatMessage.messageID = [NSString UUID];
+    chatMessage.isAutoReply = NO;
+    
+    if (result.count<=0) {
+        TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
+        textItem.textContent = sendText;
+        [chatMessage addItem:textItem];
+    }
+    
+    __block NSUInteger location = 0;
     [result enumerateObjectsUsingBlock:^(NSTextCheckingResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSRange range = obj.range;
+        if (range.location > location) {
+            //大于 说明range.location前面还有文本没有处理
+            NSString* subText = [sendText substringWithRange:NSMakeRange(location, range.location - location)];
+            TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
+            textItem.textContent = subText;
+            [chatMessage addItem:textItem];
+        }
+        location = NSMaxRange(range);
+        NSLog(@"range %@:%@",NSStringFromRange(range),[sendText substringWithRange:range]);
+        NSString* subText = [sendText substringWithRange:range];
+        if ([subText characterAtIndex:0] == '[') {
+            TEExpresssionSubItem* expressionItem = [[TEExpresssionSubItem alloc] initWithType:Face];
+            NSString* fileName = [[TEExpressionNamesManager defaultManager] indexOfName:subText];
+            assert(fileName);
+            expressionItem.fileName = [[TEExpressionNamesManager defaultManager] indexOfName:subText];
+            [chatMessage addItem:expressionItem];
+        }
+        else{
+            TEMsgLinkSubItem* linkItem = [[TEMsgLinkSubItem alloc] initWithType:Link];
+            linkItem.title = subText;
+            linkItem.url = subText;
+            [chatMessage addItem:linkItem];
+        }
+    }];
+
+    NSAssert(regularExpression,@"正则%@有误",pattern);
+    [self insertNewMessage:chatMessage];
+    //    __weak NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
+//    [context performBlock:^{
+//        TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
+//        message.mID = [NSString UUID];
+//        message.senderID = 100001;
+//        message.receiverID = self.session.senderID;
+//        message.content = [chatMessage xmlString];
+//        message.sendTime = [NSDate date];
+//        message.type = 1;
+//        message.sessionID = self.session.sID;
+//        message.senderIsMe = YES;
+//        
+//        self.session.totalNumOfMessage += 1;
+//        
+//        if ([context hasChanges]) {
+//            NSError* error;
+//            [context save:&error];
+//        }
+//        [message layout];
+//    }];
+    
+}
+
+- (void)insertNewMessage:(TEChatMessage*)chatMessage
+{
+    __weak NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
+    [context performBlock:^{
+        TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
+        message.mID = chatMessage.messageID;
+        message.senderID = 100001;
+        message.receiverID = self.session.senderID;
+        message.content = [chatMessage xmlString];
+        message.sendTime = [NSDate date];
+        message.type = 1;
+        message.sessionID = self.session.sID;
+        message.senderIsMe = YES;
+        
+        self.session.totalNumOfMessage += 1;
+        
+        [message layout];
+        
+        if ([context hasChanges]) {
+            NSError* error;
+            [context save:&error];
+        }
         
     }];
-    
-    NSAssert(regularExpression,@"正则%@有误",pattern);
 }
 
 #pragma mark - *** KVO ***
@@ -270,7 +375,8 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
-        
+        [self sendMessage];
+        self.textView.text = nil;
         return NO;
     }
     return YES;
@@ -282,7 +388,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 {
     TEExpressionNamesManager* manager = [TEExpressionNamesManager defaultManager];
     
-    NSString* expresssionName =  manager.names[index];
+    NSString* expresssionName =  [manager nameAtIndex:index];
     self.textView.text = [self.textView.text stringByAppendingFormat:@"[%@]",expresssionName];
     [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length - 1, 1)];
 }
@@ -293,6 +399,116 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         return;
     }
     [self sendMessage];
+    self.textView.text = nil;
 }
 
+#pragma mark - *** TEChatMorePanelDelegate ***
+- (void)didSelectItemOfType:(TEMorePanelBizType)type
+{
+    switch (type) {
+        case Photo:
+        {
+            CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
+            picker.assetsFilter         = [ALAssetsFilter allPhotos];
+            picker.showsCancelButton    = YES;
+            picker.delegate             = self;
+            picker.selectedAssets       = [[NSMutableArray alloc] initWithCapacity:0];
+            
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - *** CTAssetsPickerControllerDelegate ***
+- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+    NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    {
+        [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+
+    
+    for (ALAsset * asset in assets)
+    {
+        NSString* fileName = [NSString UUID];
+        CGImageRef fullImg = [[asset defaultRepresentation] fullScreenImage];
+        CGFloat fullWidth = CGImageGetWidth(fullImg);
+        CGFloat fullHeight = CGImageGetHeight(fullImg);
+
+        //        CGImageRef thumbnailImg = asset.thumbnail;
+        //        CGFloat thumbnailWidth = CGImageGetWidth(thumbnailImg);
+        //        CGFloat thumbnailHeight = CGImageGetHeight(thumbnailImg);
+       
+        CGImageRef thumbnailAspectImg = asset.aspectRatioThumbnail;
+        CGFloat thumbnailAspectWidth = CGImageGetWidth(thumbnailAspectImg);
+        CGFloat thumbnailAspectHeight = CGImageGetHeight(thumbnailAspectImg);
+        aspectSizeInContainer(&thumbnailAspectWidth, &thumbnailAspectHeight, CGSizeMake(40, 40), CGSizeMake(200, 200));
+
+        CGSize imageSize = CGSizeMake(thumbnailAspectWidth, thumbnailAspectHeight);
+        UIGraphicsBeginImageContext(imageSize);
+        UIImage* thumbnailImage = [UIImage imageWithCGImage:thumbnailAspectImg];
+        [thumbnailImage drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+        UIImage* resultImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        //缩略图写入文件
+        NSData* thumbnailJPGData = UIImageJPEGRepresentation(resultImage, 1);
+        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",fileName,@"thumbnail"];
+        NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
+        [thumbnailJPGData writeToFile:thumbnailImgPath atomically:YES];
+    
+        //原始图片写入文件
+        NSData* fullJPGData = UIImageJPEGRepresentation([UIImage imageWithCGImage:fullImg], 1);
+        NSString* fileFullImageName = [NSString stringWithFormat:@"%@.jpg",fileName];
+        NSString* fullImagePath = [filePath stringByAppendingPathComponent:fileFullImageName];
+        [fullJPGData writeToFile:fullImagePath atomically:YES];
+        
+        //生成消息实例
+        TEMsgImageSubItem* imageItem = [[TEMsgImageSubItem alloc] initWithType:Image];
+        imageItem.fileName = fileName;
+        imageItem.imagePosition = CGRectMake(0, 0, fullWidth, fullHeight);
+        
+        TEChatMessage* chatMessage = [[TEChatMessage alloc] init];
+        chatMessage.messageID = [NSString UUID];
+        chatMessage.isAutoReply = NO;
+        [chatMessage addItem:imageItem];
+        
+        [self insertNewMessage:chatMessage];
+        //保存消息实例
+//         __weak NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
+//        TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
+//        message.mID = [NSString UUID];
+//        message.senderID = 100001;
+//        message.receiverID = self.session.senderID;
+//        message.content = [chatMessage xmlString];
+//        message.sendTime = [NSDate date];
+//        message.type = 1;
+//        message.sessionID = self.session.sID;
+//        message.senderIsMe = YES;
+//        
+//        self.session.totalNumOfMessage += 1;
+//        
+//        if ([context hasChanges]) {
+//            NSError* error;
+//            [context save:&error];
+//        }
+//        [message layout];
+        
+        //发送消息
+    }
+    
+//    __weak NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
+//    [context performBlock:^{
+//
+//    }];
+
+}
 @end

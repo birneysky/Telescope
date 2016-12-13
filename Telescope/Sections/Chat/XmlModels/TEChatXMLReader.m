@@ -3,6 +3,7 @@
 //
 
 #import "TEChatXMLReader.h"
+#import "TESizeAspect.h"
 
 NSString *const kXMLReaderTextNodeKey = @"text";
 
@@ -150,30 +151,34 @@ NSString *const kXMLReaderTextNodeKey = @"text";
         _chatMessage.messageID = attributeDict[TEMessageIDAttribute];
     }
     else if([elementName isEqualToString:TETextElement] && attributeDict.count > 0){
-        TEMsgTextSubItem* textSubItem = [[TEMsgTextSubItem alloc] init];
-        textSubItem.type = Text;
+        TEMsgTextSubItem* textSubItem = [[TEMsgTextSubItem alloc] initWithType:Text];
         textSubItem.textContent = attributeDict[TETextAttribute];
         [_chatMessage addItem:textSubItem];
     }
     else if ([elementName isEqualToString:TELinkElement]){
-        TEMsgLinkSubItem* linkSubItem = [[TEMsgLinkSubItem alloc] init];
-        linkSubItem.type = Link;
+        TEMsgLinkSubItem* linkSubItem = [[TEMsgLinkSubItem alloc] initWithType:Link];
         linkSubItem.url = attributeDict[TEURLAttribute];
         linkSubItem.title = attributeDict[TEURLAttribute];
         [_chatMessage addItem:linkSubItem];
     }
     else if ([elementName isEqualToString:TEPictureElement]){
-        TEMsgImageSubItem* pictureSubItem = [[TEMsgImageSubItem alloc] init];
-        pictureSubItem.type = Image;
-        pictureSubItem.fileName = attributeDict[TEUUIDAttribute];
+        TEMsgImageSubItem* pictureSubItem = [[TEMsgImageSubItem alloc] initWithType:Image];
+        NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
+        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",attributeDict[TEUUIDAttribute],@"thumbnail"];
+        NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
+        pictureSubItem.fileName = thumbnailImgPath;//attributeDict[TEUUIDAttribute];
         CGFloat width = [attributeDict[TEWidhtAttribute] floatValue];
         CGFloat height = [attributeDict[TEHeightAttribute] floatValue];
+        aspectSizeInContainer(&width, &height, CGSizeMake(40, 40), CGSizeMake(200, 200));
         pictureSubItem.imagePosition = CGRectMake(0, 0, width, height);
         [_chatMessage addItem:pictureSubItem];
     }
     else if([elementName isEqualToString:TESysFaceElement]){
         TEExpresssionSubItem* faceItem = [[TEExpresssionSubItem alloc] initWithType:Face];
-        faceItem.fileName = attributeDict[TEFileNameAttribute];
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"TEExpression" ofType:@"bundle"];
+        NSString* itemName = [NSString stringWithFormat:@"Expression_%@",attributeDict[TEFileNameAttribute]];
+        NSString* imageName = [path stringByAppendingPathComponent:itemName];
+        faceItem.fileName = imageName;
         faceItem.imagePosition = CGRectMake(0, 0, 20, 20);
         [_chatMessage addItem:faceItem];
     }

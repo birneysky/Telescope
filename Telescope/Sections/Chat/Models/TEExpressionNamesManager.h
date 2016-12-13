@@ -10,7 +10,9 @@
 
 @interface TEExpressionNamesManager : NSObject
 
-@property (nonatomic,readonly) NSArray* names;
+- (NSString*)nameAtIndex:(NSInteger)index;
+
+- (NSString*)indexOfName:(NSString*)name;
 
 + (TEExpressionNamesManager*)defaultManager;
 

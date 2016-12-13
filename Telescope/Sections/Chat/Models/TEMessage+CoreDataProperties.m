@@ -22,5 +22,6 @@
 @dynamic type;
 @dynamic recvTime;
 @dynamic sessionID;
+@dynamic senderIsMe;
 
 @end

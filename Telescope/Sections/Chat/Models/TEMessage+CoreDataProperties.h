@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int16_t type;
 @property (nullable, nonatomic, copy) NSDate *recvTime;
 @property (nonatomic, assign) int32_t sessionID;
+@property (nonatomic,assign) BOOL senderIsMe;
 
 @end
 
