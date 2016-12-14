@@ -50,6 +50,12 @@
 @property (nonatomic, strong, readonly)TETextLayoutModel* layoutModel;
 
 
+/**
+ 内容显示的边距
+ */
+@property (nonatomic,assign) UIEdgeInsets contentInset;
+
+
 - (instancetype)initWithMessage:(TEMessage*)message;
 
 

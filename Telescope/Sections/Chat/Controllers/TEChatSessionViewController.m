@@ -54,7 +54,7 @@
     [super viewDidLoad];
     [self configureFetch];
     [self performFetch];
-    //[self.msgFactory start];
+    [self.msgFactory start];
     
 }
 

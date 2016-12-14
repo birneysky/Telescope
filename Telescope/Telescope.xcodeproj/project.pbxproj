@@ -89,9 +89,9 @@
 		DB6C7E2F1DFFDB4B000BCE8C /* CTAssetsSupplementaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E221DFFDB4B000BCE8C /* CTAssetsSupplementaryView.m */; };
 		DB6C7E301DFFDB4B000BCE8C /* CTAssetsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E241DFFDB4B000BCE8C /* CTAssetsViewCell.m */; };
 		DB6C7E311DFFDB4B000BCE8C /* CTAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E261DFFDB4B000BCE8C /* CTAssetsViewController.m */; };
-		DB6C7E321DFFDB4B000BCE8C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB6C7E271DFFDB4B000BCE8C /* Images.xcassets */; };
 		DB6C7E331DFFDB4B000BCE8C /* NSDate+timeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E291DFFDB4B000BCE8C /* NSDate+timeDescription.m */; };
 		DB6C7E361DFFF404000BCE8C /* TESizeAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E341DFFF404000BCE8C /* TESizeAspect.m */; };
+		DB6C7E381E014C41000BCE8C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB6C7E371E014C41000BCE8C /* Images.xcassets */; };
 		DB6DA7111D792D1900430922 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7101D792D1900430922 /* main.m */; };
 		DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7131D792D1900430922 /* AppDelegate.m */; };
 		DB6DA71A1D792D1900430922 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7181D792D1900430922 /* Main.storyboard */; };
@@ -327,11 +327,11 @@
 		DB6C7E241DFFDB4B000BCE8C /* CTAssetsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsViewCell.m; sourceTree = "<group>"; };
 		DB6C7E251DFFDB4B000BCE8C /* CTAssetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAssetsViewController.h; sourceTree = "<group>"; };
 		DB6C7E261DFFDB4B000BCE8C /* CTAssetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsViewController.m; sourceTree = "<group>"; };
-		DB6C7E271DFFDB4B000BCE8C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DB6C7E281DFFDB4B000BCE8C /* NSDate+timeDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timeDescription.h"; sourceTree = "<group>"; };
 		DB6C7E291DFFDB4B000BCE8C /* NSDate+timeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timeDescription.m"; sourceTree = "<group>"; };
 		DB6C7E341DFFF404000BCE8C /* TESizeAspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TESizeAspect.m; sourceTree = "<group>"; };
 		DB6C7E351DFFF404000BCE8C /* TESizeAspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TESizeAspect.h; sourceTree = "<group>"; };
+		DB6C7E371E014C41000BCE8C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DB6DA70C1D792D1800430922 /* Telescope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telescope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DA7101D792D1900430922 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB6DA7121D792D1900430922 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -990,6 +990,7 @@
 		DB6C7E161DFFDB4B000BCE8C /* CTAssetsPickerController */ = {
 			isa = PBXGroup;
 			children = (
+				DB6C7E371E014C41000BCE8C /* Images.xcassets */,
 				DB6C7E171DFFDB4B000BCE8C /* ALAssetsGroup+isEqual.h */,
 				DB6C7E181DFFDB4B000BCE8C /* ALAssetsGroup+isEqual.m */,
 				DB6C7E191DFFDB4B000BCE8C /* CTAssetsGroupViewCell.h */,
@@ -1006,7 +1007,6 @@
 				DB6C7E241DFFDB4B000BCE8C /* CTAssetsViewCell.m */,
 				DB6C7E251DFFDB4B000BCE8C /* CTAssetsViewController.h */,
 				DB6C7E261DFFDB4B000BCE8C /* CTAssetsViewController.m */,
-				DB6C7E271DFFDB4B000BCE8C /* Images.xcassets */,
 				DB6C7E281DFFDB4B000BCE8C /* NSDate+timeDescription.h */,
 				DB6C7E291DFFDB4B000BCE8C /* NSDate+timeDescription.m */,
 			);
@@ -1278,7 +1278,7 @@
 				DB664E7B1DEE843F00EC40A8 /* WeiboSDK.bundle in Resources */,
 				DB664E801DEE843F00EC40A8 /* ShareSDK.bundle in Resources */,
 				DB8D0BB21DF51B08008E8B15 /* TEExpressionNames.plist in Resources */,
-				DB6C7E321DFFDB4B000BCE8C /* Images.xcassets in Resources */,
+				DB6C7E381E014C41000BCE8C /* Images.xcassets in Resources */,
 				DB6DA71F1D792D1900430922 /* Assets.xcassets in Resources */,
 				DB664E7D1DEE843F00EC40A8 /* read_me.txt in Resources */,
 				DB664E991DEE847000EC40A8 /* TEDefaultCollectionCell.xib in Resources */,

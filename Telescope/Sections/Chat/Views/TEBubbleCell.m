@@ -85,11 +85,11 @@
     
     if (message.senderIsMe) {
         UIImage* image = [UIImage imageNamed:@"sendto_bubble_bg"];
-        self.messageView.image =  [image resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 8, 8) resizingMode:UIImageResizingModeStretch];
+        self.messageView.image =  [image resizableImageWithCapInsets:UIEdgeInsetsMake(35, 22, 10, 10) resizingMode:UIImageResizingModeStretch];
     }
     else{
         UIImage* image = [UIImage imageNamed:@"recv_bubble_bg"];
-        self.messageView.image =  [image resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 8, 8) resizingMode:UIImageResizingModeStretch];
+        self.messageView.image =  [image resizableImageWithCapInsets:UIEdgeInsetsMake(35, 10, 10, 22) resizingMode:UIImageResizingModeStretch];
 
     }
     

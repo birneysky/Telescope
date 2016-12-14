@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     TEToolbarInputTextState       = 1 << 3
 };
 
-#define TEToolbarMaxHeight 100
+#define TEToolbarMaxHeight 84
 
 @interface TEChatViewController ()<TEChatExpressionPannelDelegate,TEChatMorePanelDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -52,6 +52,9 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 @property (nonatomic, assign) TEChatToolBarState toolbarState;
 
 @property (nonatomic, assign) CGFloat keyboardHeight;
+
+@property (nonatomic,strong) NSMutableArray<TEChatMessage*>* cacheArray;
+@property (nonatomic,strong) NSMutableArray<TEMessage*>* messageChache;
 
 @end
 
@@ -80,6 +83,23 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 {
     _toolbarState = toolbarState;
     [self resetToolbarState];
+}
+
+#pragma mark - *** ***
+- (NSMutableArray<TEChatMessage*>*)cacheArray
+{
+    if (!_cacheArray) {
+        _cacheArray = [[NSMutableArray alloc] init];
+    }
+    return _cacheArray;
+}
+
+- (NSMutableArray<TEMessage*>*)messageChache
+{
+    if (!_messageChache) {
+        _messageChache = [[NSMutableArray alloc] init];
+    }
+    return _messageChache;
 }
 
 #pragma mark - *** Init ***
@@ -301,54 +321,45 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     }];
 
     NSAssert(regularExpression,@"正则%@有误",pattern);
-    [self insertNewMessage:chatMessage];
-    //    __weak NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
-//    [context performBlock:^{
-//        TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
-//        message.mID = [NSString UUID];
-//        message.senderID = 100001;
-//        message.receiverID = self.session.senderID;
-//        message.content = [chatMessage xmlString];
-//        message.sendTime = [NSDate date];
-//        message.type = 1;
-//        message.sessionID = self.session.sID;
-//        message.senderIsMe = YES;
-//        
-//        self.session.totalNumOfMessage += 1;
-//        
-//        if ([context hasChanges]) {
-//            NSError* error;
-//            [context save:&error];
-//        }
-//        [message layout];
-//    }];
-    
+    [self insertNewMessage:@[chatMessage]];
 }
 
-- (void)insertNewMessage:(TEChatMessage*)chatMessage
+- (void)insertNewMessage:(NSArray<TEChatMessage*>*)chatMessages
 {
-    __weak NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
-    [context performBlock:^{
-        TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
-        message.mID = chatMessage.messageID;
-        message.senderID = 100001;
-        message.receiverID = self.session.senderID;
-        message.content = [chatMessage xmlString];
-        message.sendTime = [NSDate date];
-        message.type = 1;
-        message.sessionID = self.session.sID;
-        message.senderIsMe = YES;
-        
-        self.session.totalNumOfMessage += 1;
-        
-        [message layout];
-        
-        if ([context hasChanges]) {
-            NSError* error;
-            [context save:&error];
+    NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
+    //[self.cacheArray addObject:message];
+    //[self.messageChache addObject:message];
+    [[[TECoreDataHelper defaultHelper] backgroundContext] performBlock:^{
+        for (int i =0 ; i < chatMessages.count; i++) {
+            TEChatMessage* chatMessage = chatMessages[i];
+            TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
+            message.mID = chatMessage.messageID;
+            message.senderID = 100001;
+            message.receiverID = self.session.senderID;
+            message.content = [chatMessage xmlString];
+            message.sendTime = [NSDate date];
+            message.recvTime = message.sendTime;
+            message.type = 1;
+            message.sessionID = self.session.sID;
+            message.senderIsMe = YES;
+            
+            self.session.totalNumOfMessage += 1;
+            
+            [message layout];
         }
+            //[[TECoreDataHelper defaultHelper] saveBackgroundContext];
+            if ([context hasChanges]) {
+                NSError* error;
+                //NSLog(@"🍎🍎🍎🍎🍎 %@",message);
+                [context save:&error];
+                //NSLog(@"save messaage 🍎🍎🍎🍎🍎");
+                //[self.cacheArray removeObject:chatMessage];
+            }
+
+
         
     }];
+
 }
 
 #pragma mark - *** KVO ***
@@ -356,17 +367,24 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 {
     if ([keyPath isEqualToString:@"contentSize"]) {
         //NSLog(@"textVewContentSize %@",NSStringFromCGSize(self.textView.contentSize));
-        CGFloat totalHeight = self.textView.contentSize.height + 16;
-        if (totalHeight > 50 && totalHeight <= TEToolbarMaxHeight) {
-            self.toolbarHeightConstraint.constant = totalHeight;
+        CGFloat contentHeight = self.textView.contentSize.height;
+        CGFloat constantValue = 0;
+        if (contentHeight > 34 && contentHeight <= TEToolbarMaxHeight) {
+            constantValue = contentHeight + 16;
         }
-        else if(totalHeight <= 50){
-            self.toolbarHeightConstraint.constant = 50;
+        else if(contentHeight <= 34){
+            constantValue = 50;
         }
         else{
             return;
         }
-        [self.toolbar setNeedsUpdateConstraints];
+       
+        [UIView  animateWithDuration:0.3 animations:^{
+            self.toolbarHeightConstraint.constant = constantValue;
+            self.chatTVC.tableView.contentInset = UIEdgeInsetsMake(0, 0, constantValue, 0);
+            [self.toolbar layoutIfNeeded];
+            [self.view layoutIfNeeded];
+        }];
     }
 }
 
@@ -375,8 +393,10 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
-        [self sendMessage];
-        self.textView.text = nil;
+        if (self.textView.text.length > 0) {
+            [self sendMessage];
+            self.textView.text = nil;
+        }
         return NO;
     }
     return YES;
@@ -426,89 +446,65 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 #pragma mark - *** CTAssetsPickerControllerDelegate ***
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
     [picker dismissViewControllerAnimated:YES completion:^{
+        NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+        {
+            [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+        }
         
+        NSMutableArray<TEChatMessage*>* array = [[NSMutableArray alloc] init];
+        for (ALAsset * asset in assets)
+        {
+            NSString* fileName = [NSString UUID];
+            CGImageRef fullImg = [[asset defaultRepresentation] fullScreenImage];
+            CGFloat fullWidth = CGImageGetWidth(fullImg);
+            CGFloat fullHeight = CGImageGetHeight(fullImg);
+            
+            //        CGImageRef thumbnailImg = asset.thumbnail;
+            //        CGFloat thumbnailWidth = CGImageGetWidth(thumbnailImg);
+            //        CGFloat thumbnailHeight = CGImageGetHeight(thumbnailImg);
+            
+            CGImageRef thumbnailAspectImg = asset.aspectRatioThumbnail;
+            CGFloat thumbnailAspectWidth = CGImageGetWidth(thumbnailAspectImg);
+            CGFloat thumbnailAspectHeight = CGImageGetHeight(thumbnailAspectImg);
+            aspectSizeInContainer(&thumbnailAspectWidth, &thumbnailAspectHeight, CGSizeMake(40, 40), CGSizeMake(200, 200));
+            
+            CGSize imageSize = CGSizeMake(thumbnailAspectWidth, thumbnailAspectHeight);
+            UIGraphicsBeginImageContext(imageSize);
+            UIImage* thumbnailImage = [UIImage imageWithCGImage:thumbnailAspectImg];
+            [thumbnailImage drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+            UIImage* resultImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            //缩略图写入文件
+            NSData* thumbnailJPGData = UIImageJPEGRepresentation(resultImage, 1);
+            NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",fileName,@"thumbnail"];
+            NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
+            [thumbnailJPGData writeToFile:thumbnailImgPath atomically:YES];
+            
+            //原始图片写入文件
+            NSData* fullJPGData = UIImageJPEGRepresentation([UIImage imageWithCGImage:fullImg], 1);
+            NSString* fileFullImageName = [NSString stringWithFormat:@"%@.jpg",fileName];
+            NSString* fullImagePath = [filePath stringByAppendingPathComponent:fileFullImageName];
+            [fullJPGData writeToFile:fullImagePath atomically:YES];
+            
+            //生成消息实例
+            TEMsgImageSubItem* imageItem = [[TEMsgImageSubItem alloc] initWithType:Image];
+            imageItem.fileName = fileName;
+            imageItem.imagePosition = CGRectMake(0, 0, fullWidth, fullHeight);
+            
+            TEChatMessage* chatMessage = [[TEChatMessage alloc] init];
+            chatMessage.messageID = [NSString UUID];
+            chatMessage.isAutoReply = NO;
+            [chatMessage addItem:imageItem];
+            
+            //发送消息
+            [array addObject:chatMessage];
+        }
+        
+        [self insertNewMessage:[array copy]];
     }];
     
-    NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
-    {
-        [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-
-    
-    for (ALAsset * asset in assets)
-    {
-        NSString* fileName = [NSString UUID];
-        CGImageRef fullImg = [[asset defaultRepresentation] fullScreenImage];
-        CGFloat fullWidth = CGImageGetWidth(fullImg);
-        CGFloat fullHeight = CGImageGetHeight(fullImg);
-
-        //        CGImageRef thumbnailImg = asset.thumbnail;
-        //        CGFloat thumbnailWidth = CGImageGetWidth(thumbnailImg);
-        //        CGFloat thumbnailHeight = CGImageGetHeight(thumbnailImg);
-       
-        CGImageRef thumbnailAspectImg = asset.aspectRatioThumbnail;
-        CGFloat thumbnailAspectWidth = CGImageGetWidth(thumbnailAspectImg);
-        CGFloat thumbnailAspectHeight = CGImageGetHeight(thumbnailAspectImg);
-        aspectSizeInContainer(&thumbnailAspectWidth, &thumbnailAspectHeight, CGSizeMake(40, 40), CGSizeMake(200, 200));
-
-        CGSize imageSize = CGSizeMake(thumbnailAspectWidth, thumbnailAspectHeight);
-        UIGraphicsBeginImageContext(imageSize);
-        UIImage* thumbnailImage = [UIImage imageWithCGImage:thumbnailAspectImg];
-        [thumbnailImage drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-        UIImage* resultImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        //缩略图写入文件
-        NSData* thumbnailJPGData = UIImageJPEGRepresentation(resultImage, 1);
-        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",fileName,@"thumbnail"];
-        NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
-        [thumbnailJPGData writeToFile:thumbnailImgPath atomically:YES];
-    
-        //原始图片写入文件
-        NSData* fullJPGData = UIImageJPEGRepresentation([UIImage imageWithCGImage:fullImg], 1);
-        NSString* fileFullImageName = [NSString stringWithFormat:@"%@.jpg",fileName];
-        NSString* fullImagePath = [filePath stringByAppendingPathComponent:fileFullImageName];
-        [fullJPGData writeToFile:fullImagePath atomically:YES];
-        
-        //生成消息实例
-        TEMsgImageSubItem* imageItem = [[TEMsgImageSubItem alloc] initWithType:Image];
-        imageItem.fileName = fileName;
-        imageItem.imagePosition = CGRectMake(0, 0, fullWidth, fullHeight);
-        
-        TEChatMessage* chatMessage = [[TEChatMessage alloc] init];
-        chatMessage.messageID = [NSString UUID];
-        chatMessage.isAutoReply = NO;
-        [chatMessage addItem:imageItem];
-        
-        [self insertNewMessage:chatMessage];
-        //保存消息实例
-//         __weak NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
-//        TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
-//        message.mID = [NSString UUID];
-//        message.senderID = 100001;
-//        message.receiverID = self.session.senderID;
-//        message.content = [chatMessage xmlString];
-//        message.sendTime = [NSDate date];
-//        message.type = 1;
-//        message.sessionID = self.session.sID;
-//        message.senderIsMe = YES;
-//        
-//        self.session.totalNumOfMessage += 1;
-//        
-//        if ([context hasChanges]) {
-//            NSError* error;
-//            [context save:&error];
-//        }
-//        [message layout];
-        
-        //发送消息
-    }
-    
-//    __weak NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
-//    [context performBlock:^{
-//
-//    }];
-
+ 
 }
 @end

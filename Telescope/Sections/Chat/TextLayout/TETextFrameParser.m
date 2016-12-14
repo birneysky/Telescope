@@ -242,7 +242,7 @@ static CGFloat widthCallback(void* ref){
     // 将生成好的CTFrameRef实例和计算好的缓制高度保存到TETextLayoutModel实例中，最后返回TETextLayoutModel实例
     TETextLayoutModel *data = [[TETextLayoutModel alloc] init];
     data.ctFrame = frame;
-    data.width = config.width;
+    data.width = coreTextSize.width;
     data.height = textHeight;
     data.content = content;
     

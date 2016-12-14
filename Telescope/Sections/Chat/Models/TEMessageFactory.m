@@ -61,7 +61,7 @@ NSString* gen_uuid()
 {
     __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
     NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEChatSession"];
-    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"senderID == %@",sid];
+    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"senderID == %lld",[sid longLongValue]];
     [fetchRequest setPredicate:predicat];
     NSError* error;
     NSArray* result = [weakContext executeFetchRequest:fetchRequest error:&error];
@@ -86,7 +86,7 @@ NSString* gen_uuid()
         BOOL isProduceText = arc4random() % 2 == 0 ? YES : NO;
         if (isProduceText) {
             TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
-            textItem.textContent = @"念小编有一个好消息要告诉大家，我们的“老外说”终于要回归了！每期节目我们都会邀请一位“老外”现身说法 回答关于“歪国”和“歪果仁”的各种问题。念念的粉丝们也可以在公众号参与互动，留下你们的问题，小编会尽最大努力满足大家的好奇心～ 前路还漫长越过荆棘沼泽 能坚持就会看到繁花锦簇 这故事永远不会结束";
+            textItem.textContent = @"念小编有一个好消息要告诉大家，我们的“老外说”终于要回归了！";
             [chatMessage addItem:textItem];
         }
         
@@ -95,14 +95,14 @@ NSString* gen_uuid()
                 TEExpresssionSubItem* faceItem = [[TEExpresssionSubItem alloc] initWithType:Face];
                 faceItem.imagePosition = CGRectMake(0, 0, 24, 24);
                 NSUInteger expressionIndex = arc4random() % 105;
-                NSString* path = [[NSBundle mainBundle] pathForResource:@"TEExpression" ofType:@"bundle"];
-                NSString* itemName = [NSString stringWithFormat:@"Expression_%ld",expressionIndex];
-                NSString* imageName = [path stringByAppendingPathComponent:itemName];
-                faceItem.fileName = imageName;
+                //NSString* path = [[NSBundle mainBundle] pathForResource:@"TEExpression" ofType:@"bundle"];
+                NSString* itemName = [NSString stringWithFormat:@"%ld",expressionIndex];
+                //NSString* imageName = [path stringByAppendingPathComponent:itemName];
+                faceItem.fileName = itemName;
                 [chatMessage addItem:faceItem];
                 
                 TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
-                textItem.textContent = @"把每个角落刻满你我的名字 闪烁着光芒就像宝石那样子 一同经历过磨砺万次 我们互相照耀着彼此 每当我凝望孤单寂寞的影子 你总是出现在身旁为我驻足";
+                textItem.textContent = @"把每个角落刻满你我的名字 闪烁着光芒就像宝石那样子 一同经历过磨砺万次 ";
                 [chatMessage addItem:textItem];
             }
         }
@@ -170,7 +170,7 @@ NSString* gen_uuid()
         message.sessionID = session.sID;
         session.totalNumOfMessage += 1;
         
-        //[message layout];
+        [message layout];
 //        if ([weakContext hasChanges]) {
 //            NSError* error;
 //            [weakContext save:&error];
@@ -249,7 +249,7 @@ NSString* gen_uuid()
         NSPort* dummyPort = [NSMachPort port];
         [[NSRunLoop currentRunLoop] addPort:dummyPort forMode:NSDefaultRunLoopMode];
         while (weakSelf.runing) {
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1]];
             //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
             //NSLog(@"🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂🐂");
             NSInteger randomIndex = arc4random() % [usrIDs count];

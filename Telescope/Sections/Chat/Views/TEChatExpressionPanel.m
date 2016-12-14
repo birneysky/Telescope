@@ -96,7 +96,7 @@
         CGRect frame = CGRectMake(pageIndex * panelWith + columnIndex * expressionWidth + xOffset, rowIndex * expressionHeight + yOffset, expressionWidth, expressionHeight);
         UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = frame;
-        NSString* imageName = [NSString stringWithFormat:@"Expression_%lu",i+1];
+        NSString* imageName = [NSString stringWithFormat:@"Expression_%lu",i];
         NSString* imagePathName = [expressionBundlePath stringByAppendingPathComponent:imageName];
         button.tag = i;
         [button setImage:[UIImage imageNamed:imagePathName] forState:UIControlStateNormal];

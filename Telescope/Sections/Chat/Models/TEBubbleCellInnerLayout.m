@@ -56,6 +56,8 @@
         }
         else{
             contextX = CGRectGetMaxX(_avatarFrame) + Spacing;
+            //左边距12，顶边距4，右边距6，底边距12
+            _contentInset = UIEdgeInsetsMake(4, 12, 12, 6);
         }
         
         _contentFrame = CGRectMake(contextX, avatarY, _layoutModel.width + Spacing * 2, _layoutModel.height+ Spacing * 2);

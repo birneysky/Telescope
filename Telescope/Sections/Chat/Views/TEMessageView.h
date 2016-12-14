@@ -14,4 +14,6 @@
 
 @property (nonatomic,readonly) TETextLayoutView* layoutView;
 
+@property (nonatomic,assign) UIEdgeInsets contentInset;
+
 @end
