@@ -147,7 +147,7 @@ NSString* gen_uuid()
         TEChatSession* session = nil;
         
         if (result.count == 0) {
-             NSInteger sessionCount = [weakContext countForFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"TEChatSession"] error:nil];
+            NSInteger sessionCount = [weakContext countForFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"TEChatSession"] error:nil];
             session  = [NSEntityDescription insertNewObjectForEntityForName:@"TEChatSession" inManagedObjectContext:weakContext];
             session.groupID = 0;
             session.groupType = 0;
@@ -213,8 +213,8 @@ NSString* gen_uuid()
 #pragma mark - *** api ***
 - (void)start
 {
-    NSArray<NSNumber*>* usrIDs = @[@100001,@100002/*,@100003,@100004,@100005,@100006,@100007,@100008,@100009,@100010,@100011,@100012,@100013,@100014,@100015,@100016,@100017,@100018,@100019,@100020,@100021,@100022,@100023,@100024,@100025,@100026,@100027,@100028*/];
-    NSArray<NSString*>* names = @[@"张一☂️",@"张二🍐"/*,@"张三♥️",@"张四🍎",@"张五",@"张六",@"张七",@"张八",@"张九",@"李一",@"李二",@"李三",@"李四",@"李五",@"李六",@"🍐七",@"🍐八",@"🍐九",@"🍎一",@"🍎二",@"🍎三",@"🍎四",@"🍎屋",@"☂️一",@"☂️二",@"☂️三",@"☂️四",@"☂️五"*/];
+    NSArray<NSNumber*>* usrIDs = @[@100001,@100002,@231/*,@100004,@100005,@100006,@100007,@100008,@100009,@100010,@100011,@100012,@100013,@100014,@100015,@100016,@100017,@100018,@100019,@100020,@100021,@100022,@100023,@100024,@100025,@100026,@100027,@100028*/];
+    NSArray<NSString*>* names = @[@"张一☂️",@"张二🍐",@"张三♥️"/*,@"张四🍎",@"张五",@"张六",@"张七",@"张八",@"张九",@"李一",@"李二",@"李三",@"李四",@"李五",@"李六",@"🍐七",@"🍐八",@"🍐九",@"🍎一",@"🍎二",@"🍎三",@"🍎四",@"🍎屋",@"☂️一",@"☂️二",@"☂️三",@"☂️四",@"☂️五"*/];
     self.runing = YES;
     
     TECoreDataHelper* helper = [TECoreDataHelper defaultHelper];

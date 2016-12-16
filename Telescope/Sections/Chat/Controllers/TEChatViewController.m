@@ -25,6 +25,9 @@
 #import <Photos/Photos.h>
 #import "TESizeAspect.h"
 
+#import <V2Kit/V2Kit.h>
+
+
 typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     TEToolbarNormalState          = 0,
     TEToolbarAudioRecordState     = 1 << 0,
@@ -131,15 +134,17 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     [self.chatTVC.timer invalidate];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"te_present_video_chat"]) {
+        
+    }
 }
-*/
 
 #pragma mark - *** target action ***
 - (IBAction)moreBtnClicked:(id)sender {
@@ -319,6 +324,13 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             [chatMessage addItem:linkItem];
         }
     }];
+    
+    if(location < sendText.length){
+        TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
+        textItem.textContent = [sendText substringWithRange:(NSRange){location,sendText.length - location}];
+        [chatMessage addItem:textItem];
+    }
+    
 
     NSAssert(regularExpression,@"正则%@有误",pattern);
     [self insertNewMessage:@[chatMessage]];
@@ -355,11 +367,13 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
                 //NSLog(@"save messaage 🍎🍎🍎🍎🍎");
                 //[self.cacheArray removeObject:chatMessage];
             }
-
-
         
     }];
 
+    [chatMessages enumerateObjectsUsingBlock:^(TEChatMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[V2Kit defaultKit] sendTextMessage:[obj xmlString] toUserID:self.session.senderID inGroup:0 messageID:obj.messageID];
+    }];
+    
 }
 
 #pragma mark - *** KVO ***
@@ -381,7 +395,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
        
         [UIView  animateWithDuration:0.3 animations:^{
             self.toolbarHeightConstraint.constant = constantValue;
-            self.chatTVC.tableView.contentInset = UIEdgeInsetsMake(0, 0, constantValue, 0);
+            self.chatTVC.tableView.contentInset = UIEdgeInsetsMake(64, 0, constantValue, 0);
             [self.toolbar layoutIfNeeded];
             [self.view layoutIfNeeded];
         }];
@@ -437,7 +451,11 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             [self presentViewController:picker animated:YES completion:nil];
         }
             break;
-            
+        case VideoChat:
+        {
+            [self performSegueWithIdentifier:@"te_present_video_chat" sender:nil];
+            //te_present_video_chat
+        }
         default:
             break;
     }
@@ -456,19 +474,17 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         for (ALAsset * asset in assets)
         {
             NSString* fileName = [NSString UUID];
+            
             CGImageRef fullImg = [[asset defaultRepresentation] fullScreenImage];
             CGFloat fullWidth = CGImageGetWidth(fullImg);
             CGFloat fullHeight = CGImageGetHeight(fullImg);
-            
-            //        CGImageRef thumbnailImg = asset.thumbnail;
-            //        CGFloat thumbnailWidth = CGImageGetWidth(thumbnailImg);
-            //        CGFloat thumbnailHeight = CGImageGetHeight(thumbnailImg);
             
             CGImageRef thumbnailAspectImg = asset.aspectRatioThumbnail;
             CGFloat thumbnailAspectWidth = CGImageGetWidth(thumbnailAspectImg);
             CGFloat thumbnailAspectHeight = CGImageGetHeight(thumbnailAspectImg);
             aspectSizeInContainer(&thumbnailAspectWidth, &thumbnailAspectHeight, CGSizeMake(40, 40), CGSizeMake(200, 200));
             
+            //生成压缩图片
             CGSize imageSize = CGSizeMake(thumbnailAspectWidth, thumbnailAspectHeight);
             UIGraphicsBeginImageContext(imageSize);
             UIImage* thumbnailImage = [UIImage imageWithCGImage:thumbnailAspectImg];

@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+
+/**
+ 持久化存储
+ */
 @interface TECoreDataHelper : NSObject
 
 @property (nonatomic,readonly) NSManagedObjectModel* model;
@@ -20,7 +24,6 @@
 @property (nonatomic,readonly) NSPersistentStoreCoordinator* coordinator;
 
 + (TECoreDataHelper*)defaultHelper;
-
 
 - (void)saveDefaultContext;
 

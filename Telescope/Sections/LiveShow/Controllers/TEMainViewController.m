@@ -144,7 +144,21 @@
     //self.testImageView.image = screenImg;
     [self performSegueWithIdentifier:@"push_broadcast_live" sender:nil];
 }
+//231
 
+/**
+ 关注
+
+ @param sender sender
+ */
+- (IBAction)focusBtnClikced:(id)sender {
+    /// self   273  other   231
+    [TENETWORKKIT payAttentionToUser:273 completion:^{
+        
+    } onError:^(NSError *error) {
+        
+    }];
+}
 
 #pragma mark - Navigation
 

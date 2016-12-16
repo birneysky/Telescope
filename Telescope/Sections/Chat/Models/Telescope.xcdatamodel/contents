@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="15G31" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="TECacheUser" representedClassName="TECacheUser" syncable="YES">
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNum" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="TEChatSession" representedClassName="TEChatSession" syncable="YES">
@@ -26,7 +27,7 @@
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TECacheUser" positionX="1042" positionY="333" width="128" height="75"/>
+        <element name="TECacheUser" positionX="1042" positionY="333" width="128" height="90"/>
         <element name="TEChatSession" positionX="799" positionY="455" width="128" height="163"/>
         <element name="TEMessage" positionX="1033" positionY="441" width="128" height="180"/>
     </elements>

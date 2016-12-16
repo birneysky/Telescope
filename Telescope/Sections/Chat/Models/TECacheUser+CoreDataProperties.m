@@ -16,5 +16,6 @@
 
 @dynamic nickName;
 @dynamic uid;
+@dynamic phoneNum;
 
 @end

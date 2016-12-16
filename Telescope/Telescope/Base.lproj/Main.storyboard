@@ -311,6 +311,9 @@
                                                 </constraints>
                                                 <state key="normal" image="te_like_normal"/>
                                                 <state key="highlighted" image="te_like_highlighted"/>
+                                                <connections>
+                                                    <action selector="focusBtnClikced:" destination="Xhp-Kb-qgJ" eventType="touchUpInside" id="FfK-Hr-hUg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aD-be-g79" userLabel="gratuity">
                                                 <rect key="frame" x="0.0" y="120.5" width="40" height="40"/>
@@ -506,6 +509,7 @@
                     <connections>
                         <segue destination="btf-gR-Or1" kind="show" identifier="te_push_setting" id="hro-Um-sdV"/>
                         <segue destination="E10-FR-C4u" kind="show" identifier="te_push_messages" id="6lS-aG-wBI"/>
+                        <segue destination="fbm-e0-G6M" kind="show" identifier="te_push_fans" id="OLU-IN-jVU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIf-0e-wRt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -662,7 +666,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82Y-XN-qnC">
-                                            <rect key="frame" x="278" y="18" width="86" height="22"/>
+                                            <rect key="frame" x="277" y="18" width="86" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -689,7 +693,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tr1-99-TOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3780" y="223.53823088455775"/>
+            <point key="canvasLocation" x="3780" y="224"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="Wbv-UV-3JN">
@@ -866,6 +870,7 @@
                         <outlet property="toolbarBottomConstraint" destination="xgI-EV-bNC" id="MiI-iS-jAs"/>
                         <outlet property="toolbarHeightConstraint" destination="tBg-Pt-Scp" id="z5L-e6-Hyr"/>
                         <outlet property="voiceBtn" destination="3ko-am-BhG" id="X10-ek-dNv"/>
+                        <segue destination="K8c-24-uLG" kind="presentation" identifier="te_present_video_chat" id="z2J-vi-TcJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qv-Lz-Tk6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -875,7 +880,79 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="4700" y="224"/>
+            <point key="canvasLocation" x="4793" y="224"/>
+        </scene>
+        <!--Video Chat View Controller-->
+        <scene sceneID="5Z4-Ec-BQM">
+            <objects>
+                <viewController id="K8c-24-uLG" customClass="TEVideoChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QM2-Ao-z4M"/>
+                        <viewControllerLayoutGuide type="bottom" id="eUR-2g-7sH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JRG-zD-R9r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hst-UD-zhr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LpG-Ib-xrZ">
+                                <rect key="frame" x="232.5" y="547" width="70" height="70"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.14554351077342229" blue="0.10205354352671503" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="8Z4-ie-XvN"/>
+                                    <constraint firstAttribute="height" constant="70" id="cAA-4S-LE8"/>
+                                </constraints>
+                                <state key="normal" title="挂断">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="huangupBtnClicked:" destination="K8c-24-uLG" eventType="touchUpInside" id="M5r-wE-e2s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1r-dD-IBz">
+                                <rect key="frame" x="72.5" y="547" width="70" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="ldn-wR-ZHq"/>
+                                    <constraint firstAttribute="height" constant="70" id="zkH-ZX-PCI"/>
+                                </constraints>
+                                <state key="normal" title="切换">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="switchCameraBtnClicked:" destination="K8c-24-uLG" eventType="touchUpInside" id="Idg-da-g1S"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LpG-Ib-xrZ" firstAttribute="centerX" secondItem="JRG-zD-R9r" secondAttribute="centerX" constant="80" id="18B-Lc-cru"/>
+                            <constraint firstAttribute="bottom" secondItem="e1r-dD-IBz" secondAttribute="bottom" constant="50" id="EdC-eN-ZDK"/>
+                            <constraint firstItem="e1r-dD-IBz" firstAttribute="centerX" secondItem="JRG-zD-R9r" secondAttribute="centerX" constant="-80" id="fTx-t8-soJ"/>
+                            <constraint firstAttribute="bottom" secondItem="LpG-Ib-xrZ" secondAttribute="bottom" constant="50" id="j8a-97-J4p"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="videoView" destination="hst-UD-zhr" id="GEy-pQ-DRr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dLH-p9-T89" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5818" y="224"/>
         </scene>
         <!--设置-->
         <scene sceneID="V7G-zI-KaJ">
@@ -910,7 +987,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABu-bU-phn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4638" y="-512"/>
+            <point key="canvasLocation" x="4793" y="-1234"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="A8Q-Gu-NnM">
@@ -939,7 +1016,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NmC-qu-jqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5528.8000000000002" y="-447.52623688155927"/>
+            <point key="canvasLocation" x="5716" y="-1235"/>
+        </scene>
+        <!--Fans Table View Controller-->
+        <scene sceneID="EFh-Db-NKX">
+            <objects>
+                <tableViewController id="fbm-e0-G6M" customClass="TEFansTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1ao-88-XQ5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TEFansCell" id="0UG-p4-haD">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0UG-p4-haD" id="fEE-HW-x8a">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="nqp-Ao-Sqe" kind="show" id="00Y-al-GS4"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fbm-e0-G6M" id="f0J-FL-G0G"/>
+                            <outlet property="delegate" destination="fbm-e0-G6M" id="eeF-VA-yUa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Wd3-VL-9ne">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="DKl-yX-qFH"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aNU-UW-c4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4793" y="-512"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="Nmy-YF-GDI">
@@ -1014,4 +1125,7 @@
         <image name="te_sina_icon" width="59" height="59"/>
         <image name="te_weChat_icon" width="59" height="59"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="00Y-al-GS4"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -24,6 +24,9 @@
 
 #import <V2Kit/V2Kit.h>
 
+
+#import "TEV2KitChatDemon.h"
+
 @interface AppDelegate ()
 
 @end
@@ -38,7 +41,9 @@
 
     NSString* docPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     [[V2Kit defaultKit] InitializeKit:docPath logLevel:0];
+    [V2Kit defaultKit].chatDelegate = [TEV2KitChatDemon defaultDemon];
     [[V2Kit defaultKit] configServerAddress:@"123.57.217.170" serverPort:5123];
+
     return YES;
 }
 

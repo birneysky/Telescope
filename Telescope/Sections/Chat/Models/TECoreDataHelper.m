@@ -7,6 +7,8 @@
 //
 
 #import "TECoreDataHelper.h"
+#import "TEV2KitChatDemon.h"
+
 
 #define STOREFILENAME @"Telesope.sqlite"
 
@@ -80,7 +82,10 @@ static TECoreDataHelper* helper;
 
 - (NSURL*)appStorePath
 {
-    NSURL* storeURL = [[NSURL fileURLWithPath:[self appDocumentPath]] URLByAppendingPathComponent:@"Stores"];
+    TEUser* user = [TEV2KitChatDemon defaultDemon].selfUser;
+    NSAssert(user.userID > 0, @"未获取自身的userID");
+    NSString* storeDirectoryName = [NSString stringWithFormat:@"Stores-%lld",user.userID];
+    NSURL* storeURL = [[NSURL fileURLWithPath:[self appDocumentPath]] URLByAppendingPathComponent:storeDirectoryName];
     
     //如果没有该目录，创建该目录
     NSFileManager* fileManager = [NSFileManager defaultManager];

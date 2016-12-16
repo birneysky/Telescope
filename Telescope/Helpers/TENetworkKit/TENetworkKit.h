@@ -62,4 +62,40 @@
 - (void)fetchLiveShowListWithCompletion:(void(^)(TEResponse<NSArray<TELiveShowInfo*>*>* response))comletion
                                 onError:(void(^)(NSError* error))err;
 
+
+/**
+ 关注某个用户
+
+ @param userID 用户id
+ */
+- (void)payAttentionToUser:(NSUInteger)userID
+                completion:(void(^)())completion
+                    onError:(void(^)(NSError* error))err;
+
+
+/**
+ 取消关注某个用户
+
+ @param userID 用户id
+ */
+- (void)cancelAttentionToUser:(NSUInteger)userID
+                   completion:(void(^)())completion
+                       onError:(void(^)(NSError* error))err;
+
+
+
+
+/**
+ 获取粉丝列表
+
+ @param from 列表开始偏移量
+ @param to 结束偏移量
+ @param completion 列表回传完成 block
+ @param err 错误block
+ */
+- (void)fetchFansInfoWithFormOffset:(NSInteger)from
+                           toOffset:(NSInteger)to
+                         completion:(void(^)(TEResponse<NSArray<TEUser*>*>* response))completion
+                            onError:(void(^)(NSError* error))err;
+
 @end

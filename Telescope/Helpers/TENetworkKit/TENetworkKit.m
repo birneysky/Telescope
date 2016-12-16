@@ -174,5 +174,88 @@ static TENetworkKit* defaultKit;
 }
 
 
+- (void)payAttentionToUser:(NSUInteger)userID
+                completion:(void(^)())completion
+                    onError:(void(^)(NSError* error))err
+{
+    V2PPacket* focusPacket = [[V2PPacket alloc] init];
+    focusPacket.packetType = V2PPacket_type_Iq;
+    focusPacket.version = @"1.3.1";
+    focusPacket.method = @"followUser";
+    focusPacket.operateType = @"add";
+    
+    V2PData* data = [[V2PData alloc] init];
+    V2PUser* user= [[V2PUser alloc] init];
+    user.id_p = (int32_t)userID;
+    [data.userArray addObject:user];
+    
+    focusPacket.data_p = data;
+    
+    
+    TENetworkOperation* op = [self.networkEngine operationWithParams:focusPacket];
+    [op setCompletionHandler:^(TENetworkOperation *operation) {
+        //TEResponse<NSArray<TELiveShowInfo*>*>* respone = [TEResponse new];
+        V2PPacket* packet  = [operation responseData];
+        DDLogInfo(@"📩📩📩📩 payAttentionToSomeOne response %@",packet);
+        completion();
+    } errorHandler:^(NSError *error) {
+        err(error);
+    }];
+    
+    [self.networkEngine enqueueOperation:op];
+    
+    
+}
+
+
+
+- (void)cancelAttentionToUser:(NSUInteger)userID
+                   completion:(void(^)())completion
+                       onError:(void(^)(NSError* error))err
+{
+    
+}
+
+
+
+- (void)fetchFansInfoWithFormOffset:(NSInteger)from
+                           toOffset:(NSInteger)to
+                         completion:(void(^)(TEResponse<NSArray<TEUser*>*>* response))completion
+                            onError:(void(^)(NSError* error))err
+{
+    V2PPacket* fansPacket = [[V2PPacket alloc] init];
+    fansPacket.packetType = V2PPacket_type_Iq;
+    fansPacket.version = @"1.3.1";
+    fansPacket.method = @"getFansList";
+    fansPacket.operateType = @"add";
+    
+    V2PData* data = [[V2PData alloc] init];
+    data.from = (int32_t)from;
+    data.to = (int32_t)to;
+    
+    fansPacket.data_p = data;
+    
+    TENetworkOperation* op = [self.networkEngine operationWithParams:fansPacket];
+    [op setCompletionHandler:^(TENetworkOperation *operation) {
+        TEResponse<NSArray<TEUser*>*>* respone = [TEResponse new];
+        V2PPacket* packet  = [operation responseData];
+        respone.isSuccess = packet.result.result;
+        respone.errorInfo = packet.result.error;
+        DDLogInfo(@"📩📩📩📩 fetchFans response %@",packet);
+        NSMutableArray<TEUser*>* userArray = [[NSMutableArray alloc] init];
+        [packet.data_p.userArray enumerateObjectsUsingBlock:^(V2PUser * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            TEUser* teUser = [[TEUser alloc] init];
+            teUser.userID = obj.id_p;
+            teUser.phoneNum = obj.phone;
+            [userArray addObject:teUser];
+        }];
+        respone.body = [userArray copy];
+        completion(respone);
+    } errorHandler:^(NSError *error) {
+        err(error);
+    }];
+    
+    [self.networkEngine enqueueOperation:op];
+}
 @end
 

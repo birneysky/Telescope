@@ -12,10 +12,14 @@
 #import "TEBezierPathButton.h"
 #import "TEActiveWheel.h"
 #import "MLLinkLabel.h"
+#import "TEV2KitChatDemon.h"
+#import "TEKeyChain.h"
 
 #import "TEWebViewController.h"
 
 #import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
+
+#import <V2Kit/V2Kit.h>
 
 @interface TELoginViewController ()<UITextFieldDelegate>
 
@@ -38,6 +42,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configProtocolLabel];
+    
+    NSDictionary* dict = [TEKeyChain readUserInfo];
+    if (dict) {
+        TEUser* user = [[TEUser alloc] init];
+        [user setValuesForKeysWithDictionary:dict];
+        self.userNameTextfield.text = user.phoneNum;
+        self.passwordTextfield.text = user.password;
+    }
 }
 
 
@@ -105,11 +117,15 @@
 
     [self.view endEditing:YES];
     [TEActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在登录 ...";
+    __weak TELoginViewController* weakSelf = self;
     [TENETWORKKIT loginWithAccountNum:self.userNameTextfield.text
                              password:self.passwordTextfield.text
                            completion:^(TEResponse<TEUser *> *response) {
                                if (response.isSuccess) {
                                    [TEActiveWheel dismissForView:self.navigationController.view];
+                                   [TEV2KitChatDemon defaultDemon].selfUser = response.body;
+                                   [TEKeyChain saveUserInfo:@{@"userID":@(response.body.userID),@"phoneNum":response.body.phoneNum,@"password":weakSelf.passwordTextfield.text}];
+                                   [[V2Kit defaultKit] createChatChannelForUser:response.body.userID];
                                    [self performSegueWithIdentifier:@"te_show_main" sender:sender];
                                }
                                else{

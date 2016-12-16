@@ -211,6 +211,7 @@ static CGFloat widthCallback(void* ref){
                 TEExpresssionSubItem* faceItem = (TEExpresssionSubItem*)item;
                 faceItem.position = [result length];
                 faceItem.imagePosition = CGRectMake(0, 0, 20, 20);
+                
                 /*@{@"width":@(44),@"height":@(44)}*/
                 NSAttributedString *as =  [self parseImageDataFromImageModel:faceItem config:config];
                 [result appendAttributedString:as];

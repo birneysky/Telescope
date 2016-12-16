@@ -132,7 +132,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "503404485.112394"
+                  timestampString = "503577247.146271"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "280"
@@ -147,7 +147,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "503404485.11401"
+                  timestampString = "503577247.148113"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "280"
@@ -180,7 +180,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "503404485.117408"
+                  timestampString = "503577247.152017"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "271"
@@ -195,7 +195,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "503404485.11913"
+                  timestampString = "503577247.15414"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "271"
@@ -244,7 +244,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "503404485.126446"
+                  timestampString = "503577247.161317"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "298"
@@ -259,7 +259,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "503404485.128539"
+                  timestampString = "503577247.163199"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "298"
@@ -282,6 +282,54 @@
             startingLineNumber = "316"
             endingLineNumber = "316"
             landmarkName = "-deleteAssetsGroupForURL:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Telescope/Telescope/TEV2KitChatDemon.m"
+            timestampString = "503570077.16678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-didReceiveMediaFile:type:fromUserID:inGroup:messageID:sendTime:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Telescope/Telescope/TEV2KitChatDemon.m"
+            timestampString = "503570077.16678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "-didReceiveResponseOfSendingMediaFile:responseCode:type:fromUserID:inGroup:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Telescope/Telescope/TEV2KitChatDemon.m"
+            timestampString = "503570077.16678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-didReceiveMonitorResponse:fileID:type:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

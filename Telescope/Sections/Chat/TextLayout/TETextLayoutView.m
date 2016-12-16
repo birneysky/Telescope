@@ -10,7 +10,7 @@
 #import "TETextTouchUtils.h"
 #import "TEMagnifiterView.h"
 
-NSString *const CTDisplayViewImagePressedNotification = @"CTDisplayViewImagePressedNotification";
+NSString *const TETextLayoutViewImagePressedNotification = @"TETextLayoutViewImagePressedNotification";
 NSString *const CTDisplayViewLinkPressedNotification = @"CTDisplayViewLinkPressedNotification";
 
 
@@ -263,10 +263,21 @@ typedef enum CTDisplayViewState : NSInteger {
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
 {
      NSLog(@"touchesEnded");
+    self.state = CTDisplayViewStateNormal;
 }
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
 {
-     NSLog(@"touchesCancelled");
+    NSLog(@"touchesCancelled");
+    NSLog(@"touchesBegan %@",touches);
+    UITouch* touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    
+    id<TETextLinkModel> linkData = [TETextTouchUtils touchLinkInView:self atPoint:point layoutModel:self.layoutModel];
+    if (linkData) {
+        self.state = CTDisplayViewStateNormal;
+        [self.delegate didSelectLinkOfURL:linkData.url];
+    }
+    
 }
 
 - (void)userTapGestureDetected:(UIGestureRecognizer *)recognizer {
@@ -286,9 +297,10 @@ typedef enum CTDisplayViewState : NSInteger {
             if (CGRectContainsPoint(rect, point)) {
                 NSLog(@"hint image");
                 // 在这里处理点击后的逻辑
-                NSDictionary *userInfo = @{ @"imageData": imageData };
-                [[NSNotificationCenter defaultCenter] postNotificationName:CTDisplayViewImagePressedNotification
-                                                                    object:self userInfo:userInfo];
+//                NSDictionary *userInfo = @{ @"imageRect": NSStringFromCGRect(rect)};
+//                [[NSNotificationCenter defaultCenter] postNotificationName:TETextLayoutViewImagePressedNotification
+//                                                                    object:self userInfo:userInfo];
+                [self.delegate didSelectImageOfRect:rect inView:self];
                 return;
             }
         }

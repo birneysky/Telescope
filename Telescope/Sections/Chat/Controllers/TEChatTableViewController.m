@@ -12,7 +12,7 @@
 #import "TEChatSession+CoreDataProperties.h"
 #import "TEBubbleCell.h"
 
-@interface TEChatTableViewController ()
+@interface TEChatTableViewController () <TEBubbleCellDelegate>
 
 @property (nonatomic,strong) NSFetchRequest* fetchRequest;
 
@@ -128,7 +128,7 @@
     
     // Configure the cell...
 
-   
+    cell.delegate = self;
     
     return cell;
 }
@@ -225,30 +225,30 @@
 {
     //self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sendTime" ascending:YES]];
     
-//    NSArray<NSIndexPath*>* visibles = self.tableView.indexPathsForVisibleRows;
-//    NSLog(@"😁😁😁😁😁😁😁😁😁😁😁😁😁😁😁 %ld  ",self.frc.fetchedObjects.count);
-//    NSInteger visibleFirstIndex = visibles.firstObject.row;
-//
-//        __weak TEChatTableViewController* weakSelf = self;
-//        [weakSelf.frc.managedObjectContext performBlock:^{
-//            if(weakSelf.frc.fetchedObjects.count > 50){
-//                TEMessage* message = [weakSelf.frc objectAtIndexPath:[NSIndexPath indexPathForRow:visibleFirstIndex inSection:0]];
-//                weakSelf.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"sessionID = %lld and sendTime > %@",weakSelf.session.sID,message.sendTime];
-//                [weakSelf.fetchRequest setFetchBatchSize:weakSelf.frc.fetchedObjects.count - visibleFirstIndex+1];
-//                [weakSelf.fetchRequest setFetchLimit:weakSelf.frc.fetchedObjects.count - visibleFirstIndex+1];
-//                
-//                
-//                NSError* error;
-//                if (![weakSelf.frc performFetch:&error]) {
-//                    DebugLog(@"Failed to perform fetch : %@",error);
-//                }
-//                dispatch_sync(dispatch_get_main_queue(), ^{
-//                    [weakSelf.tableView reloadData];
-//                });
-//               // [weakSelf.frc.managedObjectContext refreshAllObjects];
-//                
-//            }
-//        }];
+    NSArray<NSIndexPath*>* visibles = self.tableView.indexPathsForVisibleRows;
+    NSLog(@"😁😁😁😁😁😁😁😁😁😁😁😁😁😁😁 %ld  ",self.frc.fetchedObjects.count);
+    NSInteger visibleFirstIndex = visibles.firstObject.row;
+
+        __weak TEChatTableViewController* weakSelf = self;
+        [weakSelf.frc.managedObjectContext performBlock:^{
+            if(weakSelf.frc.fetchedObjects.count > 50){
+                TEMessage* message = [weakSelf.frc objectAtIndexPath:[NSIndexPath indexPathForRow:visibleFirstIndex inSection:0]];
+                weakSelf.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"sessionID = %lld and sendTime > %@",weakSelf.session.sID,message.sendTime];
+                [weakSelf.fetchRequest setFetchBatchSize:weakSelf.frc.fetchedObjects.count - visibleFirstIndex+1];
+                [weakSelf.fetchRequest setFetchLimit:weakSelf.frc.fetchedObjects.count - visibleFirstIndex+1];
+                
+                
+                NSError* error;
+                if (![weakSelf.frc performFetch:&error]) {
+                    DebugLog(@"Failed to perform fetch : %@",error);
+                }
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                });
+               // [weakSelf.frc.managedObjectContext refreshAllObjects];
+                
+            }
+        }];
     
     
     
@@ -263,6 +263,11 @@
 
 
 #pragma mark - *** UIScrollViewDelegate ***
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.autoScrollToBottomWhenNewMessaeComming = NO;
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -280,5 +285,21 @@
         self.autoScrollToBottomWhenNewMessaeComming = NO;
     }
 }
+
+#pragma mark - *** TEBubbleCellDelegate ***
+- (void)didSelectImageOfRect:(CGRect)rect inView:(UIView *)view
+{
+    CGRect rectInSuperView = [self.tableView.superview convertRect:rect fromView:view];
+    NSLog(@"rectInSuperView %@",NSStringFromCGRect(rectInSuperView));
+//    UIImageView* imageView = [[UIImageView alloc] initWithFrame:rectInSuperView];
+//    imageView.backgroundColor = [UIColor blueColor];
+//    [self.tableView.superview addSubview:imageView];
     
+}
+
+- (void)didSelectLinkOfURL:(NSString *)url
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
 @end

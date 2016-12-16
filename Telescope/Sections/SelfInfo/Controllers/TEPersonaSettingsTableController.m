@@ -9,6 +9,7 @@
 #import "TEPersonaSettingsTableController.h"
 #import "TESettingTableController.h"
 
+
 @interface TEPersonaSettingsTableController ()
 
 @property (nonatomic,strong) NSArray<NSArray<NSString*>*>* dataSource;
@@ -43,6 +44,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+     
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,6 +119,10 @@
     if ([text isEqualToString:@"我的消息"]) {
         [self performSegueWithIdentifier:@"te_push_messages" sender:indexPath];
     }
+    
+    if ([text isEqualToString:@"我的粉丝"]) {
+        [self performSegueWithIdentifier:@"te_push_fans" sender:indexPath];
+    }
 }
 
 
@@ -167,6 +174,8 @@
     if ([segue.identifier isEqualToString:@"te_push_messages"]) {
         
     }
+    
+    
 }
 
 

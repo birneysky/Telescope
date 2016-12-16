@@ -44,7 +44,8 @@
 
 - (void)layoutSubviews
 {
-    _layoutView.frame = CGRectMake(12, 4, self.width - 6, self.height - 12);
+    //_layoutView.frame = CGRectMake(12, 4, self.width - 6, self.height - 12);
+    _layoutView.frame = CGRectMake(_contentInset.left, _contentInset.top, self.width - _contentInset.right, self.height - _contentInset.bottom);
 }
 
 /*

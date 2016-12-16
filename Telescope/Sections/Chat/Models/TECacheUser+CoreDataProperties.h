@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<TECacheUser *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *nickName;
+@property (nullable, nonatomic, copy) NSString* phoneNum;
 @property (nonatomic) int64_t uid;
 
 @end

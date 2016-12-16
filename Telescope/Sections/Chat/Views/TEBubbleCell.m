@@ -11,7 +11,7 @@
 #import "TEMessage+CoreDataProperties.h"
 #import "TEMessageView.h"
 
-@interface TEBubbleCell ()
+@interface TEBubbleCell ()<TETextLayoutViewDelegate>
 
 @property (nonatomic,strong) UIButton* headImageBtn;
 
@@ -50,6 +50,7 @@
 {
     if (!_messageView) {
         _messageView = [[TEMessageView alloc] init];
+        _messageView.layoutView.delegate = self;
     }
     return _messageView;
 }
@@ -77,6 +78,7 @@
 
 - (void)setMessage:(TEMessage*)message;
 {
+    self.messageView.contentInset = message.layout.contentInset;
     self.messageView.frame = message.layout.contentFrame;//CGRectMake(self.headImageBtn.rightTop.x, 8, message.layout.contentFrame.size.width, message.layout.cellHeight);
     self.headImageBtn.frame = message.layout.avatarFrame;
     self.timeLabel.frame = message.layout.timeLabelFrame;
@@ -96,4 +98,22 @@
     [self.messageView.layoutView setLayoutModel:message.layout.layoutModel];
 }
 
+
+#pragma mark - *** TETextLayoutViewDelegate ***
+- (void)didSelectImageOfRect:(CGRect)rect inView:(UIView *)view
+{
+    CGRect rectInCell =  [self convertRect:rect fromView:view];
+    NSLog(@"🍎🍎🍎🍎🍎 rectInCell = %@",NSStringFromCGRect(rectInCell));
+    if ([self.delegate respondsToSelector:@selector(didSelectImageOfRect:inView:)]) {
+        [self.delegate didSelectImageOfRect:rect inView:view];
+    }
+}
+
+- (void)didSelectLinkOfURL:(NSString *)url
+{
+    NSLog(@"url %@",url);
+    if ([self.delegate respondsToSelector:@selector(didSelectLinkOfURL:)]) {
+        [self.delegate didSelectLinkOfURL:url];
+    }
+}
 @end

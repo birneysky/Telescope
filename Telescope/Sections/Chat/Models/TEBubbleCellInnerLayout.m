@@ -53,11 +53,12 @@
         CGFloat contextX = 0;
         if (message.senderIsMe) {
             contextX = CGRectGetMinX(_avatarFrame) - _layoutModel.width - Spacing * 2;
+            _contentInset = UIEdgeInsetsMake(4, 5, 12, 11);
         }
         else{
             contextX = CGRectGetMaxX(_avatarFrame) + Spacing;
             //左边距12，顶边距4，右边距6，底边距12
-            _contentInset = UIEdgeInsetsMake(4, 12, 12, 6);
+            _contentInset = UIEdgeInsetsMake(4, 12, 12, 4);
         }
         
         _contentFrame = CGRectMake(contextX, avatarY, _layoutModel.width + Spacing * 2, _layoutModel.height+ Spacing * 2);

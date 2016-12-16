@@ -54,7 +54,7 @@
     [super viewDidLoad];
     [self configureFetch];
     [self performFetch];
-    [self.msgFactory start];
+    //[self.msgFactory start];
     
 }
 
@@ -109,18 +109,19 @@
     TEChatSession* session = [self.frc objectAtIndexPath:indexPath];
     TEChatSessionCell* sessionCell = (TEChatSessionCell*)cell;
     
-    TECoreDataHelper* dataHelper = [TECoreDataHelper defaultHelper];
-    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"TECacheUser"];
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"uid == %lld",session.senderID];
-    [request setPredicate:predicate];
-    NSError* error;
-    NSArray* arry =  [dataHelper.backgroundContext executeFetchRequest:request error:&error];
-    if (arry.count >= 1) {
-        [sessionCell setUserName:((TECacheUser*)arry.firstObject).nickName];
-    }
-    else{
-        assert(0);
-    }
+//    TECoreDataHelper* dataHelper = [TECoreDataHelper defaultHelper];
+//    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"TECacheUser"];
+//    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"uid == %lld",session.senderID];
+//    [request setPredicate:predicate];
+//    NSError* error;
+//    NSArray* arry =  [dataHelper.backgroundContext executeFetchRequest:request error:&error];
+//    if (arry.count >= 1) {
+//        [sessionCell setUserName:((TECacheUser*)arry.firstObject).nickName];
+//    }
+//    else{
+//        assert(0);
+//    }
+    [sessionCell setUserName:[NSString stringWithFormat:@"%lld",session.senderID]];
     NSString* randomImageName = self.imageNames[arc4random() % self.imageNames.count];
     sessionCell.imageView.image = [UIImage imageNamed:randomImageName];
     [sessionCell setMessageOverView:session.overviewOfLastMessage];
@@ -135,7 +136,7 @@
     [self.tableView endUpdates];
 }
 
-#pragma mark - *** ***
+#pragma mark - *** Navigation ***
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
