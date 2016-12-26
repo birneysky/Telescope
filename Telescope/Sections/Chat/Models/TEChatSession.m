@@ -10,4 +10,9 @@
 
 @implementation TEChatSession
 
+- (void)dealloc
+{
+    NSLog(@"♻️♻️♻️♻️ TEChatSession ~ %@ ",self);
+}
+
 @end

@@ -10,10 +10,20 @@
 #import "TECoreDataHelper.h"
 #import "TEChatSession+CoreDataProperties.h"
 #import "TEMessage+CoreDataProperties.h"
+#import "TEChatMessage.h"
 
 static TEV2KitChatDemon* _demon = nil;
 
+@interface TEV2KitChatDemon ()
+
+
+@end
+
 @implementation TEV2KitChatDemon
+{
+    NSString* _pictureStorePath;
+    NSString* _audioStorePath;
+}
 
 + (instancetype)defaultDemon
 {
@@ -43,13 +53,36 @@ static TEV2KitChatDemon* _demon = nil;
     return _demon;
 }
 
+- (NSString*)pictureStorePath
+{
+    if (!_pictureStorePath) {
+        NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString* storeDirectoryName = [NSString stringWithFormat:@"Stores-%lld",self.selfUser.userID];
+        
+        _pictureStorePath = [[documentPath stringByAppendingPathComponent:storeDirectoryName] stringByAppendingPathComponent:@"TEImages"];
+    }
+    return _pictureStorePath;
+}
+
+
+- (NSString*)audioStorePath
+{
+    if (!_pictureStorePath) {
+        NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString* storeDirectoryName = [NSString stringWithFormat:@"Stores-%lld",self.selfUser.userID];
+        
+        _pictureStorePath = [[documentPath stringByAppendingPathComponent:storeDirectoryName] stringByAppendingPathComponent:@"TEAudios"];
+    }
+    return _pictureStorePath;
+}
+
 #pragma mark - *** ChatDelegate ***
 
 - (void)didReceiveChatMessage:(NSString*)xmlText  fromUserID:(long long)uid inGroup:(long long)gid messageID:(NSString*)mid sendTime:(NSDate*)date
 {
     __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
     NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEChatSession"];
-    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"senderID == %lld",uid];
+    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"remoteUsrID == %lld",uid];
     [fetchRequest setPredicate:predicat];
     NSError* error;
     NSArray* sessionArray = [weakContext executeFetchRequest:fetchRequest error:&error];
@@ -71,7 +104,7 @@ static TEV2KitChatDemon* _demon = nil;
             session  = [NSEntityDescription insertNewObjectForEntityForName:@"TEChatSession" inManagedObjectContext:weakContext];
             session.groupID = 0;
             session.groupType = 0;
-            session.senderID = uid;
+            session.remoteUsrID = uid;
             session.timeToRecvLastMessage = recvDate;
             session.overviewOfLastMessage = @"Text";
             session.lastMessageType = MediaFileTypeText;
@@ -89,13 +122,16 @@ static TEV2KitChatDemon* _demon = nil;
         
         message.sessionID = session.sID;
         session.totalNumOfMessage += 1;
-        
         [message layout];
+        session.overviewOfLastMessage = [message.chatMessage overviewText];
+        
         
         if ([weakContext hasChanges]) {
             NSError* error;
             [weakContext save:&error];
         }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:TENewMessageComming object:nil];
     }];
     
 }

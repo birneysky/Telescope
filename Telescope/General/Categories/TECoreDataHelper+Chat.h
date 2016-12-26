@@ -8,10 +8,20 @@
 
 #import "TECoreDataHelper.h"
 
+typedef NS_ENUM(NSInteger,TEFileType){
+    TypePicture = 1,
+    TypeAudio
+};
+
 @class TEChatSession;
+@class TEMediaFileLocation;
 
 @interface TECoreDataHelper (Chat)
 
-- (TEChatSession*)fetchSessionWithSenderID:(long long)uid;
+- (TEChatSession*)fetchSessionWithRemoteUsrID:(long long)uid;
+
+- (TEChatSession*)insertNewSessionWithRemoteUserID:(long long)uid;
+
+- (TEMediaFileLocation*)insertNewFileLocationWithFileID:(NSString*)fid session:(int32_t)sid type:(TEFileType)t;
 
 @end

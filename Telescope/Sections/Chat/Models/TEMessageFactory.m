@@ -61,7 +61,7 @@ NSString* gen_uuid()
 {
     __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
     NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEChatSession"];
-    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"senderID == %lld",[sid longLongValue]];
+    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"remoteUsrID == %lld",[sid longLongValue]];
     [fetchRequest setPredicate:predicat];
     NSError* error;
     NSArray* result = [weakContext executeFetchRequest:fetchRequest error:&error];
@@ -151,11 +151,12 @@ NSString* gen_uuid()
             session  = [NSEntityDescription insertNewObjectForEntityForName:@"TEChatSession" inManagedObjectContext:weakContext];
             session.groupID = 0;
             session.groupType = 0;
-            session.senderID = [sid longLongValue];
+            session.remoteUsrID = [sid longLongValue];
             session.timeToRecvLastMessage = [NSDate date];
             session.overviewOfLastMessage = [NSString stringWithFormat:@"%@:%lu ---> self are you ok",sid,index];
             session.lastMessageType = message.type;
             session.sID = (int32_t)sessionCount + 1;
+            //session.sID = (int32_t)[sid longLongValue];
         }
         else if (1 == result.count){
             session = result.firstObject;

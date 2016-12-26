@@ -12,7 +12,7 @@
 #import "TEChatXMLReader.h"
 #import "TEMessage+CoreDataProperties.h"
 #import "NSDate+Utils.h"
-
+#import "TEChatMessage.h"
 
 
 
@@ -27,12 +27,12 @@
 
 
 #pragma mark - *** Api ***
-- (instancetype)initWithMessage:(TEMessage*)message
+- (instancetype)initWithMessage:(TEChatMessage*)message
 {
     if (self = [super init]) {
-        NSString* text = message.content;
-        TEChatMessage* chatMessage = [TEChatXMLReader messageForXmlString:text error:nil];
-        _layoutModel = [TETextFrameParser parseChatMessage:chatMessage];
+//        NSString* text = message.content;
+//        TEChatMessage* chatMessage = [TEChatXMLReader messageForXmlString:text error:nil];
+        _layoutModel = [TETextFrameParser parseChatMessage:message];
         
         CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
         NSString* timeText = [message timeLabelString];
@@ -63,6 +63,14 @@
         
         _contentFrame = CGRectMake(contextX, avatarY, _layoutModel.width + Spacing * 2, _layoutModel.height+ Spacing * 2);
 
+        if (message.senderIsMe) {
+            contextX = CGRectGetMinX(_contentFrame);
+            _indicatorFrame = CGRectMake(contextX - Spacing, _layoutModel.height / 2, 44, 44);
+        }
+        else{
+             contextX = CGRectGetMaxX(_contentFrame);
+           _indicatorFrame = CGRectMake(contextX + Spacing, _layoutModel.height / 2, 44, 44);
+        }
     }
     return self;
 }

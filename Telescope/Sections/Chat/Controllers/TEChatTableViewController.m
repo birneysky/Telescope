@@ -11,6 +11,8 @@
 #import "TEMessage+CoreDataProperties.h"
 #import "TEChatSession+CoreDataProperties.h"
 #import "TEBubbleCell.h"
+#import "LWImageBrowserModel.h"
+#import "LWImageBrowser.h"
 
 @interface TEChatTableViewController () <TEBubbleCellDelegate>
 
@@ -287,13 +289,34 @@
 }
 
 #pragma mark - *** TEBubbleCellDelegate ***
-- (void)didSelectImageOfRect:(CGRect)rect inView:(UIView *)view
+- (void)didSelectImageOfRect:(CGRect)rect inView:(UIView *)view cell:(UITableViewCell*)cell
 {
     CGRect rectInSuperView = [self.tableView.superview convertRect:rect fromView:view];
     NSLog(@"rectInSuperView %@",NSStringFromCGRect(rectInSuperView));
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
 //    UIImageView* imageView = [[UIImageView alloc] initWithFrame:rectInSuperView];
 //    imageView.backgroundColor = [UIColor blueColor];
 //    [self.tableView.superview addSubview:imageView];
+    
+    
+//    for (NSInteger i = 0; i < self.photosArray.count; i ++) {
+//        HAHouseImage* imageItem = self.photosArray[i];
+//        UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+//        CGRect rect = [self.view convertRect:cell.frame fromView:collectionView];
+    
+//    LWImageBrowserModel* imageModel = [[LWImageBrowserModel alloc] initWithplaceholder:nil
+//                                                                              thumbnailURL:[NSURL URLWithString:imageItem.localPath]
+//                                                                                     HDURL:[NSURL URLWithString:imageItem.localPath]
+//                                                                        imageViewSuperView:cell.contentView
+//                                                                       positionAtSuperView:rect
+//                                                                                     index:indexPath.row];
+//        [imageItemArray addObject:imageModel];
+    //}
+//    LWImageBrowser* imageBrowser = [[LWImageBrowser alloc] initWithParentViewController:self
+//                                                                            imageModels:imageItemArray
+//                                                                           currentIndex:indexPath.row];
+//    imageBrowser.view.backgroundColor = [UIColor blackColor];
+//    [imageBrowser show];
     
 }
 

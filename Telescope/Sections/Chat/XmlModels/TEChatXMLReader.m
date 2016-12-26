@@ -4,6 +4,7 @@
 
 #import "TEChatXMLReader.h"
 #import "TESizeAspect.h"
+#import "TEV2KitChatDemon.h"
 
 NSString *const kXMLReaderTextNodeKey = @"text";
 
@@ -163,10 +164,12 @@ NSString *const kXMLReaderTextNodeKey = @"text";
     }
     else if ([elementName isEqualToString:TEPictureElement]){
         TEMsgImageSubItem* pictureSubItem = [[TEMsgImageSubItem alloc] initWithType:Image];
-        NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
+        //NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
+        NSString* filePath = [TEV2KitChatDemon defaultDemon].pictureStorePath;
         NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",attributeDict[TEUUIDAttribute],@"thumbnail"];
         NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
         pictureSubItem.fileName = thumbnailImgPath;//attributeDict[TEUUIDAttribute];
+        pictureSubItem.fileExt = attributeDict[TEFileExtAttribute];
         CGFloat width = [attributeDict[TEWidhtAttribute] floatValue];
         CGFloat height = [attributeDict[TEHeightAttribute] floatValue];
         aspectSizeInContainer(&width, &height, CGSizeMake(40, 40), CGSizeMake(200, 200));

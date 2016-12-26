@@ -14,6 +14,9 @@
 @property (nonatomic,assign) BOOL isAutoReply;
 @property (nonatomic,readonly) NSArray<TEMsgSubItem*>* msgItemList;
 @property (nonatomic,copy) NSString* messageID;
+@property (nonatomic,strong) NSDate* time;
+@property (nonatomic,assign) BOOL senderIsMe;
+
 
 - (void)addItem:(TEMsgSubItem*) item;
 - (void)removeItem:(TEMsgSubItem*) item;
@@ -21,5 +24,9 @@
 //- (NSDictionary*)toDictionary;
 
 - (NSString*)xmlString;
+
+- (NSString*)overviewText;
+
+- (NSString*)timeLabelString;
 
 @end

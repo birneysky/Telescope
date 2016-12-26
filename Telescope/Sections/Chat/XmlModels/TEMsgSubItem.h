@@ -77,6 +77,8 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 
 @property (copy, nonatomic) NSString * fileName;
 
+@property (copy,nonatomic) NSString* fileExt;
+
 @property (nonatomic,assign) NSUInteger position;
 
 @property (nonatomic) CGRect imagePosition;

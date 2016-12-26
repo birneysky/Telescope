@@ -8,6 +8,9 @@
 
 #import "TEFansTableViewController.h"
 #import "TENetworkKit.h"
+#import "TECoreDataHelper+Chat.h"
+#import "TEChatSession.h"
+#import "TEChatViewController.h"
 
 @interface TEFansTableViewController ()
 
@@ -97,14 +100,25 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"te_fans_push_chat_session"]) {
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
+        TEUser* user = self.dataSource[indexPath.row];
+        TEChatSession* session = [[TECoreDataHelper defaultHelper] fetchSessionWithRemoteUsrID:user.userID];
+        if (!session) {
+            session = [[TECoreDataHelper defaultHelper] insertNewSessionWithRemoteUserID:user.userID];
+        }
+        
+        TEChatViewController* cvc = (TEChatViewController*)segue.destinationViewController;
+        cvc.session = session;
+    }
 }
-*/
+
 
 @end

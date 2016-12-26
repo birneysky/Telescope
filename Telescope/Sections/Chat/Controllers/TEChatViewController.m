@@ -19,6 +19,7 @@
 #import "TECoreDataHelper.h"
 #import "TEMessage+CoreDataProperties.h"
 #import "TEChatSession+CoreDataProperties.h"
+#import "TEMediaFileLocation+CoreDataProperties.h"
 
 #import "CTAssetsPickerController.h"
 
@@ -26,6 +27,8 @@
 #import "TESizeAspect.h"
 
 #import <V2Kit/V2Kit.h>
+
+#import "TEV2KitChatDemon.h"
 
 
 typedef NS_ENUM(NSUInteger,TEChatToolBarState){
@@ -109,6 +112,9 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (!self.session) {
+        
+    }
     
     self.chatTVC.session = self.session;
     [self addChildViewController:self.chatTVC];
@@ -283,7 +289,6 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     NSString* pattern = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]|((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,3})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,3})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(((http[s]{0,1}|ftp)://|)((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
     NSRegularExpression* regularExpression = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
     
-//    NSString* text = @"http://www.baidu.comfjdkalfjdlsafjldsk[抓狂][调皮][大哭][尴尬][难过][酷],https:www.apple.com,fjdlafjdls https://www.baidu.com www.baidu.com [难过][酷] wolegequfdjlafcjdas ,,,fjdksajfdsa, [抓狂][调皮][大哭]fjdkSafjsda www.baidu.com,[尴尬][难过][酷] developer.apple.com,www.baidu.com http://www.baidu.com http://tool.oschina.net/regex/#";//self.textView.text;
     NSString* sendText = self.textView.text;
     NSArray<NSTextCheckingResult*>* result = [regularExpression matchesInString:sendText options:NSMatchingWithTransparentBounds range:NSMakeRange(0, sendText.length)];
     
@@ -325,7 +330,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         }
     }];
     
-    if(location < sendText.length){
+    if(location < sendText.length && location > 0){
         TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
         textItem.textContent = [sendText substringWithRange:(NSRange){location,sendText.length - location}];
         [chatMessage addItem:textItem];
@@ -339,26 +344,25 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 - (void)insertNewMessage:(NSArray<TEChatMessage*>*)chatMessages
 {
     NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
-    //[self.cacheArray addObject:message];
-    //[self.messageChache addObject:message];
     [[[TECoreDataHelper defaultHelper] backgroundContext] performBlock:^{
         for (int i =0 ; i < chatMessages.count; i++) {
             TEChatMessage* chatMessage = chatMessages[i];
             TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
             message.mID = chatMessage.messageID;
-            message.senderID = 100001;
-            message.receiverID = self.session.senderID;
+            message.senderID = [TEV2KitChatDemon defaultDemon].selfUser.userID;
+            message.receiverID = self.session.remoteUsrID;
             message.content = [chatMessage xmlString];
             message.sendTime = [NSDate date];
             message.recvTime = message.sendTime;
             message.type = 1;
             message.sessionID = self.session.sID;
             message.senderIsMe = YES;
-            
+            message.state = TEMsgTransStateSending;
             self.session.totalNumOfMessage += 1;
             
             [message layout];
         }
+        self.session.overviewOfLastMessage = [chatMessages.lastObject overviewText];
             //[[TECoreDataHelper defaultHelper] saveBackgroundContext];
             if ([context hasChanges]) {
                 NSError* error;
@@ -367,11 +371,25 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
                 //NSLog(@"save messaage 🍎🍎🍎🍎🍎");
                 //[self.cacheArray removeObject:chatMessage];
             }
-        
+        //[[NSNotificationCenter defaultCenter] postNotificationName:TENewMessageComming object:nil];
     }];
 
-    [chatMessages enumerateObjectsUsingBlock:^(TEChatMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[V2Kit defaultKit] sendTextMessage:[obj xmlString] toUserID:self.session.senderID inGroup:0 messageID:obj.messageID];
+    [chatMessages enumerateObjectsUsingBlock:^(TEChatMessage * _Nonnull message, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[V2Kit defaultKit] sendTextMessage:[message xmlString]
+                                   toUserID:self.session.remoteUsrID
+                                    inGroup:0
+                                  messageID:message.messageID];
+        [message.msgItemList enumerateObjectsUsingBlock:^(TEMsgSubItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (Image ==  item.type) {
+                TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)item;
+                NSString* filePath = [[TEV2KitChatDemon defaultDemon].pictureStorePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",imageItem.fileName,imageItem.fileExt]];
+                [[V2Kit defaultKit] sendMediaFileMessage:filePath
+                                                toUserID:self.session.remoteUsrID
+                                                 inGroup:0
+                                                    type:MediaFileTypePicture
+                                               messageID:message.messageID];
+            }
+        }];
     }];
     
 }
@@ -463,11 +481,12 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 #pragma mark - *** CTAssetsPickerControllerDelegate ***
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+    NSString* pictureStorePath = [TEV2KitChatDemon defaultDemon].pictureStorePath;
     [picker dismissViewControllerAnimated:YES completion:^{
-        NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+        //NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:pictureStorePath])
         {
-            [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+            [[NSFileManager defaultManager]  createDirectoryAtPath:pictureStorePath withIntermediateDirectories:YES attributes:nil error:nil];
         }
         
         NSMutableArray<TEChatMessage*>* array = [[NSMutableArray alloc] init];
@@ -495,18 +514,19 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             //缩略图写入文件
             NSData* thumbnailJPGData = UIImageJPEGRepresentation(resultImage, 1);
             NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",fileName,@"thumbnail"];
-            NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
+            NSString* thumbnailImgPath = [pictureStorePath stringByAppendingPathComponent:fileThumbnailName];
             [thumbnailJPGData writeToFile:thumbnailImgPath atomically:YES];
             
             //原始图片写入文件
             NSData* fullJPGData = UIImageJPEGRepresentation([UIImage imageWithCGImage:fullImg], 1);
             NSString* fileFullImageName = [NSString stringWithFormat:@"%@.jpg",fileName];
-            NSString* fullImagePath = [filePath stringByAppendingPathComponent:fileFullImageName];
+            NSString* fullImagePath = [pictureStorePath stringByAppendingPathComponent:fileFullImageName];
             [fullJPGData writeToFile:fullImagePath atomically:YES];
             
             //生成消息实例
             TEMsgImageSubItem* imageItem = [[TEMsgImageSubItem alloc] initWithType:Image];
             imageItem.fileName = fileName;
+            imageItem.fileExt = @".jpg";
             imageItem.imagePosition = CGRectMake(0, 0, fullWidth, fullHeight);
             
             TEChatMessage* chatMessage = [[TEChatMessage alloc] init];
@@ -520,7 +540,5 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         
         [self insertNewMessage:[array copy]];
     }];
-    
- 
 }
 @end

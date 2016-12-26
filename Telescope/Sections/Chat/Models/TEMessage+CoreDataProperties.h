@@ -8,6 +8,15 @@
 
 #import "TEMessage.h"
 
+
+typedef NS_ENUM(int16_t,TEMsgTransState){
+    TEMsgTransStateReady = 0,
+    TEMsgTransStateSending,
+    TEMsgTransStatePause,
+    TEMsgTransStateSucced,
+    TEMsgTransStateError
+};
+
 @class TEChatSession;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -25,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *recvTime;
 @property (nonatomic, assign) int32_t sessionID;
 @property (nonatomic,assign) BOOL senderIsMe;
+@property (nonatomic,assign) TEMsgTransState state;
 
 @end
 

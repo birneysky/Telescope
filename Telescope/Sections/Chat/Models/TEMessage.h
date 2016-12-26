@@ -12,8 +12,13 @@
 @interface TEMessage : NSManagedObject
 
 
+/**
+ 消息模型
+ */
+@property (nonatomic,strong) TEChatMessage* chatMessage;
+
 @property (nonatomic,readonly) TEBubbleCellInnerLayout* layout;
 
-@property (nonatomic,readonly,copy) NSString* timeLabelString;
+
 
 @end

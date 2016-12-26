@@ -23,5 +23,6 @@
 @dynamic recvTime;
 @dynamic sessionID;
 @dynamic senderIsMe;
+@dynamic state;
 
 @end

@@ -16,6 +16,8 @@
 #import "TEChatSessionCell.h"
 #import "TEChatViewController.h"
 
+#import "TEV2KitChatDemon.h"
+
 @interface TEChatSessionViewController ()
 
 @property (nonatomic,strong) TEMessageFactory* msgFactory;
@@ -53,7 +55,7 @@
 {
     [super viewDidLoad];
     [self configureFetch];
-    [self performFetch];
+    //[self performFetch];
     //[self.msgFactory start];
     
 }
@@ -64,15 +66,16 @@
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(performFetch)
-                                                 name:@"SomethingChanged"
+                                                 name:TENewMessageComming
                                                object:nil];
+    [self performFetch];
    // self.frc.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SomethingChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TENewMessageComming object:nil];
     //self.frc.delegate = nil;
     
 }
@@ -121,7 +124,7 @@
 //    else{
 //        assert(0);
 //    }
-    [sessionCell setUserName:[NSString stringWithFormat:@"%lld",session.senderID]];
+    [sessionCell setUserName:[NSString stringWithFormat:@"%lld",session.remoteUsrID]];
     NSString* randomImageName = self.imageNames[arc4random() % self.imageNames.count];
     sessionCell.imageView.image = [UIImage imageNamed:randomImageName];
     [sessionCell setMessageOverView:session.overviewOfLastMessage];

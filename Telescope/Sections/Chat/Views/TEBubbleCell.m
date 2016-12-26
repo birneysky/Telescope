@@ -19,6 +19,8 @@
 
 @property (nonatomic,strong) TEMessageView* messageView;
 
+@property (nonatomic,strong) UIActivityIndicatorView* indicator;
+
 @end
 
 @implementation TEBubbleCell
@@ -55,6 +57,13 @@
     return _messageView;
 }
 
+- (UIActivityIndicatorView*)indicator{
+    if (!_indicator) {
+        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
+    return _indicator;
+}
+
 #pragma mark - *** Init ***
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -83,7 +92,7 @@
     self.headImageBtn.frame = message.layout.avatarFrame;
     self.timeLabel.frame = message.layout.timeLabelFrame;
   
-    self.timeLabel.text = message.timeLabelString;
+    self.timeLabel.text = message.chatMessage.timeLabelString;
     
     if (message.senderIsMe) {
         UIImage* image = [UIImage imageNamed:@"sendto_bubble_bg"];
@@ -95,6 +104,16 @@
 
     }
     
+    if (TEMsgTransStateSending == message.state) {
+        self.indicator.frame = message.layout.indicatorFrame;
+        [self.contentView addSubview:self.indicator];
+        [self.indicator startAnimating];
+    }
+    else{
+        [self.indicator stopAnimating];
+        [self.indicator removeFromSuperview];
+    }
+    
     [self.messageView.layoutView setLayoutModel:message.layout.layoutModel];
 }
 
@@ -104,8 +123,8 @@
 {
     CGRect rectInCell =  [self convertRect:rect fromView:view];
     NSLog(@"🍎🍎🍎🍎🍎 rectInCell = %@",NSStringFromCGRect(rectInCell));
-    if ([self.delegate respondsToSelector:@selector(didSelectImageOfRect:inView:)]) {
-        [self.delegate didSelectImageOfRect:rect inView:view];
+    if ([self.delegate respondsToSelector:@selector(didSelectImageOfRect:inView:cell:)]) {
+        [self.delegate didSelectImageOfRect:rect inView:view cell:self];
     }
 }
 

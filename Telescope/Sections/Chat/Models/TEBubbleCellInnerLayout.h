@@ -15,8 +15,8 @@
 #define Spacing 8
 
 
-@class TEMessage;
 @class TETextLayoutModel;
+@class TEChatMessage;
 
 
 
@@ -45,6 +45,12 @@
 
 
 /**
+ 指示器位置
+ */
+@property (nonatomic,assign, readonly) CGRect  indicatorFrame;
+
+
+/**
  排版模型
  */
 @property (nonatomic, strong, readonly)TETextLayoutModel* layoutModel;
@@ -56,7 +62,10 @@
 @property (nonatomic,assign) UIEdgeInsets contentInset;
 
 
-- (instancetype)initWithMessage:(TEMessage*)message;
+
+
+
+- (instancetype)initWithMessage:(TEChatMessage*)message;
 
 
 

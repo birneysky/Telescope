@@ -16,7 +16,7 @@
 
 @dynamic groupID;
 @dynamic groupType;
-@dynamic senderID;
+@dynamic remoteUsrID;
 @dynamic timeToRecvLastMessage;
 @dynamic overviewOfLastMessage;
 @dynamic lastMessageType;

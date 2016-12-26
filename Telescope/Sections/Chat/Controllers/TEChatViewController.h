@@ -11,6 +11,6 @@
 @class TEChatSession;
 @interface TEChatViewController : UIViewController
 
-@property (nonatomic,weak) TEChatSession* session;
+@property (nonatomic,strong) TEChatSession* session;
 
 @end

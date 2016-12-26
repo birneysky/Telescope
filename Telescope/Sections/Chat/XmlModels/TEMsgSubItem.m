@@ -75,6 +75,7 @@
     [sub setObject:@(self.imagePosition.size.height)
             forKey:[NSString stringWithFormat:@"_%@",TEHeightAttribute]];
     [sub setObject:self.fileName forKey:[NSString stringWithFormat:@"_%@",TEUUIDAttribute]];
+    [sub setObject:self.fileExt forKey:[NSString stringWithFormat:@"_%@", TEFileExtAttribute]];
     return rootDic;
 }
 

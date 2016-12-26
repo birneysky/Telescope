@@ -11,7 +11,7 @@
 
 @protocol TEBubbleCellDelegate <NSObject>
 
-- (void)didSelectImageOfRect:(CGRect)rect inView:(UIView *)view;
+- (void)didSelectImageOfRect:(CGRect)rect inView:(UIView *)view cell:(UITableViewCell*)cell;
 
 - (void)didSelectLinkOfURL:(NSString *)url;
 
