@@ -63,13 +63,14 @@
         
         _contentFrame = CGRectMake(contextX, avatarY, _layoutModel.width + Spacing * 2, _layoutModel.height+ Spacing * 2);
 
+        CGFloat indicatorY = CGRectGetMaxY(_contentFrame) - _contentFrame.size.height / 2 - Spacing;
         if (message.senderIsMe) {
-            contextX = CGRectGetMinX(_contentFrame);
-            _indicatorFrame = CGRectMake(contextX - Spacing, _layoutModel.height / 2, 44, 44);
+            contextX = CGRectGetMinX(_contentFrame) - 20;
+            _indicatorFrame = CGRectMake(contextX - Spacing, indicatorY, 20, 20);
         }
         else{
              contextX = CGRectGetMaxX(_contentFrame);
-           _indicatorFrame = CGRectMake(contextX + Spacing, _layoutModel.height / 2, 44, 44);
+           _indicatorFrame = CGRectMake(contextX + Spacing, indicatorY, 20, 20);
         }
     }
     return self;

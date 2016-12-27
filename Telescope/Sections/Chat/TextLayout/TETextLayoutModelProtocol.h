@@ -21,7 +21,8 @@
 
 @protocol TETextImageModel <NSObject>
 
-@property (copy, nonatomic) NSString * fileName;
+@property (copy, nonatomic) NSString* path;
+@property (copy, nonatomic) NSString* fileName;
 @property (nonatomic) NSUInteger position;
 
 // 此坐标是 CoreText 的坐标系，而不是UIKit的坐标系

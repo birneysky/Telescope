@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "TEMsgSubItem.h"
 
+typedef NS_ENUM(NSInteger,TEChatMessageType){
+    TEChatMessageTypeText,
+    TEChatMessageTypeRichText,
+    TEChatMessageTypeAudio,
+};
+
 @interface TEChatMessage : NSObject
 
 @property (nonatomic,assign) BOOL isAutoReply;
@@ -16,6 +22,7 @@
 @property (nonatomic,copy) NSString* messageID;
 @property (nonatomic,strong) NSDate* time;
 @property (nonatomic,assign) BOOL senderIsMe;
+@property (nonatomic,assign) TEChatMessageType type;
 
 
 - (void)addItem:(TEMsgSubItem*) item;

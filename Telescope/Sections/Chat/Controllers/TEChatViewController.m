@@ -30,6 +30,7 @@
 
 #import "TEV2KitChatDemon.h"
 
+#import "TEAudioRecordingHUD.h"
 
 typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     TEToolbarNormalState          = 0,
@@ -53,6 +54,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightConstraint;
+@property (strong, nonatomic) IBOutlet TEAudioRecordingHUD *recordingHUD;
 @property (nonatomic, strong) TEChatMorePanel* morePanel;
 @property (nonatomic, strong) TEChatExpressionPanel* expressionPanel;
 @property (nonatomic, assign) TEChatToolBarState toolbarState;
@@ -126,6 +128,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     [self.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    self.recordingHUD.center = self.view.center;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -187,6 +190,38 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     }
 }
 
+- (IBAction)pressTalkBtnTouchDown:(UIButton*)sender {
+    [sender setTitle:@"松开结束" forState:UIControlStateNormal];
+    [sender setBackgroundColor:[UIColor lightGrayColor]];
+    NSLog(@"pressTalkBtnTouchDown");
+    self.recordingHUD.state = TEAudioRecordingStateRecording;
+    [self.view addSubview:self.recordingHUD];
+}
+- (IBAction)pressTalkBtnTouchUpInside:(id)sender {
+    NSLog(@"pressTalkBtnTouchUpInside");
+    [sender setBackgroundColor:[UIColor whiteColor]];
+    [sender setTitle:@"按住说话" forState:UIControlStateNormal];
+    //发送消息
+    [self.recordingHUD removeFromSuperview];
+}
+
+- (IBAction)pressTalkBtnTouchUpOutSide:(id)sender {
+    NSLog(@"pressTalkBtnTouchUpOutSide");
+     [sender setBackgroundColor:[UIColor whiteColor]];
+     [sender setTitle:@"按住说话" forState:UIControlStateNormal];
+    [self.recordingHUD removeFromSuperview];
+    //取消发送
+}
+
+- (IBAction)pressTalkBtnTouchDragOutSide:(id)sender {
+    NSLog(@"pressTalkBtnTouchDragOutSide");
+    self.recordingHUD.state = TEAudioRecordingStateMyBeCancel;
+     [sender setTitle:@"松开手指，取消发送" forState:UIControlStateNormal];
+}
+- (IBAction)pressTalkTouchDragInside:(UIButton *)sender {
+    [sender setTitle:@"松开结束" forState:UIControlStateNormal];
+     self.recordingHUD.state = TEAudioRecordingStateRecording;
+}
 
 #pragma mark - *** notification selector ***
 - (void)keyboardWillShow:(NSNotification*)notification
@@ -347,29 +382,28 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     [[[TECoreDataHelper defaultHelper] backgroundContext] performBlock:^{
         for (int i =0 ; i < chatMessages.count; i++) {
             TEChatMessage* chatMessage = chatMessages[i];
+//            chatMessage.senderIsMe = YES;
+//            chatMessage.time = [NSDate date];
             TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
             message.mID = chatMessage.messageID;
             message.senderID = [TEV2KitChatDemon defaultDemon].selfUser.userID;
             message.receiverID = self.session.remoteUsrID;
             message.content = [chatMessage xmlString];
             message.sendTime = [NSDate date];
-            message.recvTime = message.sendTime;
+            message.recvTime = 0;
             message.type = 1;
             message.sessionID = self.session.sID;
             message.senderIsMe = YES;
             message.state = TEMsgTransStateSending;
+            //message.chatMessage = chatMessage;
             self.session.totalNumOfMessage += 1;
-            
             [message layout];
         }
         self.session.overviewOfLastMessage = [chatMessages.lastObject overviewText];
             //[[TECoreDataHelper defaultHelper] saveBackgroundContext];
             if ([context hasChanges]) {
                 NSError* error;
-                //NSLog(@"🍎🍎🍎🍎🍎 %@",message);
                 [context save:&error];
-                //NSLog(@"save messaage 🍎🍎🍎🍎🍎");
-                //[self.cacheArray removeObject:chatMessage];
             }
         //[[NSNotificationCenter defaultCenter] postNotificationName:TENewMessageComming object:nil];
     }];
@@ -525,6 +559,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             
             //生成消息实例
             TEMsgImageSubItem* imageItem = [[TEMsgImageSubItem alloc] initWithType:Image];
+            imageItem.path = pictureStorePath;
             imageItem.fileName = fileName;
             imageItem.fileExt = @".jpg";
             imageItem.imagePosition = CGRectMake(0, 0, fullWidth, fullHeight);
@@ -534,10 +569,11 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             chatMessage.isAutoReply = NO;
             [chatMessage addItem:imageItem];
             
-            //发送消息
+            
             [array addObject:chatMessage];
         }
         
+        //存储发送消息
         [self insertNewMessage:[array copy]];
     }];
 }

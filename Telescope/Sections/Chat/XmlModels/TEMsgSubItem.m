@@ -105,5 +105,20 @@
     return rootDic;
 }
 
+@end
+
+
+@implementation TEMSgAudioSubItem
+
+- (NSDictionary*) toDictionary
+{
+    NSDictionary* rootDic = [super toDictionary];
+    NSMutableDictionary* sub = [rootDic objectForKey:TEAudioElement];
+    [sub setObject:self.fileName
+            forKey:[NSString stringWithFormat:@"_%@",TEFileIDAttribute]];
+    [sub setObject:[NSString stringWithFormat:@"%ld",(long)self.duration]
+            forKey:[NSString stringWithFormat:@"_%@",TESecondsAttribute]];
+    return rootDic;
+}
 
 @end

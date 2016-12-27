@@ -58,6 +58,9 @@ typedef enum CTDisplayViewState : NSInteger {
 }
 
 - (void)setLayoutModel:(TETextLayoutModel *)model {
+    if (_layoutModel == model) {
+        return;
+    }
     _layoutModel = model;
      [self setNeedsDisplay];
     //self.state = CTDisplayViewStateNormal;
@@ -217,7 +220,9 @@ typedef enum CTDisplayViewState : NSInteger {
     
     [self.layoutModel.imageArray enumerateObjectsUsingBlock:^(id<TETextImageModel>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //UIImage *image = [UIImage imageNamed:obj.fileName];
-        UIImage *image = [UIImage imageWithContentsOfFile:obj.fileName];
+        
+        NSString* fullPath = [obj.path stringByAppendingPathComponent:obj.fileName];
+        UIImage *image = [UIImage imageWithContentsOfFile:fullPath];
         if (image) {
             CGContextDrawImage(context, obj.imagePosition, image.CGImage);
         }

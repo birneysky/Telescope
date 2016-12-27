@@ -11,6 +11,7 @@
 #import "TEChatSession+CoreDataProperties.h"
 #import "TEMessage+CoreDataProperties.h"
 #import "TEChatMessage.h"
+#import "TEChatXMLReader.h"
 
 static TEV2KitChatDemon* _demon = nil;
 
@@ -87,6 +88,10 @@ static TEV2KitChatDemon* _demon = nil;
     NSError* error;
     NSArray* sessionArray = [weakContext executeFetchRequest:fetchRequest error:&error];
     
+    TEChatMessage* chatMsgModel =  [TEChatXMLReader messageForXmlString:xmlText error:nil];
+    chatMsgModel.senderIsMe = NO;
+    chatMsgModel.time = date;
+    
     [weakContext performBlock:^{
 
         NSDate* recvDate =  [NSDate date];
@@ -98,6 +103,7 @@ static TEV2KitChatDemon* _demon = nil;
         message.sendTime = date;
         message.type = MediaFileTypeText;
         message.recvTime = recvDate;
+        message.chatMessage = chatMsgModel;
         
         TEChatSession* session = nil;
         if (sessionArray.count == 0){
@@ -107,7 +113,7 @@ static TEV2KitChatDemon* _demon = nil;
             session.remoteUsrID = uid;
             session.timeToRecvLastMessage = recvDate;
             session.overviewOfLastMessage = @"Text";
-            session.lastMessageType = MediaFileTypeText;
+            session.lastMessageType = message.type;
             session.sID = (int32_t)uid;
 
         }
@@ -134,6 +140,16 @@ static TEV2KitChatDemon* _demon = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:TENewMessageComming object:nil];
     }];
     
+    if (chatMsgModel.type == TEChatMessageTypeRichText) {
+        [chatMsgModel.msgItemList enumerateObjectsUsingBlock:^(TEMsgSubItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.type == Image) {
+                TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)obj;
+               
+            }
+        }];
+    }
+
+    
 }
 
 
@@ -145,7 +161,22 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (void)didReceiveResponseOfSendingTextMessage:(NSString*)messageID responseCode:(NSInteger)code fromUserID:(long long)uid inGroup:(long long)gid
 {
+    __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
+    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",messageID];
+    [fetchRequest setPredicate:predicat];
+    NSError* error;
+    NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
+    NSAssert(messageArray.count == 1, @"有多个条件满足条件");
     
+    __weak TEMessage* message = messageArray.firstObject;
+    [weakContext performBlock:^{
+        message.state = code == 0 ? TEMsgTransStateSucced : TEMsgTransStateError;
+        if ([weakContext hasChanges]) {
+            NSError* error;
+            [weakContext save:&error];
+        }
+    }];
 }
 
 

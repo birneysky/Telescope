@@ -35,12 +35,16 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 #define TEWidhtAttribute @"Width"
 #define TEHeightAttribute @"Height"
 
+#define TEAudioElement @"TAudioChatItem"
+#define TEFileIDAttribute @"FileID"
+#define TESecondsAttribute @"Seconds"
+
+
 #define TEChatElement @"TChatData"
 #define TEAutoRelyAttribute @"IsAutoReply"
 #define TEMessageIDAttribute @"MessageID"
 
 #define TEChatItemElement @"ItemList"
-
 
 
 
@@ -75,7 +79,9 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
  */
 @interface TEMsgImageSubItem : TEMsgSubItem <TETextImageModel>
 
-@property (copy, nonatomic) NSString * fileName;
+@property (copy,nonatomic) NSString* path;
+
+@property (copy, nonatomic) NSString* fileName;
 
 @property (copy,nonatomic) NSString* fileExt;
 
@@ -115,6 +121,11 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
  语音文件子消息项
  */
 @interface TEMSgAudioSubItem : TEMsgSubItem
+
+@property (nonatomic,copy) NSString* fileName;
+
+@property (nonatomic,assign) NSInteger duration;
+
 
 @end
 

@@ -21,6 +21,8 @@
 
 @property (nonatomic,strong) UIActivityIndicatorView* indicator;
 
+@property (nonatomic,strong) UIImageView* errorView;
+
 @end
 
 @implementation TEBubbleCell
@@ -62,6 +64,14 @@
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
     return _indicator;
+}
+
+- (UIImageView*)errorView
+{
+    if (!_errorView) {
+        _errorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"te_error_icon"]];
+    }
+    return _errorView;
 }
 
 #pragma mark - *** Init ***
@@ -108,11 +118,20 @@
         self.indicator.frame = message.layout.indicatorFrame;
         [self.contentView addSubview:self.indicator];
         [self.indicator startAnimating];
+        [self.errorView removeFromSuperview];
     }
-    else{
+    else if (TEMsgTransStateError == message.state) {
         [self.indicator stopAnimating];
         [self.indicator removeFromSuperview];
+        self.errorView.frame = message.layout.indicatorFrame;
+        [self.contentView addSubview:self.errorView];
     }
+    else if(TEMsgTransStateSucced == message.state){
+        [self.indicator stopAnimating];
+        [self.indicator removeFromSuperview];
+        [self.errorView removeFromSuperview];
+    }
+
     
     [self.messageView.layoutView setLayoutModel:message.layout.layoutModel];
 }

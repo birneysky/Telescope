@@ -167,21 +167,24 @@ NSString *const kXMLReaderTextNodeKey = @"text";
         //NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
         NSString* filePath = [TEV2KitChatDemon defaultDemon].pictureStorePath;
         NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",attributeDict[TEUUIDAttribute],@"thumbnail"];
-        NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
-        pictureSubItem.fileName = thumbnailImgPath;//attributeDict[TEUUIDAttribute];
+        //NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
+        pictureSubItem.path = filePath;
+        pictureSubItem.fileName = fileThumbnailName;//attributeDict[TEUUIDAttribute];
         pictureSubItem.fileExt = attributeDict[TEFileExtAttribute];
         CGFloat width = [attributeDict[TEWidhtAttribute] floatValue];
         CGFloat height = [attributeDict[TEHeightAttribute] floatValue];
         aspectSizeInContainer(&width, &height, CGSizeMake(40, 40), CGSizeMake(200, 200));
         pictureSubItem.imagePosition = CGRectMake(0, 0, width, height);
         [_chatMessage addItem:pictureSubItem];
+        _chatMessage.type = TEChatMessageTypeRichText;
     }
     else if([elementName isEqualToString:TESysFaceElement]){
         TEExpresssionSubItem* faceItem = [[TEExpresssionSubItem alloc] initWithType:Face];
         NSString* path = [[NSBundle mainBundle] pathForResource:@"TEExpression" ofType:@"bundle"];
         NSString* itemName = [NSString stringWithFormat:@"Expression_%@",attributeDict[TEFileNameAttribute]];
-        NSString* imageName = [path stringByAppendingPathComponent:itemName];
-        faceItem.fileName = imageName;
+        //NSString* imageName = [path stringByAppendingPathComponent:itemName];
+        faceItem.path = path;
+        faceItem.fileName = itemName;
         faceItem.imagePosition = CGRectMake(0, 0, 20, 20);
         [_chatMessage addItem:faceItem];
     }

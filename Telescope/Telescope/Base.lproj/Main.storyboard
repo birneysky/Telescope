@@ -707,7 +707,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XHb-Ir-sob">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XHb-Ir-sob">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -789,6 +789,13 @@
                                                     <integer key="value" value="5"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="pressTalkBtnTouchDown:" destination="nqp-Ao-Sqe" eventType="touchDown" id="xuZ-it-vV5"/>
+                                                <action selector="pressTalkBtnTouchDragOutSide:" destination="nqp-Ao-Sqe" eventType="touchDragOutside" id="SQg-VF-j12"/>
+                                                <action selector="pressTalkBtnTouchUpInside:" destination="nqp-Ao-Sqe" eventType="touchUpInside" id="ItK-Wj-721"/>
+                                                <action selector="pressTalkBtnTouchUpOutSide:" destination="nqp-Ao-Sqe" eventType="touchUpOutside" id="gVo-DJ-omY"/>
+                                                <action selector="pressTalkTouchDragInside:" destination="nqp-Ao-Sqe" eventType="touchDragInside" id="ocT-ph-RT4"/>
+                                            </connections>
                                         </button>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bxh-lb-qjw">
                                             <rect key="frame" x="52" y="8" width="227" height="34"/>
@@ -863,6 +870,7 @@
                         <outlet property="chatTVC" destination="2gf-Mr-zfC" id="KJG-Z7-ToS"/>
                         <outlet property="expressionBtn" destination="O8l-Wt-lTy" id="ChV-Vk-Gfx"/>
                         <outlet property="pressTalkBtn" destination="7ue-47-gh7" id="uFv-oa-lWi"/>
+                        <outlet property="recordingHUD" destination="7wv-LB-T1I" id="65F-bB-URB"/>
                         <outlet property="tableView" destination="XHb-Ir-sob" id="Z8F-aJ-hLv"/>
                         <outlet property="tableViewBottomConstraint" destination="bTO-L1-6eP" id="k06-0z-aIU"/>
                         <outlet property="textView" destination="Bxh-lb-qjw" id="bW6-HJ-pud"/>
@@ -874,6 +882,71 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qv-Lz-Tk6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="7wv-LB-T1I" customClass="TEAudioRecordingHUD">
+                    <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="te_exclamation_mark" translatesAutoresizingMaskIntoConstraints="NO" id="8Cu-Eh-Smw">
+                            <rect key="frame" x="2" y="2" width="116" height="103"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWC-Pz-aSC">
+                            <rect key="frame" x="2" y="2" width="116" height="103"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="te_audioRecord_micPhone" translatesAutoresizingMaskIntoConstraints="NO" id="xeL-l1-afJ">
+                                    <rect key="frame" x="2" y="2" width="55" height="99"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="te_audioRecord_volumn3" translatesAutoresizingMaskIntoConstraints="NO" id="Vpw-uT-mY4">
+                                    <rect key="frame" x="59" y="2" width="55" height="99"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="Vpw-uT-mY4" firstAttribute="width" secondItem="xeL-l1-afJ" secondAttribute="width" id="1U8-uf-1XB"/>
+                                <constraint firstAttribute="bottom" secondItem="xeL-l1-afJ" secondAttribute="bottom" constant="2" id="2r3-vC-JFu"/>
+                                <constraint firstItem="Vpw-uT-mY4" firstAttribute="top" secondItem="yWC-Pz-aSC" secondAttribute="top" constant="2" id="PLe-hR-sY0"/>
+                                <constraint firstItem="xeL-l1-afJ" firstAttribute="leading" secondItem="yWC-Pz-aSC" secondAttribute="leading" constant="2" id="WsW-G6-rZR"/>
+                                <constraint firstAttribute="bottom" secondItem="Vpw-uT-mY4" secondAttribute="bottom" constant="2" id="amu-4j-2NQ"/>
+                                <constraint firstItem="Vpw-uT-mY4" firstAttribute="leading" secondItem="xeL-l1-afJ" secondAttribute="trailing" constant="2" id="hfu-Gm-qrI"/>
+                                <constraint firstItem="xeL-l1-afJ" firstAttribute="top" secondItem="yWC-Pz-aSC" secondAttribute="top" constant="2" id="tfj-N9-XjR"/>
+                                <constraint firstAttribute="trailing" secondItem="Vpw-uT-mY4" secondAttribute="trailing" constant="2" id="x04-mx-3p0"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubN-z1-4nb">
+                            <rect key="frame" x="2" y="107" width="116" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="A5s-Nw-A48"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ubN-z1-4nb" secondAttribute="bottom" constant="2" id="1Im-oq-3Yl"/>
+                        <constraint firstAttribute="trailing" secondItem="8Cu-Eh-Smw" secondAttribute="trailing" constant="2" id="3rr-Os-uB1"/>
+                        <constraint firstItem="8Cu-Eh-Smw" firstAttribute="top" secondItem="7wv-LB-T1I" secondAttribute="top" constant="2" id="87A-UV-lkY"/>
+                        <constraint firstItem="ubN-z1-4nb" firstAttribute="top" secondItem="8Cu-Eh-Smw" secondAttribute="bottom" constant="2" id="Fsn-qg-gkg"/>
+                        <constraint firstItem="ubN-z1-4nb" firstAttribute="leading" secondItem="7wv-LB-T1I" secondAttribute="leading" constant="2" id="MpO-az-pPj"/>
+                        <constraint firstItem="ubN-z1-4nb" firstAttribute="top" secondItem="yWC-Pz-aSC" secondAttribute="bottom" constant="2" id="a1O-Tb-ZT2"/>
+                        <constraint firstItem="yWC-Pz-aSC" firstAttribute="top" secondItem="7wv-LB-T1I" secondAttribute="top" constant="2" id="cRO-Az-Lwh"/>
+                        <constraint firstAttribute="trailing" secondItem="ubN-z1-4nb" secondAttribute="trailing" constant="2" id="jJL-9p-5uP"/>
+                        <constraint firstAttribute="trailing" secondItem="yWC-Pz-aSC" secondAttribute="trailing" constant="2" id="oOg-lw-vMG"/>
+                        <constraint firstItem="yWC-Pz-aSC" firstAttribute="leading" secondItem="7wv-LB-T1I" secondAttribute="leading" constant="2" id="plA-yn-Cv2"/>
+                        <constraint firstItem="8Cu-Eh-Smw" firstAttribute="leading" secondItem="7wv-LB-T1I" secondAttribute="leading" constant="2" id="tPz-VU-UEz"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="audioRecordingVolumImageView" destination="Vpw-uT-mY4" id="NJM-Cu-Sqj"/>
+                        <outlet property="statusIconImageView" destination="8Cu-Eh-Smw" id="ymZ-AF-zeJ"/>
+                        <outlet property="statusLabel" destination="ubN-z1-4nb" id="YyV-4d-7Z3"/>
+                        <outlet property="volumeView" destination="yWC-Pz-aSC" id="lkV-IC-acl"/>
+                    </connections>
+                </view>
                 <customObject id="2gf-Mr-zfC" customClass="TEChatTableViewController">
                     <connections>
                         <outlet property="view" destination="XHb-Ir-sob" id="ApN-Bp-zFv"/>
@@ -980,7 +1053,7 @@
                     <navigationItem key="navigationItem" title="设置" id="RLg-hk-rew">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="MNQ-N3-XR0">
                             <connections>
-                                <segue destination="GPj-qW-Coo" kind="show" id="hcH-g4-swA"/>
+                                <segue destination="0B7-oX-cDc" kind="push" id="yBO-BH-hct"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -990,33 +1063,14 @@
             <point key="canvasLocation" x="4793" y="-1234"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="A8Q-Gu-NnM">
+        <scene sceneID="M6P-Sf-lXy">
             <objects>
-                <viewController id="GPj-qW-Coo" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="5DM-Za-V66">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="09k-6D-VGf">
-                            <rect key="frame" x="12" y="0.0" width="351" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="37R-BR-obL">
-                                    <rect key="frame" x="0.0" y="0.0" width="351" height="44"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="37R-BR-obL" firstAttribute="top" secondItem="09k-6D-VGf" secondAttribute="top" id="4kB-YX-bW0"/>
-                                <constraint firstItem="37R-BR-obL" firstAttribute="leading" secondItem="09k-6D-VGf" secondAttribute="leading" id="87O-cS-oPp"/>
-                                <constraint firstAttribute="bottom" secondItem="37R-BR-obL" secondAttribute="bottom" id="9jd-Vl-p95"/>
-                                <constraint firstAttribute="trailing" secondItem="37R-BR-obL" secondAttribute="trailing" id="ejF-Ur-475"/>
-                            </constraints>
-                        </view>
-                    </navigationItem>
+                <viewController id="0B7-oX-cDc" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ijZ-zb-sVz"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NmC-qu-jqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UQq-tK-3f5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5716" y="-1235"/>
+            <point key="canvasLocation" x="5542" y="-1220"/>
         </scene>
         <!--Fans Table View Controller-->
         <scene sceneID="EFh-Db-NKX">
@@ -1108,6 +1162,8 @@
     <resources>
         <image name="te_ gratuity_highlighted" width="33" height="33"/>
         <image name="te_ gratuity_normal" width="33" height="33"/>
+        <image name="te_audioRecord_micPhone" width="55" height="70"/>
+        <image name="te_audioRecord_volumn3" width="55" height="70"/>
         <image name="te_chat_toolbar_emotion" width="35" height="35"/>
         <image name="te_chat_toolbar_emotion_hl" width="35" height="35"/>
         <image name="te_chat_toolbar_input_voice" width="35" height="35"/>
@@ -1116,6 +1172,7 @@
         <image name="te_chat_toolbar_more_hl" width="35" height="35"/>
         <image name="te_close_highlighted" width="33" height="33"/>
         <image name="te_close_normal" width="33" height="33"/>
+        <image name="te_exclamation_mark" width="55" height="70"/>
         <image name="te_fullscreen_normal" width="33" height="33"/>
         <image name="te_like_highlighted" width="33" height="33"/>
         <image name="te_like_normal" width="33" height="33"/>
@@ -1126,6 +1183,6 @@
         <image name="te_weChat_icon" width="59" height="59"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="00Y-al-GS4"/>
+        <segue reference="CKD-to-2pV"/>
     </inferredMetricsTieBreakers>
 </document>
