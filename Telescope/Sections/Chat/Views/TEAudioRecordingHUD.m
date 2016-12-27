@@ -66,6 +66,8 @@
             self.volumeView.hidden = YES;
             self.statusIconImageView.hidden = NO;
             self.statusIconImageView.image = [UIImage imageNamed:@"te_audioRecord_cancel"];
+            self.statusLabel.text = @"松开手指，取消发送";
+            self.statusLabel.backgroundColor = [UIColor redColor];
             break;
         case TEAudioRecordingStateError:
             self.volumeView.hidden = YES;
