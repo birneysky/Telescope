@@ -64,7 +64,6 @@
 			children = (
 				DBBB65B91D794DF60044E626 /* GCD */,
 				DBBB65BF1D794DF60044E626 /* RunLoop */,
-				DBBB65C51D794DF60044E626 /* Vendor */,
 				DB6DA75E1D794C2800430922 /* CocoaAsyncSocket.h */,
 				DB6DA7601D794C2800430922 /* Info.plist */,
 			);
@@ -91,13 +90,6 @@
 				DBBB65C31D794DF60044E626 /* AsyncUdpSocket.m */,
 			);
 			path = RunLoop;
-			sourceTree = "<group>";
-		};
-		DBBB65C51D794DF60044E626 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

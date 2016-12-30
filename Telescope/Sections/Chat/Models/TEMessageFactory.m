@@ -93,7 +93,7 @@ NSString* gen_uuid()
         if (isProduceText) {
             for (int i = 0;  i < arc4random() % 10; i++) {
                 TEExpresssionSubItem* faceItem = [[TEExpresssionSubItem alloc] initWithType:Face];
-                faceItem.imagePosition = CGRectMake(0, 0, 24, 24);
+                faceItem.frame = CGRectMake(0, 0, 24, 24);
                 NSUInteger expressionIndex = arc4random() % 105;
                 //NSString* path = [[NSBundle mainBundle] pathForResource:@"TEExpression" ofType:@"bundle"];
                 NSString* itemName = [NSString stringWithFormat:@"%ld",expressionIndex];
@@ -116,7 +116,7 @@ NSString* gen_uuid()
         
         if (isproduceLink) {
             TEExpresssionSubItem* faceItem = [[TEExpresssionSubItem alloc] initWithType:Face];
-            faceItem.imagePosition = CGRectMake(0, 0, 24, 24);
+            faceItem.frame = CGRectMake(0, 0, 24, 24);
             NSUInteger expressionIndex = arc4random() % 105;
             NSString* path = [[NSBundle mainBundle] pathForResource:@"TEExpression" ofType:@"bundle"];
             NSString* itemName = [NSString stringWithFormat:@"Expression_%ld",expressionIndex];

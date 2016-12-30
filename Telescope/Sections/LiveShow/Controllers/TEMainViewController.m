@@ -11,11 +11,14 @@
 #import "TENetworkKit.h"
 #import "TEVideoPlayer.h"
 #import "TEAnnotation.h"
+#import "TEV2KitChatDemon.h"
 
 #import "TEMainViewController.h"
 #import "TEDefaultCollectionController.h"
 #import "TEMapViewController.h"
 #import "TEBroadcastLiveViewController.h"
+
+#import <AVFoundation/AVFoundation.h>
 
 @interface TEMainViewController ()
 @property (strong, nonatomic) IBOutlet TEDefaultCollectionController *userCollectionController;
@@ -59,6 +62,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    self.videoPlayerWidthConstraint.constant = screenSize.width;
+    self.videoPlayerHeightConstraint.constant = screenSize.width * 3 / 4;
+    self.videoPlayerYConstraint.constant =  - (self.videoPlayerHeightConstraint.constant / 2 - 20);
     [self.userCollectionController registerWithNibName:@"TEDefaultCollectionCell"
                             forCellWithReuseIdentifier:@"te_default_collection_cell_id"];
     
@@ -105,13 +112,15 @@
 //    self.playerWidthConstraint.constant = screenSize.width;
 //    self.playerHeightConstraint.constant = screenSize.height;
     [self.mapViewController showUserLocation];
+    
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
-    self.videoPlayer.automaticallySwitchToTheNext = YES;
+
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
@@ -159,6 +168,11 @@
         
     }];
 }
+- (IBAction)rewardBtnClicked:(id)sender {
+    //[self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
+    [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://liveshow.pull.51vcloud.com/live/30"];
+    self.videoPlayer.automaticallySwitchToTheNext = YES;
+}
 
 #pragma mark - Navigation
 
@@ -166,10 +180,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"push_broadcast_live"]) {
+    if ([segue.identifier isEqualToString:@"push_broadcast_live"]||
+        [segue.identifier isEqualToString:@"push_enter_live"]) {
+        NSError *error;
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+        if (error) {
+            NSLog(@"%@",error);
+        }
         TEBroadcastLiveViewController* blvc = segue.destinationViewController;
         blvc.backgroundImage = [self screenshot];
+        blvc.userID = [TEV2KitChatDemon defaultDemon].selfUser.userID;
+        blvc.communicateWithAnchor = [segue.identifier isEqualToString:@"push_enter_live"] ? YES : NO;
     }
+    
+    
 }
 
 

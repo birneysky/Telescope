@@ -302,6 +302,9 @@
                                                 </constraints>
                                                 <state key="normal" image="te_close_normal"/>
                                                 <state key="highlighted" image="te_close_highlighted"/>
+                                                <connections>
+                                                    <segue destination="0N5-0j-dcP" kind="presentation" identifier="push_enter_live" id="vBR-qx-wgf"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZs-uY-NGH" userLabel="like">
                                                 <rect key="frame" x="0.0" y="60.5" width="40" height="40"/>
@@ -323,6 +326,9 @@
                                                 </constraints>
                                                 <state key="normal" image="te_ gratuity_normal"/>
                                                 <state key="highlighted" image="te_ gratuity_highlighted"/>
+                                                <connections>
+                                                    <action selector="rewardBtnClicked:" destination="Xhp-Kb-qgJ" eventType="touchUpInside" id="BxD-uk-2D4"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CL4-8y-r6t" userLabel="share">
                                                 <rect key="frame" x="0.0" y="181" width="40" height="40"/>
@@ -590,6 +596,16 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="text" value=" "/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQy-dg-Fhl">
+                                        <rect key="frame" x="8" y="200" width="144" height="192"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vg5-Jm-9mv">
+                                        <rect key="frame" x="8" y="400" width="144" height="192"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -627,6 +643,8 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="n3F-lW-czK" id="xjR-OM-QZK"/>
                         <outlet property="liveVideoView" destination="JTc-PN-Mmo" id="CzU-Ls-2rY"/>
+                        <outlet property="remoteVideoView1" destination="MQy-dg-Fhl" id="jI1-RS-hYF"/>
+                        <outlet property="remoteVideoView2" destination="vg5-Jm-9mv" id="4IX-ns-7mz"/>
                         <outlet property="statusLabel" destination="lL6-8q-APn" id="8RG-Km-0th"/>
                         <outlet property="videoView" destination="x2n-HS-jsc" id="4xm-DS-D2G"/>
                     </connections>
@@ -666,7 +684,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82Y-XN-qnC">
-                                            <rect key="frame" x="277" y="17" width="86" height="22"/>
+                                            <rect key="frame" x="277" y="17" width="85" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -1183,6 +1201,7 @@
         <image name="te_weChat_icon" width="59" height="59"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vBR-qx-wgf"/>
         <segue reference="CKD-to-2pV"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -39,19 +39,19 @@ static TETextAttibuteConfig* _config;
 
 + (TETextLayoutModel *)parseChatMessage:(TEChatMessage *)message config:(TETextAttibuteConfig*)config
 {
-    NSMutableArray *imageArray = [NSMutableArray array];
+    NSMutableArray *placeholderArray = [NSMutableArray array];
     NSMutableArray *linkArray = [NSMutableArray array];
-    NSAttributedString *content = [self loadChatMessage:message config:config imageArray:imageArray linkArray:linkArray];
+    NSAttributedString *content = [self loadChatMessage:message config:config placeholderArray:placeholderArray linkArray:linkArray];
     TETextLayoutModel *model = [self parseAttributedContent:content config:config];
-    model.imageArray = imageArray;
+    model.placeholderArray = placeholderArray;
     model.linkArray = linkArray;
     return model;
 }
 
 #pragma mark  ***CTRunDelegateCallbacks ***
 static CGFloat ascentCallback(void *ref){
-    id<TETextImageModel> model = (__bridge id<TETextImageModel>)(ref);
-    return model.imagePosition.size.height;
+    id<TETextPlaceholderModel> model = (__bridge id<TETextPlaceholderModel>)(ref);
+    return model.frame.size.height;
 }
 
 static CGFloat descentCallback(void *ref){
@@ -59,8 +59,8 @@ static CGFloat descentCallback(void *ref){
 }
 
 static CGFloat widthCallback(void* ref){
-    id<TETextImageModel> model = (__bridge id<TETextImageModel>)(ref);
-    return model.imagePosition.size.width;
+    id<TETextPlaceholderModel> model = (__bridge id<TETextPlaceholderModel>)(ref);
+    return model.frame.size.width;
 }
 
 #pragma mark - *** Helper ***
@@ -92,7 +92,7 @@ static CGFloat widthCallback(void* ref){
     return dict;
 }
 
-+ (NSAttributedString *)parseImageDataFromImageModel:(id<TETextImageModel>)model
++ (NSAttributedString *)parseDataFromPlaceholderModel:(id<TETextPlaceholderModel>)model
                                                 config:(TETextAttibuteConfig*)config {
     CTRunDelegateCallbacks callbacks;
     memset(&callbacks, 0, sizeof(CTRunDelegateCallbacks));
@@ -169,7 +169,7 @@ static CGFloat widthCallback(void* ref){
 
 + (NSAttributedString *)loadChatMessage:(TEChatMessage*)message
                                   config:(TETextAttibuteConfig*)config
-                              imageArray:(NSMutableArray *)imageArray
+                        placeholderArray:(NSMutableArray *)holderArray
                                linkArray:(NSMutableArray *)linkArray {
     
     NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
@@ -200,22 +200,32 @@ static CGFloat widthCallback(void* ref){
             case Image:
             {
                  TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)item;
-                 imageItem.position = [result length];
-                NSAttributedString *as =  [self parseImageDataFromImageModel:imageItem config:config];
+                 imageItem.index = [result length];
+                NSAttributedString *as =  [self parseDataFromPlaceholderModel:imageItem config:config];
                 [result appendAttributedString:as];
-                [imageArray addObject:imageItem];
+                [holderArray addObject:imageItem];
             }
                 break;
             case Face:
             {
                 TEExpresssionSubItem* faceItem = (TEExpresssionSubItem*)item;
-                faceItem.position = [result length];
-                faceItem.imagePosition = CGRectMake(0, 0, 20, 20);
+                faceItem.index = [result length];
+                faceItem.frame = CGRectMake(0, 0, 20, 20);
                 
                 /*@{@"width":@(44),@"height":@(44)}*/
-                NSAttributedString *as =  [self parseImageDataFromImageModel:faceItem config:config];
+                NSAttributedString *as =  [self parseDataFromPlaceholderModel:faceItem config:config];
                 [result appendAttributedString:as];
-                [imageArray addObject:faceItem];
+                [holderArray addObject:faceItem];
+            }
+                break;
+            
+            case Audio:
+            {
+                TEMSgAudioSubItem* audioItem = (TEMSgAudioSubItem*)item;
+                audioItem.index = [result length];
+                NSAttributedString* as = [self parseDataFromPlaceholderModel:audioItem config:config];
+                [result appendAttributedString:as];
+                [holderArray addObject:audioItem];
             }
                 break;
             default:

@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
  */
 @interface TEMsgSubItem : NSObject
 
-@property (nonatomic,assign) TEMsgSubItemType type;
+@property (nonatomic,readonly) TEMsgSubItemType type;
 
 - (instancetype)initWithType:(TEMsgSubItemType)type;
 
@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 /**
  图片子消息项
  */
-@interface TEMsgImageSubItem : TEMsgSubItem <TETextImageModel>
+@interface TEMsgImageSubItem : TEMsgSubItem <TETextPlaceholderModel>
 
 @property (copy,nonatomic) NSString* path;
 
@@ -85,9 +85,9 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 
 @property (copy,nonatomic) NSString* fileExt;
 
-@property (nonatomic,assign) NSUInteger position;
+@property (nonatomic,assign) NSUInteger index;
 
-@property (nonatomic) CGRect imagePosition;
+@property (nonatomic) CGRect frame;
 
 - (NSDictionary*) toDictionary;
 
@@ -120,9 +120,7 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 /**
  语音文件子消息项
  */
-@interface TEMSgAudioSubItem : TEMsgSubItem
-
-@property (nonatomic,copy) NSString* fileName;
+@interface TEMSgAudioSubItem : TEMsgImageSubItem <TETextPlaceholderModel>
 
 @property (nonatomic,assign) NSInteger duration;
 

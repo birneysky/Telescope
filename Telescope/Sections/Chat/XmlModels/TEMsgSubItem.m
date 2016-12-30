@@ -13,7 +13,7 @@
 - (instancetype)initWithType:(TEMsgSubItemType)type
 {
     if (self = [self init]) {
-        self.type = type;
+        _type = type;
     }
     return self;
 }
@@ -21,10 +21,11 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.type = Unknown;
+        _type = Unknown;
     }
     return self;
 }
+
 
 - (NSDictionary*) toDictionary
 {
@@ -70,13 +71,18 @@
 {
     NSDictionary* rootDic = [super toDictionary];
     NSMutableDictionary* sub = [rootDic objectForKey:TEPictureElement];
-    [sub setObject:@(self.imagePosition.size.width)
+    [sub setObject:@(self.frame.size.width)
             forKey:[NSString stringWithFormat:@"_%@",TEWidhtAttribute]];
-    [sub setObject:@(self.imagePosition.size.height)
+    [sub setObject:@(self.frame.size.height)
             forKey:[NSString stringWithFormat:@"_%@",TEHeightAttribute]];
     [sub setObject:self.fileName forKey:[NSString stringWithFormat:@"_%@",TEUUIDAttribute]];
     [sub setObject:self.fileExt forKey:[NSString stringWithFormat:@"_%@", TEFileExtAttribute]];
     return rootDic;
+}
+
+- (BOOL)isAPicture
+{
+    return YES;
 }
 
 @end
@@ -119,6 +125,11 @@
     [sub setObject:[NSString stringWithFormat:@"%ld",(long)self.duration]
             forKey:[NSString stringWithFormat:@"_%@",TESecondsAttribute]];
     return rootDic;
+}
+
+- (BOOL)isAPicture
+{
+    return NO;
 }
 
 @end

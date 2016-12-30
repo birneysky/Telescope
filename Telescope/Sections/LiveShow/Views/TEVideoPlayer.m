@@ -9,8 +9,9 @@
 #import "TEVideoPlayer.h"
 #import <TEPlayerKit/TEPlayerKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <IJKMediaFramework/IJKMediaFramework.h>
 
-@interface TEVideoPlayer ()<RTMPGuestRtmpDelegate>
+@interface TEVideoPlayer ()<RTMPGuestRtmpDelegate,IJKPlayerDelegate>
 
 @property (nonatomic, strong) RTMPGuestKit *guestKit;
 
@@ -18,6 +19,7 @@
 
 @property (nonatomic,strong) UIActivityIndicatorView* indicator;
 
+@property (nonatomic,strong) IJKFFMoviePlayerController* ijkPlayerController;
 
 @end
 
@@ -44,7 +46,7 @@
 - (RTMPGuestKit*)guestKit
 {
     if (!_guestKit) {
-        _guestKit = [[RTMPGuestKit alloc] initWithDelegate:self];
+       // _guestKit = [[RTMPGuestKit alloc] initWithDelegate:self];
     }
     return _guestKit;
 }
@@ -65,11 +67,27 @@
     return _indicator;
 }
 
+- (IJKFFMoviePlayerController*)ijkPlayerController
+{
+    if (!_ijkPlayerController) {
+        _ijkPlayerController = [[IJKFFMoviePlayerController alloc] initWithOptions:[IJKFFOptions optionsByDefault]];
+        //_ijkPlayerController = [[IJKFFMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"] withOptions:[IJKFFOptions optionsByDefault]];
+        _ijkPlayerController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _ijkPlayerController.view.frame = self.bounds;
+        _ijkPlayerController.scalingMode = IJKMPMovieScalingModeAspectFit;
+        _ijkPlayerController.shouldAutoplay = YES;
+        _ijkPlayerController.delegate  = self;
+    }
+    return _ijkPlayerController;
+}
+
 #pragma mark - *** Helper ***
 - (void)setup
 {
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
     [self addGestureRecognizer:recognizer];
+    
+    [self addPlayerNotificationObservers];
 }
 
 - (void)showIndicator
@@ -102,12 +120,22 @@
 NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.bounds),NSStringFromCGRect(self.frame));
     // [self layoutIfNeeded];
     NSLog(@"layoutAfter TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.bounds),NSStringFromCGRect(self.frame));
-    [self.guestKit StartRtmpPlay:url andRender:self];
+    //[self.guestKit StartRtmpPlay:url andRender:self];
+    [self addPlayerNotificationObservers];
+    if (!self.ijkPlayerController.view.superview) {
+        [self addSubview:self.ijkPlayerController.view];
+    }
+    [self.ijkPlayerController setUrl:url];
+    [self.ijkPlayerController prepareToPlay];
 }
 
 - (void)stopRtmpPlay
 {
-    [self.guestKit StopRtmpPlay];
+    //[self.guestKit StopRtmpPlay];
+    [self.ijkPlayerController shutdown];
+    [self removeMovieNotificationObservers];
+//    [self.ijkPlayerController stop];
+
 }
 
 - (void)clear
@@ -207,6 +235,148 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
                          }
                      }
      ];
+}
+
+#pragma mark - *** notification selector ***
+- (void)loadStateDidChange:(NSNotification*)notification
+{
+    //    MPMovieLoadStateUnknown        = 0,
+    //    MPMovieLoadStatePlayable       = 1 << 0,
+    //    MPMovieLoadStatePlaythroughOK  = 1 << 1, // Playback will be automatically started in this state when shouldAutoplay is YES
+    //    MPMovieLoadStateStalled        = 1 << 2, // Playback will be automatically paused in this state, if started
+    
+    IJKMPMovieLoadState loadState = self.ijkPlayerController.loadState;
+    
+    if ((loadState & IJKMPMovieLoadStatePlaythroughOK) != 0) {
+        NSLog(@"loadStateDidChange: IJKMPMovieLoadStatePlaythroughOK: %d\n", (int)loadState);
+        [self hideIndicator];
+    } else if ((loadState & IJKMPMovieLoadStateStalled) != 0) {
+        [self showIndicator];
+        NSLog(@"loadStateDidChange: IJKMPMovieLoadStateStalled: %d\n", (int)loadState);
+    } else {
+        NSLog(@"loadStateDidChange: ???: %d\n", (int)loadState);
+    }
+}
+
+- (void)moviePlayBackDidFinish:(NSNotification*)notification
+{
+    //    MPMovieFinishReasonPlaybackEnded,
+    //    MPMovieFinishReasonPlaybackError,
+    //    MPMovieFinishReasonUserExited
+    int reason = [[[notification userInfo] valueForKey:IJKMPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
+    
+    switch (reason)
+    {
+        case IJKMPMovieFinishReasonPlaybackEnded:
+            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackEnded: %d\n", reason);
+            break;
+            
+        case IJKMPMovieFinishReasonUserExited:
+            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonUserExited: %d\n", reason);
+            break;
+            
+        case IJKMPMovieFinishReasonPlaybackError:
+            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackError: %d\n", reason);
+            break;
+            
+        default:
+            NSLog(@"playbackPlayBackDidFinish: ???: %d\n", reason);
+            break;
+    }
+}
+
+- (void)mediaIsPreparedToPlayDidChange:(NSNotification*)notification
+{
+    NSLog(@"mediaIsPreparedToPlayDidChange\n");
+}
+
+- (void)moviePlayBackStateDidChange:(NSNotification*)notification
+{
+    //    MPMoviePlaybackStateStopped,
+    //    MPMoviePlaybackStatePlaying,
+    //    MPMoviePlaybackStatePaused,
+    //    MPMoviePlaybackStateInterrupted,
+    //    MPMoviePlaybackStateSeekingForward,
+    //    MPMoviePlaybackStateSeekingBackward
+    
+    IJKMPMoviePlaybackState state = self.ijkPlayerController.playbackState;
+    
+    switch (state)
+    {
+        case IJKMPMoviePlaybackStateStopped: {
+            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: stoped", (int)state);
+            break;
+        }
+        case IJKMPMoviePlaybackStatePlaying: {
+            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: playing", (int)state);
+            [self hideIndicator];
+            break;
+        }
+        case IJKMPMoviePlaybackStatePaused: {
+            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: paused", (int)state);
+            break;
+        }
+        case IJKMPMoviePlaybackStateInterrupted: {
+            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: interrupted", (int)state);
+            break;
+        }
+        case IJKMPMoviePlaybackStateSeekingForward:
+        case IJKMPMoviePlaybackStateSeekingBackward: {
+            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: seeking", (int)state);
+            break;
+        }
+        default: {
+            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: unknown", (int)state);
+            break;
+        }
+    }
+}
+
+
+#pragma mark - *** add notification ***
+-(void)addPlayerNotificationObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadStateDidChange:)
+                                                 name:IJKMPMoviePlayerLoadStateDidChangeNotification
+                                               object:self.ijkPlayerController];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackDidFinish:)
+                                                 name:IJKMPMoviePlayerPlaybackDidFinishNotification
+                                               object:self.ijkPlayerController];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(mediaIsPreparedToPlayDidChange:)
+                                                 name:IJKMPMediaPlaybackIsPreparedToPlayDidChangeNotification
+                                               object:self.ijkPlayerController];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackStateDidChange:)
+                                                 name:IJKMPMoviePlayerPlaybackStateDidChangeNotification
+                                               object:self.ijkPlayerController];
+}
+
+#pragma mark - *** remove notification  ***
+
+-(void)removeMovieNotificationObservers
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMoviePlayerLoadStateDidChangeNotification object:self.ijkPlayerController];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMoviePlayerPlaybackDidFinishNotification object:self.ijkPlayerController];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMediaPlaybackIsPreparedToPlayDidChangeNotification object:self.ijkPlayerController];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMoviePlayerPlaybackStateDidChangeNotification object:self.ijkPlayerController];
+}
+
+#pragma mark - *** IJKPlayerDelegate ***
+- (void)didShutDown
+{
+    [self.ijkPlayerController.view removeFromSuperview];
+    self.ijkPlayerController = nil;
+    if (self.automaticallySwitchToTheNext) {
+        NSString* url = self.rtmpUrl[arc4random() % self.rtmpUrl.count];
+        [self startRtmpPlayWithUrl:url];
+        [self showIndicator];
+    }
 }
 
 

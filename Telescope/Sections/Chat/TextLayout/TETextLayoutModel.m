@@ -27,13 +27,13 @@
     }
 }
 
-- (void)setImageArray:(NSArray<id<TETextImageModel>>*)imageArray {
-    _imageArray = imageArray;
+- (void)setPlaceholderArray:(NSArray<id<TETextPlaceholderModel>> *)placeholderArray{
+    _placeholderArray = placeholderArray;
     [self fillImagePosition];
 }
 
 - (void)fillImagePosition {
-    if (self.imageArray.count == 0) {
+    if (self.placeholderArray.count == 0) {
         return;
     }
     NSArray *lines = (NSArray *)CTFrameGetLines(self.ctFrame);
@@ -42,10 +42,10 @@
     CTFrameGetLineOrigins(self.ctFrame, CFRangeMake(0, 0), lineOrigins);
     
     int imgIndex = 0;
-    id<TETextImageModel> imageData = self.imageArray[0];
+    id<TETextPlaceholderModel> holderData = self.placeholderArray[0];
     
     for (int i = 0; i < lineCount; ++i) {
-        if (imageData == nil) {
+        if (holderData == nil) {
             break;
         }
         CTLineRef line = (__bridge CTLineRef)lines[i];
@@ -58,9 +58,9 @@
                 continue;
             }
             
-            id<TETextImageModel>  model = CTRunDelegateGetRefCon(delegate);
+            id<TETextPlaceholderModel>  model = CTRunDelegateGetRefCon(delegate);
             
-            if (![model respondsToSelector:@selector(imagePosition)]) {
+            if (![model respondsToSelector:@selector(frame)]) {
                 continue;
             }
             
@@ -80,13 +80,13 @@
             
             CGRect delegateBounds = CGRectOffset(runBounds, colRect.origin.x, colRect.origin.y);
             
-            imageData.imagePosition = delegateBounds;
+            holderData.frame = delegateBounds;
             imgIndex++;
-            if (imgIndex == self.imageArray.count) {
-                imageData = nil;
+            if (imgIndex == self.placeholderArray.count) {
+                holderData = nil;
                 break;
             } else {
-                imageData = self.imageArray[imgIndex];
+                holderData = self.placeholderArray[imgIndex];
             }
         }
     }

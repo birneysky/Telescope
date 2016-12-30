@@ -173,9 +173,9 @@
 		DBC779151DF01B0200615DC8 /* TEChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC779141DF01B0200615DC8 /* TEChatViewController.m */; };
 		DBC779181DF01B2300615DC8 /* TEChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC779171DF01B2300615DC8 /* TEChatTableViewController.m */; };
 		DBCDF62B1DD99B8800760111 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF62A1DD99B8800760111 /* libiconv.tbd */; };
-		DBDD58A21DE4200800473F9A /* TEPlayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E461DD570AE0077EA90 /* TEPlayerKit.framework */; };
 		DBDD58A31DE421D900473F9A /* V2Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF61C1DD998E900760111 /* V2Kit.framework */; };
 		DBDD58A41DE428B900473F9A /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437BA01DCB4665000F994A /* libstdc++.tbd */; };
+		DBE27B431E14A80D00D9594A /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE27B421E14A80D00D9594A /* IJKMediaFramework.framework */; };
 		DBF2089D1DFFA136009654F6 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF2089C1DFFA136009654F6 /* NSString+UUID.m */; };
 /* End PBXBuildFile section */
 
@@ -523,6 +523,7 @@
 		DBCDF61C1DD998E900760111 /* V2Kit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = V2Kit.framework; path = ../library/V2Kit.framework; sourceTree = "<group>"; };
 		DBCDF61E1DD9994100760111 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		DBCDF62A1DD99B8800760111 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		DBE27B421E14A80D00D9594A /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFramework.framework; path = ../library/IJKMediaFramework.framework; sourceTree = "<group>"; };
 		DBF2089B1DFFA136009654F6 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
 		DBF2089C1DFFA136009654F6 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -532,11 +533,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBE27B431E14A80D00D9594A /* IJKMediaFramework.framework in Frameworks */,
 				DB664E7F1DEE843F00EC40A8 /* MOBFoundation.framework in Frameworks */,
 				DB664E771DEE843F00EC40A8 /* WechatConnector.framework in Frameworks */,
 				DB664E7A1DEE843F00EC40A8 /* libWeiboSDK.a in Frameworks */,
 				DBDD58A41DE428B900473F9A /* libstdc++.tbd in Frameworks */,
-				DBDD58A21DE4200800473F9A /* TEPlayerKit.framework in Frameworks */,
 				DBDD58A31DE421D900473F9A /* V2Kit.framework in Frameworks */,
 				DB664E741DEE843F00EC40A8 /* ShareSDKUI.framework in Frameworks */,
 				DB664E7C1DEE843F00EC40A8 /* libWeChatSDK.a in Frameworks */,
@@ -1387,6 +1388,7 @@
 		DBA835701D90D0140055D7F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBE27B421E14A80D00D9594A /* IJKMediaFramework.framework */,
 				DBCDF62A1DD99B8800760111 /* libiconv.tbd */,
 				DBCDF61E1DD9994100760111 /* libstdc++.6.tbd */,
 				DBCDF61C1DD998E900760111 /* V2Kit.framework */,
@@ -1835,11 +1837,11 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../library",
-					"$(PROJECT_DIR)/Vendors/ShareSDK",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/Optional",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformConnector",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformSDK/QQSDK",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/QQSDK",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/Optional",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformConnector",
@@ -1858,8 +1860,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformSDK/WeChatSDK",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
@@ -1880,11 +1882,11 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../library",
-					"$(PROJECT_DIR)/Vendors/ShareSDK",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/Optional",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformConnector",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformSDK/QQSDK",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/QQSDK",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/Optional",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformConnector",
@@ -1900,8 +1902,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
-					"$(PROJECT_DIR)/Vendors/ShareSDK/Support/PlatformSDK/WeChatSDK",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
+					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Helpers/Vendors/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);

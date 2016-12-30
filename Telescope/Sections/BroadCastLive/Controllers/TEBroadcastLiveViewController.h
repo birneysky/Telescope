@@ -12,4 +12,8 @@
 
 @property (nonatomic,strong) UIImage* backgroundImage;
 
+@property (nonatomic,assign) BOOL communicateWithAnchor;
+
+@property (nonatomic,assign) long long userID;
+
 @end

@@ -218,13 +218,14 @@ typedef enum CTDisplayViewState : NSInteger {
 
     CTFrameDraw(self.layoutModel.ctFrame, context);
     
-    [self.layoutModel.imageArray enumerateObjectsUsingBlock:^(id<TETextImageModel>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.layoutModel.placeholderArray enumerateObjectsUsingBlock:^(id<TETextPlaceholderModel>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //UIImage *image = [UIImage imageNamed:obj.fileName];
-        
-        NSString* fullPath = [obj.path stringByAppendingPathComponent:obj.fileName];
-        UIImage *image = [UIImage imageWithContentsOfFile:fullPath];
-        if (image) {
-            CGContextDrawImage(context, obj.imagePosition, image.CGImage);
+        if (obj.isAPicture) {
+            NSString* fullPath = [obj.path stringByAppendingPathComponent:obj.fileName];
+            UIImage *image = [UIImage imageWithContentsOfFile:fullPath];
+            if (image) {
+                CGContextDrawImage(context, obj.frame, image.CGImage);
+            }
         }
     }];
     
@@ -292,9 +293,9 @@ typedef enum CTDisplayViewState : NSInteger {
     NSLog(@"tap recognizer state %ld",recognizer.state);
     CGPoint point = [recognizer locationInView:self];
     if (_state == CTDisplayViewStateNormal) {
-        for (id<TETextImageModel>   imageData in self.layoutModel.imageArray) {
+        for (id<TETextPlaceholderModel>   imageData in self.layoutModel.placeholderArray) {
             // 翻转坐标系，因为imageData中的坐标是CoreText的坐标系
-            CGRect imageRect = imageData.imagePosition;
+            CGRect imageRect = imageData.frame;
             CGPoint imagePosition = imageRect.origin;
             imagePosition.y = self.bounds.size.height - imageRect.origin.y - imageRect.size.height;
             CGRect rect = CGRectMake(imagePosition.x, imagePosition.y, imageRect.size.width, imageRect.size.height);

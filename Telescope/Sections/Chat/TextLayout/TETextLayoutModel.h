@@ -17,7 +17,7 @@
 @property (assign, nonatomic) CTFrameRef ctFrame;
 @property (assign, nonatomic) CGFloat width;
 @property (assign, nonatomic) CGFloat height;
-@property (strong, nonatomic) NSArray<id<TETextImageModel>>* imageArray;
+@property (strong, nonatomic) NSArray<id<TETextPlaceholderModel>>* placeholderArray;
 @property (strong, nonatomic) NSArray<id<TETextLinkModel>>* linkArray;
 @property (strong, nonatomic) NSAttributedString *content;
 

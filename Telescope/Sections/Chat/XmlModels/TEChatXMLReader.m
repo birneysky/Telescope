@@ -174,7 +174,7 @@ NSString *const kXMLReaderTextNodeKey = @"text";
         CGFloat width = [attributeDict[TEWidhtAttribute] floatValue];
         CGFloat height = [attributeDict[TEHeightAttribute] floatValue];
         aspectSizeInContainer(&width, &height, CGSizeMake(40, 40), CGSizeMake(200, 200));
-        pictureSubItem.imagePosition = CGRectMake(0, 0, width, height);
+        pictureSubItem.frame = CGRectMake(0, 0, width, height);
         [_chatMessage addItem:pictureSubItem];
         _chatMessage.type = TEChatMessageTypeRichText;
     }
@@ -185,8 +185,16 @@ NSString *const kXMLReaderTextNodeKey = @"text";
         //NSString* imageName = [path stringByAppendingPathComponent:itemName];
         faceItem.path = path;
         faceItem.fileName = itemName;
-        faceItem.imagePosition = CGRectMake(0, 0, 20, 20);
+        faceItem.frame = CGRectMake(0, 0, 20, 20);
         [_chatMessage addItem:faceItem];
+    }
+    else if([elementName isEqualToString:TEAudioElement]){
+        TEMSgAudioSubItem* audioItem = [[TEMSgAudioSubItem alloc] initWithType:Audio];
+        audioItem.path = [TEV2KitChatDemon defaultDemon].audioStorePath;
+        audioItem.fileName = attributeDict[TEFileIDAttribute];
+        audioItem.duration = [attributeDict[TESecondsAttribute] integerValue];
+        audioItem.frame = CGRectMake(0, 0, 100, 44);
+        [_chatMessage addItem:audioItem];
     }
     
     

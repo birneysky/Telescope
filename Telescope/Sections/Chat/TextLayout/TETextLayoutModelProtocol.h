@@ -19,15 +19,40 @@
 @end
 
 
-@protocol TETextImageModel <NSObject>
+@protocol TETextPlaceholderModel <NSObject>
 
+/**
+ 占位索引
+ */
+@property (nonatomic,assign) NSUInteger index;
+
+/**
+ 此坐标是 CoreText 的坐标系，而不是UIKit的坐标系
+ */
+@property (nonatomic,assign) CGRect frame;
+
+
+/**
+ 文件路径
+ */
 @property (copy, nonatomic) NSString* path;
-@property (copy, nonatomic) NSString* fileName;
-@property (nonatomic) NSUInteger position;
 
-// 此坐标是 CoreText 的坐标系，而不是UIKit的坐标系
-@property (nonatomic) CGRect imagePosition;
+
+/**
+ 文件名称
+ */
+@property (copy, nonatomic) NSString* fileName;
+
+
+/**
+ 文件扩展名
+ */
+@property (copy,nonatomic) NSString* fileExt;
+
+
+@property (nonatomic,readonly) BOOL isAPicture;
 
 @end
+
 
 #endif /* TETextLayoutModelProtocol_h */

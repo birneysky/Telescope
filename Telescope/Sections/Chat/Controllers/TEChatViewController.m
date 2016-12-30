@@ -562,7 +562,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             imageItem.path = pictureStorePath;
             imageItem.fileName = fileName;
             imageItem.fileExt = @".jpg";
-            imageItem.imagePosition = CGRectMake(0, 0, fullWidth, fullHeight);
+            imageItem.frame = CGRectMake(0, 0, fullWidth, fullHeight);
             
             TEChatMessage* chatMessage = [[TEChatMessage alloc] init];
             chatMessage.messageID = [NSString UUID];
