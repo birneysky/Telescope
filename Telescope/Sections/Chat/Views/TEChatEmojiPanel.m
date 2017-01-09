@@ -6,18 +6,22 @@
 //  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "TEChatExpressionPanel.h"
+#import "TEChatEmojiPanel.h"
+#import "TEEmojiButton.h"
+#import "TEEmojiPreview.h"
+#import "TEEmojiNamesManager.h"
 
-
-@interface TEChatExpressionPanel () <UIScrollViewDelegate>
+@interface TEChatEmojiPanel () <UIScrollViewDelegate>
 
 @property (nonatomic,strong) UIScrollView* scrollView;
 
 @property (nonatomic,strong) UIPageControl* pageControl;
 
+@property (nonatomic,strong) TEEmojiPreview* emojiPreview;
+
 @end
 
-@implementation TEChatExpressionPanel
+@implementation TEChatEmojiPanel
 
 #pragma mark - *** Properties ***
 - (UIScrollView*)scrollView
@@ -42,17 +46,26 @@
     return _pageControl;
 }
 
+
+- (TEEmojiPreview*)emojiPreview
+{
+    if (!_emojiPreview) {
+        _emojiPreview = [TEEmojiPreview  emojiPreview];
+    }
+    return _emojiPreview;
+}
+
 #pragma mark - *** Init ***
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = TERGB(246, 246, 248);
         [self configureView];
+        UILongPressGestureRecognizer* longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressView:)];
+        [self.scrollView addGestureRecognizer:longPressGesture];
     }
     return self;
 }
-
-
 
 #pragma mark - *** Helper ***
 - (void)configureView
@@ -94,32 +107,41 @@
         NSUInteger columnIndex = i % columnCount;
         
         CGRect frame = CGRectMake(pageIndex * panelWith + columnIndex * expressionWidth + xOffset, rowIndex * expressionHeight + yOffset, expressionWidth, expressionHeight);
-        UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+        TEEmojiButton* button = [TEEmojiButton buttonWithType:UIButtonTypeCustom];
         button.frame = frame;
         NSString* imageName = [NSString stringWithFormat:@"Expression_%lu",i];
         NSString* imagePathName = [expressionBundlePath stringByAppendingPathComponent:imageName];
         button.tag = i;
         [button setImage:[UIImage imageNamed:imagePathName] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(faceClicked:) forControlEvents:UIControlEventTouchUpInside];
+        //button.imageView.contentMode = UIViewContentModeScaleToFill;
+        //button.contentEdgeInsets = UIEdgeInsetsMake(-10, -10, -10, -10);
         [self.scrollView addSubview:button];
-//        UIImageView* imageView = [[UIImageView alloc] initWithFrame:frame];
-//        NSString* imageName = [NSString stringWithFormat:@"Expression_%lu",i+1];
-//        NSString* imagePathName = [expressionBundlePath stringByAppendingPathComponent:imageName];
-//        imageView.image = [UIImage imageNamed:imagePathName];
-//        [self.scrollView addSubview:imageView];
+
     }
 
-    UIButton* sendButton = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 50, self.height - 30, 50, 30)];
+    UIButton* sendButton = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 80, self.height - 30, 80, 30)];
     sendButton.backgroundColor = TERGB(23, 126, 253);
-    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [sendButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [sendButton setTitle:@"发送" forState:UIControlStateNormal];
     [sendButton addTarget:self action:@selector(sendBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:sendButton];
-    
-    
 }
 
+#pragma mark - ***Helper***
+- (UIButton*)enumButtonWithLocation:(CGPoint)point
+{
+    NSArray<UIButton*>* emojiButtons = self.scrollView.subviews;
+    __block UIButton* touchButton = nil;
+    [emojiButtons  enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (CGRectContainsPoint(obj.frame, point)) {
+            touchButton = obj;
+            *stop = YES;
+        }
+    }];
+    return touchButton;
+}
 
 #pragma mark - *** UIScrollViewDelegate ***
 
@@ -141,6 +163,31 @@
 - (void)sendBtnClicked:(UIButton*)sender{
     if ([self.delegate respondsToSelector:@selector(sendButtonClickedInPannnel)]) {
         [self.delegate sendButtonClickedInPannnel];
+    }
+}
+
+#pragma mark - *** longPressView ***
+- (void)longPressView:(UILongPressGestureRecognizer*)gesture
+{
+   CGPoint touchPoint = [gesture locationInView:self.scrollView];
+    UIButton* touchButton = [self enumButtonWithLocation:touchPoint];
+    NSLog(@"gesture state %ld",(long)gesture.state);
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged:
+            if (touchButton) {
+                TEEmojiNamesManager* emojiManager = [TEEmojiNamesManager defaultManager];
+                [self.emojiPreview setPreviewImage:touchButton.currentImage];
+                [self.emojiPreview setEmojiName:[emojiManager nameAtIndex:touchButton.tag]];
+            }
+            [self.emojiPreview showFromView:touchButton];
+            break;
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded:
+            [self.emojiPreview removeFromSuperview];
+            break;
+        default:
+            break;
     }
 }
 

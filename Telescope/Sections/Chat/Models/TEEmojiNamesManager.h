@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TEExpressionNamesManager : NSObject
+@interface TEEmojiNamesManager : NSObject
 
 - (NSString*)nameAtIndex:(NSInteger)index;
 
 - (NSString*)indexOfName:(NSString*)name;
 
-+ (TEExpressionNamesManager*)defaultManager;
++ (TEEmojiNamesManager*)defaultManager;
 
 @end

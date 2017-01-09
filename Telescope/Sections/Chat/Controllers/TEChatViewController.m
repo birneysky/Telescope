@@ -10,8 +10,8 @@
 #import "TEChatTableViewController.h"
 
 #import "TEChatMorePanel.h"
-#import "TEChatExpressionPanel.h"
-#import "TEExpressionNamesManager.h"
+#import "TEChatEmojiPanel.h"
+#import "TEEmojiNamesManager.h"
 
 #import "TEChatMessage.h"
 #import "TEMsgSubItem.h"
@@ -32,17 +32,19 @@
 
 #import "TEAudioRecordingHUD.h"
 
+
+
 typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     TEToolbarNormalState          = 0,
     TEToolbarAudioRecordState     = 1 << 0,
-    TEToolbarExpressionPanelState = 1 << 1,
+    TEToolbarEmojiPanelState = 1 << 1,
     TEToolbarExtraPanelState      = 1 << 2,
     TEToolbarInputTextState       = 1 << 3
 };
 
 #define TEToolbarMaxHeight 84
 
-@interface TEChatViewController ()<TEChatExpressionPannelDelegate,TEChatMorePanelDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
+@interface TEChatViewController ()<TEChatEmojiPannelDelegate,TEChatMorePanelDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate,AudioRecordingAndPlaybackDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *toolbar;
 @property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
@@ -56,13 +58,15 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightConstraint;
 @property (strong, nonatomic) IBOutlet TEAudioRecordingHUD *recordingHUD;
 @property (nonatomic, strong) TEChatMorePanel* morePanel;
-@property (nonatomic, strong) TEChatExpressionPanel* expressionPanel;
+@property (nonatomic, strong) TEChatEmojiPanel* emojiPanel;
 @property (nonatomic, assign) TEChatToolBarState toolbarState;
 
 @property (nonatomic, assign) CGFloat keyboardHeight;
 
 @property (nonatomic,strong) NSMutableArray<TEChatMessage*>* cacheArray;
 @property (nonatomic,strong) NSMutableArray<TEMessage*>* messageChache;
+
+@property (nonatomic,strong) NSString* currentRecordingUUID;
 
 @end
 
@@ -78,13 +82,13 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     return _morePanel;
 }
 
-- (TEChatExpressionPanel*)expressionPanel
+- (TEChatEmojiPanel*)emojiPanel
 {
-    if (!_expressionPanel) {
-        _expressionPanel = [[TEChatExpressionPanel alloc] initWithFrame:CGRectMake(0, SCREENHEIGHT, SCREENWIDTH, 240)];
-        _expressionPanel.delegate = self;
+    if (!_emojiPanel) {
+        _emojiPanel = [[TEChatEmojiPanel alloc] initWithFrame:CGRectMake(0, SCREENHEIGHT, SCREENWIDTH, 240)];
+        _emojiPanel.delegate = self;
     }
-    return _expressionPanel;
+    return _emojiPanel;
 }
 
 - (void)setToolbarState:(TEChatToolBarState)toolbarState
@@ -122,7 +126,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     [self addChildViewController:self.chatTVC];
 
     [self.view addSubview:self.morePanel];
-    [self.view addSubview:self.expressionPanel];
+    [self.view addSubview:self.emojiPanel];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -169,13 +173,13 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 
 - (IBAction)expressionBtnClicked:(id)sender {
-    if (TEToolbarExpressionPanelState == self.toolbarState) {
+    if (TEToolbarEmojiPanelState == self.toolbarState) {
         [self.textView becomeFirstResponder];
         self.toolbarState = TEToolbarInputTextState;
     }
     else{
         [self.textView resignFirstResponder];
-        self.toolbarState = TEToolbarExpressionPanelState;
+        self.toolbarState = TEToolbarEmojiPanelState;
     }
 }
 
@@ -196,6 +200,10 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     NSLog(@"pressTalkBtnTouchDown");
     self.recordingHUD.state = TEAudioRecordingStateRecording;
     [self.view addSubview:self.recordingHUD];
+    
+    self.currentRecordingUUID = [NSString UUID];
+    [V2Kit defaultKit].recordingAndPlaybackDelegate = self;
+    [[V2Kit defaultKit] startAudioRecording:self.currentRecordingUUID];
 }
 - (IBAction)pressTalkBtnTouchUpInside:(id)sender {
     NSLog(@"pressTalkBtnTouchUpInside");
@@ -249,17 +257,17 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             self.toolbarBottomConstraint.constant = 0 ;
             //self.tableViewBottomConstraint.constant = 0;
             self.morePanel.y = SCREENHEIGHT;
-            self.expressionPanel.y = SCREENHEIGHT;
+            self.emojiPanel.y = SCREENHEIGHT;
             break;
         case TEToolbarAudioRecordState:
             self.toolbarBottomConstraint.constant = 0 ;
             self.tableViewBottomConstraint.constant = 0;
             self.morePanel.y = SCREENHEIGHT;
-            self.expressionPanel.y = SCREENHEIGHT;
+            self.emojiPanel.y = SCREENHEIGHT;
             break;
-        case TEToolbarExpressionPanelState:
-            self.expressionPanel.y = SCREENHEIGHT - self.expressionPanel.height;
-            self.toolbarBottomConstraint.constant = self.expressionPanel.height;
+        case TEToolbarEmojiPanelState:
+            self.emojiPanel.y = SCREENHEIGHT - self.emojiPanel.height;
+            self.toolbarBottomConstraint.constant = self.emojiPanel.height;
            // self.tableViewBottomConstraint.constant = self.expressionPanel.height;
             self.morePanel.y = SCREENHEIGHT;
             break;
@@ -267,13 +275,13 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             self.morePanel.y = SCREENHEIGHT - self.morePanel.height;
             self.toolbarBottomConstraint.constant = self.morePanel.height;
             //self.tableViewBottomConstraint.constant = self.morePanel.height;
-            self.expressionPanel.y = SCREENHEIGHT;
+            self.emojiPanel.y = SCREENHEIGHT;
             break;
         case TEToolbarInputTextState:
             self.toolbarBottomConstraint.constant = self.keyboardHeight ;
            // self.tableViewBottomConstraint.constant = self.keyboardHeight;
             self.morePanel.y = SCREENHEIGHT;
-            self.expressionPanel.y = SCREENHEIGHT;
+            self.emojiPanel.y = SCREENHEIGHT;
             break;
         default:
             break;
@@ -297,7 +305,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         
     }
     
-    if (TEToolbarExpressionPanelState == self.toolbarState ) {
+    if (TEToolbarEmojiPanelState == self.toolbarState ) {
         [self.expressionBtn setImage:[UIImage imageNamed:@"te_chat_toolbar_keyboard"] forState:UIControlStateNormal];
         [self.expressionBtn setImage:[UIImage imageNamed:@"te_chat_toolbar_keyboard_hl"] forState:UIControlStateHighlighted];
     }
@@ -352,9 +360,9 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         NSString* subText = [sendText substringWithRange:range];
         if ([subText characterAtIndex:0] == '[') {
             TEExpresssionSubItem* expressionItem = [[TEExpresssionSubItem alloc] initWithType:Face];
-            NSString* fileName = [[TEExpressionNamesManager defaultManager] indexOfName:subText];
+            NSString* fileName = [[TEEmojiNamesManager defaultManager] indexOfName:subText];
             assert(fileName);
-            expressionItem.fileName = [[TEExpressionNamesManager defaultManager] indexOfName:subText];
+            expressionItem.fileName = [[TEEmojiNamesManager defaultManager] indexOfName:subText];
             [chatMessage addItem:expressionItem];
         }
         else{
@@ -472,7 +480,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 #pragma mark - ***TEChatExpressionPannelDelegate ***
 - (void)factButtonClickedAtIndex:(NSUInteger)index
 {
-    TEExpressionNamesManager* manager = [TEExpressionNamesManager defaultManager];
+    TEEmojiNamesManager* manager = [TEEmojiNamesManager defaultManager];
     
     NSString* expresssionName =  [manager nameAtIndex:index];
     self.textView.text = [self.textView.text stringByAppendingFormat:@"[%@]",expresssionName];
@@ -577,4 +585,39 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         [self insertNewMessage:[array copy]];
     }];
 }
+
+#pragma mark - *** AudioRecordingAndPlaybackDelegate ***
+
+- (void)reportMicrophoneInputVolume:(NSInteger)value
+{
+    
+}
+
+
+- (void)didStartRecordFile:(NSString*)name errorCode:(NSInteger)code
+{
+    
+}
+
+
+- (void)didStopRecordFileSequence:(NSString*)sID path:(NSString*)path errorCode:(NSInteger)code
+{
+    
+}
+
+
+- (void)didStartPlayFile:(NSString*)name errorCode:(NSInteger)code
+{
+    
+}
+
+
+- (void)didStopPlayFile:(NSString*)name errorCode:(NSInteger)code
+{
+    
+}
+
+
+
+
 @end

@@ -132,7 +132,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "504763436.607491"
+                  timestampString = "505650584.47625"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "280"
@@ -147,7 +147,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "504763436.609358"
+                  timestampString = "505650584.47802"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "280"
@@ -180,7 +180,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "504763436.612871"
+                  timestampString = "505650584.481587"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "271"
@@ -195,7 +195,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "504763436.614711"
+                  timestampString = "505650584.483435"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "271"
@@ -244,7 +244,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "504763436.621799"
+                  timestampString = "505650584.490736"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "298"
@@ -259,7 +259,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "504763436.623752"
+                  timestampString = "505650584.492766"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "298"
@@ -291,22 +291,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/V2ChatController/ChatController.cpp"
-            timestampString = "504595676.431163"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "CChatController::SendBinaryMessage(EGROUPTYPE eGroupType, long long nGroupID, long long nToUserID, ECHATDATATYPE type, const char *id, char* filename)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioAgent.cpp"
             timestampString = "504597106.271464"
             startingColumnNumber = "9223372036854775807"
@@ -324,7 +308,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Telescope/Sections/LiveShow/Views/TEVideoPlayer.m"
-            timestampString = "504685588.801767"
+            timestampString = "505650236.405602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
+            landmarkName = "-moviePlayBackStateDidChange:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Telescope/Sections/LiveShow/Views/TEVideoPlayer.m"
+            timestampString = "505650236.405602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "307"
@@ -340,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Telescope/Sections/LiveShow/Views/TEVideoPlayer.m"
-            timestampString = "504685588.801767"
+            timestampString = "505650236.405602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "-moviePlayBackStateDidChange:"
             landmarkType = "7">
          </BreakpointContent>
@@ -356,11 +356,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Telescope/Sections/LiveShow/Views/TEVideoPlayer.m"
-            timestampString = "504685588.801767"
+            timestampString = "505650236.405602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "-moviePlayBackStateDidChange:"
             landmarkType = "7">
          </BreakpointContent>
@@ -371,13 +371,221 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Telescope/Sections/LiveShow/Views/TEVideoPlayer.m"
-            timestampString = "504685588.801767"
+            filePath = "Telescope/Sections/Chat/Controllers/TEChatViewController.m"
+            timestampString = "505107804.451266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
-            landmarkName = "-moviePlayBackStateDidChange:"
+            startingLineNumber = "617"
+            endingLineNumber = "617"
+            landmarkName = "-didStopPlayFile:errorCode:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Telescope/Sections/Chat/Controllers/TEChatViewController.m"
+            timestampString = "505107806.386264"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "605"
+            endingLineNumber = "605"
+            landmarkName = "-didStopRecordFileSequence:path:errorCode:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Telescope/Sections/Chat/Controllers/TEChatViewController.m"
+            timestampString = "505107807.151174"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "611"
+            endingLineNumber = "611"
+            landmarkName = "-didStartPlayFile:errorCode:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/apple/AQRecorder.mm"
+            timestampString = "505107990.516399"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "AQRecorder::StartRecord()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
+            timestampString = "505108229.636926"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "801"
+            endingLineNumber = "801"
+            landmarkName = "CAudioController::StartSampleMic(MIC_SAMPLE_TYPE type)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Telescope/Sections/Chat/Controllers/TEChatViewController.m"
+            timestampString = "505108243.677025"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "599"
+            endingLineNumber = "599"
+            landmarkName = "-didStartRecordFile:errorCode:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Telescope/Sections/Chat/Controllers/TEChatViewController.m"
+            timestampString = "505108244.408193"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "593"
+            endingLineNumber = "593"
+            landmarkName = "-reportMicrophoneInputVolume:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
+            timestampString = "505108326.815109"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "777"
+            endingLineNumber = "777"
+            landmarkName = "CAudioController::StartRecord(const char* mediaid)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CAudioController::StartRecord(char const*)"
+                  moduleName = "Telescope"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangguang/mysource/source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
+                  timestampString = "505650584.538399"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "777"
+                  endingLineNumber = "777"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CAudioController::StartRecord(char const*)"
+                  moduleName = "Telescope"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangguang/mysource/source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
+                  timestampString = "505650584.540281"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "777"
+                  endingLineNumber = "777"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
+            timestampString = "505108339.617813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "784"
+            endingLineNumber = "784"
+            landmarkName = "CAudioController::StartRecord(const char* mediaid)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
+            timestampString = "505108341.304124"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "782"
+            endingLineNumber = "782"
+            landmarkName = "CAudioController::StartRecord(const char* mediaid)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
+            timestampString = "505108353.140384"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "780"
+            endingLineNumber = "780"
+            landmarkName = "CAudioController::StartRecord(const char* mediaid)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
+            timestampString = "505114381.655826"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1178"
+            endingLineNumber = "1178"
+            landmarkName = "CAudioController::onRegisterSucc()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

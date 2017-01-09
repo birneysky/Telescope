@@ -8,7 +8,7 @@
 
 #import "TEChatMessage.h"
 #import "XMLDictionary.h"
-#import "TEExpressionNamesManager.h"
+#import "TEEmojiNamesManager.h"
 #import "NSDate+Utils.h"
 
 @interface TEChatMessage ()
@@ -81,7 +81,7 @@
         }
         else if (Face == obj.type){
             TEExpresssionSubItem* expressionItem = (TEExpresssionSubItem*)obj;
-            NSString* faceName = [NSString stringWithFormat:@"[%@]",[[TEExpressionNamesManager defaultManager] nameAtIndex:[expressionItem.fileName integerValue]]];
+            NSString* faceName = [NSString stringWithFormat:@"[%@]",[[TEEmojiNamesManager defaultManager] nameAtIndex:[expressionItem.fileName integerValue]]];
             [text appendString:faceName];
         }
         else if (Image == obj.type){

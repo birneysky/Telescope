@@ -35,6 +35,5 @@
  */
 - (void)stopRtmpPlay;
 
-- (void)clear;
 
 @end

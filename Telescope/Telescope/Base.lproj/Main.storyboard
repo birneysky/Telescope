@@ -711,7 +711,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tr1-99-TOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3780" y="224"/>
+            <point key="canvasLocation" x="3780" y="288"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="Wbv-UV-3JN">
@@ -937,6 +937,12 @@
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
@@ -971,7 +977,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="4793" y="224"/>
+            <point key="canvasLocation" x="4793" y="289"/>
         </scene>
         <!--Video Chat View Controller-->
         <scene sceneID="5Z4-Ec-BQM">
@@ -1043,7 +1049,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dLH-p9-T89" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5818" y="224"/>
+            <point key="canvasLocation" x="5817" y="289"/>
         </scene>
         <!--设置-->
         <scene sceneID="V7G-zI-KaJ">

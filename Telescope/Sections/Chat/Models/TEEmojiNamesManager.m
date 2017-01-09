@@ -6,12 +6,12 @@
 //  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
 //
 
-#import "TEExpressionNamesManager.h"
+#import "TEEmojiNamesManager.h"
 
 
-static TEExpressionNamesManager* manager;
+static TEEmojiNamesManager* manager;
 
-@interface TEExpressionNamesManager ()
+@interface TEEmojiNamesManager ()
 
 @property (nonatomic,copy) NSArray* names;
 
@@ -19,7 +19,7 @@ static TEExpressionNamesManager* manager;
 
 @end
 
-@implementation TEExpressionNamesManager
+@implementation TEEmojiNamesManager
 #pragma mark - *** Properties ***
 - (NSMutableDictionary<NSString*,NSString*>*) nameIndexDic
 {
@@ -30,11 +30,11 @@ static TEExpressionNamesManager* manager;
 }
 
 #pragma mark - *** Initializers ***
-+ (TEExpressionNamesManager*)defaultManager
++ (TEEmojiNamesManager*)defaultManager
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[TEExpressionNamesManager alloc] init];
+        manager = [[TEEmojiNamesManager alloc] init];
     });
     return manager;
 }

@@ -45,6 +45,9 @@
 		DB5FBBB51E120EEE005DF70C /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5FBBA01E120EEE005DF70C /* UIScrollView+MJRefresh.m */; };
 		DB5FBBB61E120EEE005DF70C /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5FBBA21E120EEE005DF70C /* UIView+MJExtension.m */; };
 		DB5FBBBF1E126BBF005DF70C /* TEAudioRecordingHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5FBBBE1E126BBF005DF70C /* TEAudioRecordingHUD.m */; };
+		DB6104A61E23380A0006B051 /* TEEmojiButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6104A51E2338090006B051 /* TEEmojiButton.m */; };
+		DB6104A91E23699B0006B051 /* TEEmojiPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6104A81E23699B0006B051 /* TEEmojiPreview.m */; };
+		DB6104AB1E2369CA0006B051 /* TEEmojiPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB6104AA1E2369CA0006B051 /* TEEmojiPreview.xib */; };
 		DB664DE81DEE83E200EC40A8 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664DDE1DEE83E200EC40A8 /* CALayer+Additions.m */; };
 		DB664DE91DEE83E200EC40A8 /* TENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664DE11DEE83E200EC40A8 /* TENavigationController.m */; };
 		DB664DEA1DEE83E200EC40A8 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB664DE31DEE83E200EC40A8 /* TestCollectionViewController.m */; };
@@ -137,7 +140,7 @@
 		DB860DAE1DC2F35D00C94035 /* TEUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DAD1DC2F35D00C94035 /* TEUser.m */; };
 		DB860DB11DC2F9AD00C94035 /* TEResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DB01DC2F9AD00C94035 /* TEResponse.m */; };
 		DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */; };
-		DB8D0BAA1DF504DB008E8B15 /* TEChatExpressionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BA71DF504DB008E8B15 /* TEChatExpressionPanel.m */; };
+		DB8D0BAA1DF504DB008E8B15 /* TEChatEmojiPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BA71DF504DB008E8B15 /* TEChatEmojiPanel.m */; };
 		DB8D0BAB1DF504DB008E8B15 /* TEChatMorePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BA91DF504DB008E8B15 /* TEChatMorePanel.m */; };
 		DB8D0BAE1DF50656008E8B15 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BAD1DF50656008E8B15 /* UIView+Frame.m */; };
 		DB8D0BB01DF5193B008E8B15 /* TEExpression.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DB8D0BAF1DF5193B008E8B15 /* TEExpression.bundle */; };
@@ -162,7 +165,7 @@
 		DB96B0CC1DCC20A9008C8F1D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9A1DCB4597000F994A /* libsqlite3.tbd */; };
 		DB96B0CD1DCC214F008C8F1D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB437B9C1DCB45E0000F994A /* ImageIO.framework */; };
 		DB9DDCE51DFE460B00A223E6 /* NSDate+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9DDCE41DFE460B00A223E6 /* NSDate+Utils.m */; };
-		DB9DDCE81DFEA54600A223E6 /* TEExpressionNamesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9DDCE71DFEA54600A223E6 /* TEExpressionNamesManager.m */; };
+		DB9DDCE81DFEA54600A223E6 /* TEEmojiNamesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9DDCE71DFEA54600A223E6 /* TEEmojiNamesManager.m */; };
 		DBA835721D90D0140055D7F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA835711D90D0140055D7F0 /* MapKit.framework */; };
 		DBABC8841E03821E00271AF1 /* TEV2KitChatDemon.m in Sources */ = {isa = PBXBuildFile; fileRef = DBABC8831E03821E00271AF1 /* TEV2KitChatDemon.m */; };
 		DBB39E491DD572C30077EA90 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB39E481DD572C30077EA90 /* VideoToolbox.framework */; };
@@ -276,6 +279,11 @@
 		DB5FBBA21E120EEE005DF70C /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		DB5FBBBD1E126BBF005DF70C /* TEAudioRecordingHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAudioRecordingHUD.h; sourceTree = "<group>"; };
 		DB5FBBBE1E126BBF005DF70C /* TEAudioRecordingHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAudioRecordingHUD.m; sourceTree = "<group>"; };
+		DB6104A41E2338090006B051 /* TEEmojiButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEEmojiButton.h; sourceTree = "<group>"; };
+		DB6104A51E2338090006B051 /* TEEmojiButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEEmojiButton.m; sourceTree = "<group>"; };
+		DB6104A71E23699B0006B051 /* TEEmojiPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEEmojiPreview.h; sourceTree = "<group>"; };
+		DB6104A81E23699B0006B051 /* TEEmojiPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEEmojiPreview.m; sourceTree = "<group>"; };
+		DB6104AA1E2369CA0006B051 /* TEEmojiPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TEEmojiPreview.xib; sourceTree = "<group>"; };
 		DB664DDD1DEE83E200EC40A8 /* CALayer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		DB664DDE1DEE83E200EC40A8 /* CALayer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
 		DB664DE01DEE83E200EC40A8 /* TENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENavigationController.h; sourceTree = "<group>"; };
@@ -458,8 +466,8 @@
 		DB860DB01DC2F9AD00C94035 /* TEResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEResponse.m; sourceTree = "<group>"; };
 		DB8CFE241DC9BBF500803AA5 /* TELiveShowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TELiveShowInfo.h; sourceTree = "<group>"; };
 		DB8CFE251DC9BBF500803AA5 /* TELiveShowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TELiveShowInfo.m; sourceTree = "<group>"; };
-		DB8D0BA61DF504DB008E8B15 /* TEChatExpressionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatExpressionPanel.h; sourceTree = "<group>"; };
-		DB8D0BA71DF504DB008E8B15 /* TEChatExpressionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatExpressionPanel.m; sourceTree = "<group>"; };
+		DB8D0BA61DF504DB008E8B15 /* TEChatEmojiPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatEmojiPanel.h; sourceTree = "<group>"; };
+		DB8D0BA71DF504DB008E8B15 /* TEChatEmojiPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatEmojiPanel.m; sourceTree = "<group>"; };
 		DB8D0BA81DF504DB008E8B15 /* TEChatMorePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatMorePanel.h; sourceTree = "<group>"; };
 		DB8D0BA91DF504DB008E8B15 /* TEChatMorePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatMorePanel.m; sourceTree = "<group>"; };
 		DB8D0BAC1DF50656008E8B15 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
@@ -503,8 +511,8 @@
 		DB9308781DDC08EE00915CCD /* TEAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAnnotation.m; sourceTree = "<group>"; };
 		DB9DDCE31DFE460B00A223E6 /* NSDate+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utils.h"; sourceTree = "<group>"; };
 		DB9DDCE41DFE460B00A223E6 /* NSDate+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utils.m"; sourceTree = "<group>"; };
-		DB9DDCE61DFEA54600A223E6 /* TEExpressionNamesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEExpressionNamesManager.h; sourceTree = "<group>"; };
-		DB9DDCE71DFEA54600A223E6 /* TEExpressionNamesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEExpressionNamesManager.m; sourceTree = "<group>"; };
+		DB9DDCE61DFEA54600A223E6 /* TEEmojiNamesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEEmojiNamesManager.h; sourceTree = "<group>"; };
+		DB9DDCE71DFEA54600A223E6 /* TEEmojiNamesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEEmojiNamesManager.m; sourceTree = "<group>"; };
 		DBA835711D90D0140055D7F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBABC8821E03821E00271AF1 /* TEV2KitChatDemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEV2KitChatDemon.h; sourceTree = "<group>"; };
 		DBABC8831E03821E00271AF1 /* TEV2KitChatDemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEV2KitChatDemon.m; sourceTree = "<group>"; };
@@ -818,8 +826,8 @@
 				DB8D0BE51DFA84C4008E8B15 /* TEBubbleCellInnerLayout.m */,
 				DB664F191DEEC7C700EC40A8 /* TEMessageFactory.h */,
 				DB664F1A1DEEC7C700EC40A8 /* TEMessageFactory.m */,
-				DB9DDCE61DFEA54600A223E6 /* TEExpressionNamesManager.h */,
-				DB9DDCE71DFEA54600A223E6 /* TEExpressionNamesManager.m */,
+				DB9DDCE61DFEA54600A223E6 /* TEEmojiNamesManager.h */,
+				DB9DDCE71DFEA54600A223E6 /* TEEmojiNamesManager.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -827,8 +835,8 @@
 		DB664DD31DEE80ED00EC40A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DB8D0BA61DF504DB008E8B15 /* TEChatExpressionPanel.h */,
-				DB8D0BA71DF504DB008E8B15 /* TEChatExpressionPanel.m */,
+				DB8D0BA61DF504DB008E8B15 /* TEChatEmojiPanel.h */,
+				DB8D0BA71DF504DB008E8B15 /* TEChatEmojiPanel.m */,
 				DB8D0BA81DF504DB008E8B15 /* TEChatMorePanel.h */,
 				DB8D0BA91DF504DB008E8B15 /* TEChatMorePanel.m */,
 				DBC779101DEFF8A300615DC8 /* TEChatSessionCell.h */,
@@ -839,6 +847,11 @@
 				DB8D0BE81DFA9633008E8B15 /* TEMessageView.m */,
 				DB5FBBBD1E126BBF005DF70C /* TEAudioRecordingHUD.h */,
 				DB5FBBBE1E126BBF005DF70C /* TEAudioRecordingHUD.m */,
+				DB6104A41E2338090006B051 /* TEEmojiButton.h */,
+				DB6104A51E2338090006B051 /* TEEmojiButton.m */,
+				DB6104A71E23699B0006B051 /* TEEmojiPreview.h */,
+				DB6104A81E23699B0006B051 /* TEEmojiPreview.m */,
+				DB6104AA1E2369CA0006B051 /* TEEmojiPreview.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1522,6 +1535,7 @@
 			files = (
 				DB664E791DEE843F00EC40A8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				DB664E7E1DEE843F00EC40A8 /* README.txt in Resources */,
+				DB6104AB1E2369CA0006B051 /* TEEmojiPreview.xib in Resources */,
 				DB664E701DEE843F00EC40A8 /* ShareSDKConfigFile.bundle in Resources */,
 				DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */,
 				DB8D0BB01DF5193B008E8B15 /* TEExpression.bundle in Resources */,
@@ -1605,7 +1619,7 @@
 				DB664E571DEE843F00EC40A8 /* TEReachability.m in Sources */,
 				DB664E5E1DEE843F00EC40A8 /* DDAbstractDatabaseLogger.m in Sources */,
 				DB8CFE261DC9BBF500803AA5 /* TELiveShowInfo.m in Sources */,
-				DB9DDCE81DFEA54600A223E6 /* TEExpressionNamesManager.m in Sources */,
+				DB9DDCE81DFEA54600A223E6 /* TEEmojiNamesManager.m in Sources */,
 				DB664F181DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m in Sources */,
 				DB0CA65E1E03FBA600AD4F2F /* TECoreDataHelper+Chat.m in Sources */,
 				DB5FBB681E1110C0005DF70C /* LWImageBrowser.m in Sources */,
@@ -1650,6 +1664,7 @@
 				DB860DAE1DC2F35D00C94035 /* TEUser.m in Sources */,
 				DB860DB11DC2F9AD00C94035 /* TEResponse.m in Sources */,
 				DB5FBB671E1110C0005DF70C /* GallopUtils.m in Sources */,
+				DB6104A61E23380A0006B051 /* TEEmojiButton.m in Sources */,
 				DB664DEB1DEE83E200EC40A8 /* TETestViewController.m in Sources */,
 				DBBFE4451E03F00800BD9A37 /* TEKeyChain.m in Sources */,
 				DB664E9E1DEE848900EC40A8 /* TELoginViewController.m in Sources */,
@@ -1672,6 +1687,7 @@
 				DB664F031DEEC1B700EC40A8 /* TEChatSession.m in Sources */,
 				DB5FBBA71E120EEE005DF70C /* MJRefreshHeader.m in Sources */,
 				DB5FBBA61E120EEE005DF70C /* MJRefreshFooter.m in Sources */,
+				DB6104A91E23699B0006B051 /* TEEmojiPreview.m in Sources */,
 				DB012D5B1DEED396009EB45A /* TECacheUser+CoreDataProperties.m in Sources */,
 				DB664DEA1DEE83E200EC40A8 /* TestCollectionViewController.m in Sources */,
 				DB664EA61DEE856A00EC40A8 /* Telescope.xcdatamodel in Sources */,
@@ -1686,7 +1702,7 @@
 				DB6C7E311DFFDB4B000BCE8C /* CTAssetsViewController.m in Sources */,
 				DB664E5D1DEE843F00EC40A8 /* CLIColor.m in Sources */,
 				DB664E5A1DEE843F00EC40A8 /* TENetworkOperation.m in Sources */,
-				DB8D0BAA1DF504DB008E8B15 /* TEChatExpressionPanel.m in Sources */,
+				DB8D0BAA1DF504DB008E8B15 /* TEChatEmojiPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

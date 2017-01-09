@@ -7,13 +7,11 @@
 //
 
 #import "TEVideoPlayer.h"
-#import <TEPlayerKit/TEPlayerKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <IJKMediaFramework/IJKMediaFramework.h>
 
-@interface TEVideoPlayer ()<RTMPGuestRtmpDelegate,IJKPlayerDelegate>
+@interface TEVideoPlayer ()<IJKPlayerDelegate>
 
-@property (nonatomic, strong) RTMPGuestKit *guestKit;
 
 @property (nonatomic,strong) NSArray<NSString*>* rtmpUrl;
 
@@ -43,13 +41,7 @@
 }
 
 #pragma mark - *** Properties ***
-- (RTMPGuestKit*)guestKit
-{
-    if (!_guestKit) {
-       // _guestKit = [[RTMPGuestKit alloc] initWithDelegate:self];
-    }
-    return _guestKit;
-}
+
 
 - (NSArray<NSString*>*) rtmpUrl{
     if (!_rtmpUrl) {
@@ -138,12 +130,7 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
 
 }
 
-- (void)clear
-{
-    [self.guestKit clear];
-    self.guestKit = nil;
-    
-}
+
 
 //- (void)layoutSubviews
 //{

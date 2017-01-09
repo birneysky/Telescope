@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol TEChatExpressionPannelDelegate <NSObject>
+@protocol TEChatEmojiPannelDelegate <NSObject>
 
 - (void)factButtonClickedAtIndex:(NSUInteger)index;
 
@@ -16,8 +16,8 @@
 
 @end
 
-@interface TEChatExpressionPanel : UIView
+@interface TEChatEmojiPanel : UIView
 
-@property (nonatomic,weak) id<TEChatExpressionPannelDelegate> delegate;
+@property (nonatomic,weak) id<TEChatEmojiPannelDelegate> delegate;
 
 @end
