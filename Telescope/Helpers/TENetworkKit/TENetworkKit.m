@@ -146,7 +146,7 @@ static TENetworkKit* defaultKit;
     V2PPosition* postion = [[V2PPosition alloc] init];
     postion.latitude = 34.770904;
     postion.longitude = 113.612288;
-    postion.radius = 5000;
+    postion.radius = 500000000;
     [data.positionArray addObject:postion];
     
     liveShowPacket.data_p = data;
@@ -257,5 +257,46 @@ static TENetworkKit* defaultKit;
     
     [self.networkEngine enqueueOperation:op];
 }
+
+
+- (void)publishShowInfo:(TELiveShowInfo*)info
+             completion:(void(^)())completion
+                onError:(void(^)(NSError* error))err
+{
+    V2PPacket* showInfoPacket = [[V2PPacket alloc] init];
+    showInfoPacket.packetType = V2PPacket_type_Iq;
+    showInfoPacket.version = @"1.3.1";
+    showInfoPacket.method = @"publicVideo";
+    
+    V2PPosition* position = [[V2PPosition alloc] init];
+    position.longitude = info.coordinate.longitude;
+    position.latitude = info.coordinate.latitude;
+    
+    
+    V2PVideo* videoInfo = [[V2PVideo alloc] init];
+    videoInfo.videoNum = [NSString stringWithFormat:@"%ld",info.liveId];
+    videoInfo.position = position;
+    
+    
+    V2PData* data = [[V2PData alloc] init];
+    [data.videoArray addObject:videoInfo];
+    
+    showInfoPacket.data_p = data;
+    
+    TENetworkOperation* op = [self.networkEngine operationWithParams:showInfoPacket];
+    [op setCompletionHandler:^(TENetworkOperation *operation) {
+        TEResponse<NSArray<TEUser*>*>* respone = [TEResponse new];
+        V2PPacket* packet  = [operation responseData];
+        respone.isSuccess = packet.result.result;
+        respone.errorInfo = packet.result.error;
+        DDLogInfo(@"📩📩📩📩 fetchFans response %@",packet);
+        completion();
+    } errorHandler:^(NSError *error) {
+        err(error);
+    }];
+    
+    [self.networkEngine enqueueOperation:op];
+}
+
 @end
 

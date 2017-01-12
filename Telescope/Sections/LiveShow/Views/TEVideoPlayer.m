@@ -32,6 +32,7 @@
 
 - (void)dealloc
 {
+    
     NSLog(@"♻️♻️♻️♻️ TEVideoPlayer ~ %@ ",self);
 }
 
@@ -69,6 +70,7 @@
         _ijkPlayerController.scalingMode = IJKMPMovieScalingModeAspectFit;
         _ijkPlayerController.shouldAutoplay = YES;
         _ijkPlayerController.delegate  = self;
+        [self addPlayerNotificationObservers];
     }
     return _ijkPlayerController;
 }
@@ -79,7 +81,7 @@
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
     [self addGestureRecognizer:recognizer];
     
-    [self addPlayerNotificationObservers];
+    
 }
 
 - (void)showIndicator
@@ -113,7 +115,7 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
     // [self layoutIfNeeded];
     NSLog(@"layoutAfter TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.bounds),NSStringFromCGRect(self.frame));
     //[self.guestKit StartRtmpPlay:url andRender:self];
-    [self addPlayerNotificationObservers];
+    
     if (!self.ijkPlayerController.view.superview) {
         [self addSubview:self.ijkPlayerController.view];
     }
@@ -126,7 +128,7 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
     //[self.guestKit StopRtmpPlay];
     [self.ijkPlayerController shutdown];
     [self removeMovieNotificationObservers];
-//    [self.ijkPlayerController stop];
+   // [self.ijkPlayerController stop];
 
 }
 
@@ -138,34 +140,6 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
 //    CGRect rect =  AVMakeRectWithAspectRatioInsideRect(CGSizeMake(640, 480),self.bounds);
 //    self.guestKit.player.frame = rect;
 //}
-
-#pragma mark - *** RTMPGuestRtmpDelegate ***
-- (void)OnRtmplayerOK {
-    NSLog(@"OnRtmpStreamOK");
-    //self.stateRTMPLabel.text = @"连接RTMP服务成功";
-}
-- (void)OnRtmplayerStatus:(int) cacheTime withBitrate:(int) curBitrate {
-    NSLog(@"OnRtmplayerStatus:%d withBitrate:%d",cacheTime,curBitrate);
-    //self.stateRTMPLabel.text = [NSString stringWithFormat:@"RTMP缓存区:%d 码率:%d",cacheTime,curBitrate];
-    if (cacheTime > 0 && curBitrate > 0) {
-        [self hideIndicator];
-    }
-}
-- (void)OnRtmplayerCache:(int) time {
-  NSLog(@"OnRtmplayerCache:%d",time);
-//self.stateRTMPLabel.text = [NSString stringWithFormat:@"RTMP正在缓存:%d",time];
-    [self showIndicator];
-
-}
-
-- (void)OnRtmplayerClosed:(int) errcode {
-    NSLog(@"🌺🌺🌺🌺🌺🌺🌺OnRtmplayerClosed");
-    if (self.automaticallySwitchToTheNext) {
-        NSString* url = self.rtmpUrl[arc4random() % self.rtmpUrl.count];
-        [self startRtmpPlayWithUrl:url];
-        [self showIndicator];
-    }
-}
 
 #pragma mark - ***Gesture Action ***
 
@@ -215,10 +189,14 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
                      }
                      completion:^(BOOL finished) {
                          if(next){
+                             self.automaticallySwitchToTheNext = YES;
                              [self stopRtmpPlay];
                              CGSize size = self.bounds.size;
                              self.center = CGPointMake(size.width / 2, size.height / 2);
                              [self showIndicator];
+//                             NSInteger index = arc4random() %3;
+//                             NSString* url = self.rtmpUrl[index];
+//                             [self startRtmpPlayWithUrl:url];
                          }
                      }
      ];
@@ -362,7 +340,7 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
     if (self.automaticallySwitchToTheNext) {
         NSString* url = self.rtmpUrl[arc4random() % self.rtmpUrl.count];
         [self startRtmpPlayWithUrl:url];
-        [self showIndicator];
+        //[self showIndicator];
     }
 }
 

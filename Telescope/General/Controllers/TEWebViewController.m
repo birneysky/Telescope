@@ -7,6 +7,7 @@
 //
 
 #import "TEWebViewController.h"
+#import <WebKit/WKWebView.h>
 
 @interface TEWebViewController ()
 
@@ -20,7 +21,7 @@
     // Do any additional setup after loading the view.
     NSURL* url = [NSURL URLWithString:self.url];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-   
+    //WKWebView* wkWebView = [[WKWebView alloc] init];
 }
 
 

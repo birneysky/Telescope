@@ -18,7 +18,6 @@
 #import "TEMapViewController.h"
 #import "TEBroadcastLiveViewController.h"
 
-#import <AVFoundation/AVFoundation.h>
 
 @interface TEMainViewController ()
 @property (strong, nonatomic) IBOutlet TEDefaultCollectionController *userCollectionController;
@@ -82,7 +81,7 @@
      rtmp://203.207.99.19:1935/live/zgjyt  湖南卫视
      rtmp://124.128.26.173/live/jnyd_sd  济南卫视
      */
-    NSArray<NSString*>* rtmps = @[@"rtmp://203.207.99.19:1935/live/zgjyt",@"rtmp://203.207.99.19:1935/live/CCTV1",@"",@"rtmp://203.207.99.19:1935/live/CCTV2",@"rtmp://203.207.99.19:1935/live/CCTV4",@"rtmp://203.207.99.19:1935/live/CCTV7",@"rtmp://203.207.99.19:1935/live/CCTV10",@"rtmp://203.207.99.19:1935/live/CCTV12",@"rtmp://203.207.99.19:1935/live/CCTV5"];
+    NSArray<NSString*>* rtmps = @[@"rtmp://live.hkstv.hk.lxdns.com/live/hks",@"rtmp://203.207.99.19:1935/live/zgjyt",@"rtmp://203.207.99.19:1935/live/CCTV1",@"",@"rtmp://203.207.99.19:1935/live/CCTV2",@"rtmp://203.207.99.19:1935/live/CCTV4",@"rtmp://203.207.99.19:1935/live/CCTV7",@"rtmp://203.207.99.19:1935/live/CCTV10",@"rtmp://203.207.99.19:1935/live/CCTV12",@"rtmp://203.207.99.19:1935/live/CCTV5"];
     [TENETWORKKIT fetchLiveShowListWithCompletion:^(TEResponse<NSArray<TELiveShowInfo *> *> *response) {
         NSArray<TELiveShowInfo*>* array = response.body;
         [array enumerateObjectsUsingBlock:^(TELiveShowInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -122,13 +121,16 @@
     [super viewDidAppear:animated];
 
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
+    //rtmp://liveshow.pull.51vcloud.com/live/30
+//    [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
+//    self.videoPlayer.automaticallySwitchToTheNext = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.videoPlayer.automaticallySwitchToTheNext = NO;
-    [self.videoPlayer stopRtmpPlay];
+//    self.videoPlayer.automaticallySwitchToTheNext = NO;
+//    [self.videoPlayer stopRtmpPlay];
 }
 
 #pragma mark - *** Target Action ****
@@ -170,8 +172,7 @@
 }
 - (IBAction)rewardBtnClicked:(id)sender {
     //[self.videoPlayer startRtmpPlayWithUrl:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
-    [self.videoPlayer startRtmpPlayWithUrl:@"rtmp://liveshow.pull.51vcloud.com/live/30"];
-    self.videoPlayer.automaticallySwitchToTheNext = YES;
+
 }
 
 #pragma mark - Navigation
@@ -182,11 +183,10 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"push_broadcast_live"]||
         [segue.identifier isEqualToString:@"push_enter_live"]) {
-        NSError *error;
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
-        if (error) {
-            NSLog(@"%@",error);
-        }
+
+        
+
+        //GetMacOSStatusErrorString
         TEBroadcastLiveViewController* blvc = segue.destinationViewController;
         blvc.backgroundImage = [self screenshot];
         blvc.userID = [TEV2KitChatDemon defaultDemon].selfUser.userID;

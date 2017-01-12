@@ -98,4 +98,17 @@
                          completion:(void(^)(TEResponse<NSArray<TEUser*>*>* response))completion
                             onError:(void(^)(NSError* error))err;
 
+
+
+/**
+ 发布直播信息
+
+ @param info 直播信息
+ @param completion 发布完成block
+ @param err 发布错误block
+ */
+- (void)publishShowInfo:(TELiveShowInfo*)info
+             completion:(void(^)())completion
+                onError:(void(^)(NSError* error))err;
+
 @end

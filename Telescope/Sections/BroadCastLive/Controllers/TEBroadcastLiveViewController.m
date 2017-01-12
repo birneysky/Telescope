@@ -8,6 +8,8 @@
 
 #import "TEBroadcastLiveViewController.h"
 #import <V2Kit/V2Kit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "TENetworkKit.h"
 
 @interface TEBroadcastLiveViewController () <ShowDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -17,12 +19,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIView *remoteVideoView1;
 @property (weak, nonatomic) IBOutlet UIView *remoteVideoView2;
+@property (weak, nonatomic) IBOutlet UIButton *golivewBtn;
 
 @property (nonatomic,assign) BOOL video1isOpen;
 @property (nonatomic,assign) BOOL viddeo2isOpen;
 @property (nonatomic,assign) long long user1;
 @property (nonatomic,assign) long long user2;
 
+
+/**
+ 是否已经进入直播间
+ */
 @property (nonatomic,assign) BOOL isEnterShow;
 
 @property (nonatomic,assign) long long showID;
@@ -31,12 +38,22 @@
 
 @implementation TEBroadcastLiveViewController
 
+- (void)dealloc
+{
+    NSLog(@"♻️♻️♻️♻️ TEBroadcastLiveViewController");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.backgroundImageView.image = self.backgroundImage;
 
-
+    NSError *error;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+    //[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&error];
+    if (error) {
+        NSLog(@"%@",error);
+    }
     
     [V2Kit defaultKit].showDelegate = self;
     
@@ -49,6 +66,7 @@
     
     UIPanGestureRecognizer* recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
     [self.videoView addGestureRecognizer:recognizer];
+    NSLog(@"reference count = %ld", CFGetRetainCount((__bridge CFTypeRef)(self)));
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,6 +87,7 @@
 #pragma mark - *** Helper ***
 - (void)destroyShow
 {
+    //[[V2Kit defaultKit] closeCamera];
     NSString* deviceID = [NSString stringWithFormat:@"%lld:Camera",self.userID];
     [[V2Kit defaultKit] videoCloseDevice:self.userID deviceID:deviceID videoView:self.liveVideoView];
     if (self.video1isOpen) {
@@ -79,21 +98,36 @@
         deviceID = [NSString stringWithFormat:@"%lld:Camera",self.user2];
         [[V2Kit defaultKit] videoCloseDevice:self.user2 deviceID:deviceID videoView:self.remoteVideoView2];
     }
-    
+    //if (self.showID > 0)
     [[V2Kit defaultKit] exitShow:self.showID];
+    [V2Kit defaultKit].showDelegate = nil;
+    NSLog(@"reference count = %ld", CFGetRetainCount((__bridge CFTypeRef)(self)));
+}
+
+- (void)publishShow
+{
+//    TELiveShowInfo* liveShowInfo = [[TELiveShowInfo alloc] init];
+//    liveShowInfo.liveId = self.showID;
+//    liveShowInfo.coordinate = CLLocationCoordinate2DMake(45.050167031573309, 86.942400392959328);
+//    [TENETWORKKIT publishShowInfo:liveShowInfo completion:^{
+//        
+//    } onError:^(NSError *error) {
+//        
+//    }];
 }
 
 
 #pragma mark - *** Target Action ***
 - (IBAction)closeBtnClicked:(id)sender {
     __weak TEBroadcastLiveViewController* weakSelf = self;
-    [self dismissViewControllerAnimated:YES completion:^{
+    [weakSelf dismissViewControllerAnimated:YES completion:^{
         [weakSelf destroyShow];
     }];
 }
 
 - (IBAction)goLiveBtnClicked:(id)sender {
     [[V2Kit defaultKit] quickEnterShow:30 userID:self.userID showRole:ROLE_TYPE_CHAIRMAN];
+     NSLog(@"reference count = %ld", CFGetRetainCount((__bridge CFTypeRef)(self)));
 }
 #pragma mark - *** Override  orientation ***
 - (BOOL)shouldAutorotate
@@ -111,8 +145,14 @@
 - (void)didPan:(UIPanGestureRecognizer*)recognizer
 {
     CGPoint point = [recognizer translationInView:self.view];
+    NSLog(@"targetPoint %@",NSStringFromCGPoint(point));
     self.videoView.center = CGPointMake(self.videoView.center.x, self.videoView.center.y + point.y);
+    if(self.videoView.frame.origin.y <= 0){
+        self.videoView.center = self.view.center;
+        return;
+    }
     [recognizer setTranslation:CGPointZero inView:self.view];
+    
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         CGPoint veloity = [recognizer velocityInView:self.view];
         [self startAnimatingWithInitialVelocity:veloity];
@@ -123,7 +163,7 @@
 {
     CGPoint targetPoint = CGPointZero;
     CGSize size = self.view.bounds.size;
-
+    
     BOOL leaveScreen = NO;
     if (initialVelocity.y >=100) {
         targetPoint = CGPointMake(self.videoView.center.x, size.height / 2 + size.height);
@@ -132,6 +172,8 @@
     else{
         targetPoint = CGPointMake(self.videoView.center.x, size.height / 2);
     }
+    
+    
     
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -143,7 +185,7 @@
                      }
                      completion:^(BOOL finished) {
                          if(leaveScreen){
-                             [[V2Kit defaultKit] closeCamera];
+
                              [self dismissViewControllerAnimated:NO completion:^{
                                  [self destroyShow];
                              }];
@@ -155,25 +197,36 @@
 #pragma mark - *** ShowDelegate ***
 - (void)onEnterShow:(long long)showId showInfoXml:(NSString *)xml code:(NSInteger)code
 {
+
+      NSLog(@"reference count = %ld", CFGetRetainCount((__bridge CFTypeRef)(self)));
     self.showID = showId;
-    if(0 == code) self.isEnterShow = YES;
-   dispatch_async(dispatch_get_main_queue(), ^{
-       self.statusLabel.text = xml;
-      
-//
-       if (!self.communicateWithAnchor) {
-           [[V2Kit defaultKit] uploadVideo:self.userID];
-       }
-       else{
-           NSString* deviceID = [NSString stringWithFormat:@"%lld:Camera",self.userID];
-           [[V2Kit defaultKit] videoOpenDevice:self.userID deviceID:deviceID videoView:self.liveVideoView];
-       }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.statusLabel.text = xml;
+        
+        if(0 == code){
+            self.isEnterShow = YES;
+            self.golivewBtn.hidden = YES;
+            [self publishShow];
+        }
+        else{
+            [self.golivewBtn setTitle:@"Go Live Failed" forState:UIControlStateNormal];
+            self.golivewBtn.backgroundColor = [UIColor redColor];
+        }
+        //
+        if (!self.communicateWithAnchor) {
+            [[V2Kit defaultKit] uploadVideo:self.userID];
+        }
+        else{
+            NSString* deviceID = [NSString stringWithFormat:@"%lld:Camera",self.userID];
+            [[V2Kit defaultKit] videoOpenDevice:self.userID deviceID:deviceID videoView:self.liveVideoView];
+        }
+        
         //[[V2Kit defaultKit] videoSwitchCamera:self.videoView];
     });
     
-    
-    
 }
+
+
 
 -  (void) onMemberEnterShow:(long long)showId userID:(long long)uid userInfoXml:(NSString*)xml
 {
@@ -215,7 +268,6 @@
             self.remoteVideoView2.hidden = YES;
             self.viddeo2isOpen = NO;
         }
-        int a  = 3;
     });
     
 }
