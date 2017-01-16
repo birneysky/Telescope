@@ -298,5 +298,45 @@ static TENetworkKit* defaultKit;
     [self.networkEngine enqueueOperation:op];
 }
 
+
+- (void)leaveShowThatUserId:(NSInteger)uid
+                    videoId:(NSInteger)vid
+                 completion:(void(^)())completion
+                    onError:(void(^)(NSError* error))err
+{
+    V2PPacket* leavePacket = [[V2PPacket alloc] init];
+    leavePacket.packetType = V2PPacket_type_Iq;
+    leavePacket.version = @"1.3.1";
+    leavePacket.method = @"watchVideo";
+    leavePacket.operateType = @"leave";
+    leavePacket.from = [NSString stringWithFormat:@"%ld",(long)uid];
+    
+    V2PVideo* videoInfo = [[V2PVideo alloc] init];
+    videoInfo.id_p = (int32_t)vid;
+    videoInfo.videoPwd = @"0";
+    
+    V2PData* data = [[V2PData alloc] init];
+    [data.videoArray addObject:videoInfo];
+    
+    leavePacket.data_p = data;
+    
+    
+    TENetworkOperation* op = [self.networkEngine operationWithParams:leavePacket];
+    [op setCompletionHandler:^(TENetworkOperation *operation) {
+        V2PPacket* packet  = [operation responseData];
+//        respone.isSuccess = packet.result.result;
+//        respone.errorInfo = packet.result.error;
+        DDLogInfo(@"📩📩📩📩 fetchFans response %@",packet);
+        completion();
+    } errorHandler:^(NSError *error) {
+        err(error);
+    }];
+    
+    
+     [self.networkEngine enqueueOperation:op];
+}
+
+
+
 @end
 

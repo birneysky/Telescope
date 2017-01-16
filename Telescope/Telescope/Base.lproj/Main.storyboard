@@ -1497,7 +1497,7 @@
                         <outlet property="chatTVC" destination="reE-Tx-en2" id="FXR-SI-naP"/>
                         <outlet property="expressionBtn" destination="29h-6K-hJb" id="WGd-8y-rJM"/>
                         <outlet property="pressTalkBtn" destination="M3E-8v-EjO" id="8F1-L4-lou"/>
-                        <outlet property="recordingHUD" destination="7wv-LB-T1I" id="u4E-Cs-Wxt"/>
+                        <outlet property="recordingHUD" destination="Wre-5Z-d04" id="Zqv-pm-lRx"/>
                         <outlet property="tableView" destination="zTQ-kI-gDA" id="L9B-F6-mat"/>
                         <outlet property="tableViewBottomConstraint" destination="6Sd-ig-I82" id="xf7-XS-oyc"/>
                         <outlet property="textView" destination="j4x-we-q9F" id="gCb-Qh-Yro"/>

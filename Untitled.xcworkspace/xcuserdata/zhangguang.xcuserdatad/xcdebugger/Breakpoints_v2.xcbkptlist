@@ -132,7 +132,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "505908357.043615"
+                  timestampString = "506256289.431158"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "280"
@@ -147,7 +147,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "505908357.045703"
+                  timestampString = "506256289.433108"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "280"
@@ -180,7 +180,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "505908357.049992"
+                  timestampString = "506256289.437069"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "271"
@@ -195,7 +195,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "505908357.052121"
+                  timestampString = "506256289.439084"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "271"
@@ -244,7 +244,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "505908357.060319"
+                  timestampString = "506256289.446633"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "298"
@@ -259,7 +259,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "505908357.062195"
+                  timestampString = "506256289.448726"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "298"
@@ -419,45 +419,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/apple/AQRecorder.mm"
-            timestampString = "505107990.516399"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "AQRecorder::StartRecord()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
-            timestampString = "505108229.636926"
+            timestampString = "506254944.743824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "801"
-            endingLineNumber = "801"
-            landmarkName = "CAudioController::StartSampleMic(MIC_SAMPLE_TYPE type)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../source_branches/OEM_Live/Client/V2ClientPlatform/AudioController/AudioController.cpp"
-            timestampString = "505114381.655826"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1178"
-            endingLineNumber = "1178"
-            landmarkName = "CAudioController::onRegisterSucc()"
+            startingLineNumber = "1182"
+            endingLineNumber = "1182"
+            landmarkName = "CAudioController::getApplyRouterTableMsg(const string &amp;sMediaID, string &amp;sBin)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -9,6 +9,7 @@
 #import "TETabBarViewController.h"
 #import "TEBroadcastLiveViewController.h"
 #import "TEV2KitChatDemon.h"
+#import "TENetworkKit.h"
 
 @interface TETabBarViewController ()<UITabBarControllerDelegate>
 
@@ -69,6 +70,15 @@
     if (3 != index) {
         return YES;
     }
+    
+    
+    
+//    [TENETWORKKIT leaveShowThatUserId:1 videoId:1 completion:^{
+//        
+//    } onError:^(NSError *error) {
+//        
+//    }];
+    
     [self performSegueWithIdentifier:@"push_broadcast_live" sender:nil];
     return NO;
 }

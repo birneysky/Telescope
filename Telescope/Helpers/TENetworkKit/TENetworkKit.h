@@ -111,4 +111,19 @@
              completion:(void(^)())completion
                 onError:(void(^)(NSError* error))err;
 
+
+
+/**
+  离开直播间
+
+ @param vid 视频id
+ @param completion 结束回调
+ @param err 错误回调
+ */
+- (void)leaveShowThatUserId:(NSInteger)uid
+                    videoId:(NSInteger)vid
+                 completion:(void(^)())completion
+                    onError:(void(^)(NSError* error))err;
+
+
 @end
