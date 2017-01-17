@@ -12,11 +12,32 @@
 
 @protocol TETextLinkModel <NSObject>
 
+
+/**
+ 连接标题
+ */
 @property (copy, nonatomic) NSString * title;
+
+/**
+ 连接地址
+ */
 @property (copy, nonatomic) NSString * url;
+
+
+/**
+ 连接所在的范围
+ */
 @property (assign, nonatomic) NSRange range;
 
 @end
+
+
+
+typedef NS_ENUM(NSInteger,TEPlaceholderType){
+    PlaceholderImageType,
+    PlaceholderAudioType,
+    PlaceholderDocumentType
+};
 
 
 @protocol TETextPlaceholderModel <NSObject>
@@ -50,7 +71,8 @@
 @property (copy,nonatomic) NSString* fileExt;
 
 
-@property (nonatomic,readonly) BOOL isAPicture;
+@property (nonatomic,readonly) TEPlaceholderType holderType;
+
 
 @end
 

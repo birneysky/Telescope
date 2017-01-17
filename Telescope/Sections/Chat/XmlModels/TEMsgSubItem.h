@@ -97,7 +97,7 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
 /**
  表情子消息项
  */
-@interface TEExpresssionSubItem : TEMsgImageSubItem
+@interface TEExpresssionSubItem : TEMsgImageSubItem <TETextPlaceholderModel>
 
 @end
 

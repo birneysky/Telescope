@@ -80,9 +80,9 @@
     return rootDic;
 }
 
-- (BOOL)isAPicture
+- (TEPlaceholderType)holderType
 {
-    return YES;
+    return PlaceholderImageType;
 }
 
 @end
@@ -96,6 +96,11 @@
     [sub setObject:self.fileName
             forKey:[NSString stringWithFormat:@"_%@",TEFileNameAttribute]];
     return rootDic;
+}
+
+- (TEPlaceholderType)holderType
+{
+    return PlaceholderImageType;
 }
 
 @end
@@ -127,9 +132,9 @@
     return rootDic;
 }
 
-- (BOOL)isAPicture
+- (TEPlaceholderType)type
 {
-    return NO;
+    return PlaceholderAudioType;
 }
 
 @end

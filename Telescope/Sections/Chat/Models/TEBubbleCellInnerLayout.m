@@ -30,8 +30,7 @@
 - (instancetype)initWithMessage:(TEChatMessage*)message
 {
     if (self = [super init]) {
-//        NSString* text = message.content;
-//        TEChatMessage* chatMessage = [TEChatXMLReader messageForXmlString:text error:nil];
+
         _layoutModel = [TETextFrameParser parseChatMessage:message];
         
         CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
@@ -67,6 +66,7 @@
         if (message.senderIsMe) {
             contextX = CGRectGetMinX(_contentFrame) - 20;
             _indicatorFrame = CGRectMake(contextX - Spacing, indicatorY, 20, 20);
+            _durationLabelFrame = CGRectMake(CGRectGetMinX(_contentFrame), indicatorY, 30, 20);
         }
         else{
              contextX = CGRectGetMaxX(_contentFrame);

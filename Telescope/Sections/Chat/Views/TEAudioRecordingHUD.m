@@ -28,28 +28,25 @@
 
 - (void)setAudioVolume:(NSInteger)vol
 {
-    if (vol < 3) {
-        [self.audioRecordingVolumImageView setImage:nil];
-    }
-    else if (vol < 6)
+    if (vol < 6)
     {
-        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"chat_audioRecord_volumn1.png"]];
+        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"te_audioRecord_volumn1"]];
     }
     else if (vol < 9)
     {
-        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"chat_audioRecord_volumn2.png"]];
+        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"te_audioRecord_volumn2"]];
     }
     else if (vol < 12)
     {
-        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"chat_audioRecord_volumn3.png"]];
+        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"te_audioRecord_volumn3"]];
     }
     else if (vol < 15)
     {
-        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"chat_audioRecord_volumn4.png"]];
+        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"te_audioRecord_volumn4"]];
     }
     else
     {
-        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"chat_audioRecord_volumn4.png"]];
+        [self.audioRecordingVolumImageView setImage:[UIImage imageNamed:@"te_audioRecord_volumn4"]];
     }
 }
 

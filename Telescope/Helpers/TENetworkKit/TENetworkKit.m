@@ -320,7 +320,7 @@ static TENetworkKit* defaultKit;
     
     leavePacket.data_p = data;
     
-    
+
     TENetworkOperation* op = [self.networkEngine operationWithParams:leavePacket];
     [op setCompletionHandler:^(TENetworkOperation *operation) {
         V2PPacket* packet  = [operation responseData];

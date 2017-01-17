@@ -220,12 +220,15 @@ typedef enum CTDisplayViewState : NSInteger {
     
     [self.layoutModel.placeholderArray enumerateObjectsUsingBlock:^(id<TETextPlaceholderModel>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //UIImage *image = [UIImage imageNamed:obj.fileName];
-        if (obj.isAPicture) {
+        if (PlaceholderImageType ==  obj.holderType) {
             NSString* fullPath = [obj.path stringByAppendingPathComponent:obj.fileName];
             UIImage *image = [UIImage imageWithContentsOfFile:fullPath];
             if (image) {
                 CGContextDrawImage(context, obj.frame, image.CGImage);
             }
+        }
+        else{
+            
         }
     }];
     

@@ -70,3 +70,21 @@
 
 
 @end
+
+
+
+@interface TEBubbleCellInnerLayout () //audio
+
+
+/**
+ 音频时长文本的位置
+ */
+@property (nonatomic,assign,readonly) CGRect durationLabelFrame;
+
+
+/**
+ 表示声音的图标位置
+ */
+@property (nonatomic,assign,readonly) CGRect voiceIconFrame;
+
+@end

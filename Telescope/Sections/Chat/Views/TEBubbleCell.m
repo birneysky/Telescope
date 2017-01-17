@@ -132,8 +132,11 @@
         [self.errorView removeFromSuperview];
     }
 
+    if(TEChatMessageTypeText == message.chatMessage.type ||
+       TEChatMessageTypeRichText == message.chatMessage.type){
+        [self.messageView.layoutView setLayoutModel:message.layout.layoutModel];
+    }
     
-    [self.messageView.layoutView setLayoutModel:message.layout.layoutModel];
 }
 
 

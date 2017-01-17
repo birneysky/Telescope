@@ -132,4 +132,34 @@
     return _timeLabelString;
 }
 
+#pragma mark - *** Api ***
+
+- (instancetype)initWithType:(TEChatMessageType)type
+{
+    if (self = [super init]) {
+        self.type = type;
+        self.messageID = [NSString UUID];
+        self.isAutoReply = NO;
+    }
+    return self;
+}
+
++ (TEChatMessage*)buildTextMessage
+{
+    TEChatMessage* chatMessage = [[TEChatMessage alloc] initWithType:TEChatMessageTypeRichText];
+    return chatMessage;
+}
+
++ (TEChatMessage*)buildAudioMessage
+{
+    TEChatMessage* chatMessage = [[TEChatMessage alloc] initWithType:TEChatMessageTypeAudio];
+    return chatMessage;
+}
+
++ (TEChatMessage*)buildDocumentMessage
+{
+    TEChatMessage* chatMessage = [[TEChatMessage alloc] initWithType:TEChatMessageTypeDocument];
+    return chatMessage;
+}
+
 @end

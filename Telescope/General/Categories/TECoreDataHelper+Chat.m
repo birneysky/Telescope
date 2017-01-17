@@ -9,6 +9,8 @@
 #import "TECoreDataHelper+Chat.h"
 #import "TEChatSession+CoreDataProperties.h"
 #import "TEMediaFileLocation+CoreDataProperties.h"
+#import "TEMessage+CoreDataProperties.h"
+#import "TEChatMessage.h"
 
 @implementation TECoreDataHelper (Chat)
 
@@ -56,6 +58,76 @@
     fileLocation.saveTime = [NSDate date];
     fileLocation.fileType = t;
     return fileLocation;
+}
+
+-(void)excuteBlock:(void (^)())block
+{
+    __weak NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
+    [context performBlock:^{
+        if (block) {
+            block();
+        }
+        
+        if ([context hasChanges]) {
+            NSError* error;
+            [context save:&error];
+        }
+    }];
+}
+
+- (void)insertNewMessages:(NSArray<TEChatMessage*>*)chatMessages
+                 senderID:(int64_t) sid
+              chatSession:(TEChatSession*)session
+               completion:(void (^)(NSArray<TEMessage*>* array))completion
+{
+    NSMutableArray<TEMessage*>* msgs = [[NSMutableArray alloc] initWithCapacity:chatMessages.count];
+    NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
+    [[[TECoreDataHelper defaultHelper] backgroundContext] performBlock:^{
+        for (int i =0 ; i < chatMessages.count; i++) {
+            TEChatMessage* chatMessage = chatMessages[i];
+            //            chatMessage.senderIsMe = YES;
+            //            chatMessage.time = [NSDate date];
+            TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
+            message.mID = chatMessage.messageID;
+            message.senderID = sid;
+            message.receiverID = session.remoteUsrID;
+            message.content = [chatMessage xmlString];
+            message.sendTime = [NSDate date];
+            message.recvTime = 0;
+            message.type = chatMessage.type;
+            message.sessionID = session.sID;
+            message.senderIsMe = YES;
+            message.state = TEMsgTransStateSending;
+            //message.chatMessage = chatMessage;
+            session.totalNumOfMessage += 1;
+            [message layout];
+            [msgs addObject:message];
+        }
+        session.overviewOfLastMessage = [chatMessages.lastObject overviewText];
+        //[[TECoreDataHelper defaultHelper] saveBackgroundContext];
+        if ([context hasChanges]) {
+            NSError* error;
+            [context save:&error];
+        }
+        if (completion) {
+            completion([msgs copy]);
+        }
+        //[[NSNotificationCenter defaultCenter] postNotificationName:TENewMessageComming object:nil];
+    }];
+
+}
+
+- (void)deleteMessages:(NSArray<TEMessage*>*)msgs
+{
+    [self excuteBlock:^{
+        [msgs enumerateObjectsUsingBlock:^(TEMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [[TECoreDataHelper defaultHelper].backgroundContext deleteObject:obj];
+        }];
+    }];
+    
+    
+    
+    
 }
 
 @end

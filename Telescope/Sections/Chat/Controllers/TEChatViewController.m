@@ -33,6 +33,8 @@
 #import "TEAudioRecordingHUD.h"
 
 
+#import "TECoreDataHelper+Chat.h"
+
 
 typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     TEToolbarNormalState          = 0,
@@ -124,6 +126,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     
     self.chatTVC.session = self.session;
     [self addChildViewController:self.chatTVC];
+    [V2Kit defaultKit].recordingAndPlaybackDelegate = self;
 
     [self.view addSubview:self.morePanel];
     [self.view addSubview:self.emojiPanel];
@@ -202,7 +205,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     [self.view addSubview:self.recordingHUD];
     
     self.currentRecordingUUID = [NSString UUID];
-    [V2Kit defaultKit].recordingAndPlaybackDelegate = self;
+    
     [[V2Kit defaultKit] startAudioRecording:self.currentRecordingUUID];
 }
 - (IBAction)pressTalkBtnTouchUpInside:(id)sender {
@@ -211,6 +214,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     [sender setTitle:@"按住说话" forState:UIControlStateNormal];
     //发送消息
     [self.recordingHUD removeFromSuperview];
+    [[V2Kit defaultKit] stopAudioRecording:self.currentRecordingUUID];
 }
 
 - (IBAction)pressTalkBtnTouchUpOutSide:(id)sender {
@@ -317,13 +321,18 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 }
 
 
-- (void)sendMessage
+/**
+ 构建新的文本消息对象
+
+ @return 返回消息对象
+ */
+- (TEChatMessage*)buildNewTextMessage
 {
     /*
      匹配带方括号的汉字
      [[\u4e00-\u9fa5]+]
      匹配方括号中包含英文和数字
-      [[a-zA-Z0-9]+]
+     [[a-zA-Z0-9]+]
      匹配不带http://的网址
      [a-zA-Z0-9\\.\\-]+\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?
      带http的网址
@@ -335,9 +344,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     NSString* sendText = self.textView.text;
     NSArray<NSTextCheckingResult*>* result = [regularExpression matchesInString:sendText options:NSMatchingWithTransparentBounds range:NSMakeRange(0, sendText.length)];
     
-    TEChatMessage* chatMessage = [[TEChatMessage alloc] init];
-    chatMessage.messageID = [NSString UUID];
-    chatMessage.isAutoReply = NO;
+    TEChatMessage* chatMessage = [TEChatMessage buildTextMessage];
     
     if (result.count<=0) {
         TEMsgTextSubItem* textItem = [[TEMsgTextSubItem alloc] initWithType:Text];
@@ -379,43 +386,48 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         [chatMessage addItem:textItem];
     }
     
-
+    
     NSAssert(regularExpression,@"正则%@有误",pattern);
-    [self insertNewMessage:@[chatMessage]];
+
+    return chatMessage;
 }
 
-- (void)insertNewMessage:(NSArray<TEChatMessage*>*)chatMessages
+- (TEChatMessage*)buildNewAudioMessage
 {
-    NSManagedObjectContext* context = [[TECoreDataHelper defaultHelper] backgroundContext];
-    [[[TECoreDataHelper defaultHelper] backgroundContext] performBlock:^{
-        for (int i =0 ; i < chatMessages.count; i++) {
-            TEChatMessage* chatMessage = chatMessages[i];
-//            chatMessage.senderIsMe = YES;
-//            chatMessage.time = [NSDate date];
-            TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
-            message.mID = chatMessage.messageID;
-            message.senderID = [TEV2KitChatDemon defaultDemon].selfUser.userID;
-            message.receiverID = self.session.remoteUsrID;
-            message.content = [chatMessage xmlString];
-            message.sendTime = [NSDate date];
-            message.recvTime = 0;
-            message.type = 1;
-            message.sessionID = self.session.sID;
-            message.senderIsMe = YES;
-            message.state = TEMsgTransStateSending;
-            //message.chatMessage = chatMessage;
-            self.session.totalNumOfMessage += 1;
-            [message layout];
-        }
-        self.session.overviewOfLastMessage = [chatMessages.lastObject overviewText];
-            //[[TECoreDataHelper defaultHelper] saveBackgroundContext];
-            if ([context hasChanges]) {
-                NSError* error;
-                [context save:&error];
-            }
-        //[[NSNotificationCenter defaultCenter] postNotificationName:TENewMessageComming object:nil];
-    }];
+    TEChatMessage* chatMessage = [TEChatMessage buildAudioMessage];
 
+    TEMSgAudioSubItem* audioItem = [[TEMSgAudioSubItem alloc] initWithType:Audio];
+    audioItem.duration = 0.5;
+    audioItem.fileExt = @".mp3";
+    audioItem.fileName = @"";
+    [chatMessage addItem:audioItem];
+    
+    return chatMessage;
+}
+
+
+/**
+ 存储消息对象
+ 
+ @param chatMessages 消息对象数组
+ */
+- (void)storeMessage:(NSArray<TEChatMessage*>*)chatMessages
+{
+    int64_t senderID = [TEV2KitChatDemon defaultDemon].selfUser.userID;
+    [[TECoreDataHelper defaultHelper]
+        insertNewMessages:chatMessages
+                 senderID:senderID
+              chatSession:self.session
+               completion:nil ];
+}
+
+/**
+ 发送消息对象
+
+ @param chatMessages 消息对象数组
+ */
+- (void)sendMessages:(NSArray<TEChatMessage*>*)chatMessages
+{
     [chatMessages enumerateObjectsUsingBlock:^(TEChatMessage * _Nonnull message, NSUInteger idx, BOOL * _Nonnull stop) {
         [[V2Kit defaultKit] sendTextMessage:[message xmlString]
                                    toUserID:self.session.remoteUsrID
@@ -433,7 +445,6 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             }
         }];
     }];
-    
 }
 
 #pragma mark - *** KVO ***
@@ -468,7 +479,9 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 {
     if ([text isEqualToString:@"\n"]) {
         if (self.textView.text.length > 0) {
-            [self sendMessage];
+            TEChatMessage* message =  [self buildNewTextMessage];
+            [self storeMessage:@[message]];
+            [self sendMessages:@[message]];
             self.textView.text = nil;
         }
         return NO;
@@ -492,7 +505,9 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     if (self.textView.text.length <= 0) {
         return;
     }
-    [self sendMessage];
+    TEChatMessage* message =  [self buildNewTextMessage];
+    [self storeMessage:@[message]];
+    [self sendMessages:@[message]];
     self.textView.text = nil;
 }
 
@@ -572,9 +587,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             imageItem.fileExt = @".jpg";
             imageItem.frame = CGRectMake(0, 0, fullWidth, fullHeight);
             
-            TEChatMessage* chatMessage = [[TEChatMessage alloc] init];
-            chatMessage.messageID = [NSString UUID];
-            chatMessage.isAutoReply = NO;
+            TEChatMessage* chatMessage = [TEChatMessage buildTextMessage];
             [chatMessage addItem:imageItem];
             
             
@@ -582,7 +595,9 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         }
         
         //存储发送消息
-        [self insertNewMessage:[array copy]];
+        NSArray* messages = [array copy];
+        [self storeMessage:messages];
+        [self sendMessages:messages];
     }];
 }
 
@@ -590,7 +605,9 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 - (void)reportMicrophoneInputVolume:(NSInteger)value
 {
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.recordingHUD setAudioVolume:value];
+    });
 }
 
 
@@ -616,8 +633,5 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 {
     
 }
-
-
-
 
 @end

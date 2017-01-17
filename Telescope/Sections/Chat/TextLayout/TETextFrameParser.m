@@ -223,6 +223,9 @@ static CGFloat widthCallback(void* ref){
             {
                 TEMSgAudioSubItem* audioItem = (TEMSgAudioSubItem*)item;
                 audioItem.index = [result length];
+                CGFloat width = 30 * audioItem.duration;
+                width =  width >= 30 && width <= 200 ? width : 200;
+                audioItem.frame = CGRectMake(0, 0, width, 20);
                 NSAttributedString* as = [self parseDataFromPlaceholderModel:audioItem config:config];
                 [result appendAttributedString:as];
                 [holderArray addObject:audioItem];
