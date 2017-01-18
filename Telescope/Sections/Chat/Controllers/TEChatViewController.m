@@ -70,6 +70,19 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 @property (nonatomic,strong) NSString* currentRecordingUUID;
 
+/**
+ 开始录制音频时间，单位秒
+ */
+@property (nonatomic,assign) NSTimeInterval startRecordingAudioTime;
+
+
+/**
+ 结束录制音频时间，单位秒
+ */
+@property (nonatomic,assign) NSTimeInterval stopRecordingAudioTime;
+
+@property (nonatomic,assign) BOOL isCancelRecordingAudio;
+
 @end
 
 @implementation TEChatViewController
@@ -205,7 +218,6 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     [self.view addSubview:self.recordingHUD];
     
     self.currentRecordingUUID = [NSString UUID];
-    
     [[V2Kit defaultKit] startAudioRecording:self.currentRecordingUUID];
 }
 - (IBAction)pressTalkBtnTouchUpInside:(id)sender {
@@ -223,6 +235,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
      [sender setTitle:@"按住说话" forState:UIControlStateNormal];
     [self.recordingHUD removeFromSuperview];
     //取消发送
+    self.isCancelRecordingAudio = YES;
 }
 
 - (IBAction)pressTalkBtnTouchDragOutSide:(id)sender {
@@ -392,12 +405,18 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     return chatMessage;
 }
 
+
+/**
+ 创建新的音频消息对象
+ 
+ @return 消息对象实例
+ */
 - (TEChatMessage*)buildNewAudioMessage
 {
     TEChatMessage* chatMessage = [TEChatMessage buildAudioMessage];
 
     TEMSgAudioSubItem* audioItem = [[TEMSgAudioSubItem alloc] initWithType:Audio];
-    audioItem.duration = 0.5;
+    audioItem.duration = 0;
     audioItem.fileExt = @".mp3";
     audioItem.fileName = @"";
     [chatMessage addItem:audioItem];
@@ -407,18 +426,19 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 
 /**
- 存储消息对象
+ 异步存储消息对象
  
  @param chatMessages 消息对象数组
  */
 - (void)storeMessage:(NSArray<TEChatMessage*>*)chatMessages
+          completion:(void (^)(NSArray<TEMessage*>* array))completion
 {
     int64_t senderID = [TEV2KitChatDemon defaultDemon].selfUser.userID;
     [[TECoreDataHelper defaultHelper]
         insertNewMessages:chatMessages
                  senderID:senderID
               chatSession:self.session
-               completion:nil ];
+               completion:completion];
 }
 
 /**
@@ -436,7 +456,8 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         [message.msgItemList enumerateObjectsUsingBlock:^(TEMsgSubItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
             if (Image ==  item.type) {
                 TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)item;
-                NSString* filePath = [[TEV2KitChatDemon defaultDemon].pictureStorePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",imageItem.fileName,imageItem.fileExt]];
+                NSString* filePath = [[TEV2KitChatDemon defaultDemon].pictureStorePath
+                                      stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",imageItem.fileName,imageItem.fileExt]];
                 [[V2Kit defaultKit] sendMediaFileMessage:filePath
                                                 toUserID:self.session.remoteUsrID
                                                  inGroup:0
@@ -446,6 +467,27 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         }];
     }];
 }
+
+
+/**
+ 存储并发送消息
+
+ @param chatMessages 消息对象数组
+ */
+- (void)storeAndSendMessage:(NSArray<TEChatMessage*>*)chatMessages
+{
+    __weak typeof(self) weakSelf = self;
+    [self storeMessage:chatMessages completion:^(NSArray<TEMessage *> *array) {
+        [array enumerateObjectsUsingBlock:^(TEMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.sendTime = [NSDate date];
+            obj.state = TEMsgTransStateSending;
+            [obj layout];
+        }];
+        [weakSelf sendMessages:chatMessages];
+    }];
+}
+
+
 
 #pragma mark - *** KVO ***
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -480,8 +522,8 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     if ([text isEqualToString:@"\n"]) {
         if (self.textView.text.length > 0) {
             TEChatMessage* message =  [self buildNewTextMessage];
-            [self storeMessage:@[message]];
-            [self sendMessages:@[message]];
+            [self storeAndSendMessage:@[message]];
+            
             self.textView.text = nil;
         }
         return NO;
@@ -506,8 +548,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         return;
     }
     TEChatMessage* message =  [self buildNewTextMessage];
-    [self storeMessage:@[message]];
-    [self sendMessages:@[message]];
+    [self storeAndSendMessage:@[message]];
     self.textView.text = nil;
 }
 
@@ -596,8 +637,15 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         
         //存储发送消息
         NSArray* messages = [array copy];
-        [self storeMessage:messages];
-        [self sendMessages:messages];
+        //[self storeMessage:messages];
+        __weak typeof(self) weakSelf = self;
+        [self storeMessage:messages completion:^(NSArray<TEMessage *> *array) {
+            [array enumerateObjectsUsingBlock:^(TEMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.sendTime = [NSDate date];
+                obj.state = TEMsgTransStateSending;
+            }];
+            [weakSelf sendMessages:messages];
+        }];
     }];
 }
 
@@ -613,7 +661,11 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 - (void)didStartRecordFile:(NSString*)name errorCode:(NSInteger)code
 {
-    
+    self.startRecordingAudioTime = [[NSDate date] timeIntervalSinceNow];
+    TEChatMessage* audioMessage = [self buildNewAudioMessage];
+    TEMSgAudioSubItem* subItem = (TEMSgAudioSubItem*)audioMessage.msgItemList.firstObject;
+    subItem.fileName = name;
+    //[self storeMessage:@[audioMessage]];
 }
 
 

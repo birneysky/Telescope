@@ -92,26 +92,27 @@
             message.senderID = sid;
             message.receiverID = session.remoteUsrID;
             message.content = [chatMessage xmlString];
-            message.sendTime = [NSDate date];
+            message.sendTime = 0;
             message.recvTime = 0;
             message.type = chatMessage.type;
             message.sessionID = session.sID;
             message.senderIsMe = YES;
-            message.state = TEMsgTransStateSending;
+            message.state = TEMsgTransStateReady;
             //message.chatMessage = chatMessage;
             session.totalNumOfMessage += 1;
-            [message layout];
+            //[message layout];
             [msgs addObject:message];
         }
         session.overviewOfLastMessage = [chatMessages.lastObject overviewText];
         //[[TECoreDataHelper defaultHelper] saveBackgroundContext];
+        if (completion) {
+            completion([msgs copy]);
+        }
         if ([context hasChanges]) {
             NSError* error;
             [context save:&error];
         }
-        if (completion) {
-            completion([msgs copy]);
-        }
+
         //[[NSNotificationCenter defaultCenter] postNotificationName:TENewMessageComming object:nil];
     }];
 

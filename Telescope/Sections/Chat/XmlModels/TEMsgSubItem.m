@@ -132,7 +132,7 @@
     return rootDic;
 }
 
-- (TEPlaceholderType)type
+- (TEPlaceholderType)holderType
 {
     return PlaceholderAudioType;
 }
