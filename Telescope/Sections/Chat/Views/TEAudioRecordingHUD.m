@@ -11,6 +11,10 @@
 @interface TEAudioRecordingHUD ()
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
+/**
+ volumeView 是audioRecordingVolumImageView和statusIconImageView父视图，
+ statusIconImageView 与 volumeView 在同一层级
+ */
 @property (weak, nonatomic) IBOutlet UIImageView *audioRecordingVolumImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *statusIconImageView;
 @property (weak, nonatomic) IBOutlet UIView *volumeView;

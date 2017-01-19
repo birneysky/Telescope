@@ -71,4 +71,7 @@ typedef NS_ENUM(NSInteger,TEFileType){
  */
 - (void)deleteMessages:(NSArray<TEMessage*>*)msgs;
 
+
+- (void)updateWithBlock:(void (^)())block;
+
 @end

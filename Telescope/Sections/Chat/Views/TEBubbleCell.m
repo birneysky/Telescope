@@ -131,11 +131,16 @@
         [self.indicator removeFromSuperview];
         [self.errorView removeFromSuperview];
     }
-
-    if(TEChatMessageTypeText == message.chatMessage.type ||
-       TEChatMessageTypeRichText == message.chatMessage.type){
-        [self.messageView.layoutView setLayoutModel:message.layout.layoutModel];
+    else if(TEMsgTransStateReady == message.state){
+        [self.indicator stopAnimating];
+        [self.indicator removeFromSuperview];
+        [self.errorView removeFromSuperview];
     }
+
+//    if(TEChatMessageTypeText == message.chatMessage.type ||
+//       TEChatMessageTypeRichText == message.chatMessage.type){
+        [self.messageView.layoutView setLayoutModel:message.layout.layoutModel];
+//    }
     
 }
 

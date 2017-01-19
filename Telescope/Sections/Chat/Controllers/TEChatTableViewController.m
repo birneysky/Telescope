@@ -149,6 +149,7 @@
     
     TEBubbleCell *bulleCell = (TEBubbleCell*)cell;
     TEMessage* message = [self.frc objectAtIndexPath:indexPath];
+    NSLog(@"TEmessage index row %ld",(long)indexPath.row);
     //[message layoutModel];
     //cell.textLabel.text  = message.content;
     //[bulleCell setLayoutModel:message.layoutModel];

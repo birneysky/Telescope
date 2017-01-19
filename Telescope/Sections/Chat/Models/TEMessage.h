@@ -19,6 +19,7 @@
 
 @property (nonatomic,readonly) TEBubbleCellInnerLayout* layout;
 
+- (void)reLayout;
 
 
 @end

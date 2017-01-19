@@ -112,8 +112,6 @@
             NSError* error;
             [context save:&error];
         }
-
-        //[[NSNotificationCenter defaultCenter] postNotificationName:TENewMessageComming object:nil];
     }];
 
 }
@@ -125,10 +123,12 @@
             [[TECoreDataHelper defaultHelper].backgroundContext deleteObject:obj];
         }];
     }];
-    
-    
-    
-    
 }
+
+- (void)updateWithBlock:(void (^)())block
+{
+    [self excuteBlock:block];
+}
+
 
 @end

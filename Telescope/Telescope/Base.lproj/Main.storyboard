@@ -665,6 +665,7 @@
                     <navigationItem key="navigationItem" title="我" id="OlN-1n-VkC"/>
                     <connections>
                         <segue destination="ciG-gZ-6DF" kind="show" identifier="te_push_setting" id="WSB-Zg-Nq6"/>
+                        <segue destination="OhM-Z0-aIP" kind="show" identifier="te_push_fans" id="Xio-8s-TEb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4L-kH-ejm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1585,7 +1586,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="4082" y="-1923"/>
+            <point key="canvasLocation" x="4185" y="-1959"/>
         </scene>
         <!--Video Chat View Controller-->
         <scene sceneID="5Z4-Ec-BQM">
@@ -1784,7 +1785,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdI-LJ-cuo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3900" y="-2779"/>
+            <point key="canvasLocation" x="4185" y="-3469"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="M6P-Sf-lXy">
@@ -1829,6 +1830,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNU-UW-c4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4793" y="-512"/>
+        </scene>
+        <!--Fans Table View Controller-->
+        <scene sceneID="u0a-xs-Txp">
+            <objects>
+                <tableViewController id="OhM-Z0-aIP" customClass="TEFansTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jZU-7b-6uj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TEFansCell" id="1gn-j7-GIn">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1gn-j7-GIn" id="aFO-sM-KfB">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="L5b-em-WXh" kind="show" identifier="te_fans_push_chat_session" id="1vx-8h-fHd"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OhM-Z0-aIP" id="YDD-cW-6ia"/>
+                            <outlet property="delegate" destination="OhM-Z0-aIP" id="67E-ph-lJy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="cTs-z9-fnX">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="Yps-Qy-ICi"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JE3-f7-7vJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4185" y="-2814"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="Nmy-YF-GDI">
@@ -1947,7 +1982,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aEL-Vs-nAd"/>
-        <segue reference="CKD-to-2pV"/>
+        <segue reference="1vx-8h-fHd"/>
         <segue reference="1fm-mV-Gsh"/>
+        <segue reference="00Y-al-GS4"/>
     </inferredMetricsTieBreakers>
 </document>

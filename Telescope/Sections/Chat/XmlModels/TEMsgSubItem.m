@@ -43,6 +43,9 @@
         case Face:
             [dictory setObject:[NSMutableDictionary dictionary] forKey:TESysFaceElement];
             break;
+        case Audio:
+            [dictory setObject:[NSMutableDictionary dictionary] forKey:TEAudioElement];
+            break;
         default:
             dictory = nil;
             break;

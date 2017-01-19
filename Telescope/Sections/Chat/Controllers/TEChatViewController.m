@@ -59,21 +59,41 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightConstraint;
 @property (strong, nonatomic) IBOutlet TEAudioRecordingHUD *recordingHUD;
+
+/**
+ 点击加号按钮弹起的视图
+ */
 @property (nonatomic, strong) TEChatMorePanel* morePanel;
+
+/**
+ 表情选择视图
+ */
 @property (nonatomic, strong) TEChatEmojiPanel* emojiPanel;
+
+/**
+ 底部工具条的状态
+ */
 @property (nonatomic, assign) TEChatToolBarState toolbarState;
 
+
+/**
+ 键盘的高度
+ */
 @property (nonatomic, assign) CGFloat keyboardHeight;
 
 @property (nonatomic,strong) NSMutableArray<TEChatMessage*>* cacheArray;
 @property (nonatomic,strong) NSMutableArray<TEMessage*>* messageChache;
 
+
+/**
+ 录制音频的uuid
+ */
 @property (nonatomic,strong) NSString* currentRecordingUUID;
 
 /**
- 开始录制音频时间，单位秒
+ 开始录制音频时间
  */
-@property (nonatomic,assign) NSTimeInterval startRecordingAudioTime;
+@property (nonatomic,strong) NSDate* startRecordingAudioTime;
 
 
 /**
@@ -81,11 +101,28 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
  */
 @property (nonatomic,assign) NSTimeInterval stopRecordingAudioTime;
 
+/**
+ 是否取消音频录制的标志 YES 取消
+ */
 @property (nonatomic,assign) BOOL isCancelRecordingAudio;
+
+
+/**
+ 音频录制失败标志 YES 失败
+ */
+@property (nonatomic,assign) BOOL isRecordingAudioFailed;
+
+
+/**
+ 当前正在录制的音频消息对象引用
+ */
+@property (nonatomic,weak) TEMessage* recordingAudioMessage;
+
 
 @end
 
 @implementation TEChatViewController
+
 
 #pragma mark - *** Properties ***
 - (TEChatMorePanel*)morePanel
@@ -236,15 +273,22 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     [self.recordingHUD removeFromSuperview];
     //取消发送
     self.isCancelRecordingAudio = YES;
+    [[V2Kit defaultKit] stopAudioRecording:self.currentRecordingUUID];
 }
 
 - (IBAction)pressTalkBtnTouchDragOutSide:(id)sender {
     NSLog(@"pressTalkBtnTouchDragOutSide");
+    if(self.isRecordingAudioFailed){
+        return;
+    }
     self.recordingHUD.state = TEAudioRecordingStateMyBeCancel;
      [sender setTitle:@"松开手指，取消发送" forState:UIControlStateNormal];
 }
 - (IBAction)pressTalkTouchDragInside:(UIButton *)sender {
     [sender setTitle:@"松开结束" forState:UIControlStateNormal];
+    if(self.isRecordingAudioFailed){
+        return;
+    }
      self.recordingHUD.state = TEAudioRecordingStateRecording;
 }
 
@@ -638,14 +682,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         //存储发送消息
         NSArray* messages = [array copy];
         //[self storeMessage:messages];
-        __weak typeof(self) weakSelf = self;
-        [self storeMessage:messages completion:^(NSArray<TEMessage *> *array) {
-            [array enumerateObjectsUsingBlock:^(TEMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                obj.sendTime = [NSDate date];
-                obj.state = TEMsgTransStateSending;
-            }];
-            [weakSelf sendMessages:messages];
-        }];
+        [self storeAndSendMessage:messages];
     }];
 }
 
@@ -661,19 +698,55 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 - (void)didStartRecordFile:(NSString*)name errorCode:(NSInteger)code
 {
-    self.startRecordingAudioTime = [[NSDate date] timeIntervalSinceNow];
+    if (0 != code) {
+        self.isRecordingAudioFailed = YES;
+        ///显示失败提示
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.recordingHUD.state = TEAudioRecordingStateError;
+        });
+        return;
+    }
+    self.startRecordingAudioTime = [NSDate date];
     TEChatMessage* audioMessage = [self buildNewAudioMessage];
     TEMSgAudioSubItem* subItem = (TEMSgAudioSubItem*)audioMessage.msgItemList.firstObject;
     subItem.fileName = name;
     //[self storeMessage:@[audioMessage]];
+    __weak typeof(self) weakSelf = self;
+    [self storeMessage:@[audioMessage] completion:^(NSArray<TEMessage *> *array) {
+        weakSelf.recordingAudioMessage = array.firstObject;
+        weakSelf.recordingAudioMessage.sendTime = [NSDate date];
+        [weakSelf.recordingAudioMessage layout];
+    }];
 }
 
 
 - (void)didStopRecordFileSequence:(NSString*)sID path:(NSString*)path errorCode:(NSInteger)code
 {
+    if (self.isRecordingAudioFailed) {
+        self.isRecordingAudioFailed = NO;
+        return;
+    }
+    
+    ///删除消息
+    if(self.isCancelRecordingAudio){
+        self.isCancelRecordingAudio = NO;
+        [[TECoreDataHelper defaultHelper] deleteMessages:@[self.recordingAudioMessage]];
+    }
+    NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self.startRecordingAudioTime];
+     //duration = now - self.startRecordingAudioTime;
+    [[TECoreDataHelper defaultHelper] updateWithBlock:^{
+        ///重置发送时间
+        self.recordingAudioMessage.sendTime = [NSDate date];
+        ///修改音频时长
+        TEChatMessage* chatMessage = self.recordingAudioMessage.chatMessage;
+        TEMSgAudioSubItem* subItem = (TEMSgAudioSubItem*)chatMessage.msgItemList.firstObject;
+        subItem.duration = (NSInteger)duration;
+        self.recordingAudioMessage.content = [chatMessage xmlString];
+        ///重新布局
+        [self.recordingAudioMessage reLayout];
+    }];
     
 }
-
 
 - (void)didStartPlayFile:(NSString*)name errorCode:(NSInteger)code
 {

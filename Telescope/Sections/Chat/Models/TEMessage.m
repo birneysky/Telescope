@@ -29,11 +29,19 @@
     if (!_chatMessage) {
         _chatMessage = [TEChatXMLReader messageForXmlString:self.content error:nil];
         _chatMessage.senderIsMe = self.senderIsMe;
-        _chatMessage.time = self.sendTime;
+        //_chatMessage.time = self.sendTime;
     }
+    _chatMessage.time = self.sendTime;
     return _chatMessage;
 }
 
+
+- (void)reLayout
+{
+    _chatMessage = nil;
+    _layout = nil;
+    [self layout];
+}
 
 
 - (void)dealloc
