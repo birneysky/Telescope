@@ -301,6 +301,9 @@
     CGRect rectInSuperView = [self.tableView.superview convertRect:rect fromView:view];
     NSLog(@"rectInSuperView %@",NSStringFromCGRect(rectInSuperView));
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    TEMessage* message  = [self.frc objectAtIndexPath:indexPath];
+    TEChatMessage* chatMessage = message.chatMessage;
+    TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)chatMessage.msgItemList.firstObject;
 //    UIImageView* imageView = [[UIImageView alloc] initWithFrame:rectInSuperView];
 //    imageView.backgroundColor = [UIColor blueColor];
 //    [self.tableView.superview addSubview:imageView];
@@ -310,20 +313,20 @@
 //        HAHouseImage* imageItem = self.photosArray[i];
 //        UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
 //        CGRect rect = [self.view convertRect:cell.frame fromView:collectionView];
-    
-//    LWImageBrowserModel* imageModel = [[LWImageBrowserModel alloc] initWithplaceholder:nil
-//                                                                              thumbnailURL:[NSURL URLWithString:imageItem.localPath]
-//                                                                                     HDURL:[NSURL URLWithString:imageItem.localPath]
-//                                                                        imageViewSuperView:cell.contentView
-//                                                                       positionAtSuperView:rect
-//                                                                                     index:indexPath.row];
-//        [imageItemArray addObject:imageModel];
+    NSString* fullPath = [imageItem.path stringByAppendingPathComponent:imageItem.fileName];
+    LWImageBrowserModel* imageModel = [[LWImageBrowserModel alloc] initWithplaceholder:nil
+                                                                              thumbnailURL:[NSURL URLWithString:fullPath]
+                                                                                     HDURL:[NSURL URLWithString:fullPath]
+                                                                        imageViewSuperView:cell.contentView
+                                                                       positionAtSuperView:rectInSuperView
+                                                                                     index:indexPath.row];
+     //   [imageItemArray addObject:imageModel];
     //}
-//    LWImageBrowser* imageBrowser = [[LWImageBrowser alloc] initWithParentViewController:self
-//                                                                            imageModels:imageItemArray
-//                                                                           currentIndex:indexPath.row];
-//    imageBrowser.view.backgroundColor = [UIColor blackColor];
-//    [imageBrowser show];
+    LWImageBrowser* imageBrowser = [[LWImageBrowser alloc] initWithParentViewController:self
+                                                                            imageModels:@[imageModel]
+                                                                           currentIndex:indexPath.row];
+    imageBrowser.view.backgroundColor = [UIColor blackColor];
+    [imageBrowser show];
     
 }
 

@@ -74,6 +74,12 @@ typedef NS_ENUM(NSInteger,TEPlaceholderType){
 @property (nonatomic,readonly) TEPlaceholderType holderType;
 
 
+///**
+// 缩略图文件名
+// */
+//@optional
+//@property (readonly, nonatomic) NSString* thumbnailImageName;
+
 @end
 
 

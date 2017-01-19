@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <IJKMediaFramework/IJKMediaFramework.h>
 
-@interface TEVideoPlayer ()<IJKPlayerDelegate>
+@interface TEVideoPlayer ()//<IJKPlayerDelegate>
 
 
 @property (nonatomic,strong) NSArray<NSString*>* rtmpUrl;
@@ -63,13 +63,13 @@
 - (IJKFFMoviePlayerController*)ijkPlayerController
 {
     if (!_ijkPlayerController) {
-        _ijkPlayerController = [[IJKFFMoviePlayerController alloc] initWithOptions:[IJKFFOptions optionsByDefault]];
+       // _ijkPlayerController = [[IJKFFMoviePlayerController alloc] initWithOptions:[IJKFFOptions optionsByDefault]];
         //_ijkPlayerController = [[IJKFFMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"] withOptions:[IJKFFOptions optionsByDefault]];
         _ijkPlayerController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _ijkPlayerController.view.frame = self.bounds;
         _ijkPlayerController.scalingMode = IJKMPMovieScalingModeAspectFit;
         _ijkPlayerController.shouldAutoplay = YES;
-        _ijkPlayerController.delegate  = self;
+        //_ijkPlayerController.delegate  = self;
         [self addPlayerNotificationObservers];
     }
     return _ijkPlayerController;
@@ -119,7 +119,7 @@ NSLog(@"layoutBefore TEVideoPlayer bounds %@, frame %@",NSStringFromCGRect(self.
     if (!self.ijkPlayerController.view.superview) {
         [self addSubview:self.ijkPlayerController.view];
     }
-    [self.ijkPlayerController setUrl:url];
+   // [self.ijkPlayerController setUrl:url];
     [self.ijkPlayerController prepareToPlay];
 }
 

@@ -92,6 +92,7 @@
         //NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
         NSString* filePath = [TEV2KitChatDemon defaultDemon].pictureStorePath;
         NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",attributeDict[TEUUIDAttribute],@"thumbnail"];
+        //NSString* fileName = [NSString stringWithFormat:@"%@.jpg",attributeDict[TEUUIDAttribute]];
         //NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
         pictureSubItem.path = filePath;
         pictureSubItem.fileName = fileThumbnailName;//attributeDict[TEUUIDAttribute];
