@@ -150,6 +150,12 @@
     return chatMessage;
 }
 
++ (TEChatMessage*)buildImageMessage
+{
+    TEChatMessage* chatMessage = [[TEChatMessage alloc] initWithType:TEChatMessageTypeImage];
+    return chatMessage;
+}
+
 + (TEChatMessage*)buildAudioMessage
 {
     TEChatMessage* chatMessage = [[TEChatMessage alloc] initWithType:TEChatMessageTypeAudio];

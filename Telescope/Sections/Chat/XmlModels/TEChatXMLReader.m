@@ -91,18 +91,18 @@
         TEMsgImageSubItem* pictureSubItem = [[TEMsgImageSubItem alloc] initWithType:Image];
         //NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/TEImages"];
         NSString* filePath = [TEV2KitChatDemon defaultDemon].pictureStorePath;
-        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",attributeDict[TEUUIDAttribute],@"thumbnail"];
-        //NSString* fileName = [NSString stringWithFormat:@"%@.jpg",attributeDict[TEUUIDAttribute]];
+        //NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",attributeDict[TEUUIDAttribute],@"thumbnail"];
+        NSString* fileName = attributeDict[TEUUIDAttribute];//[NSString stringWithFormat:@"%@.jpg",attributeDict[TEUUIDAttribute]];
         //NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
         pictureSubItem.path = filePath;
-        pictureSubItem.fileName = fileThumbnailName;//attributeDict[TEUUIDAttribute];
+        pictureSubItem.fileName = fileName;//attributeDict[TEUUIDAttribute];
         pictureSubItem.fileExt = attributeDict[TEFileExtAttribute];
         CGFloat width = [attributeDict[TEWidhtAttribute] floatValue];
         CGFloat height = [attributeDict[TEHeightAttribute] floatValue];
         aspectSizeInContainer(&width, &height, CGSizeMake(40, 40), CGSizeMake(200, 200));
         pictureSubItem.frame = CGRectMake(0, 0, width, height);
         [_chatMessage addItem:pictureSubItem];
-        _chatMessage.type = TEChatMessageTypeRichText;
+        _chatMessage.type = TEChatMessageTypeImage;
     }
     else if([elementName isEqualToString:TESysFaceElement]){
         TEExpresssionSubItem* faceItem = [[TEExpresssionSubItem alloc] initWithType:Face];
@@ -111,7 +111,7 @@
         //NSString* imageName = [path stringByAppendingPathComponent:itemName];
         faceItem.path = path;
         faceItem.fileName = itemName;
-        faceItem.frame = CGRectMake(0, 0, 20, 20);
+        faceItem.frame = CGRectMake(0, 0, 24, 20);
         [_chatMessage addItem:faceItem];
     }
     else if([elementName isEqualToString:TEAudioElement]){

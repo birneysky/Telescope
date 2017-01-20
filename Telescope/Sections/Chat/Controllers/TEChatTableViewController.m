@@ -130,7 +130,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    TEBubbleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TEMessageCell" forIndexPath:indexPath];
+    TEBubbleCell *cell;
+    TEMessage* message = [self.frc objectAtIndexPath:indexPath];
+    if (TEChatMessageTypeAudio == message.type) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"TEAudioMessageCell" forIndexPath:indexPath];
+    }
+    else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"TEMessageCell" forIndexPath:indexPath];
+    }
 
 
     
@@ -313,7 +320,8 @@
 //        HAHouseImage* imageItem = self.photosArray[i];
 //        UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
 //        CGRect rect = [self.view convertRect:cell.frame fromView:collectionView];
-    NSString* fullPath = [imageItem.path stringByAppendingPathComponent:imageItem.fileName];
+    NSString* fullImageName = [NSString stringWithFormat:@"%@%@",imageItem.fileName,imageItem.fileExt];
+    NSString* fullPath = [imageItem.path stringByAppendingPathComponent:fullImageName];
     LWImageBrowserModel* imageModel = [[LWImageBrowserModel alloc] initWithplaceholder:nil
                                                                               thumbnailURL:[NSURL URLWithString:fullPath]
                                                                                      HDURL:[NSURL URLWithString:fullPath]

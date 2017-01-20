@@ -91,7 +91,7 @@ static TEV2KitChatDemon* _demon = nil;
     TEChatMessage* chatMsgModel =  [TEChatXMLReader messageForXmlString:xmlText error:nil];
     chatMsgModel.senderIsMe = NO;
     chatMsgModel.time = date;
-    
+
     [weakContext performBlock:^{
 
         NSDate* recvDate =  [NSDate date];
@@ -104,6 +104,7 @@ static TEV2KitChatDemon* _demon = nil;
         message.type = MediaFileTypeText;
         message.recvTime = recvDate;
         message.chatMessage = chatMsgModel;
+        message.state = TEMsgTransStateSending;
         
         TEChatSession* session = nil;
         if (sessionArray.count == 0){
@@ -155,7 +156,26 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (void)didReceiveMediaFile:(NSString*)fileName type:(MediaFileType)type fromUserID:(long long)uid inGroup:(long long)gid messageID:(NSString*)mid sendTime:(NSDate*)date
 {
+    __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
     
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
+    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",mid];
+    [fetchRequest setPredicate:predicat];
+    NSError* error;
+    NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
+    NSAssert(messageArray.count == 1, @"有多个条件满足条件");
+    
+    
+    
+    [weakContext performBlock:^{
+        __weak TEMessage* message = messageArray.firstObject;
+        message.state = TEMsgTransStateSucced;
+        [message reLayout];
+        if ([weakContext hasChanges]) {
+            NSError* error;
+            [weakContext save:&error];
+        }
+    }];
 }
 
 
@@ -171,7 +191,11 @@ static TEV2KitChatDemon* _demon = nil;
     
     __weak TEMessage* message = messageArray.firstObject;
     [weakContext performBlock:^{
-        message.state = code == 0 ? TEMsgTransStateSucced : TEMsgTransStateError;
+        if(message.type == TEChatMessageTypeText ||
+           message.type == TEChatMessageTypeRichText){
+            message.state = code == 0 ? TEMsgTransStateSucced : TEMsgTransStateError;
+        }
+        
         if ([weakContext hasChanges]) {
             NSError* error;
             [weakContext save:&error];
@@ -182,12 +206,36 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (void)didReceiveResponseOfSendingMediaFile:(NSString*)fileID responseCode:(NSInteger)code  type:(MediaFileType)type  fromUserID:(long long)uid inGroup:(long long)gid
 {
+    if (MediaFileTypePicture == type) {
+        
+    }
+    
+    __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
+
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
+    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",fileID];
+    [fetchRequest setPredicate:predicat];
+    NSError* error;
+    NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
+    NSAssert(messageArray.count == 1, @"有多个条件满足条件");
+    
+
+    
+    [weakContext performBlock:^{
+        __weak TEMessage* message = messageArray.firstObject;
+        message.state = TEMsgTransStateSucced;
+        if ([weakContext hasChanges]) {
+            NSError* error;
+            [weakContext save:&error];
+        }
+    }];
     
 }
 
 - (void)didReceiveMonitorResponse:(NSInteger)code fileID:(NSString*)fid type:(MediaFileType)type
 {
-    
+
+
 }
 
 @end

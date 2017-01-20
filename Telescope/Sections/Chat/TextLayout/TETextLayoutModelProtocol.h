@@ -56,19 +56,7 @@ typedef NS_ENUM(NSInteger,TEPlaceholderType){
 /**
  文件路径
  */
-@property (copy, nonatomic) NSString* path;
-
-
-/**
- 文件名称
- */
-@property (copy, nonatomic) NSString* fileName;
-
-
-/**
- 文件扩展名
- */
-@property (copy,nonatomic) NSString* fileExt;
+@property (copy,nonatomic,readonly) NSString* filePath;
 
 
 @property (nonatomic,readonly) TEPlaceholderType holderType;

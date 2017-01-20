@@ -11,6 +11,12 @@
 #import "TEMessage+CoreDataProperties.h"
 #import "TEChatXMLReader.h"
 
+@interface TEMessage ()
+
+///添加一个检测消息传输状态的是否超时的定时器
+
+@end
+
 @implementation TEMessage
 
 @synthesize layout = _layout;

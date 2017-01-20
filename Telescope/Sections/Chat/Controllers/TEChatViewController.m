@@ -672,7 +672,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
             imageItem.fileExt = @".jpg";
             imageItem.frame = CGRectMake(0, 0, fullWidth, fullHeight);
             
-            TEChatMessage* chatMessage = [TEChatMessage buildTextMessage];
+            TEChatMessage* chatMessage = [TEChatMessage buildImageMessage];
             [chatMessage addItem:imageItem];
             
             

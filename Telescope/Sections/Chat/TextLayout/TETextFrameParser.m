@@ -210,7 +210,7 @@ static CGFloat widthCallback(void* ref){
             {
                 TEExpresssionSubItem* faceItem = (TEExpresssionSubItem*)item;
                 faceItem.index = [result length];
-                faceItem.frame = CGRectMake(0, 0, 20, 20);
+                faceItem.frame = CGRectMake(0, 0, 22, 20);
                 
                 /*@{@"width":@(44),@"height":@(44)}*/
                 NSAttributedString *as =  [self parseDataFromPlaceholderModel:faceItem config:config];

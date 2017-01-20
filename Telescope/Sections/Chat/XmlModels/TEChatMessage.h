@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSInteger,TEChatMessageType){
     TEChatMessageTypeText,
     TEChatMessageTypeRichText,
+    TEChatMessageTypeImage,
     TEChatMessageTypeAudio,
     TEChatMessageTypeDocument
 };
@@ -42,6 +43,8 @@ typedef NS_ENUM(NSInteger,TEChatMessageType){
 @interface TEChatMessage ()
 
 + (TEChatMessage*)buildTextMessage;
+
++ (TEChatMessage*)buildImageMessage;
 
 + (TEChatMessage*)buildAudioMessage;
 

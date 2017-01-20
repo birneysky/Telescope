@@ -83,6 +83,13 @@
     return rootDic;
 }
 
+- (NSString*)filePath
+{
+    //NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@%@",self.fileName,@"thumbnail",self.fileExt];
+    NSString* fileThumbnailName = [NSString stringWithFormat:@"%@%@",self.fileName,self.fileExt];
+    return [self.path stringByAppendingPathComponent:fileThumbnailName];
+}
+
 - (TEPlaceholderType)holderType
 {
     return PlaceholderImageType;
@@ -99,6 +106,11 @@
     [sub setObject:self.fileName
             forKey:[NSString stringWithFormat:@"_%@",TEFileNameAttribute]];
     return rootDic;
+}
+
+- (NSString*)filePath
+{
+    return [self.path stringByAppendingPathComponent:self.fileName];
 }
 
 - (TEPlaceholderType)holderType

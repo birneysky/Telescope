@@ -11,6 +11,7 @@
 
 typedef NS_ENUM(int16_t,TEMsgTransState){
     TEMsgTransStateReady = 0,
+    TEMsgTransStateReceiving,
     TEMsgTransStateSending,
     TEMsgTransStatePause,
     TEMsgTransStateSucced,

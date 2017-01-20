@@ -137,6 +137,8 @@
 		DB6DA7221D792D1900430922 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA7201D792D1900430922 /* LaunchScreen.storyboard */; };
 		DB6DA72D1D792D1900430922 /* TelescopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA72C1D792D1900430922 /* TelescopeTests.m */; };
 		DB6DA7381D792D1900430922 /* TelescopeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7371D792D1900430922 /* TelescopeUITests.m */; };
+		DB733F2D1E31BC770026FBBF /* TEAudioInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB733F2C1E31BC760026FBBF /* TEAudioInfoView.m */; };
+		DB733F301E31C2F70026FBBF /* TEBubbleAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB733F2F1E31C2F70026FBBF /* TEBubbleAudioCell.m */; };
 		DB860D8A1DC1E19F00C94035 /* TEBezierPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D891DC1E19F00C94035 /* TEBezierPathButton.m */; };
 		DB860DAA1DC2013800C94035 /* TEActiveWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DA91DC2013800C94035 /* TEActiveWheel.m */; };
 		DB860DAE1DC2F35D00C94035 /* TEUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DAD1DC2F35D00C94035 /* TEUser.m */; };
@@ -463,6 +465,10 @@
 		DB6DA7331D792D1900430922 /* TelescopeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelescopeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DA7371D792D1900430922 /* TelescopeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TelescopeUITests.m; sourceTree = "<group>"; };
 		DB6DA7391D792D1900430922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB733F2B1E31BC760026FBBF /* TEAudioInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAudioInfoView.h; sourceTree = "<group>"; };
+		DB733F2C1E31BC760026FBBF /* TEAudioInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAudioInfoView.m; sourceTree = "<group>"; };
+		DB733F2E1E31C2F70026FBBF /* TEBubbleAudioCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEBubbleAudioCell.h; sourceTree = "<group>"; };
+		DB733F2F1E31C2F70026FBBF /* TEBubbleAudioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEBubbleAudioCell.m; sourceTree = "<group>"; };
 		DB860D881DC1E19F00C94035 /* TEBezierPathButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEBezierPathButton.h; sourceTree = "<group>"; };
 		DB860D891DC1E19F00C94035 /* TEBezierPathButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEBezierPathButton.m; sourceTree = "<group>"; };
 		DB860DA81DC2013800C94035 /* TEActiveWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEActiveWheel.h; sourceTree = "<group>"; };
@@ -852,6 +858,8 @@
 				DBC779111DEFF8A300615DC8 /* TEChatSessionCell.m */,
 				DB8D0BE01DF80139008E8B15 /* TEBubbleCell.h */,
 				DB8D0BE11DF80139008E8B15 /* TEBubbleCell.m */,
+				DB733F2E1E31C2F70026FBBF /* TEBubbleAudioCell.h */,
+				DB733F2F1E31C2F70026FBBF /* TEBubbleAudioCell.m */,
 				DB8D0BE71DFA9633008E8B15 /* TEMessageView.h */,
 				DB8D0BE81DFA9633008E8B15 /* TEMessageView.m */,
 				DB5FBBBD1E126BBF005DF70C /* TEAudioRecordingHUD.h */,
@@ -861,6 +869,8 @@
 				DB6104A71E23699B0006B051 /* TEEmojiPreview.h */,
 				DB6104A81E23699B0006B051 /* TEEmojiPreview.m */,
 				DB6104AA1E2369CA0006B051 /* TEEmojiPreview.xib */,
+				DB733F2B1E31BC760026FBBF /* TEAudioInfoView.h */,
+				DB733F2C1E31BC760026FBBF /* TEAudioInfoView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1593,6 +1603,7 @@
 				DB8D0BD31DF7EB5D008E8B15 /* TETextAttibuteConfig.m in Sources */,
 				DB664E611DEE843F00EC40A8 /* DDFileLogger.m in Sources */,
 				DB664E9B1DEE847000EC40A8 /* TEVideoScrollView.m in Sources */,
+				DB733F301E31C2F70026FBBF /* TEBubbleAudioCell.m in Sources */,
 				DB5FBBB41E120EEE005DF70C /* UIScrollView+MJExtension.m in Sources */,
 				DB8D0BC01DF69595008E8B15 /* TEXmlItemList.m in Sources */,
 				DB860DAA1DC2013800C94035 /* TEActiveWheel.m in Sources */,
@@ -1625,6 +1636,7 @@
 				DB5FBBB51E120EEE005DF70C /* UIScrollView+MJRefresh.m in Sources */,
 				DB8D0BAE1DF50656008E8B15 /* UIView+Frame.m in Sources */,
 				DB3C06751DC1AFF800E029D9 /* TETextField.m in Sources */,
+				DB733F2D1E31BC770026FBBF /* TEAudioInfoView.m in Sources */,
 				DB664E951DEE847000EC40A8 /* TEDefaultCollectionController.m in Sources */,
 				DB5FBBA31E120EEE005DF70C /* MJRefreshAutoFooter.m in Sources */,
 				DB664F061DEEC1DA00EC40A8 /* TEMessage.m in Sources */,
