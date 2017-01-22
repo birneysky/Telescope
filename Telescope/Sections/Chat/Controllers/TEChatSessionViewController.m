@@ -18,7 +18,7 @@
 
 #import "TEV2KitChatDemon.h"
 
-@interface TEChatSessionViewController ()
+@interface TEChatSessionViewController ()<UIViewControllerPreviewingDelegate>
 
 @property (nonatomic,strong) TEMessageFactory* msgFactory;
 
@@ -57,6 +57,10 @@
     [self configureFetch];
     //[self performFetch];
     //[self.msgFactory start];
+    ///判断是否支持3Dtouch， 如果支持，向系统注册代理
+    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+        [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
     
 }
 
@@ -150,5 +154,23 @@
         tcvc.session = session;
     }
 }
+
+#pragma mark - *** UIViewControllerPreviewingDelegate ***
+
+- (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:location];
+    TEChatSession* session = [self.frc objectAtIndexPath:indexPath];
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TEChatViewController* tcvc = [storyboard instantiateViewControllerWithIdentifier:@"TEChatViewController"];//[[TEChatViewController alloc] init];
+    tcvc.session = session;
+    return  tcvc;
+}
+
+- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
+{
+    [self showViewController:viewControllerToCommit sender:self];
+}
+
 
 @end

@@ -759,4 +759,18 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     
 }
 
+#pragma mark - *** override 3d touch for preview controller ***
+- (NSArray <id <UIPreviewActionItem>> *)previewActionItems {
+    UIPreviewAction *p1 = [UIPreviewAction actionWithTitle:@"点我!"style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+        
+        NSLog(@"点击了点我!");
+    }];
+    UIPreviewAction *p2 = [UIPreviewAction actionWithTitle:@"别点我!" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+        
+        NSLog(@"点击了别点我!");
+    }];
+    NSArray *actions = @[p1,p2];
+    return actions;
+}
+
 @end

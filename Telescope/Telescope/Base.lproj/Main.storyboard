@@ -1001,34 +1001,34 @@
         <scene sceneID="1GP-uc-Pto">
             <objects>
                 <tableViewController id="MLM-ps-sFh" customClass="TEChatSessionViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FIf-nW-99d">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" id="FIf-nW-99d">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TEChatSessionCell" textLabel="egn-uX-Cd5" detailTextLabel="uuF-wv-kxf" style="IBUITableViewCellStyleSubtitle" id="Lj9-AW-8uq" customClass="TEChatSessionCell">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lj9-AW-8uq" id="Fn0-gy-36h">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="egn-uX-Cd5">
-                                            <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                            <rect key="frame" x="15" y="9" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uuF-wv-kxf">
-                                            <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                            <rect key="frame" x="15" y="30" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oh7-pK-nuJ">
-                                            <rect key="frame" x="277" y="17" width="85" height="22"/>
+                                            <rect key="frame" x="277" y="27" width="85" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -1326,7 +1326,7 @@
         <!--Chat View Controller-->
         <scene sceneID="50X-Xw-NYE">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="L5b-em-WXh" customClass="TEChatViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TEChatViewController" hidesBottomBarWhenPushed="YES" id="L5b-em-WXh" customClass="TEChatViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gw4-2s-AMr"/>
                         <viewControllerLayoutGuide type="bottom" id="5wb-0Z-IVP"/>
@@ -1990,8 +1990,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aEL-Vs-nAd"/>
-        <segue reference="1vx-8h-fHd"/>
-        <segue reference="1fm-mV-Gsh"/>
+        <segue reference="nJN-Jf-lIB"/>
         <segue reference="00Y-al-GS4"/>
+        <segue reference="1fm-mV-Gsh"/>
     </inferredMetricsTieBreakers>
 </document>

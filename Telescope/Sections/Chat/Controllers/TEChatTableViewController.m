@@ -71,9 +71,9 @@
     self.frc.delegate = self;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewDidDisappear:animated];
     self.frc.delegate = nil;
 }
 
