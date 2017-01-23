@@ -47,6 +47,8 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
 
 @implementation CTAssetsPickerController
 
+@synthesize delegate;
+
 - (id)init
 {
     CTAssetsGroupViewController *groupViewController = [[CTAssetsGroupViewController alloc] init];

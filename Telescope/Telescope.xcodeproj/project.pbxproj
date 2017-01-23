@@ -149,10 +149,7 @@
 		DB8D0BAE1DF50656008E8B15 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BAD1DF50656008E8B15 /* UIView+Frame.m */; };
 		DB8D0BB01DF5193B008E8B15 /* TEExpression.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DB8D0BAF1DF5193B008E8B15 /* TEExpression.bundle */; };
 		DB8D0BB21DF51B08008E8B15 /* TEExpressionNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB8D0BB11DF51B08008E8B15 /* TEExpressionNames.plist */; };
-		DB8D0BBA1DF69418008E8B15 /* TEXmlMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BB91DF69418008E8B15 /* TEXmlMessage.m */; };
 		DB8D0BBD1DF69499008E8B15 /* TEChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BBC1DF69499008E8B15 /* TEChatMessage.m */; };
-		DB8D0BC01DF69595008E8B15 /* TEXmlItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BBF1DF69595008E8B15 /* TEXmlItemList.m */; };
-		DB8D0BC31DF6998E008E8B15 /* TEXmlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BC21DF6998E008E8B15 /* TEXmlModel.m */; };
 		DB8D0BC61DF6A198008E8B15 /* TEMsgSubItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BC51DF6A198008E8B15 /* TEMsgSubItem.m */; };
 		DB8D0BC91DF6A7DC008E8B15 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BC81DF6A7DC008E8B15 /* XMLDictionary.m */; };
 		DB8D0BCC1DF7A327008E8B15 /* TEChatXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0BCB1DF7A327008E8B15 /* TEChatXMLReader.m */; };
@@ -487,14 +484,8 @@
 		DB8D0BAD1DF50656008E8B15 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		DB8D0BAF1DF5193B008E8B15 /* TEExpression.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TEExpression.bundle; sourceTree = "<group>"; };
 		DB8D0BB11DF51B08008E8B15 /* TEExpressionNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TEExpressionNames.plist; sourceTree = "<group>"; };
-		DB8D0BB81DF69418008E8B15 /* TEXmlMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEXmlMessage.h; sourceTree = "<group>"; };
-		DB8D0BB91DF69418008E8B15 /* TEXmlMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEXmlMessage.m; sourceTree = "<group>"; };
 		DB8D0BBB1DF69499008E8B15 /* TEChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEChatMessage.h; sourceTree = "<group>"; };
 		DB8D0BBC1DF69499008E8B15 /* TEChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEChatMessage.m; sourceTree = "<group>"; };
-		DB8D0BBE1DF69595008E8B15 /* TEXmlItemList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEXmlItemList.h; sourceTree = "<group>"; };
-		DB8D0BBF1DF69595008E8B15 /* TEXmlItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEXmlItemList.m; sourceTree = "<group>"; };
-		DB8D0BC11DF6998E008E8B15 /* TEXmlModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEXmlModel.h; sourceTree = "<group>"; };
-		DB8D0BC21DF6998E008E8B15 /* TEXmlModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEXmlModel.m; sourceTree = "<group>"; };
 		DB8D0BC41DF6A198008E8B15 /* TEMsgSubItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEMsgSubItem.h; sourceTree = "<group>"; };
 		DB8D0BC51DF6A198008E8B15 /* TEMsgSubItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEMsgSubItem.m; sourceTree = "<group>"; };
 		DB8D0BC71DF6A7DC008E8B15 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
@@ -1389,14 +1380,8 @@
 			children = (
 				DB8D0BCA1DF7A327008E8B15 /* TEChatXMLReader.h */,
 				DB8D0BCB1DF7A327008E8B15 /* TEChatXMLReader.m */,
-				DB8D0BC11DF6998E008E8B15 /* TEXmlModel.h */,
-				DB8D0BC21DF6998E008E8B15 /* TEXmlModel.m */,
-				DB8D0BB81DF69418008E8B15 /* TEXmlMessage.h */,
-				DB8D0BB91DF69418008E8B15 /* TEXmlMessage.m */,
 				DB8D0BBB1DF69499008E8B15 /* TEChatMessage.h */,
 				DB8D0BBC1DF69499008E8B15 /* TEChatMessage.m */,
-				DB8D0BBE1DF69595008E8B15 /* TEXmlItemList.h */,
-				DB8D0BBF1DF69595008E8B15 /* TEXmlItemList.m */,
 				DB8D0BC41DF6A198008E8B15 /* TEMsgSubItem.h */,
 				DB8D0BC51DF6A198008E8B15 /* TEMsgSubItem.m */,
 			);
@@ -1605,7 +1590,6 @@
 				DB664E9B1DEE847000EC40A8 /* TEVideoScrollView.m in Sources */,
 				DB733F301E31C2F70026FBBF /* TEBubbleAudioCell.m in Sources */,
 				DB5FBBB41E120EEE005DF70C /* UIScrollView+MJExtension.m in Sources */,
-				DB8D0BC01DF69595008E8B15 /* TEXmlItemList.m in Sources */,
 				DB860DAA1DC2013800C94035 /* TEActiveWheel.m in Sources */,
 				DB6DA7141D792D1900430922 /* AppDelegate.m in Sources */,
 				DB5FBBAF1E120EEE005DF70C /* MJRefreshNormalHeader.m in Sources */,
@@ -1653,7 +1637,6 @@
 				DB664F181DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m in Sources */,
 				DB0CA65E1E03FBA600AD4F2F /* TECoreDataHelper+Chat.m in Sources */,
 				DB5FBB681E1110C0005DF70C /* LWImageBrowser.m in Sources */,
-				DB8D0BC31DF6998E008E8B15 /* TEXmlModel.m in Sources */,
 				DB8D0BDF1DF7F998008E8B15 /* TETextTouchUtils.m in Sources */,
 				DB8D0BE61DFA84C7008E8B15 /* TEBubbleCellInnerLayout.m in Sources */,
 				DB5FBBAA1E120EEE005DF70C /* MJRefreshAutoStateFooter.m in Sources */,
@@ -1680,7 +1663,6 @@
 				DB5FBBAC1E120EEE005DF70C /* MJRefreshBackNormalFooter.m in Sources */,
 				DB6C7E301DFFDB4B000BCE8C /* CTAssetsViewCell.m in Sources */,
 				DB1CF6731E262D1A003AB687 /* TEVideoPlayerViewController.m in Sources */,
-				DB8D0BBA1DF69418008E8B15 /* TEXmlMessage.m in Sources */,
 				DB664E691DEE843F00EC40A8 /* MLLabelLayoutManager.m in Sources */,
 				DB664E981DEE847000EC40A8 /* TEDefaultCollectionCell.m in Sources */,
 				DB8D0BE91DFA9633008E8B15 /* TEMessageView.m in Sources */,

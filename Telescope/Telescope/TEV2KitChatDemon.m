@@ -17,6 +17,7 @@ static TEV2KitChatDemon* _demon = nil;
 
 @interface TEV2KitChatDemon ()
 
+@property (nonatomic,strong) NSMutableDictionary<NSString*,TEMessage*>* processingMessage;
 
 @end
 
@@ -76,6 +77,16 @@ static TEV2KitChatDemon* _demon = nil;
     }
     return _pictureStorePath;
 }
+
+
+-(NSMutableDictionary<NSString*,TEMessage*>*)processingMessage
+{
+    if (!_processingMessage) {
+        _processingMessage = [[NSMutableDictionary alloc] init];
+    }
+    return _processingMessage;
+}
+
 
 #pragma mark - *** ChatDelegate ***
 
@@ -165,7 +176,7 @@ static TEV2KitChatDemon* _demon = nil;
     NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
     NSAssert(messageArray.count == 1, @"有多个条件满足条件");
     
-    
+    /// 生成缩略图
     
     [weakContext performBlock:^{
         __weak TEMessage* message = messageArray.firstObject;
@@ -195,6 +206,10 @@ static TEV2KitChatDemon* _demon = nil;
            message.type == TEChatMessageTypeRichText){
             message.state = code == 0 ? TEMsgTransStateSucced : TEMsgTransStateError;
         }
+        else if(message.type == TEChatMessageTypeImage){
+            TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)message.chatMessage.msgItemList.firstObject;
+            [self.processingMessage setObject:message forKey:imageItem.fileName];
+        }
         
         if ([weakContext hasChanges]) {
             NSError* error;
@@ -211,19 +226,18 @@ static TEV2KitChatDemon* _demon = nil;
     }
     
     __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
+//
+//    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
+//    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",fileID];
+//    [fetchRequest setPredicate:predicat];
+//    NSError* error;
+//    NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
+//    //NSAssert(messageArray.count == 1, @"有重复id的消息记录，或者未找到消息记录");
 
-    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
-    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",fileID];
-    [fetchRequest setPredicate:predicat];
-    NSError* error;
-    NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
-    NSAssert(messageArray.count == 1, @"有多个条件满足条件");
-    
-
-    
+    TEMessage* message = self.processingMessage[fileID];
+    message.state = 0 == code ? TEMsgTransStateSucced : TEMsgTransStateError;
+    if(message) [self.processingMessage removeObjectForKey:fileID];
     [weakContext performBlock:^{
-        __weak TEMessage* message = messageArray.firstObject;
-        message.state = TEMsgTransStateSucced;
         if ([weakContext hasChanges]) {
             NSError* error;
             [weakContext save:&error];

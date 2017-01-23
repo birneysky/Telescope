@@ -162,4 +162,10 @@
         [self.delegate didSelectLinkOfURL:url];
     }
 }
+
+- (void)didSelectAudioOfFile:(NSString *)fileName
+{
+    
+}
+
 @end

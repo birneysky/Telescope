@@ -41,7 +41,7 @@
 /**
  *  The assets picker’s delegate object.
  */
-@property (nonatomic, weak) id <UINavigationControllerDelegate, CTAssetsPickerControllerDelegate> delegate;
+@property (nonatomic, weak) id <UINavigationControllerDelegate,CTAssetsPickerControllerDelegate> delegate;
 
 /**
  *  Set the `ALAssetsFilter` to filter the picker contents.

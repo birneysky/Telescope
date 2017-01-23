@@ -12,7 +12,7 @@
 #import "TEAnnotation.h"
 #import "TEVideoPlayerViewController.h"
 
-@interface TELiveShowMapController ()<MKMapViewDelegate>
+@interface TELiveShowMapController ()<MKMapViewDelegate,UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 

@@ -502,11 +502,11 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
                 TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)item;
                 NSString* filePath = [[TEV2KitChatDemon defaultDemon].pictureStorePath
                                       stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",imageItem.fileName,imageItem.fileExt]];
-                [[V2Kit defaultKit] sendMediaFileMessage:filePath
+                [[V2Kit defaultKit] sendMediaFileWithPath:filePath
                                                 toUserID:self.session.remoteUsrID
                                                  inGroup:0
                                                     type:MediaFileTypePicture
-                                               messageID:message.messageID];
+                                                   fileID:imageItem.fileName];
             }
         }];
     }];

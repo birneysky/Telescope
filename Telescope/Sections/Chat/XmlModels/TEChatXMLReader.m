@@ -121,6 +121,7 @@
         audioItem.duration = [attributeDict[TESecondsAttribute] integerValue];
         audioItem.frame = CGRectMake(0, 0, 100, 44);
         [_chatMessage addItem:audioItem];
+        _chatMessage.type = TEChatMessageTypeAudio;
     }
     
     

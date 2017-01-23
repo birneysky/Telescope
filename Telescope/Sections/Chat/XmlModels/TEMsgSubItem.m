@@ -85,8 +85,8 @@
 
 - (NSString*)filePath
 {
-    //NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@%@",self.fileName,@"thumbnail",self.fileExt];
-    NSString* fileThumbnailName = [NSString stringWithFormat:@"%@%@",self.fileName,self.fileExt];
+    NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@%@",self.fileName,@"thumbnail",self.fileExt];
+    //NSString* fileThumbnailName = [NSString stringWithFormat:@"%@%@",self.fileName,self.fileExt];
     return [self.path stringByAppendingPathComponent:fileThumbnailName];
 }
 

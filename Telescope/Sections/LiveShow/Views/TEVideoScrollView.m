@@ -74,9 +74,6 @@
 {
     [super layoutSubviews];
     
-    CGFloat selfWidth = self.bounds.size.width;
-    CGFloat selfHeight = self.bounds.size.height;
-    
     self.scrollView.frame = self.bounds;
     
     

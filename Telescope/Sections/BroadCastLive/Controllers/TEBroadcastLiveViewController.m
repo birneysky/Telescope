@@ -271,4 +271,21 @@
     });
     
 }
+
+- (void)onKickConf
+{
+    
+}
+
+-  (void) onNotifyConf:(NSString*) showInfoXml userInfoXml:(NSString*)xml
+{
+    
+}
+
+
+- (void)onConfMute
+{
+    
+}
+
 @end

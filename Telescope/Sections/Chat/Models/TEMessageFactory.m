@@ -11,7 +11,6 @@
 #import "TEMessage+CoreDataProperties.h"
 #import "TEChatSession+CoreDataProperties.h"
 #import "TECacheUser+CoreDataProperties.h"
-#import "TEXmlMessage.h"
 #import "XMLDictionary.h"
 #import "TEChatXMLReader.h"
 
