@@ -11,8 +11,20 @@
 
 @interface CALayer (Additions)
 
+
+/**
+ 根据UIColor设置Layer的边框颜色
+
+ @param color 颜色对象实例
+ */
 -(void)setBorderColorFromUIColor:(UIColor*)color;
 
+
+/**
+ 根据UIcolor设置layer的阴影颜色
+
+ @param color 颜色对象实例
+ */
 - (void)setShadowColorFromUIColor:(UIColor*)color;
 
 @end

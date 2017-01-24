@@ -130,5 +130,22 @@
     [self excuteBlock:block];
 }
 
+- (void)save
+{
+    __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
+    [weakContext performBlock:^{
+        if ([weakContext hasChanges]) {
+            NSError* error;
+            [weakContext save:&error];
+        }
+    }];
+}
+
+- (void)saveWithBlock:(void (^)())block
+{
+    if (block) {
+        [self excuteBlock:block];
+    }
+}
 
 @end

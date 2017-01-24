@@ -10,6 +10,12 @@
 
 @interface NSString (UUID)
 
+
+/**
+ 生成uuid
+
+ @return uuid字符串
+ */
 +(NSString*)UUID;
 
 @end

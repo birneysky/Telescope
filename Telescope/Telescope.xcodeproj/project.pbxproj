@@ -127,7 +127,6 @@
 		DB6C7E301DFFDB4B000BCE8C /* CTAssetsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E241DFFDB4B000BCE8C /* CTAssetsViewCell.m */; };
 		DB6C7E311DFFDB4B000BCE8C /* CTAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E261DFFDB4B000BCE8C /* CTAssetsViewController.m */; };
 		DB6C7E331DFFDB4B000BCE8C /* NSDate+timeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E291DFFDB4B000BCE8C /* NSDate+timeDescription.m */; };
-		DB6C7E361DFFF404000BCE8C /* TESizeAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E341DFFF404000BCE8C /* TESizeAspect.m */; };
 		DB6C7E381E014C41000BCE8C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB6C7E371E014C41000BCE8C /* Images.xcassets */; };
 		DB6C7E3B1E023ED7000BCE8C /* TEVideoChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6C7E3A1E023ED7000BCE8C /* TEVideoChatViewController.m */; };
 		DB6DA7111D792D1900430922 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7101D792D1900430922 /* main.m */; };
@@ -139,6 +138,7 @@
 		DB6DA7381D792D1900430922 /* TelescopeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7371D792D1900430922 /* TelescopeUITests.m */; };
 		DB733F2D1E31BC770026FBBF /* TEAudioInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB733F2C1E31BC760026FBBF /* TEAudioInfoView.m */; };
 		DB733F301E31C2F70026FBBF /* TEBubbleAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB733F2F1E31C2F70026FBBF /* TEBubbleAudioCell.m */; };
+		DB733F461E36FCA90026FBBF /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DB733F451E36FCA90026FBBF /* UIImage+Utils.m */; };
 		DB860D8A1DC1E19F00C94035 /* TEBezierPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860D891DC1E19F00C94035 /* TEBezierPathButton.m */; };
 		DB860DAA1DC2013800C94035 /* TEActiveWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DA91DC2013800C94035 /* TEActiveWheel.m */; };
 		DB860DAE1DC2F35D00C94035 /* TEUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB860DAD1DC2F35D00C94035 /* TEUser.m */; };
@@ -443,8 +443,6 @@
 		DB6C7E261DFFDB4B000BCE8C /* CTAssetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsViewController.m; sourceTree = "<group>"; };
 		DB6C7E281DFFDB4B000BCE8C /* NSDate+timeDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timeDescription.h"; sourceTree = "<group>"; };
 		DB6C7E291DFFDB4B000BCE8C /* NSDate+timeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timeDescription.m"; sourceTree = "<group>"; };
-		DB6C7E341DFFF404000BCE8C /* TESizeAspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TESizeAspect.m; sourceTree = "<group>"; };
-		DB6C7E351DFFF404000BCE8C /* TESizeAspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TESizeAspect.h; sourceTree = "<group>"; };
 		DB6C7E371E014C41000BCE8C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DB6C7E391E023ED7000BCE8C /* TEVideoChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEVideoChatViewController.h; sourceTree = "<group>"; };
 		DB6C7E3A1E023ED7000BCE8C /* TEVideoChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEVideoChatViewController.m; sourceTree = "<group>"; };
@@ -466,6 +464,8 @@
 		DB733F2C1E31BC760026FBBF /* TEAudioInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAudioInfoView.m; sourceTree = "<group>"; };
 		DB733F2E1E31C2F70026FBBF /* TEBubbleAudioCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEBubbleAudioCell.h; sourceTree = "<group>"; };
 		DB733F2F1E31C2F70026FBBF /* TEBubbleAudioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEBubbleAudioCell.m; sourceTree = "<group>"; };
+		DB733F441E36FCA90026FBBF /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
+		DB733F451E36FCA90026FBBF /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		DB860D881DC1E19F00C94035 /* TEBezierPathButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEBezierPathButton.h; sourceTree = "<group>"; };
 		DB860D891DC1E19F00C94035 /* TEBezierPathButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEBezierPathButton.m; sourceTree = "<group>"; };
 		DB860DA81DC2013800C94035 /* TEActiveWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEActiveWheel.h; sourceTree = "<group>"; };
@@ -949,8 +949,8 @@
 				DB664DDE1DEE83E200EC40A8 /* CALayer+Additions.m */,
 				DBF2089B1DFFA136009654F6 /* NSString+UUID.h */,
 				DBF2089C1DFFA136009654F6 /* NSString+UUID.m */,
-				DB6C7E351DFFF404000BCE8C /* TESizeAspect.h */,
-				DB6C7E341DFFF404000BCE8C /* TESizeAspect.m */,
+				DB733F441E36FCA90026FBBF /* UIImage+Utils.h */,
+				DB733F451E36FCA90026FBBF /* UIImage+Utils.m */,
 				DB0CA65C1E03FBA600AD4F2F /* TECoreDataHelper+Chat.h */,
 				DB0CA65D1E03FBA600AD4F2F /* TECoreDataHelper+Chat.m */,
 			);
@@ -1636,6 +1636,7 @@
 				DB1CF6701E26241E003AB687 /* TELiveShowMapController.m in Sources */,
 				DB664F181DEEC32D00EC40A8 /* TEMessage+CoreDataProperties.m in Sources */,
 				DB0CA65E1E03FBA600AD4F2F /* TECoreDataHelper+Chat.m in Sources */,
+				DB733F461E36FCA90026FBBF /* UIImage+Utils.m in Sources */,
 				DB5FBB681E1110C0005DF70C /* LWImageBrowser.m in Sources */,
 				DB8D0BDF1DF7F998008E8B15 /* TETextTouchUtils.m in Sources */,
 				DB8D0BE61DFA84C7008E8B15 /* TEBubbleCellInnerLayout.m in Sources */,
@@ -1705,7 +1706,6 @@
 				DB664DEA1DEE83E200EC40A8 /* TestCollectionViewController.m in Sources */,
 				DB664EA61DEE856A00EC40A8 /* Telescope.xcdatamodel in Sources */,
 				DB5FBBAE1E120EEE005DF70C /* MJRefreshGifHeader.m in Sources */,
-				DB6C7E361DFFF404000BCE8C /* TESizeAspect.m in Sources */,
 				DB664E6E1DEE843F00EC40A8 /* EVCircularProgressView.m in Sources */,
 				DB860D8A1DC1E19F00C94035 /* TEBezierPathButton.m in Sources */,
 				DB664E841DEE845400EC40A8 /* TEBroadcastLiveViewController.m in Sources */,

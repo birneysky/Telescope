@@ -7,11 +7,12 @@
 //
 
 #import "TEV2KitChatDemon.h"
-#import "TECoreDataHelper.h"
+#import "TECoreDataHelper+Chat.h"
 #import "TEChatSession+CoreDataProperties.h"
 #import "TEMessage+CoreDataProperties.h"
 #import "TEChatMessage.h"
 #import "TEChatXMLReader.h"
+#import "UIImage+Utils.h"
 
 static TEV2KitChatDemon* _demon = nil;
 
@@ -102,11 +103,17 @@ static TEV2KitChatDemon* _demon = nil;
     TEChatMessage* chatMsgModel =  [TEChatXMLReader messageForXmlString:xmlText error:nil];
     chatMsgModel.senderIsMe = NO;
     chatMsgModel.time = date;
+    
 
+
+    TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:weakContext];
+    if(TEChatMessageTypeImage == chatMsgModel.type){
+        TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)chatMsgModel.msgItemList.firstObject;
+        [self.processingMessage setObject:message forKey:imageItem.fileName];
+    }
+    
     [weakContext performBlock:^{
-
         NSDate* recvDate =  [NSDate date];
-        TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:weakContext];
         message.mID = mid;
         message.senderID = uid;
         message.receiverID = self.selfUser.userID;
@@ -115,7 +122,7 @@ static TEV2KitChatDemon* _demon = nil;
         message.type = MediaFileTypeText;
         message.recvTime = recvDate;
         message.chatMessage = chatMsgModel;
-        message.state = TEMsgTransStateSending;
+        message.state = TEMsgTransStateReceiving;
         
         TEChatSession* session = nil;
         if (sessionArray.count == 0){
@@ -155,7 +162,7 @@ static TEV2KitChatDemon* _demon = nil;
     if (chatMsgModel.type == TEChatMessageTypeRichText) {
         [chatMsgModel.msgItemList enumerateObjectsUsingBlock:^(TEMsgSubItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (obj.type == Image) {
-                TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)obj;
+                //TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)obj;
                
             }
         }];
@@ -165,21 +172,31 @@ static TEV2KitChatDemon* _demon = nil;
 }
 
 
-- (void)didReceiveMediaFile:(NSString*)fileName type:(MediaFileType)type fromUserID:(long long)uid inGroup:(long long)gid messageID:(NSString*)mid sendTime:(NSDate*)date
+- (void)didReceiveMediaFile:(NSString*)fileName type:(MediaFileType)type fromUserID:(long long)uid inGroup:(long long)gid fileID:(NSString*)fid sendTime:(NSDate*)date
 {
     __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
     
-    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
-    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",mid];
-    [fetchRequest setPredicate:predicat];
-    NSError* error;
-    NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
-    NSAssert(messageArray.count == 1, @"有多个条件满足条件");
+//    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
+//    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",mid];
+//    [fetchRequest setPredicate:predicat];
+//    NSError* error;
+//    NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
+//    NSAssert(messageArray.count == 1, @"有多个条件满足条件");
+//    
+//    __weak TEMessage* message = messageArray.firstObject;
     
+    TEMessage* message = self.processingMessage[fid];
     /// 生成缩略图
+    if( MediaFileTypePicture == type){
+        TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)message.chatMessage.msgItemList.firstObject;
+        NSString* imagePath = [imageItem.path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",imageItem.fileName,imageItem.fileExt]];
+        UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
+        NSString* thumbnailName =  [NSString stringWithFormat:@"%@_%@%@",imageItem.fileName,@"thumbnail",imageItem.fileExt];
+        [image produceThumbnailInPath:imageItem.path minSize:CGSizeMake(40, 40) maxSize:CGSizeMake(200, 200) fileName:thumbnailName];
+    }
     
     [weakContext performBlock:^{
-        __weak TEMessage* message = messageArray.firstObject;
+        
         message.state = TEMsgTransStateSucced;
         [message reLayout];
         if ([weakContext hasChanges]) {
@@ -225,7 +242,7 @@ static TEV2KitChatDemon* _demon = nil;
         
     }
     
-    __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
+    //__weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
 //
 //    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
 //    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",fileID];
@@ -237,12 +254,7 @@ static TEV2KitChatDemon* _demon = nil;
     TEMessage* message = self.processingMessage[fileID];
     message.state = 0 == code ? TEMsgTransStateSucced : TEMsgTransStateError;
     if(message) [self.processingMessage removeObjectForKey:fileID];
-    [weakContext performBlock:^{
-        if ([weakContext hasChanges]) {
-            NSError* error;
-            [weakContext save:&error];
-        }
-    }];
+    [[TECoreDataHelper defaultHelper] save];
     
 }
 

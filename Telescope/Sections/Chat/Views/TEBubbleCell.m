@@ -114,7 +114,8 @@
 
     }
     
-    if (TEMsgTransStateSending == message.state) {
+    if (TEMsgTransStateSending == message.state||
+        TEMsgTransStateReceiving == message.state) {
         self.indicator.frame = message.layout.indicatorFrame;
         [self.contentView addSubview:self.indicator];
         [self.indicator startAnimating];

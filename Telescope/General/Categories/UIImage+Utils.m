@@ -1,12 +1,12 @@
 //
-//  TESizeAspect.c
+//  UIImage+Utils.m
 //  Telescope
 //
-//  Created by zhangguang on 16/12/13.
-//  Copyright © 2016年 com.v2tech.Telescope. All rights reserved.
+//  Created by zhangguang on 17/1/24.
+//  Copyright © 2017年 com.v2tech.Telescope. All rights reserved.
 //
 
-#include "TESizeAspect.h"
+#import "UIImage+Utils.h"
 
 
 void resizeFrameSizeInSize(CGFloat * sourceWidth,CGFloat * sourceHeight,CGFloat limitWidth,CGFloat limitHeight)
@@ -53,3 +53,36 @@ void aspectSizeInContainer(CGFloat* sourceWidth,CGFloat* sourceHeight,CGSize min
         }
     }
 }
+
+
+
+@implementation UIImage (Utils)
+
+- (void)produceThumbnailInPath:(NSString*)path
+                       minSize:(CGSize)minSize
+                       maxSize:(CGSize)maxSize
+                      fileName:(NSString*)fileName
+{
+    BOOL isDirectory = YES;
+    NSAssert([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory], @"存储路径不存在") ;
+    CGImageRef aspectImg = self.CGImage;
+    CGFloat width = CGImageGetWidth(aspectImg);
+    CGFloat height = CGImageGetHeight(aspectImg);
+    aspectSizeInContainer(&width, &height, minSize, maxSize);
+    
+    
+    CGSize imageSize = CGSizeMake(width, height);
+    UIGraphicsBeginImageContext(imageSize);
+    UIImage* thumbnailImage = [UIImage imageWithCGImage:aspectImg];
+    [thumbnailImage drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+    UIImage* resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    NSString* thumbnailImagePath = [path stringByAppendingPathComponent:fileName];
+    NSData* thumbnailJPGData = UIImageJPEGRepresentation(resultImage, 1);
+
+    [thumbnailJPGData writeToFile:thumbnailImagePath atomically:YES];
+}
+
+
+@end

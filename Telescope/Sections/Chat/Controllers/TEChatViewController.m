@@ -24,7 +24,7 @@
 #import "CTAssetsPickerController.h"
 
 #import <Photos/Photos.h>
-#import "TESizeAspect.h"
+#import "UIImage+Utils.h"
 
 #import <V2Kit/V2Kit.h>
 

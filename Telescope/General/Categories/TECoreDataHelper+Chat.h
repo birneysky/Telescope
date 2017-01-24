@@ -72,6 +72,20 @@ typedef NS_ENUM(NSInteger,TEFileType){
 - (void)deleteMessages:(NSArray<TEMessage*>*)msgs;
 
 
+/**
+ 异步更新coredata数据
+
+ @param block 更新逻辑block
+ */
 - (void)updateWithBlock:(void (^)())block;
+
+
+/**
+ 异步存储
+ */
+- (void)save;
+
+- (void)saveWithBlock:(void (^)())block;
+
 
 @end

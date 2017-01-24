@@ -3,7 +3,7 @@
 //
 
 #import "TEChatXMLReader.h"
-#import "TESizeAspect.h"
+#import "UIImage+Utils.h"
 #import "TEV2KitChatDemon.h"
 
 @interface TEChatXMLReader (Internal)
