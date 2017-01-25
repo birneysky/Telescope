@@ -106,13 +106,18 @@ static TEV2KitChatDemon* _demon = nil;
     
 
 
-    TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:weakContext];
-    if(TEChatMessageTypeImage == chatMsgModel.type){
-        TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)chatMsgModel.msgItemList.firstObject;
-        [self.processingMessage setObject:message forKey:imageItem.fileName];
-    }
     
     [weakContext performBlock:^{
+        TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:weakContext];
+        if(TEChatMessageTypeImage == chatMsgModel.type){
+            TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)chatMsgModel.msgItemList.firstObject;
+            [self.processingMessage setObject:message forKey:imageItem.fileName];
+            message.state = TEMsgTransStateReceiving;
+        }
+        else{
+            message.state = TEMsgTransStateSucced;
+        }
+        
         NSDate* recvDate =  [NSDate date];
         message.mID = mid;
         message.senderID = uid;
@@ -122,7 +127,7 @@ static TEV2KitChatDemon* _demon = nil;
         message.type = MediaFileTypeText;
         message.recvTime = recvDate;
         message.chatMessage = chatMsgModel;
-        message.state = TEMsgTransStateReceiving;
+        
         
         TEChatSession* session = nil;
         if (sessionArray.count == 0){
@@ -175,17 +180,9 @@ static TEV2KitChatDemon* _demon = nil;
 - (void)didReceiveMediaFile:(NSString*)fileName type:(MediaFileType)type fromUserID:(long long)uid inGroup:(long long)gid fileID:(NSString*)fid sendTime:(NSDate*)date
 {
     __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
-    
-//    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
-//    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",mid];
-//    [fetchRequest setPredicate:predicat];
-//    NSError* error;
-//    NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
-//    NSAssert(messageArray.count == 1, @"有多个条件满足条件");
-//    
-//    __weak TEMessage* message = messageArray.firstObject;
-    
+
     TEMessage* message = self.processingMessage[fid];
+    [self.processingMessage removeObjectForKey:fid];
     /// 生成缩略图
     if( MediaFileTypePicture == type){
         TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)message.chatMessage.msgItemList.firstObject;
@@ -194,15 +191,10 @@ static TEV2KitChatDemon* _demon = nil;
         NSString* thumbnailName =  [NSString stringWithFormat:@"%@_%@%@",imageItem.fileName,@"thumbnail",imageItem.fileExt];
         [image produceThumbnailInPath:imageItem.path minSize:CGSizeMake(40, 40) maxSize:CGSizeMake(200, 200) fileName:thumbnailName];
     }
-    
-    [weakContext performBlock:^{
-        
+    ///修改消息传输状态并存储至数据库
+    [[TECoreDataHelper defaultHelper] saveWithBlock:^{
         message.state = TEMsgTransStateSucced;
         [message reLayout];
-        if ([weakContext hasChanges]) {
-            NSError* error;
-            [weakContext save:&error];
-        }
     }];
 }
 
@@ -218,6 +210,7 @@ static TEV2KitChatDemon* _demon = nil;
     NSAssert(messageArray.count == 1, @"有多个条件满足条件");
     
     __weak TEMessage* message = messageArray.firstObject;
+    
     [weakContext performBlock:^{
         if(message.type == TEChatMessageTypeText ||
            message.type == TEChatMessageTypeRichText){
@@ -238,22 +231,10 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (void)didReceiveResponseOfSendingMediaFile:(NSString*)fileID responseCode:(NSInteger)code  type:(MediaFileType)type  fromUserID:(long long)uid inGroup:(long long)gid
 {
-    if (MediaFileTypePicture == type) {
-        
-    }
-    
-    //__weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
-//
-//    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
-//    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",fileID];
-//    [fetchRequest setPredicate:predicat];
-//    NSError* error;
-//    NSArray<TEMessage*>* messageArray = [weakContext executeFetchRequest:fetchRequest error:&error];
-//    //NSAssert(messageArray.count == 1, @"有重复id的消息记录，或者未找到消息记录");
-
+     ///修改传输状态并存储至数据库
     TEMessage* message = self.processingMessage[fileID];
-    message.state = 0 == code ? TEMsgTransStateSucced : TEMsgTransStateError;
     if(message) [self.processingMessage removeObjectForKey:fileID];
+    message.state = 0 == code ? TEMsgTransStateSucced : TEMsgTransStateError;
     [[TECoreDataHelper defaultHelper] save];
     
 }

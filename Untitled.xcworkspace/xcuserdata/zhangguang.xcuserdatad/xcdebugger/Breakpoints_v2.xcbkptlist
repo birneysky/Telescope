@@ -132,7 +132,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "506936515.212125"
+                  timestampString = "506940521.32357"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "280"
@@ -147,7 +147,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "506936515.213928"
+                  timestampString = "506940521.325455"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "280"
@@ -180,7 +180,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "506936515.217491"
+                  timestampString = "506940521.329108"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "271"
@@ -195,7 +195,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "506936515.219246"
+                  timestampString = "506940521.330859"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "271"
@@ -244,7 +244,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "506936515.225882"
+                  timestampString = "506940521.337465"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "298"
@@ -259,7 +259,7 @@
                   moduleName = "Telescope"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangguang/mysource/source_git/Telescope/Telescope/Helpers/Vendors/CTAssetsPickerController/CTAssetsGroupViewController.m"
-                  timestampString = "506936515.227889"
+                  timestampString = "506940521.339265"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "298"
@@ -442,22 +442,6 @@
             startingLineNumber = "71"
             endingLineNumber = "71"
             landmarkName = "CP2PProxy::dealConnect(int localport,const string&amp; ip, int port)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Telescope/Telescope/TEV2KitChatDemon.m"
-            timestampString = "506935929.110584"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
-            landmarkName = "-didReceiveMonitorResponse:fileID:type:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
