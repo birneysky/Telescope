@@ -498,15 +498,19 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
                                     inGroup:0
                                   messageID:message.messageID];
         [message.msgItemList enumerateObjectsUsingBlock:^(TEMsgSubItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (Image ==  item.type) {
-                TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)item;
-                NSString* filePath = [[TEV2KitChatDemon defaultDemon].pictureStorePath
-                                      stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",imageItem.fileName,imageItem.fileExt]];
-                [[V2Kit defaultKit] sendMediaFileWithPath:filePath
+            if (Image ==  item.type||
+                Audio == item.type) {
+                TEMsgImageSubItem* mediaItem = (TEMsgImageSubItem*)item;
+                NSString* basePath = Image ==  item.type ?
+                    [TEV2KitChatDemon defaultDemon].pictureStorePath : [TEV2KitChatDemon defaultDemon].audioStorePath;
+                NSString* filePath = [basePath
+                                      stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",mediaItem.fileName,mediaItem.fileExt]];
+               MediaFileType  type = Image ==  item.type  ? MediaFileTypePicture : MediaFileTypeAudio;
+               [[V2Kit defaultKit] sendMediaFileWithPath:filePath
                                                 toUserID:self.session.remoteUsrID
                                                  inGroup:0
-                                                    type:MediaFileTypePicture
-                                                   fileID:imageItem.fileName];
+                                                    type:type
+                                                  fileID:mediaItem.fileName];
             }
         }];
     }];
@@ -731,12 +735,17 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     if(self.isCancelRecordingAudio){
         self.isCancelRecordingAudio = NO;
         [[TECoreDataHelper defaultHelper] deleteMessages:@[self.recordingAudioMessage]];
+        return;
     }
+    
+    ///更新消息
     NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self.startRecordingAudioTime];
      //duration = now - self.startRecordingAudioTime;
     [[TECoreDataHelper defaultHelper] updateWithBlock:^{
         ///重置发送时间
         self.recordingAudioMessage.sendTime = [NSDate date];
+        ///修改传输状态
+        self.recordingAudioMessage.state = TEMsgTransStateSending;
         ///修改音频时长
         TEChatMessage* chatMessage = self.recordingAudioMessage.chatMessage;
         TEMSgAudioSubItem* subItem = (TEMSgAudioSubItem*)chatMessage.msgItemList.firstObject;
@@ -744,7 +753,12 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         self.recordingAudioMessage.content = [chatMessage xmlString];
         ///重新布局
         [self.recordingAudioMessage reLayout];
+        
+        ///发送消息
+        [self sendMessages:@[self.recordingAudioMessage.chatMessage]];
     }];
+    
+
     
 }
 

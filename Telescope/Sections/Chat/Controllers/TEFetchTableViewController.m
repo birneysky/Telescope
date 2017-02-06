@@ -131,7 +131,7 @@
 //                    NSLog(@"new indexpath row %ld, count %ld",indexPath.row, self.frc.fetchedObjects.count);
 //                    [self.tableView scrollToRowAtIndexPath:lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                                          withRowAnimation:UITableViewRowAnimationNone];
+                                          withRowAnimation:UITableViewRowAnimationFade];
 //                    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:newIndexPath];
 //                    CGRect rect = [cell convertRect:cell.frame fromView:self.tableView];
 
@@ -151,16 +151,16 @@
         case NSFetchedResultsChangeUpdate:
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if (!newIndexPath) {
+//                    if (!newIndexPath) {
                         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                              withRowAnimation:UITableViewRowAnimationNone];
-                    }
-                    else{
-                        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                              withRowAnimation:UITableViewRowAnimationNone];
-                        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                                              withRowAnimation:UITableViewRowAnimationNone];
-                    }
+                                              withRowAnimation:UITableViewRowAnimationFade];
+//                    }
+//                    else{
+//                        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+//                                              withRowAnimation:UITableViewRowAnimationNone];
+//                        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+//                                              withRowAnimation:UITableViewRowAnimationNone];
+//                    }
                 });
             }
             break;

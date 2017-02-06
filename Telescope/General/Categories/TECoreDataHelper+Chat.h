@@ -64,6 +64,12 @@ typedef NS_ENUM(NSInteger,TEFileType){
                completion:(void (^)(NSArray<TEMessage*>* array))completion;
 
 
+
+/**
+ 重置所有未传输完成的消息的状态，将这些消息的状态都置为传输失败
+ */
+- (void)resetStatusOfAllTransferingNotCompletedMessages;
+
 /**
  删除聊条消息记录
 
@@ -85,7 +91,16 @@ typedef NS_ENUM(NSInteger,TEFileType){
  */
 - (void)save;
 
+
+/**
+ 异步存储
+ 
+ 存储之前可以做某些操作，这些操作可以放入block中
+
+ @param block 存储之前需要执行的block
+ */
 - (void)saveWithBlock:(void (^)())block;
+
 
 
 @end

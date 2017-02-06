@@ -13,6 +13,7 @@
 #import "TEActiveWheel.h"
 #import "MLLinkLabel.h"
 #import "TEV2KitChatDemon.h"
+#import "TECoreDataHelper+Chat.h"
 #import "TEKeyChain.h"
 
 #import "TEWebViewController.h"
@@ -131,6 +132,12 @@
                                else{
                                    [TEActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:response.errorInfo];
                                }
+                               
+                               ///重置消息的传输状态
+                               dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                   [[TECoreDataHelper defaultHelper] resetStatusOfAllTransferingNotCompletedMessages];
+                               });
+                               
                            } onError:^{
                                 [TEActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"连接服务器失败"];
                            }];

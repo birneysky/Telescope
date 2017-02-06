@@ -116,6 +116,26 @@
 
 }
 
+- (void)resetStatusOfAllTransferingNotCompletedMessages
+{
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
+    NSPredicate* predicat = [NSPredicate predicateWithFormat:@"state = %d || state = %d || state = %d ",
+                             TEMsgTransStateReceiving,TEMsgTransStateSending,TEMsgTransStatePause];
+    [fetchRequest setPredicate:predicat];
+    
+    NSError* error;
+    NSArray<TEMessage*>* result = [self.backgroundContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        DDLogError(@"‼️‼️‼️‼️ executeFetchRequest error: %@",error);
+    }
+    
+    [result enumerateObjectsUsingBlock:^(TEMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.state = TEMsgTransStateError;
+    }];
+    
+    [self save];
+}
+
 - (void)deleteMessages:(NSArray<TEMessage*>*)msgs
 {
     [self excuteBlock:^{

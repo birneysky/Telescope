@@ -109,10 +109,14 @@ static TEV2KitChatDemon* _demon = nil;
     
     [weakContext performBlock:^{
         TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:weakContext];
-        if(TEChatMessageTypeImage == chatMsgModel.type){
-            TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)chatMsgModel.msgItemList.firstObject;
-            [self.processingMessage setObject:message forKey:imageItem.fileName];
+        if(TEChatMessageTypeImage == chatMsgModel.type ||
+           TEChatMessageTypeAudio == chatMsgModel.type ){
+            TEMsgImageSubItem* mediaItem = (TEMsgImageSubItem*)chatMsgModel.msgItemList.firstObject;
+            [self.processingMessage setObject:message forKey:mediaItem.fileName];
             message.state = TEMsgTransStateReceiving;
+            MediaFileType type = mediaItem.type == TEChatMessageTypeImage ? MediaFileTypePicture : MediaFileTypeAudio;
+            [[V2Kit defaultKit] monitRecvMediaFile:mediaItem.fileName
+                                              type:type];
         }
         else{
             message.state = TEMsgTransStateSucced;
@@ -124,10 +128,9 @@ static TEV2KitChatDemon* _demon = nil;
         message.receiverID = self.selfUser.userID;
         message.content = xmlText;
         message.sendTime = date;
-        message.type = MediaFileTypeText;
+        message.type = chatMsgModel.type;
         message.recvTime = recvDate;
         message.chatMessage = chatMsgModel;
-        
         
         TEChatSession* session = nil;
         if (sessionArray.count == 0){
@@ -179,7 +182,7 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (void)didReceiveMediaFile:(NSString*)fileName type:(MediaFileType)type fromUserID:(long long)uid inGroup:(long long)gid fileID:(NSString*)fid sendTime:(NSDate*)date
 {
-    __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
+    //__weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
 
     TEMessage* message = self.processingMessage[fid];
     [self.processingMessage removeObjectForKey:fid];
@@ -191,6 +194,12 @@ static TEV2KitChatDemon* _demon = nil;
         NSString* thumbnailName =  [NSString stringWithFormat:@"%@_%@%@",imageItem.fileName,@"thumbnail",imageItem.fileExt];
         [image produceThumbnailInPath:imageItem.path minSize:CGSizeMake(40, 40) maxSize:CGSizeMake(200, 200) fileName:thumbnailName];
     }
+    
+    if(MediaFileTypeAudio == type){
+        
+    }
+    
+    
     ///修改消息传输状态并存储至数据库
     [[TECoreDataHelper defaultHelper] saveWithBlock:^{
         message.state = TEMsgTransStateSucced;
@@ -220,6 +229,10 @@ static TEV2KitChatDemon* _demon = nil;
             TEMsgImageSubItem* imageItem = (TEMsgImageSubItem*)message.chatMessage.msgItemList.firstObject;
             [self.processingMessage setObject:message forKey:imageItem.fileName];
         }
+        else if (message.type == TEChatMessageTypeAudio){
+            TEMSgAudioSubItem* audioItem = (TEMSgAudioSubItem*)message.chatMessage.msgItemList.firstObject;
+            [self.processingMessage setObject:message forKey:audioItem.fileName];
+        }
         
         if ([weakContext hasChanges]) {
             NSError* error;
@@ -241,8 +254,11 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (void)didReceiveMonitorResponse:(NSInteger)code fileID:(NSString*)fid type:(MediaFileType)type
 {
-
-
+    ///修改传输状态并存储至数据库
+    TEMessage* message = self.processingMessage[fid];
+    if(message) [self.processingMessage removeObjectForKey:fid];
+    message.state = 0 == code ? TEMsgTransStateSucced : TEMsgTransStateError;
+    [[TECoreDataHelper defaultHelper] save];
 }
 
 @end

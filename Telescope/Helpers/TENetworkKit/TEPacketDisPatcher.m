@@ -48,9 +48,11 @@
 
 - (void)handleSignalling:(V2PPacket*)packet{
     NSString* packetId = packet.id_p;
-    if (packetId.length > 0) {
+    if(![packetId hasPrefix:@"0x"]) DDLogError(@"‼️‼️‼️‼️ packetId is invalid. data: %@",packet);
+    if (packetId.length > 0 && [packetId hasPrefix:@"0x"]) {
         long long pointValue = strtoll(packetId.UTF8String, NULL, 16);
         if (0 != pointValue) {
+            
             void* operationP = (void*)pointValue;
             NSObject* object = (__bridge NSObject *)(operationP);
             if ([object isMemberOfClass:[TENetworkOperation class]]) {
