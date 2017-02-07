@@ -144,6 +144,8 @@
             forKey:[NSString stringWithFormat:@"_%@",TEFileIDAttribute]];
     [sub setObject:[NSString stringWithFormat:@"%ld",(long)self.duration]
             forKey:[NSString stringWithFormat:@"_%@",TESecondsAttribute]];
+    [sub setObject:self.fileExt
+            forKey:[NSString stringWithFormat:@"_%@",TEFileExtAttribute]];
     return rootDic;
 }
 

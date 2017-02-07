@@ -118,6 +118,7 @@
         TEMSgAudioSubItem* audioItem = [[TEMSgAudioSubItem alloc] initWithType:Audio];
         audioItem.path = [TEV2KitChatDemon defaultDemon].audioStorePath;
         audioItem.fileName = attributeDict[TEFileIDAttribute];
+        audioItem.fileExt = attributeDict[TEFileExtAttribute];
         audioItem.duration = [attributeDict[TESecondsAttribute] integerValue];
         audioItem.frame = CGRectMake(0, 0, 100, 44);
         [_chatMessage addItem:audioItem];

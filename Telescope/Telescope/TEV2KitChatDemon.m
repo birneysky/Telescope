@@ -70,13 +70,13 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (NSString*)audioStorePath
 {
-    if (!_pictureStorePath) {
+    if (!_audioStorePath) {
         NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSString* storeDirectoryName = [NSString stringWithFormat:@"Stores-%lld",self.selfUser.userID];
         
-        _pictureStorePath = [[documentPath stringByAppendingPathComponent:storeDirectoryName] stringByAppendingPathComponent:@"TEAudios"];
+        _audioStorePath = [[documentPath stringByAppendingPathComponent:storeDirectoryName] stringByAppendingPathComponent:@"TEAudios"];
     }
-    return _pictureStorePath;
+    return _audioStorePath;
 }
 
 

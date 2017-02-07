@@ -225,6 +225,9 @@ typedef enum CTDisplayViewState : NSInteger {
             if (image) {
                 CGContextDrawImage(context, obj.frame, image.CGImage);
             }
+            else{
+                NSLog(@"‼️‼️‼️‼️   %@",obj.filePath);
+            }
         }
         else{
             

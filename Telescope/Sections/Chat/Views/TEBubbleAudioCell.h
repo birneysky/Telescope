@@ -8,6 +8,13 @@
 
 #import "TEBubbleCell.h"
 
+@protocol TEBubbleAudioCellDelegate <NSObject>
+
+- (void)didSelectAudioOfFile:(NSString*)fileName;
+
+@end
+
 @interface TEBubbleAudioCell : TEBubbleCell
+
 
 @end

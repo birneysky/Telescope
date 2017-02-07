@@ -18,8 +18,6 @@ extern NSString *const CTDisplayViewLinkPressedNotification;
 
 - (void)didSelectLinkOfURL:(NSString*)url;
 
-- (void)didSelectAudioOfFile:(NSString*)fileName;
-
 @end
 
 @interface TETextLayoutView : UIView

@@ -63,8 +63,8 @@
 - (IJKFFMoviePlayerController*)ijkPlayerController
 {
     if (!_ijkPlayerController) {
-        _ijkPlayerController = [[IJKFFMoviePlayerController alloc] initWithOptions:[IJKFFOptions optionsByDefault]];
-        //_ijkPlayerController = [[IJKFFMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"] withOptions:[IJKFFOptions optionsByDefault]];
+        //_ijkPlayerController = [[IJKFFMoviePlayerController alloc] initWithOptions:[IJKFFOptions optionsByDefault]];
+        _ijkPlayerController = [[IJKFFMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"] withOptions:[IJKFFOptions optionsByDefault]];
         _ijkPlayerController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _ijkPlayerController.view.frame = self.bounds;
         _ijkPlayerController.scalingMode = IJKMPMovieScalingModeAspectFit;
