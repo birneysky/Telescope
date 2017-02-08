@@ -950,18 +950,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iAy-Er-Rlf" id="G5K-Ye-L8h">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nbs-Qv-HFp">
-                                            <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fkE-BY-5Wg">
-                                            <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                            <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -1507,7 +1507,6 @@
                         <outlet property="expressionBtn" destination="29h-6K-hJb" id="WGd-8y-rJM"/>
                         <outlet property="pressTalkBtn" destination="M3E-8v-EjO" id="8F1-L4-lou"/>
                         <outlet property="recordingHUD" destination="Wre-5Z-d04" id="Zqv-pm-lRx"/>
-                        <outlet property="tableView" destination="zTQ-kI-gDA" id="L9B-F6-mat"/>
                         <outlet property="tableViewBottomConstraint" destination="6Sd-ig-I82" id="xf7-XS-oyc"/>
                         <outlet property="textView" destination="j4x-we-q9F" id="gCb-Qh-Yro"/>
                         <outlet property="toolbar" destination="i4f-WP-Xge" id="985-da-pah"/>

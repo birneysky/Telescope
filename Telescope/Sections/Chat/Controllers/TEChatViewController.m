@@ -46,8 +46,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 
 #define TEToolbarMaxHeight 84
 
-@interface TEChatViewController ()<TEChatEmojiPannelDelegate,TEChatMorePanelDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate,AudioRecordingAndPlaybackDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface TEChatViewController ()<TEChatEmojiPannelDelegate,TEChatMorePanelDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate,AudioRecordingDelegate>
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *toolbar;
 @property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
 @property (weak, nonatomic) IBOutlet UIButton *expressionBtn;
@@ -176,7 +175,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     
     self.chatTVC.session = self.session;
     [self addChildViewController:self.chatTVC];
-    [V2Kit defaultKit].recordingAndPlaybackDelegate = self;
+    [V2Kit defaultKit].recordingDelegate = self;
 
     [self.view addSubview:self.morePanel];
     [self.view addSubview:self.emojiPanel];
@@ -762,16 +761,6 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     
 }
 
-- (void)didStartPlayFile:(NSString*)name errorCode:(NSInteger)code
-{
-    
-}
-
-
-- (void)didStopPlayFile:(NSString*)name errorCode:(NSInteger)code
-{
-    
-}
 
 #pragma mark - *** override 3d touch for preview controller ***
 - (NSArray <id <UIPreviewActionItem>> *)previewActionItems {

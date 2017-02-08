@@ -11,12 +11,18 @@
 #import "TEMessage+CoreDataProperties.h"
 #import "TEChatSession+CoreDataProperties.h"
 #import "TEBubbleCell.h"
+#import "TEBubbleAudioCell.h"
+
+
 #import "LWImageBrowserModel.h"
 #import "LWImageBrowser.h"
-
 #import "MJRefresh.h"
 
-@interface TEChatTableViewController () <TEBubbleCellDelegate>
+
+#import <V2Kit/V2Kit.h>
+
+
+@interface TEChatTableViewController () <TEBubbleCellDelegate,TEBubbleAudioPlayDelegate,AudioPlaybackDelegate>
 
 @property (nonatomic,strong) NSFetchRequest* fetchRequest;
 
@@ -25,6 +31,12 @@
  是否自动滑动到底部，当收到新消息时
  */
 @property (nonatomic,assign) BOOL autoScrollToBottomWhenNewMessaeComming;
+
+
+/**
+ 正在播放音频的索引字典，key 文件id， value，为列表中对应的索引
+ */
+@property (nonatomic,strong) NSMutableDictionary<NSString*,NSNumber*>* audioPlayingDict;
 
 @end
 
@@ -39,6 +51,14 @@
     return _fetchRequest;
 }
 
+- (NSMutableDictionary<NSString*,NSNumber*>*)audioPlayingDict
+{
+    if (!_audioPlayingDict) {
+        _audioPlayingDict = [[NSMutableDictionary alloc] init];
+    }
+    return _audioPlayingDict;
+}
+
 #pragma mark - *** Initializer ***
 - (void)dealloc
 {
@@ -51,8 +71,10 @@
     [self.timer invalidate];
     self.timer = nil;
     
+    [V2Kit defaultKit].playbackDelegate = nil;
+    
 //    for (int i =0 ; i < self.frc.fetchedObjects.count; i++) {
-//        TEMessage* messageItem = [self.frc objectAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+//        TEMessage* messageItem = [self.frc objectAtIndexPath:[NSIndexPath indexPathFo§rRow:i inSection:0]];
 //        [self.frc.managedObjectContext refreshObject:messageItem mergeChanges:NO];
 //    }
     
@@ -83,6 +105,7 @@
     _session = session;
     [self configureFetch];
     [self performFetch];
+    [V2Kit defaultKit].playbackDelegate = self;
 }
 
 #pragma mark - *** Helper ***
@@ -133,17 +156,19 @@
     TEBubbleCell *cell;
     TEMessage* message = [self.frc objectAtIndexPath:indexPath];
     if (TEChatMessageTypeAudio == message.type) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"TEAudioMessageCell" forIndexPath:indexPath];
+        TEBubbleAudioCell* audioCell = [tableView dequeueReusableCellWithIdentifier:@"TEAudioMessageCell" forIndexPath:indexPath];
+        audioCell.playDelegate = self;
+        cell = audioCell;
     }
     else{
-        cell = [tableView dequeueReusableCellWithIdentifier:@"TEMessageCell" forIndexPath:indexPath];
+        TEBubbleCell* messageCell = [tableView dequeueReusableCellWithIdentifier:@"TEMessageCell" forIndexPath:indexPath];
+        messageCell.delegate = self;
+        cell = messageCell;
     }
 
 
     
     // Configure the cell...
-
-    cell.delegate = self;
     
     return cell;
 }
@@ -343,6 +368,18 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
+
+#pragma mark - *** TEBubbleAudioPlayDelegate ***
+- (void)didSelectAudioCell:(UITableViewCell*)cell fileName:(NSString*)fileName
+{
+    [[V2Kit defaultKit] playAudio:fileName];
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    //self.audioPlayingRowIndex = indexPath.row;
+    NSString* name = [fileName lastPathComponent].stringByDeletingPathExtension;
+    
+    self.audioPlayingDict[name] = @(indexPath.row);
+}
+
 #pragma mark - *** Refresh ***
 - (void)loadNewData
 {
@@ -367,4 +404,41 @@
         });
     }];
 }
+
+
+
+#pragma mark - *** AudioPlaybackDelegate ***
+- (void)didStartPlayFile:(NSString*)name errorCode:(NSInteger)code
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (0 == code) {
+            NSString* fileName = [name lastPathComponent].stringByDeletingPathExtension;
+            NSInteger index = [self.audioPlayingDict[fileName] integerValue];
+            
+            TEBubbleAudioCell* audioCell =  [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            [audioCell startAnimating];
+        }
+        else{
+            ///错误提示
+        }
+    });
+}
+
+
+- (void)didStopPlayFile:(NSString*)name errorCode:(NSInteger)code
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (0 == code) {
+            NSString* fileName = [name lastPathComponent].stringByDeletingPathExtension;
+            NSInteger index = [self.audioPlayingDict[fileName] integerValue];
+            [self.audioPlayingDict removeObjectForKey:fileName];
+            TEBubbleAudioCell* audioCell =  [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            [audioCell  stopAnimating];
+        }
+        else{
+            ///
+        }
+    });
+}
+
 @end

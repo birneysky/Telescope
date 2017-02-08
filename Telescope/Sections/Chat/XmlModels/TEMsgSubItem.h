@@ -79,14 +79,34 @@ typedef NS_ENUM(NSUInteger,TEMsgSubItemType){
  */
 @interface TEMsgImageSubItem : TEMsgSubItem <TETextPlaceholderModel>
 
+
+/**
+ 存储图片的路径
+ */
 @property (copy,nonatomic) NSString* path;
 
+
+/**
+ 图片名字
+ */
 @property (copy, nonatomic) NSString* fileName;
 
+
+/**
+ 图片文件扩展名
+ */
 @property (copy,nonatomic) NSString* fileExt;
 
+
+/**
+ 图片所在的索引
+ */
 @property (nonatomic,assign) NSUInteger index;
 
+
+/**
+ 图片的显示区域
+ */
 @property (nonatomic) CGRect frame;
 
 - (NSDictionary*) toDictionary;

@@ -62,8 +62,20 @@
 {
     NSLog(@"‼️‼️‼️‼️");
     
+    if ([self.playDelegate respondsToSelector:@selector(didSelectAudioCell:fileName:)]) {
+        [self.playDelegate didSelectAudioCell:self fileName:self.audioItem.filePath];
+    }
     
-    
+}
+
+
+- (void)startAnimating
+{
+    [self.audioInfoView startAnimating];
+}
+- (void)stopAnimating
+{
+    [self.audioInfoView stopAnimating];
 }
 
 

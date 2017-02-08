@@ -8,13 +8,19 @@
 
 #import "TEBubbleCell.h"
 
-@protocol TEBubbleAudioCellDelegate <NSObject>
+@protocol TEBubbleAudioPlayDelegate <NSObject>
 
-- (void)didSelectAudioOfFile:(NSString*)fileName;
+- (void)didSelectAudioCell:(UITableViewCell*)cell fileName:(NSString*)fileName;
 
 @end
 
 @interface TEBubbleAudioCell : TEBubbleCell
+
+@property (nonatomic,weak) id<TEBubbleAudioPlayDelegate> playDelegate;
+
+- (void)startAnimating;
+- (void)stopAnimating;
+
 
 
 @end

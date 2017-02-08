@@ -54,7 +54,7 @@ typedef NS_ENUM(NSInteger,TEPlaceholderType){
 
 
 /**
- 文件路径
+ 文件全路径
  */
 @property (copy,nonatomic,readonly) NSString* filePath;
 

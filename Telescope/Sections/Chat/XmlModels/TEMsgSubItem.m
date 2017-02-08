@@ -154,4 +154,11 @@
     return PlaceholderAudioType;
 }
 
+- (NSString*)filePath
+{
+    NSString* fileName = [NSString stringWithFormat:@"%@%@",self.fileName,self.fileExt];
+    return [self.path stringByAppendingPathComponent:fileName];
+
+}
+
 @end

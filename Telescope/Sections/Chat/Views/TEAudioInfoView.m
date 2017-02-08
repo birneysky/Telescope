@@ -64,12 +64,28 @@
     _senderisMe = senderisMe;
     if (senderisMe) {
         _voiceIconImageView.image = [UIImage imageNamed:@"te_voice_animation_white3"];
+        _voiceIconImageView.animationImages = @[[UIImage imageNamed:@"te_voice_animation_white3"],
+                                                [UIImage imageNamed:@"te_voice_animation_white2"],
+                                                [UIImage imageNamed:@"te_voice_animation_white1"]];
         _durationLabel.textColor = [UIColor whiteColor];
     }
     else{
         _voiceIconImageView.image = [UIImage imageNamed:@"te_voice_animation_gary3"];
+        _voiceIconImageView.animationImages = @[[UIImage imageNamed:@"te_voice_animation_gary3"],
+                                                [UIImage imageNamed:@"te_voice_animation_gary2"],
+                                                [UIImage imageNamed:@"te_voice_animation_gary1"]];
     }
+    
+    _voiceIconImageView.animationDuration = 0.5;
 }
 
+- (void)startAnimating
+{
+    [_voiceIconImageView startAnimating];
+}
+- (void)stopAnimating
+{
+    [_voiceIconImageView  stopAnimating];
+}
 
 @end

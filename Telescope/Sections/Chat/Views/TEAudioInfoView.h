@@ -22,6 +22,8 @@
 
 - (void)setDurationText:(NSString*)text;
 
+- (void)startAnimating;
+- (void)stopAnimating;
 
 
 @end
