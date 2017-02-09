@@ -121,7 +121,10 @@
     [self.fetchRequest setFetchOffset:offset];
     [self.fetchRequest setFetchLimit:20];
     
-    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:helper.backgroundContext sectionNameKeyPath:nil cacheName:nil];/* cacheName TEChatMessage*/
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
+                                                   managedObjectContext:helper.backgroundContext
+                                                     sectionNameKeyPath:nil
+                                                              cacheName:nil];/* cacheName TEChatMessage*/
     self.frc.delegate = self;
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     

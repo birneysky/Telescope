@@ -172,6 +172,9 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
     if (!self.session) {
         
     }
+    ///未读消息总数置为0
+    self.session.totalNumberOfUnreadMessage = 0;
+    [TEV2KitChatDemon defaultDemon].activeSessionID = self.session.sID;
     
     self.chatTVC.session = self.session;
     [self addChildViewController:self.chatTVC];
@@ -197,6 +200,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
      NSLog(@"♻️♻️♻️♻️ TEChatViewController dealloc");
     [self.textView removeObserver:self forKeyPath:@"contentSize"];
     [self.chatTVC.timer invalidate];
+    [TEV2KitChatDemon defaultDemon].activeSessionID = 0;
 }
 
 
@@ -492,10 +496,12 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
 - (void)sendMessages:(NSArray<TEChatMessage*>*)chatMessages
 {
     [chatMessages enumerateObjectsUsingBlock:^(TEChatMessage * _Nonnull message, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[V2Kit defaultKit] sendTextMessage:[message xmlString]
+        NSString* textXml = [message xmlString];
+        [[V2Kit defaultKit] sendTextMessage:textXml
                                    toUserID:self.session.remoteUsrID
                                     inGroup:0
                                   messageID:message.messageID];
+        DDLogInfo(@"📤📤📤📤 send TextMessage  id =  %@, content = %@",message.messageID,textXml);
         [message.msgItemList enumerateObjectsUsingBlock:^(TEMsgSubItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
             if (Image ==  item.type||
                 Audio == item.type) {
@@ -510,6 +516,7 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
                                                  inGroup:0
                                                     type:type
                                                   fileID:mediaItem.fileName];
+                DDLogInfo(@"📤📤📤📤 send Mediafile  fileid =  %@",mediaItem.fileName);
             }
         }];
     }];
@@ -737,8 +744,10 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         return;
     }
     
-    ///更新消息
     NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:self.startRecordingAudioTime];
+
+    
+    ///更新消息
      //duration = now - self.startRecordingAudioTime;
     [[TECoreDataHelper defaultHelper] updateWithBlock:^{
         ///重置发送时间
@@ -749,6 +758,10 @@ typedef NS_ENUM(NSUInteger,TEChatToolBarState){
         TEChatMessage* chatMessage = self.recordingAudioMessage.chatMessage;
         TEMSgAudioSubItem* subItem = (TEMSgAudioSubItem*)chatMessage.msgItemList.firstObject;
         subItem.duration = (NSInteger)duration;
+        if (0 == subItem.duration) {
+            [[TECoreDataHelper defaultHelper] deleteMessages:@[self.recordingAudioMessage]];
+            return;
+        }
         self.recordingAudioMessage.content = [chatMessage xmlString];
         ///重新布局
         [self.recordingAudioMessage reLayout];

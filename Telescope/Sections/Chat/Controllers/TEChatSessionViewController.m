@@ -128,7 +128,7 @@
 //    else{
 //        assert(0);
 //    }
-    [sessionCell setUserName:[NSString stringWithFormat:@"%lld",session.remoteUsrID]];
+    [sessionCell setUserName:[NSString stringWithFormat:@"%lld + %d",session.remoteUsrID,session.totalNumberOfUnreadMessage]];
     NSString* randomImageName = self.imageNames[arc4random() % self.imageNames.count];
     sessionCell.imageView.image = [UIImage imageNamed:randomImageName];
     [sessionCell setMessageOverView:session.overviewOfLastMessage];

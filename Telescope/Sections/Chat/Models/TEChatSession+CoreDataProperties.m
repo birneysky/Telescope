@@ -22,5 +22,6 @@
 @dynamic lastMessageType;
 @dynamic sID;
 @dynamic totalNumOfMessage;
+@dynamic totalNumberOfUnreadMessage;
 
 @end

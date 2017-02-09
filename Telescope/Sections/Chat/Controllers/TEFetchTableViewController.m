@@ -99,7 +99,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                              withRowAnimation:UITableViewRowAnimationFade];
+                              withRowAnimation:UITableViewRowAnimationNone];
             });
         }
             break;
@@ -107,7 +107,7 @@
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                              withRowAnimation:UITableViewRowAnimationFade];
+                              withRowAnimation:UITableViewRowAnimationNone];
                 
             });
         }
@@ -131,7 +131,7 @@
 //                    NSLog(@"new indexpath row %ld, count %ld",indexPath.row, self.frc.fetchedObjects.count);
 //                    [self.tableView scrollToRowAtIndexPath:lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                                          withRowAnimation:UITableViewRowAnimationFade];
+                                          withRowAnimation:UITableViewRowAnimationNone];
 //                    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:newIndexPath];
 //                    CGRect rect = [cell convertRect:cell.frame fromView:self.tableView];
 
@@ -144,7 +144,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                          withRowAnimation:UITableViewRowAnimationAutomatic];
+                                          withRowAnimation:UITableViewRowAnimationNone];
                 });
             }
             break;
@@ -153,7 +153,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
 //                    if (!newIndexPath) {
                         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                              withRowAnimation:UITableViewRowAnimationFade];
+                                              withRowAnimation:UITableViewRowAnimationNone];
 //                    }
 //                    else{
 //                        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

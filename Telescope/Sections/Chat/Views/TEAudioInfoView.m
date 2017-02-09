@@ -74,6 +74,7 @@
         _voiceIconImageView.animationImages = @[[UIImage imageNamed:@"te_voice_animation_gary3"],
                                                 [UIImage imageNamed:@"te_voice_animation_gary2"],
                                                 [UIImage imageNamed:@"te_voice_animation_gary1"]];
+        _durationLabel.textColor = [UIColor grayColor];
     }
     
     _voiceIconImageView.animationDuration = 0.5;

@@ -13,6 +13,7 @@
         <attribute name="remoteUsrID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sID" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
         <attribute name="timeToRecvLastMessage" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="totalNumberOfUnreadMessage" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalNumOfMessage" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="TEMediaFileLocation" representedClassName="TEMediaFileLocation" syncable="YES">
@@ -25,6 +26,7 @@
     <entity name="TEMessage" representedClassName="TEMessage" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="receiverID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="recvTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="senderID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -36,8 +38,8 @@
     </entity>
     <elements>
         <element name="TECacheUser" positionX="1024" positionY="324" width="128" height="90"/>
-        <element name="TEChatSession" positionX="799" positionY="455" width="128" height="165"/>
-        <element name="TEMessage" positionX="1026" positionY="459" width="128" height="193"/>
+        <element name="TEChatSession" positionX="799" positionY="455" width="128" height="180"/>
         <element name="TEMediaFileLocation" positionX="799" positionY="324" width="128" height="118"/>
+        <element name="TEMessage" positionX="1026" positionY="459" width="128" height="210"/>
     </elements>
 </model>

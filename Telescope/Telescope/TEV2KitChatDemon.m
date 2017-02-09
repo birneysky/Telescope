@@ -93,6 +93,7 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (void)didReceiveChatMessage:(NSString*)xmlText  fromUserID:(long long)uid inGroup:(long long)gid messageID:(NSString*)mid sendTime:(NSDate*)date
 {
+    DDLogInfo(@"📩📩📩📩 didReceiveChatMessage  xmlText =  %@",xmlText);
     __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
     NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEChatSession"];
     NSPredicate* predicat = [NSPredicate predicateWithFormat:@"remoteUsrID == %lld",uid];
@@ -102,7 +103,7 @@ static TEV2KitChatDemon* _demon = nil;
     
     TEChatMessage* chatMsgModel =  [TEChatXMLReader messageForXmlString:xmlText error:nil];
     chatMsgModel.senderIsMe = NO;
-    chatMsgModel.time = date;
+    chatMsgModel.time = [NSDate date];
     
 
 
@@ -122,14 +123,14 @@ static TEV2KitChatDemon* _demon = nil;
             message.state = TEMsgTransStateSucced;
         }
         
-        NSDate* recvDate =  [NSDate date];
+        
         message.mID = mid;
         message.senderID = uid;
         message.receiverID = self.selfUser.userID;
         message.content = xmlText;
-        message.sendTime = date;
+        message.sendTime = chatMsgModel.time;
         message.type = chatMsgModel.type;
-        message.recvTime = recvDate;
+        message.recvTime = chatMsgModel.time;
         message.chatMessage = chatMsgModel;
         
         TEChatSession* session = nil;
@@ -138,7 +139,7 @@ static TEV2KitChatDemon* _demon = nil;
             session.groupID = 0;
             session.groupType = 0;
             session.remoteUsrID = uid;
-            session.timeToRecvLastMessage = recvDate;
+            session.timeToRecvLastMessage = chatMsgModel.time;
             session.overviewOfLastMessage = @"Text";
             session.lastMessageType = message.type;
             session.sID = (int32_t)uid;
@@ -146,7 +147,7 @@ static TEV2KitChatDemon* _demon = nil;
         }
         else if(sessionArray.count == 1){
             session = sessionArray.firstObject;
-            session.timeToRecvLastMessage = [NSDate date];
+            session.timeToRecvLastMessage = chatMsgModel.time;;
             session.lastMessageType = message.type;
         }
         else{
@@ -155,6 +156,15 @@ static TEV2KitChatDemon* _demon = nil;
         
         message.sessionID = session.sID;
         session.totalNumOfMessage += 1;
+        
+    
+        if (self.activeSessionID != session.sID) {
+            session.totalNumberOfUnreadMessage += 1;
+        }
+        else{
+            message.read = YES;
+        }
+        
         [message layout];
         session.overviewOfLastMessage = [message.chatMessage overviewText];
         
@@ -183,7 +193,20 @@ static TEV2KitChatDemon* _demon = nil;
 - (void)didReceiveMediaFile:(NSString*)fileName type:(MediaFileType)type fromUserID:(long long)uid inGroup:(long long)gid fileID:(NSString*)fid sendTime:(NSDate*)date
 {
     //__weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
-
+    NSString* typeName = nil; //MediaFileTypePicture == type ? "Picture" : "Audio"
+    switch (type) {
+        case MediaFileTypeText:
+            typeName = @"TextFile";
+            break;
+        case MediaFileTypeAudio:
+            typeName = @"Audio";
+            break;
+        case MediaFileTypePicture:
+            typeName = @"Picture";
+            break;
+    }
+    DDLogInfo(@"📩📩📩📩 didReceiveMediaFile  xmlText =  %@ fileId = %@",typeName, fid);
+    
     TEMessage* message = self.processingMessage[fid];
     [self.processingMessage removeObjectForKey:fid];
     /// 生成缩略图
@@ -210,6 +233,9 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (void)didReceiveResponseOfSendingTextMessage:(NSString*)messageID responseCode:(NSInteger)code fromUserID:(long long)uid inGroup:(long long)gid
 {
+    
+     DDLogInfo(@"📩📩📩📩 didReceiveResponseOfSendingTextMessage  messageID =  %@ ",messageID);
+    
     __weak NSManagedObjectContext* weakContext = [TECoreDataHelper defaultHelper].backgroundContext;
     NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TEMessage"];
     NSPredicate* predicat = [NSPredicate predicateWithFormat:@"mID == %@",messageID];
@@ -244,6 +270,7 @@ static TEV2KitChatDemon* _demon = nil;
 
 - (void)didReceiveResponseOfSendingMediaFile:(NSString*)fileID responseCode:(NSInteger)code  type:(MediaFileType)type  fromUserID:(long long)uid inGroup:(long long)gid
 {
+    DDLogInfo(@"📩📩📩📩 didReceiveResponseOfSendingMediaFile  fileID =  %@ ",fileID);
      ///修改传输状态并存储至数据库
     TEMessage* message = self.processingMessage[fileID];
     if(message) [self.processingMessage removeObjectForKey:fileID];

@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int16_t lastMessageType;
 @property (nonatomic, assign) int32_t sID;
 @property (nonatomic, assign) int32_t totalNumOfMessage;
-
+@property (nonatomic, assign) int32_t totalNumberOfUnreadMessage;
 @end
 
 @interface TEChatSession (CoreDataGeneratedAccessors)

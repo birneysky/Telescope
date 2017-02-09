@@ -63,8 +63,6 @@
 
 
 
-
-
 - (instancetype)initWithMessage:(TEChatMessage*)message;
 
 

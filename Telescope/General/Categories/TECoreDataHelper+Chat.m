@@ -85,8 +85,6 @@
     [[[TECoreDataHelper defaultHelper] backgroundContext] performBlock:^{
         for (int i =0 ; i < chatMessages.count; i++) {
             TEChatMessage* chatMessage = chatMessages[i];
-            //            chatMessage.senderIsMe = YES;
-            //            chatMessage.time = [NSDate date];
             TEMessage* message =  [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:context];
             message.mID = chatMessage.messageID;
             message.senderID = sid;
@@ -98,13 +96,11 @@
             message.sessionID = session.sID;
             message.senderIsMe = YES;
             message.state = TEMsgTransStateReady;
-            //message.chatMessage = chatMessage;
             session.totalNumOfMessage += 1;
-            //[message layout];
+
             [msgs addObject:message];
         }
         session.overviewOfLastMessage = [chatMessages.lastObject overviewText];
-        //[[TECoreDataHelper defaultHelper] saveBackgroundContext];
         if (completion) {
             completion([msgs copy]);
         }

@@ -24,5 +24,6 @@
 @dynamic sessionID;
 @dynamic senderIsMe;
 @dynamic state;
+@dynamic read;
 
 @end
