@@ -22,6 +22,8 @@
 
 - (void)setDurationText:(NSString*)text;
 
+- (void)setDurationAttributeText:(NSAttributedString *)text;
+
 - (void)startAnimating;
 - (void)stopAnimating;
 

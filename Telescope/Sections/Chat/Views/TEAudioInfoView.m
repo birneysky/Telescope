@@ -59,6 +59,12 @@
     _durationLabel.text = text;
 }
 
+- (void)setDurationAttributeText:(NSAttributedString *)text
+{
+    _textSize = [text size];
+    _durationLabel.attributedText = text;
+}
+
 - (void)setSenderisMe:(BOOL)senderisMe
 {
     _senderisMe = senderisMe;

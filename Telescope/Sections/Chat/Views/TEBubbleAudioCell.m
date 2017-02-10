@@ -49,8 +49,15 @@
     
     TEMSgAudioSubItem* audioItem = (TEMSgAudioSubItem*)message.chatMessage.msgItemList.firstObject;
     self.audioItem = audioItem;
-    [self.audioInfoView setDurationText:[NSString stringWithFormat:@"%ld's",audioItem.duration]];
-    
+    NSMutableAttributedString* basicAttributeString =
+        [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld's ",audioItem.duration]
+                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f],
+                                                            NSForegroundColorAttributeName: message.senderIsMe ? [UIColor whiteColor] : [UIColor grayColor]}];
+    if (!message.read) {
+        [basicAttributeString appendAttributedString:[[NSAttributedString alloc] initWithString:@" ●" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor redColor]}]];
+    }
+//    [self.audioInfoView setDurationText:[NSString stringWithFormat:@"%ld's ",audioItem.duration]];
+    [self.audioInfoView setDurationAttributeText:[basicAttributeString copy]];
     if(!self.audioInfoView.superview){
         [self.contentView addSubview:self.audioInfoView];
     }

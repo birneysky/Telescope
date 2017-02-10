@@ -106,8 +106,6 @@ static TEV2KitChatDemon* _demon = nil;
     chatMsgModel.time = [NSDate date];
     
 
-
-    
     [weakContext performBlock:^{
         TEMessage* message = [NSEntityDescription insertNewObjectForEntityForName:@"TEMessage" inManagedObjectContext:weakContext];
         if(TEChatMessageTypeImage == chatMsgModel.type ||
@@ -161,7 +159,7 @@ static TEV2KitChatDemon* _demon = nil;
         if (self.activeSessionID != session.sID) {
             session.totalNumberOfUnreadMessage += 1;
         }
-        else{
+        else if(TEChatMessageTypeAudio != message.type){
             message.read = YES;
         }
         
